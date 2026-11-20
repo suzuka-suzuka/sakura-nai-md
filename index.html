@@ -633,20 +633,10 @@
       color: var(--text-primary);
     }
 
-    /* Tables */
-    .table-scroll-hint {
-      display: none;
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      margin: 10px 0 4px;
-      align-items: center;
-      gap: 4px;
-    }
-
+    /* Tables (Desktop default) */
     .table-wrap {
       width: 100%;
       overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
       margin: 12px 0;
       border-radius: var(--radius-md);
       border: 1px solid var(--border-subtle);
@@ -658,10 +648,6 @@
       border-collapse: collapse;
       text-align: left;
       font-size: 0.91rem;
-    }
-
-    .table-data {
-      min-width: 580px;
     }
 
     th {
@@ -1114,6 +1100,7 @@
       }
     }
 
+    /* Mobile Zero-Horizontal-Scroll Card Layout for ALL Tables */
     @media (max-width: 768px) {
       html {
         scroll-padding-top: 64px;
@@ -1151,11 +1138,11 @@
       }
       .hero-card,
       .section-card {
-        padding: 18px 16px;
+        padding: 18px 15px;
         border-radius: 14px;
       }
       .hero-title {
-        font-size: 1.38rem;
+        font-size: 1.36rem;
         margin-bottom: 12px;
       }
       .mobile-quick-actions {
@@ -1176,13 +1163,10 @@
         gap: 10px;
       }
       .section-title {
-        font-size: 1.18rem;
+        font-size: 1.16rem;
       }
       .subsection-title {
         font-size: 1.04rem;
-      }
-      .table-scroll-hint {
-        display: flex;
       }
       .filter-bar {
         padding: 15px 14px;
@@ -1200,14 +1184,14 @@
         font-size: 0.83rem;
       }
       .steps-list > li {
-        padding: 12px 12px 12px 42px;
+        padding: 12px 12px 12px 40px;
       }
       .steps-list > li::before {
         left: 10px;
         top: 13px;
-        width: 23px;
-        height: 23px;
-        font-size: 0.78rem;
+        width: 22px;
+        height: 22px;
+        font-size: 0.76rem;
       }
       .code-block {
         flex-direction: column;
@@ -1225,42 +1209,121 @@
         grid-template-columns: 1fr;
         gap: 10px;
       }
-    }
 
-    /* Stack 3-column Config Tables cleanly on phone screens so no horizontal scroll is needed */
-    @media (max-width: 600px) {
+      /* Remove table scroll wrapper border on mobile so rows become clean standalone cards */
+      .table-wrap {
+        border: none;
+        background: transparent;
+        overflow: visible;
+        margin: 10px 0;
+      }
+
+      .badge {
+        white-space: normal;
+        line-height: 1.35;
+      }
+
+      /* 1. Config Tables on Mobile: Left = Field + Value, Right = Copy/Status Button */
       .table-config thead {
         display: none;
       }
       .table-config,
-      .table-config tbody,
-      .table-config tr,
-      .table-config td {
-        display: block;
+      .table-config tbody {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
         width: 100%;
       }
       .table-config tr {
-        padding: 10px 12px;
-        border-bottom: 1px solid var(--border-subtle);
-      }
-      .table-config tr:last-child {
-        border-bottom: none;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        grid-template-areas:
+          "field action"
+          "val   action";
+        align-items: center;
+        gap: 3px 10px;
+        padding: 11px 13px;
+        background: var(--bg-elevated);
+        border: 1px solid var(--border-subtle);
+        border-radius: var(--radius-md);
       }
       .table-config td {
-        padding: 3px 0;
-        border-bottom: none;
+        padding: 0;
+        border: none;
       }
-      .table-config td:first-child {
-        font-size: 0.82rem;
+      .table-config td:nth-child(1) {
+        grid-area: field;
+        font-size: 0.78rem;
         color: var(--text-muted);
       }
       .table-config td:nth-child(2) {
-        font-size: 0.92rem;
+        grid-area: val;
+        font-size: 0.9rem;
         color: var(--text-primary);
         word-break: break-all;
       }
       .table-config td:nth-child(3) {
-        margin-top: 6px;
+        grid-area: action;
+        justify-self: end;
+      }
+
+      /* 2. Data & Comparison Tables on Mobile: Vertical Labeled Cards (No Horizontal Scroll!) */
+      .table-data thead {
+        display: none;
+      }
+      .table-data,
+      .table-data tbody {
+        display: flex;
+        flex-direction: column;
+        gap: 11px;
+        width: 100%;
+      }
+      .table-data tr {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        padding: 13px 14px;
+        background: var(--bg-elevated);
+        border: 1px solid var(--border-subtle);
+        border-radius: var(--radius-md);
+      }
+      .table-data tr.highlight-row {
+        background: var(--sakura-bg);
+        border-color: var(--border-strong);
+      }
+      .table-data td {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 10px;
+        padding: 3px 0;
+        border: none;
+        text-align: left !important;
+        white-space: normal !important;
+        font-size: 0.89rem;
+        line-height: 1.5;
+      }
+      .table-data td:first-child {
+        display: block;
+        font-size: 0.98rem;
+        font-weight: 800;
+        color: var(--text-primary);
+        padding-bottom: 8px;
+        margin-bottom: 3px;
+        border-bottom: 1px dashed var(--border-subtle);
+      }
+      .table-data td:not(:first-child)::before {
+        content: attr(data-label);
+        font-size: 0.79rem;
+        font-weight: 700;
+        color: var(--text-muted);
+        flex: 0 0 105px;
+      }
+      .table-data td:not(:first-child) > .cell-val {
+        flex: 1;
+        min-width: 0;
+        color: var(--text-primary);
+        word-break: break-word;
       }
     }
   </style>
@@ -1453,7 +1516,6 @@
         </ol>
 
         <h3 class="subsection-title">各档套餐权益表（有效天数从兑换成功时开始计算）</h3>
-        <div class="table-scroll-hint">↔ 左右滑动可查看完整套餐表</div>
         <div class="table-wrap">
           <table class="table-data">
             <thead>
@@ -1468,52 +1530,52 @@
             <tbody>
               <tr>
                 <td>体验：100点数</td>
-                <td class="num-col">30</td>
-                <td class="num-col">100</td>
-                <td>无（按点数扣除）</td>
-                <td>无</td>
+                <td class="num-col" data-label="有效天数"><span class="cell-val">30 天</span></td>
+                <td class="num-col" data-label="点数"><span class="cell-val">100</span></td>
+                <td data-label="V4.5 小图权益"><span class="cell-val">无（按点数扣除）</span></td>
+                <td data-label="V5 体力上限"><span class="cell-val">无</span></td>
               </tr>
               <tr>
                 <td>体验：1天Opus</td>
-                <td class="num-col">1</td>
-                <td class="num-col">0</td>
-                <td><span class="badge badge-green">✅ 无限免点生成</span></td>
-                <td>4%（约 44 张，一次性发放不恢复）</td>
+                <td class="num-col" data-label="有效天数"><span class="cell-val">1 天</span></td>
+                <td class="num-col" data-label="点数"><span class="cell-val">0</span></td>
+                <td data-label="V4.5 小图权益"><span class="cell-val"><span class="badge badge-green">✅ 无限免点生成</span></span></td>
+                <td data-label="V5 体力上限"><span class="cell-val">4%（约 44 张，一次性发放不恢复）</span></td>
               </tr>
               <tr>
                 <td>按量：2k点数包</td>
-                <td class="num-col">30</td>
-                <td class="num-col">2,000</td>
-                <td>无（按点数扣除）</td>
-                <td>无</td>
+                <td class="num-col" data-label="有效天数"><span class="cell-val">30 天</span></td>
+                <td class="num-col" data-label="点数"><span class="cell-val">2,000</span></td>
+                <td data-label="V4.5 小图权益"><span class="cell-val">无（按点数扣除）</span></td>
+                <td data-label="V5 体力上限"><span class="cell-val">无</span></td>
               </tr>
               <tr class="highlight-row">
                 <td><strong>🔥 月卡：V4.5无限小图（无V5体力）</strong></td>
-                <td class="num-col"><strong>30</strong></td>
-                <td class="num-col"><strong>0</strong></td>
-                <td><span class="badge badge-green">✅ 无限免点生成</span></td>
-                <td><span class="badge badge-red">无（不支持 V5，请选 V4.5 模型）</span></td>
+                <td class="num-col" data-label="有效天数"><span class="cell-val"><strong>30 天</strong></span></td>
+                <td class="num-col" data-label="点数"><span class="cell-val"><strong>0</strong></span></td>
+                <td data-label="V4.5 小图权益"><span class="cell-val"><span class="badge badge-green">✅ 无限免点生成</span></span></td>
+                <td data-label="V5 体力上限"><span class="cell-val"><span class="badge badge-red">无（不支持 V5，请选 V4.5 模型）</span></span></td>
               </tr>
               <tr>
                 <td>月卡：4人Opus无限小图（无点）</td>
-                <td class="num-col">30</td>
-                <td class="num-col">0</td>
-                <td><span class="badge badge-green">✅ 无限免点生成</span></td>
-                <td>25%（上限 280 张，每 24h 恢复 40 张）</td>
+                <td class="num-col" data-label="有效天数"><span class="cell-val">30 天</span></td>
+                <td class="num-col" data-label="点数"><span class="cell-val">0</span></td>
+                <td data-label="V4.5 小图权益"><span class="cell-val"><span class="badge badge-green">✅ 无限免点生成</span></span></td>
+                <td data-label="V5 体力上限"><span class="cell-val">25%（上限 280 张，每 24h 恢复 40 张）</span></td>
               </tr>
               <tr>
                 <td>月卡：4人Opus无限小图+2k点</td>
-                <td class="num-col">30</td>
-                <td class="num-col">2,000</td>
-                <td><span class="badge badge-green">✅ 无限免点生成</span></td>
-                <td>25%（上限 280 张，每 24h 恢复 40 张）</td>
+                <td class="num-col" data-label="有效天数"><span class="cell-val">30 天</span></td>
+                <td class="num-col" data-label="点数"><span class="cell-val">2,000</span></td>
+                <td data-label="V4.5 小图权益"><span class="cell-val"><span class="badge badge-green">✅ 无限免点生成</span></span></td>
+                <td data-label="V5 体力上限"><span class="cell-val">25%（上限 280 张，每 24h 恢复 40 张）</span></td>
               </tr>
               <tr>
                 <td>月卡：单人独享Opus（含1w点）</td>
-                <td class="num-col">30</td>
-                <td class="num-col">10,000</td>
-                <td><span class="badge badge-green">✅ 无限免点生成</span></td>
-                <td>100%（上限 1,120 张，每 24h 恢复 160 张）</td>
+                <td class="num-col" data-label="有效天数"><span class="cell-val">30 天</span></td>
+                <td class="num-col" data-label="点数"><span class="cell-val">10,000</span></td>
+                <td data-label="V4.5 小图权益"><span class="cell-val"><span class="badge badge-green">✅ 无限免点生成</span></span></td>
+                <td data-label="V5 体力上限"><span class="cell-val">100%（上限 1,120 张，每 24h 恢复 160 张）</span></td>
               </tr>
             </tbody>
           </table>
@@ -1636,7 +1698,7 @@
                   <tr>
                     <td><strong>API Token</strong></td>
                     <td>兑换页上的 <code>skr_</code> 密钥</td>
-                    <td><span class="badge badge-amber">粘贴你的 skr_ 密钥</span></td>
+                    <td><span class="badge badge-amber">粘贴 skr_ 密钥</span></td>
                   </tr>
                 </tbody>
               </table>
@@ -1688,7 +1750,7 @@
                   <tr>
                     <td><strong>API Token</strong></td>
                     <td>兑换页上的 <code>skr_</code> 密钥</td>
-                    <td><span class="badge badge-amber">粘贴你的 skr_ 密钥</span></td>
+                    <td><span class="badge badge-amber">粘贴 skr_ 密钥</span></td>
                   </tr>
                 </tbody>
               </table>
@@ -1736,7 +1798,7 @@
                   <tr>
                     <td><strong>API Key</strong></td>
                     <td>兑换页上的 <code>skr_</code> 密钥</td>
-                    <td><span class="badge badge-amber">粘贴你的 skr_ 密钥</span></td>
+                    <td><span class="badge badge-amber">粘贴 skr_ 密钥</span></td>
                   </tr>
                 </tbody>
               </table>
@@ -1785,7 +1847,7 @@
                   <tr>
                     <td><strong>NovelAI API Key</strong></td>
                     <td>兑换页上的 <code>skr_</code> 密钥</td>
-                    <td><span class="badge badge-amber">粘贴你的 skr_ 密钥</span></td>
+                    <td><span class="badge badge-amber">粘贴 skr_ 密钥</span></td>
                   </tr>
                   <tr>
                     <td><strong>第三方端点 URL（可选）</strong></td>
@@ -1838,7 +1900,7 @@
                   <tr>
                     <td><strong>NovelAI API</strong></td>
                     <td>兑换页上的 <code>skr_</code> 密钥</td>
-                    <td><span class="badge badge-amber">粘贴你的 skr_ 密钥</span></td>
+                    <td><span class="badge badge-amber">粘贴 skr_ 密钥</span></td>
                   </tr>
                   <tr>
                     <td><strong>站点</strong></td>
@@ -1911,7 +1973,7 @@
               <tr>
                 <td><strong>API Key / Token</strong></td>
                 <td>兑换页上的 <code>skr_</code> 密钥</td>
-                <td><span class="badge badge-amber">粘贴你的 skr_ 密钥</span></td>
+                <td><span class="badge badge-amber">粘贴 skr_ 密钥</span></td>
               </tr>
             </tbody>
           </table>
@@ -1937,7 +1999,6 @@
           <p><strong>小图是符合尺寸与步数标准的图片规格；Opus 会员跑 V4.5 小图完全免费不限量，跑 V5 小图则优先扣「V5 体力」；超规格大图或无会员时则扣「点数」。</strong></p>
         </div>
 
-        <div class="table-scroll-hint">↔ 左右滑动可查看完整表格</div>
         <div class="table-wrap">
           <table class="table-data">
             <thead>
@@ -1950,23 +2011,23 @@
             <tbody>
               <tr>
                 <td><strong>小图（标准图）</strong></td>
-                <td>指满足<strong>宽×高 ≤ 1,048,576 像素、步数 ≤ 28、单次生成 1 张</strong>的图片规格</td>
-                <td>不等于低画质，也不是只能画 512×512（常用的 <strong>832×1216、1024×1024 都算小图！</strong>）</td>
+                <td data-label="通俗解释"><span class="cell-val">指满足<strong>宽×高 ≤ 1,048,576 像素、步数 ≤ 28、单次生成 1 张</strong>的图片规格</span></td>
+                <td data-label="容易搞混"><span class="cell-val">不等于低画质，也不是只能画 512×512（常用的 <strong>832×1216、1024×1024 都算小图！</strong>）</span></td>
               </tr>
               <tr>
                 <td><strong>V4.5 无限小图</strong></td>
-                <td>所有月卡及 1 天 Opus 均含此权益：用 <strong>V4.5 模型</strong>画符合条件的小图，<strong>不扣点数也不扣 V5 体力，30 天无限畅画</strong></td>
-                <td>若购买的是「V4.5无限小图（无V5体力）」月卡，<strong>只能免点画 V4.5 小图</strong>，不能画 V5 或超规格大图</td>
+                <td data-label="通俗解释"><span class="cell-val">所有月卡及 1 天 Opus 均含此权益：用 <strong>V4.5 模型</strong>画符合条件的小图，<strong>不扣点数也不扣 V5 体力，30 天无限畅画</strong></span></td>
+                <td data-label="容易搞混"><span class="cell-val">若购买的是「V4.5无限小图（无V5体力）」月卡，<strong>只能免点画 V4.5 小图</strong>，不能画 V5 或超规格大图</span></td>
               </tr>
               <tr>
                 <td><strong>V5 体力</strong></td>
-                <td>专为 <strong>V5 模型</strong>设置的可用小图张数额度（1天/4人/单人 Opus 专属），用完后按 24 小时周期恢复</td>
-                <td>只有画 <strong>V5 小图</strong>才会扣 V5 体力；画 V4.5 小图不扣 V5 体力！当 V5 体力用完时，切回 V4.5 仍可继续无限画小图</td>
+                <td data-label="通俗解释"><span class="cell-val">专为 <strong>V5 模型</strong>设置的可用小图张数额度（1天/4人/单人 Opus 专属），用完后按 24 小时周期恢复</span></td>
+                <td data-label="容易搞混"><span class="cell-val">只有画 <strong>V5 小图</strong>才会扣 V5 体力；画 V4.5 小图不扣 V5 体力！当 V5 体力用完时，切回 V4.5 仍可继续无限画小图</span></td>
               </tr>
               <tr>
                 <td><strong>点数</strong></td>
-                <td>用来支付绘图消耗的钱包余额，类似官网的 <strong>ImageAnlas（生图点数）</strong></td>
-                <td><strong>100 点数不等于 100 张图</strong>，每次消耗点数多少与模型、尺寸、步数有关</td>
+                <td data-label="通俗解释"><span class="cell-val">用来支付绘图消耗的钱包余额，类似官网的 <strong>ImageAnlas（生图点数）</strong></span></td>
+                <td data-label="容易搞混"><span class="cell-val"><strong>100 点数不等于 100 张图</strong>，每次消耗点数多少与模型、尺寸、步数有关</span></td>
               </tr>
             </tbody>
           </table>
@@ -2046,7 +2107,7 @@
 
         <p><strong>常见尺寸举例（以本站的宽×高 ≤ 1,048,576 像素规则判断）：</strong></p>
         <div class="table-wrap">
-          <table>
+          <table class="table-data">
             <thead>
               <tr>
                 <th>图片尺寸</th>
@@ -2057,28 +2118,28 @@
             <tbody>
               <tr>
                 <td>512 × 512</td>
-                <td class="num-col">262,144</td>
-                <td><span class="badge badge-green">✅ 算</span> 同时满足步数 ≤ 28、单次 1 张即可</td>
+                <td class="num-col" data-label="像素数量"><span class="cell-val">262,144</span></td>
+                <td data-label="算小图吗？"><span class="cell-val"><span class="badge badge-green">✅ 算</span> 同时满足步数 ≤ 28、单次 1 张即可</span></td>
               </tr>
               <tr>
                 <td>768 × 1024</td>
-                <td class="num-col">786,432</td>
-                <td><span class="badge badge-green">✅ 算</span> 同时满足步数 ≤ 28、单次 1 张即可</td>
+                <td class="num-col" data-label="像素数量"><span class="cell-val">786,432</span></td>
+                <td data-label="算小图吗？"><span class="cell-val"><span class="badge badge-green">✅ 算</span> 同时满足步数 ≤ 28、单次 1 张即可</span></td>
               </tr>
               <tr class="highlight-row">
                 <td><strong>832 × 1216</strong></td>
-                <td class="num-col"><strong>1,011,712</strong></td>
-                <td><span class="badge badge-green">✅ 算</span> <strong>（最常用人像/酒馆配图黄金尺寸）</strong></td>
+                <td class="num-col" data-label="像素数量"><span class="cell-val"><strong>1,011,712</strong></span></td>
+                <td data-label="算小图吗？"><span class="cell-val"><span class="badge badge-green">✅ 算</span> <strong>（最常用人像/酒馆配图黄金尺寸）</strong></span></td>
               </tr>
               <tr class="highlight-row">
                 <td><strong>1024 × 1024</strong></td>
-                <td class="num-col"><strong>1,048,576</strong></td>
-                <td><span class="badge badge-green">✅ 算</span> <strong>（刚好卡在上限内）</strong></td>
+                <td class="num-col" data-label="像素数量"><span class="cell-val"><strong>1,048,576</strong></span></td>
+                <td data-label="算小图吗？"><span class="cell-val"><span class="badge badge-green">✅ 算</span> <strong>（刚好卡在上限内）</strong></span></td>
               </tr>
               <tr>
                 <td>1024 × 1536</td>
-                <td class="num-col">1,572,864</td>
-                <td><span class="badge badge-red">❌ 不算</span> 超出像素上限，属于大图，必须扣点数</td>
+                <td class="num-col" data-label="像素数量"><span class="cell-val">1,572,864</span></td>
+                <td data-label="算小图吗？"><span class="cell-val"><span class="badge badge-red">❌ 不算</span> 超出像素上限，属于大图，必须扣点数</span></td>
               </tr>
             </tbody>
           </table>
@@ -2106,7 +2167,7 @@
         <p>如果使用 <strong>普通文生图、一次只生成 1 张、不使用额外收费功能</strong>，下面是按照 NovelAI 官网计费方式所做的<strong>参考估算</strong>：</p>
 
         <div class="table-wrap">
-          <table>
+          <table class="table-data">
             <thead>
               <tr>
                 <th>示例设置</th>
@@ -2117,18 +2178,18 @@
             <tbody>
               <tr>
                 <td>V5 / V4.5 · 512×512 · 23 步</td>
-                <td class="num-col">约 <strong>8 点</strong></td>
-                <td class="num-col"><strong>12 张</strong></td>
+                <td class="num-col" data-label="预计每张消耗"><span class="cell-val">约 <strong>8 点</strong></span></td>
+                <td class="num-col" data-label="100 点大约能出"><span class="cell-val"><strong>12 张</strong></span></td>
               </tr>
               <tr>
                 <td>V5 / V4.5 · 832×1216 · 23 步</td>
-                <td class="num-col">约 <strong>20～26 点</strong></td>
-                <td class="num-col"><strong>3～5 张</strong></td>
+                <td class="num-col" data-label="预计每张消耗"><span class="cell-val">约 <strong>20～26 点</strong></span></td>
+                <td class="num-col" data-label="100 点大约能出"><span class="cell-val"><strong>3～5 张</strong></span></td>
               </tr>
               <tr>
                 <td>V5 / V4.5 · 1024×1536 · 28 步</td>
-                <td class="num-col">约 <strong>45 点</strong></td>
-                <td class="num-col"><strong>2 张</strong></td>
+                <td class="num-col" data-label="预计每张消耗"><span class="cell-val">约 <strong>45 点</strong></span></td>
+                <td class="num-col" data-label="100 点大约能出"><span class="cell-val"><strong>2 张</strong></span></td>
               </tr>
             </tbody>
           </table>
@@ -2159,7 +2220,6 @@
 
         <!-- 9.5 -->
         <h3 class="subsection-title" id="sec-9-5">9.5 四个例子，一眼看懂怎么扣费</h3>
-        <div class="table-scroll-hint">↔ 左右滑动可查看完整扣费对比表</div>
         <div class="table-wrap">
           <table class="table-data">
             <thead>
@@ -2173,27 +2233,27 @@
             <tbody>
               <tr>
                 <td><strong>V4.5</strong>，832×1216，28 步，1 张</td>
-                <td><span class="badge badge-green">✅ 完全免费（0点0体力）</span></td>
-                <td><span class="badge badge-green">✅ 完全免费（0点0体力）</span></td>
-                <td>扣本次所需点数</td>
+                <td data-label="V4.5无限小图月卡"><span class="cell-val"><span class="badge badge-green">✅ 完全免费（0点0体力）</span></span></td>
+                <td data-label="4人/单人/1天 Opus"><span class="cell-val"><span class="badge badge-green">✅ 完全免费（0点0体力）</span></span></td>
+                <td data-label="纯点数包"><span class="cell-val">扣本次所需点数</span></td>
               </tr>
               <tr>
                 <td><strong>V5</strong>，1024×1024，28 步，1 张</td>
-                <td><span class="badge badge-red">❌ 不支持（无V5体力与点数）</span></td>
-                <td><span class="badge badge-green">✅ 扣 1 张 V5 体力</span>，不扣点数</td>
-                <td>扣本次所需点数</td>
+                <td data-label="V4.5无限小图月卡"><span class="cell-val"><span class="badge badge-red">❌ 不支持（无V5体力与点数）</span></span></td>
+                <td data-label="4人/单人/1天 Opus"><span class="cell-val"><span class="badge badge-green">✅ 扣 1 张 V5 体力</span>，不扣点数</span></td>
+                <td data-label="纯点数包"><span class="cell-val">扣本次所需点数</span></td>
               </tr>
               <tr>
                 <td><strong>V5 / V4.5</strong>，1024×1536（大图），28 步</td>
-                <td><span class="badge badge-red">❌ 不支持（无额外点数）</span></td>
-                <td>超出小图尺寸，<strong>扣点数</strong>（无点版会拒绝）</td>
-                <td>扣本次所需点数</td>
+                <td data-label="V4.5无限小图月卡"><span class="cell-val"><span class="badge badge-red">❌ 不支持（无额外点数）</span></span></td>
+                <td data-label="4人/单人/1天 Opus"><span class="cell-val">超出小图尺寸，<strong>扣点数</strong>（无点版会拒绝）</span></td>
+                <td data-label="纯点数包"><span class="cell-val">扣本次所需点数</span></td>
               </tr>
               <tr>
                 <td><strong>V5 / V4.5</strong>，1024×1024，30 步（超步数）</td>
-                <td><span class="badge badge-red">❌ 不支持（无额外点数）</span></td>
-                <td>超出 28 步上限，<strong>扣点数</strong>（无点版会拒绝）</td>
-                <td>扣本次所需点数</td>
+                <td data-label="V4.5无限小图月卡"><span class="cell-val"><span class="badge badge-red">❌ 不支持（无额外点数）</span></span></td>
+                <td data-label="4人/单人/1天 Opus"><span class="cell-val">超出 28 步上限，<strong>扣点数</strong>（无点版会拒绝）</span></td>
+                <td data-label="纯点数包"><span class="cell-val">扣本次所需点数</span></td>
               </tr>
             </tbody>
           </table>
@@ -2206,7 +2266,6 @@
 
         <!-- 9.6 -->
         <h3 class="subsection-title" id="sec-9-6">9.6 不知道买哪档？按需求对号入座</h3>
-        <div class="table-scroll-hint">↔ 左右滑动可查看完整推荐表</div>
         <div class="table-wrap">
           <table class="table-data">
             <thead>
@@ -2219,38 +2278,38 @@
             <tbody>
               <tr>
                 <td>想花 1 块钱测试接口通不通、偶尔画几张</td>
-                <td><strong>体验：100 点数</strong></td>
-                <td>只有 100 点数（约出 3～12 张图），不带无限小图与体力</td>
+                <td data-label="推荐对应档位"><span class="cell-val"><strong>体验：100 点数</strong></span></td>
+                <td data-label="需要注意"><span class="cell-val">只有 100 点数（约出 3～12 张图），不带无限小图与体力</span></td>
               </tr>
               <tr>
                 <td>想低成本测试 V5 效果和 V4.5 无限小图</td>
-                <td><strong>体验：1 天 Opus</strong></td>
-                <td>含 1 天 V4.5 无限小图 + 约 44 张 V5 体力（一次性不恢复）</td>
+                <td data-label="推荐对应档位"><span class="cell-val"><strong>体验：1 天 Opus</strong></span></td>
+                <td data-label="需要注意"><span class="cell-val">含 1 天 V4.5 无限小图 + 约 44 张 V5 体力（一次性不恢复）</span></td>
               </tr>
               <tr>
                 <td>画图频率很低，但每次都要画超大图/高步数</td>
-                <td><strong>按量：2k 点数包</strong></td>
-                <td>只有 2,000 点数，按实际参数扣点，30 天有效</td>
+                <td data-label="推荐对应档位"><span class="cell-val"><strong>按量：2k 点数包</strong></span></td>
+                <td data-label="需要注意"><span class="cell-val">只有 2,000 点数，按实际参数扣点，30 天有效</span></td>
               </tr>
               <tr class="highlight-row">
                 <td><strong>酒馆长驻自动配图、日常高频跑 V4.5 小图</strong></td>
-                <td><strong>🔥 月卡：V4.5 无限小图（无V5体力）</strong></td>
-                <td><strong>性价比最高！30 天 V4.5 小图无限出，注意模型必须选 V4.5</strong></td>
+                <td data-label="推荐对应档位"><span class="cell-val"><strong>🔥 月卡：V4.5 无限小图（无V5体力）</strong></span></td>
+                <td data-label="需要注意"><span class="cell-val"><strong>性价比最高！30 天 V4.5 小图无限出，注意模型必须选 V4.5</strong></span></td>
               </tr>
               <tr class="highlight-row">
                 <td><strong>主要想玩最新 V5 模型小图 + V4.5 无限小图</strong></td>
-                <td><strong>🔥 月卡：4 人 Opus 无限小图（无点）</strong></td>
-                <td>25% V5 体力（上限 280 张/日恢复 40 张）+ V4.5 无限小图</td>
+                <td data-label="推荐对应档位"><span class="cell-val"><strong>🔥 月卡：4 人 Opus 无限小图（无点）</strong></span></td>
+                <td data-label="需要注意"><span class="cell-val">25% V5 体力（上限 280 张/日恢复 40 张）+ V4.5 无限小图</span></td>
               </tr>
               <tr>
                 <td>既想用 V5 体力画小图，偶尔也要画大图/加精</td>
-                <td><strong>月卡：4 人 Opus 无限小图+2k 点</strong></td>
-                <td>25% V5 体力 + V4.5 无限小图 + 2,000 点数</td>
+                <td data-label="推荐对应档位"><span class="cell-val"><strong>月卡：4 人 Opus 无限小图+2k 点</strong></span></td>
+                <td data-label="需要注意"><span class="cell-val">25% V5 体力 + V4.5 无限小图 + 2,000 点数</span></td>
               </tr>
               <tr>
                 <td>重度创作者，每天大量跑 V5 与高精大图</td>
-                <td><strong>月卡：单人独享 Opus（含1w点）</strong></td>
-                <td>100% 满额 V5 体力（上限 1,120 张）+ V4.5 无限小图 + 10,000 点数</td>
+                <td data-label="推荐对应档位"><span class="cell-val"><strong>月卡：单人独享 Opus（含1w点）</strong></span></td>
+                <td data-label="需要注意"><span class="cell-val">100% 满额 V5 体力（上限 1,120 张）+ V4.5 无限小图 + 10,000 点数</span></td>
               </tr>
             </tbody>
           </table>
