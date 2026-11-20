@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
   <title>星绘补给站｜NovelAI 兑换与接入教程</title>
-  <meta name="description" content="星绘补给站 NovelAI 密钥兑换、套餐权益说明、网页直连、Aaalice、Langbai、SillyTavern 酒馆插件（柏宝绘/小白X/智绘姬）接入教程及 V4.5 无限小图与 V5 体力常见问题解答。" />
+  <meta name="description" content="星绘补给站 NovelAI 密钥兑换、套餐权益说明、28步体力折算说明、Vibe模型支持说明，以及网页直连、Aaalice、Langbai、SillyTavern酒馆插件接入教程。" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌸</text></svg>" />
   <style>
     /* Default: Light Theme (清爽亮色) */
@@ -83,7 +83,7 @@
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
       background-color: var(--bg-base);
       color: var(--text-primary);
-      line-height: 1.7;
+      line-height: 1.72;
       font-size: 15.5px;
       padding-top: 58px;
       transition: background-color 0.22s ease, color 0.22s ease;
@@ -104,7 +104,7 @@
       font-family: "JetBrains Mono", "Cascadia Code", Consolas, Monaco, monospace;
       background: var(--code-bg);
       color: var(--sakura-primary);
-      padding: 0.18em 0.45em;
+      padding: 0.16em 0.45em;
       border-radius: 6px;
       font-size: 0.88em;
       border: 1px solid var(--border-subtle);
@@ -178,7 +178,7 @@
     }
 
     .brand-icon {
-      font-size: 1.4rem;
+      font-size: 1.35rem;
       line-height: 1;
       flex-shrink: 0;
     }
@@ -369,7 +369,7 @@
     }
 
     .hero-title {
-      font-size: 1.8rem;
+      font-size: 1.75rem;
       font-weight: 800;
       letter-spacing: -0.01em;
       margin-bottom: 14px;
@@ -389,9 +389,9 @@
 
     .hero-leads {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 12px;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
 
     .lead-box {
@@ -399,7 +399,7 @@
       border-radius: var(--radius-md);
       background: var(--bg-surface);
       border: 1px solid var(--border-subtle);
-      font-size: 0.93rem;
+      font-size: 0.92rem;
     }
 
     .lead-box strong {
@@ -495,7 +495,7 @@
       padding: 7px 10px;
       border-radius: var(--radius-sm);
       color: var(--text-secondary);
-      font-size: 0.88rem;
+      font-size: 0.87rem;
       font-weight: 500;
       text-decoration: none !important;
       transition: all 0.15s ease;
@@ -514,7 +514,7 @@
 
     .toc-sub {
       padding-left: 20px;
-      font-size: 0.82rem;
+      font-size: 0.81rem;
     }
 
     /* Content Sections */
@@ -573,7 +573,7 @@
       font-size: 1.12rem;
       font-weight: 700;
       color: var(--text-primary);
-      margin: 24px 0 12px;
+      margin: 26px 0 12px;
       padding-left: 12px;
       border-left: 4px solid var(--sakura-primary);
       line-height: 1.4;
@@ -635,6 +635,81 @@
 
     .callout p:last-child {
       margin-bottom: 0;
+    }
+
+    /* Formula / Math Comparison Box for 28 Steps vs 23 Steps */
+    .formula-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 12px;
+      margin: 12px 0;
+    }
+
+    .formula-box {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+    }
+
+    .formula-box.primary {
+      border-color: var(--border-strong);
+      background: var(--sakura-bg);
+    }
+
+    .formula-tag {
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: var(--sakura-primary);
+      margin-bottom: 4px;
+    }
+
+    .formula-eq {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+    }
+
+    .formula-desc {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.55;
+    }
+
+    /* FAQ Highlight Grid (Effect & Vibe Support) */
+    .qa-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 14px;
+      margin: 14px 0;
+    }
+
+    .qa-card {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-md);
+      padding: 16px 18px;
+    }
+
+    .qa-q {
+      font-weight: 800;
+      font-size: 1rem;
+      color: var(--sakura-primary);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .qa-a {
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+
+    .qa-a strong {
+      color: var(--text-primary);
     }
 
     /* Step Lists */
@@ -889,7 +964,7 @@
       word-break: break-all;
     }
 
-    /* Interactive Billing Checker (Section 9.1) */
+    /* Interactive Billing Checker (Section 9.3) */
     .checker-card {
       background: linear-gradient(135deg, var(--bg-elevated) 0%, var(--bg-surface) 100%);
       border: 1px solid var(--border-strong);
@@ -1131,7 +1206,7 @@
         border-radius: 14px;
       }
       .hero-title {
-        font-size: 1.36rem;
+        font-size: 1.35rem;
         margin-bottom: 12px;
       }
       .mobile-quick-actions {
@@ -1354,7 +1429,7 @@
       <button type="button" class="sidebar-collapse-btn" id="sidebarCollapseBtn" aria-label="收起目录">◀ 收起</button>
     </div>
     <ul class="toc-list">
-      <li><a href="#sec-1" class="toc-link active" data-target="sec-1">1. 兑换密钥与查看套餐</a></li>
+      <li><a href="#sec-1" class="toc-link active" data-target="sec-1">1. 兑换密钥与套餐权益</a></li>
       <li><a href="#sec-2" class="toc-link" data-target="sec-2">2. 网页直接使用（附教程图）</a></li>
       <li><a href="#sec-3" class="toc-link" data-target="sec-3">3. Aaalice NAI Launcher</a></li>
       <li><a href="#sec-4" class="toc-link" data-target="sec-4">4. Langbai NovelAI Studio</a></li>
@@ -1362,13 +1437,13 @@
       <li><a href="#sec-6" class="toc-link" data-target="sec-6">6. 酒馆：小白X / LittleWhiteBox</a></li>
       <li><a href="#sec-7" class="toc-link" data-target="sec-7">7. 酒馆：智绘姬 / st-chatu8</a></li>
       <li><a href="#sec-8" class="toc-link" data-target="sec-8">8. 其他支持第三方 NAI 工具</a></li>
-      <li><a href="#sec-9" class="toc-link" data-target="sec-9">9. 新手常见问题（必看）</a></li>
-      <li><a href="#sec-9-1" class="toc-link toc-sub" data-target="sec-9">9.1 什么算小图？V4.5 与 V5 区别</a></li>
-      <li><a href="#sec-9-2" class="toc-link toc-sub" data-target="sec-9">9.2 什么是点数？何时扣点？</a></li>
-      <li><a href="#sec-9-3" class="toc-link toc-sub" data-target="sec-9">9.3 100 点数能生成多少张图？</a></li>
-      <li><a href="#sec-9-4" class="toc-link toc-sub" data-target="sec-9">9.4 四种 Opus 档位有什么区别？</a></li>
-      <li><a href="#sec-9-5" class="toc-link toc-sub" data-target="sec-9">9.5 四个例子一眼看懂怎么扣费</a></li>
-      <li><a href="#sec-9-6" class="toc-link toc-sub" data-target="sec-9">9.6 不知道买哪档？对号入座</a></li>
+      <li><a href="#sec-9" class="toc-link" data-target="sec-9">9. 新手常见问题 FAQ（必看）</a></li>
+      <li><a href="#sec-9-1" class="toc-link toc-sub" data-target="sec-9">9.1 效果同官网吗？支持 Vibe 吗？</a></li>
+      <li><a href="#sec-9-2" class="toc-link toc-sub" data-target="sec-9">9.2 一张表搞懂四个核心词</a></li>
+      <li><a href="#sec-9-3" class="toc-link toc-sub" data-target="sec-9">9.3 什么算小图？V4.5 与 V5 扣费</a></li>
+      <li><a href="#sec-9-4" class="toc-link toc-sub" data-target="sec-9">9.4 为什么独享是 5920 张 V5 图？</a></li>
+      <li><a href="#sec-9-5" class="toc-link toc-sub" data-target="sec-9">9.5 何时扣点数？100点能出几张？</a></li>
+      <li><a href="#sec-9-6" class="toc-link toc-sub" data-target="sec-9">9.6 扣费实例 &amp; 选档对号入座</a></li>
     </ul>
   </aside>
 
@@ -1393,11 +1468,11 @@
       <div class="hero-leads">
         <div class="lead-box">
           <strong>1️⃣ 付款后先兑换：</strong>
-          <a href="https://redeem.tenshimomone.com/" target="_blank" rel="noopener">点击打开密钥兑换页 ↗</a>，具体步骤见下方 <a href="#sec-1">第 1 节</a>。兑换成功后，根据你使用的网页、客户端或酒馆插件选择 <a href="#sec-connect">第 2～8 节</a> 接入。
+          打开 <a href="https://redeem.tenshimomone.com/" target="_blank" rel="noopener">密钥兑换页 ↗</a> 将 <code>CDK-</code> 兑换码换为 <code>skr_</code> 密钥（见 <a href="#sec-1">第 1 节</a>），随后按你用的网页、客户端或酒馆插件选择 <a href="#sec-connect">第 2～8 节</a> 接入。
         </div>
         <div class="lead-box">
-          <strong>2️⃣ 新手必看疑问：</strong>
-          关于 <strong>V4.5 无限小图与 V5 体力的区别</strong>、小图规格标准、点数计算，以及「100 点能出几张图」的解释，统一放在 <a href="#sec-9"><strong>文末第 9 节</strong></a>。
+          <strong>2️⃣ 官方原版效果 &amp; 支持 Vibe：</strong>
+          直连 NovelAI 官方 V5 / V4.5 生图模型，<strong>出图质量与官网 100% 一致</strong>，完整支持 <strong>Vibe Transfer（画风参考）</strong> 等功能。更多体力与计费答疑见 <a href="#sec-9"><strong>文末第 9 节</strong></a>。
         </div>
       </div>
 
@@ -1440,7 +1515,7 @@
 
         <div class="quick-card">
           <div class="quick-label">
-            <span>④ API Key / Token 格式</span>
+            <span>④ API Key / Token 填写要求</span>
             <span class="badge badge-red">勿加 Bearer</span>
           </div>
           <div class="quick-value">以 <code>skr_</code> 开头的完整密钥</div>
@@ -1454,147 +1529,119 @@
 
   <!-- Main Content Layout -->
   <div class="layout">
-    <!-- Main Articles -->
     <main class="content">
 
       <!-- SECTION 1 -->
       <article class="section-card" id="sec-1">
         <div class="section-header">
-          <h2 class="section-title"><span class="section-num">1</span> 兑换密钥与查看套餐</h2>
+          <h2 class="section-title"><span class="section-num">1</span> 兑换密钥与套餐权益</h2>
           <span class="badge badge-sakura">第一步：先兑换再接入</span>
         </div>
 
-        <p>付款后先兑换密钥，再按你使用的网页、客户端或酒馆插件填写。</p>
-
-        <div class="table-wrap">
-          <table class="table-config">
-            <thead>
-              <tr>
-                <th>项目</th>
-                <th>内容</th>
-                <th>快捷操作</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>兑换页</strong></td>
-                <td><a href="https://redeem.tenshimomone.com/" target="_blank" rel="noopener">https://redeem.tenshimomone.com/</a></td>
-                <td><button type="button" class="copy-btn" data-copy="https://redeem.tenshimomone.com/">📋 复制</button></td>
-              </tr>
-              <tr>
-                <td><strong>网页在线画图地址</strong></td>
-                <td><a href="https://nai.tenshimomone.com/" target="_blank" rel="noopener">https://nai.tenshimomone.com/</a></td>
-                <td><button type="button" class="copy-btn" data-copy="https://nai.tenshimomone.com/">📋 复制</button></td>
-              </tr>
-              <tr>
-                <td><strong>第三方接口地址</strong></td>
-                <td><code>https://relay.tenshimomone.com/</code></td>
-                <td><button type="button" class="copy-btn" data-copy="https://relay.tenshimomone.com/">📋 复制</button></td>
-              </tr>
-              <tr>
-                <td><strong>API Key / Token</strong></td>
-                <td>兑换页给出的完整密钥，以 <code>skr_</code> 开头</td>
-                <td><span class="badge badge-amber">兑换后获取</span></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="callout callout-warn">
-          <div class="callout-title">⚠️ 重要提示</div>
-          <p>Key 输入框只粘贴 <code>skr_</code> 开头的密钥本身，<strong>不要加 <code>Bearer </code> 前缀</strong>。兑换页上的中转地址和上表中的第三方接口地址是同一个。请妥善保管你的完整密钥，不要发到公开群聊或截图中。</p>
-        </div>
+        <p>付款后请先将发卡获得的 <code>CDK-</code> 兑换码兑换为 <code>skr_</code> 密钥，再填入你使用的网页、客户端或酒馆插件中。</p>
 
         <ol class="steps-list">
-          <li>付款后，在聊天窗口复制以 <code>CDK-</code> 开头的兑换码。</li>
-          <li>打开 <a href="https://redeem.tenshimomone.com/" target="_blank" rel="noopener">兑换页 (https://redeem.tenshimomone.com/)</a>，粘贴兑换码，点击 <strong>兑换</strong>。</li>
-          <li>页面会给出中转地址和完整密钥（<code>skr_...</code>）。<strong>请当场复制保存！</strong> 每枚兑换码只能兑换一次，关闭页面后将无法再次查看密钥。</li>
-          <li>若没来得及复制保存，请把 <code>CDK-</code> 兑换码<strong>私发给客服</strong>，客服可在后台帮你查出对应密钥。</li>
+          <li>复制付款后获得的 <code>CDK-</code> 开头兑换码。</li>
+          <li>打开 <a href="https://redeem.tenshimomone.com/" target="_blank" rel="noopener"><strong>密钥兑换页 (https://redeem.tenshimomone.com/)</strong></a>，粘贴兑换码并点击 <strong>兑换</strong>。</li>
+          <li>页面会显示接口地址与 <code>skr_...</code> 完整密钥。<strong>请务必当场复制保存！</strong> 每枚兑换码只能兑换一次，关闭页面后无法再次查看。</li>
+          <li>如果关闭页面前忘了保存密钥，请将 <code>CDK-</code> 兑换码<strong>私发给客服</strong>，客服可在后台为你找回对应密钥。</li>
         </ol>
 
-        <h3 class="subsection-title">各档套餐权益表（有效天数从兑换成功时开始计算）</h3>
+        <div class="callout callout-warn">
+          <div class="callout-title">⚠️ 填写与保管提醒</div>
+          <p>在任何工具的 Key / Token 输入框中，<strong>只粘贴 <code>skr_</code> 开头的密钥本身，切勿手动添加 <code>Bearer </code> 前缀</strong>。请妥善保管密钥，不要发到公开群聊或截图中外泄。</p>
+        </div>
+
+        <h3 class="subsection-title">各档套餐权益总览（有效天数从兑换成功时起算）</h3>
         <div class="table-wrap">
           <table class="table-data">
             <thead>
               <tr>
-                <th>规格</th>
+                <th>套餐规格</th>
                 <th class="num-col">有效天数</th>
-                <th class="num-col">点数</th>
+                <th class="num-col">附带点数</th>
                 <th>V4.5 标准小图权益</th>
-                <th>V5 体力上限（跑 V5 小图专用）</th>
+                <th>V5 体力额度（跑 V5 小图专用，28步满步数基准）</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td>体验：100点数</td>
                 <td class="num-col" data-label="有效天数"><span class="cell-val">30 天</span></td>
-                <td class="num-col" data-label="点数"><span class="cell-val">100</span></td>
+                <td class="num-col" data-label="附带点数"><span class="cell-val">100</span></td>
                 <td data-label="V4.5 小图权益"><span class="cell-val">无（按点数扣除）</span></td>
-                <td data-label="V5 体力上限"><span class="cell-val">无</span></td>
+                <td data-label="V5 体力额度"><span class="cell-val">无（按点数扣除）</span></td>
               </tr>
               <tr>
                 <td>体验：1天Opus</td>
                 <td class="num-col" data-label="有效天数"><span class="cell-val">1 天</span></td>
-                <td class="num-col" data-label="点数"><span class="cell-val">0</span></td>
+                <td class="num-col" data-label="附带点数"><span class="cell-val">0</span></td>
                 <td data-label="V4.5 小图权益"><span class="cell-val"><span class="badge badge-green">✅ 无限免点生成</span></span></td>
-                <td data-label="V5 体力上限"><span class="cell-val">4%（约 44 张，一次性发放不恢复）</span></td>
+                <td data-label="V5 体力额度"><span class="cell-val">4% 档（一次性发放约 <strong>44 张</strong>，不恢复）</span></td>
               </tr>
               <tr>
                 <td>按量：2k点数包</td>
                 <td class="num-col" data-label="有效天数"><span class="cell-val">30 天</span></td>
-                <td class="num-col" data-label="点数"><span class="cell-val">2,000</span></td>
+                <td class="num-col" data-label="附带点数"><span class="cell-val">2,000</span></td>
                 <td data-label="V4.5 小图权益"><span class="cell-val">无（按点数扣除）</span></td>
-                <td data-label="V5 体力上限"><span class="cell-val">无</span></td>
+                <td data-label="V5 体力额度"><span class="cell-val">无（按点数扣除）</span></td>
               </tr>
               <tr class="highlight-row">
                 <td><strong>🔥 月卡：V4.5无限小图（无V5体力）</strong></td>
                 <td class="num-col" data-label="有效天数"><span class="cell-val"><strong>30 天</strong></span></td>
-                <td class="num-col" data-label="点数"><span class="cell-val"><strong>0</strong></span></td>
+                <td class="num-col" data-label="附带点数"><span class="cell-val"><strong>0</strong></span></td>
                 <td data-label="V4.5 小图权益"><span class="cell-val"><span class="badge badge-green">✅ 无限免点生成</span></span></td>
-                <td data-label="V5 体力上限"><span class="cell-val"><span class="badge badge-red">无（不支持 V5，请选 V4.5 模型）</span></span></td>
+                <td data-label="V5 体力额度"><span class="cell-val"><span class="badge badge-red">无（不支持 V5，请选 V4.5 模型）</span></span></td>
               </tr>
               <tr>
                 <td>月卡：4人Opus无限小图（无点）</td>
                 <td class="num-col" data-label="有效天数"><span class="cell-val">30 天</span></td>
-                <td class="num-col" data-label="点数"><span class="cell-val">0</span></td>
+                <td class="num-col" data-label="附带点数"><span class="cell-val">0</span></td>
                 <td data-label="V4.5 小图权益"><span class="cell-val"><span class="badge badge-green">✅ 无限免点生成</span></span></td>
-                <td data-label="V5 体力上限"><span class="cell-val">25%（上限 280 张，每 24h 恢复 40 张）</span></td>
+                <td data-label="V5 体力额度"><span class="cell-val">25% 档：初始上限 <strong>280 张</strong>，每 24h 恢复 <strong>40 张</strong>（30天总计可达 <strong>1,480 张</strong>）</span></td>
               </tr>
               <tr>
                 <td>月卡：4人Opus无限小图+2k点</td>
                 <td class="num-col" data-label="有效天数"><span class="cell-val">30 天</span></td>
-                <td class="num-col" data-label="点数"><span class="cell-val">2,000</span></td>
+                <td class="num-col" data-label="附带点数"><span class="cell-val">2,000</span></td>
                 <td data-label="V4.5 小图权益"><span class="cell-val"><span class="badge badge-green">✅ 无限免点生成</span></span></td>
-                <td data-label="V5 体力上限"><span class="cell-val">25%（上限 280 张，每 24h 恢复 40 张）</span></td>
+                <td data-label="V5 体力额度"><span class="cell-val">25% 档：初始上限 <strong>280 张</strong>，每 24h 恢复 <strong>40 张</strong>（30天总计可达 <strong>1,480 张</strong>）</span></td>
               </tr>
               <tr>
                 <td>月卡：单人独享Opus（含1w点）</td>
                 <td class="num-col" data-label="有效天数"><span class="cell-val">30 天</span></td>
-                <td class="num-col" data-label="点数"><span class="cell-val">10,000</span></td>
+                <td class="num-col" data-label="附带点数"><span class="cell-val">10,000</span></td>
                 <td data-label="V4.5 小图权益"><span class="cell-val"><span class="badge badge-green">✅ 无限免点生成</span></span></td>
-                <td data-label="V5 体力上限"><span class="cell-val">100%（上限 1,120 张，每 24h 恢复 160 张）</span></td>
+                <td data-label="V5 体力额度"><span class="cell-val">100% 档：初始上限 <strong>1,120 张</strong>，每 24h 恢复 <strong>160 张</strong>（30天总计可达 <strong>5,920 张</strong>）</span></td>
               </tr>
             </tbody>
           </table>
         </div>
 
         <div class="callout">
-          <div class="callout-title">💡 关于本站与 NovelAI 官网 V5 体力条计算方式的区别</div>
-          <p>本站的 V5 体力额度、体力上限及可生成张数，统一按 <strong>NovelAI V5 单张 28 步（Steps）</strong> 的消耗进行<strong>保守折算</strong>；NovelAI 官网公布的体力条参考数据则采用 <strong>23 步</strong>的计算口径。</p>
-          <p><strong>28 步与 23 步的单张体力消耗不同</strong>，因此即使体力条显示相同百分比，按两种口径换算出的可生成张数也不一定相同。本站采用 28 步作为折算基准，是为了避免按较低步数高估可生成张数。</p>
-          <p>本站的 <strong>4% / 25% / 100%</strong> 为本站套餐 V5 体力档位，<strong>不可直接套用官网 23 步口径换算张数</strong>。本站对应的 <strong>约 44 / 280 / 1,120 张</strong>及恢复数量，以本站套餐与实际系统规则为准。</p>
-          <p><strong>注意：28 步是本站计算 V5 体力额度时采用的保守基准，不代表每次生图必须设置成 28 步。</strong> 符合本站小图规则的 V5 图片，在 <strong>28 步及以下</strong>成功生成 1 张，均扣除 <strong>1 张本站 V5 体力</strong>。这与官网按生成参数浮动计算体力消耗的方式不同。</p>
+          <div class="callout-title">💡 为什么官网说每月约 7,000 张 V5，而本站独享是 5,920 张？（28 步基准 vs 官网 23 步基准）</div>
+          <p>两者<strong>总体力额度完全对等</strong>，区别仅在于<strong>单张折算步数不同</strong>：</p>
+          <div class="formula-grid">
+            <div class="formula-box">
+              <div class="formula-tag">NovelAI 官网公布口径（按 23 步估算）</div>
+              <div class="formula-eq">每月约 7,000 张（单张 23 步）</div>
+              <div class="formula-desc">官网 FAQ 中的“每月约 7,000 张”是以<strong>单张 23 步</strong>的低消耗口径估算的。但日常画图为了保证最佳画质，绝大多数人都会拉满到 28 步，实际能画的 28 步张数就会少于 7,000 张。</div>
+            </div>
+            <div class="formula-box primary">
+              <div class="formula-tag">本站实测保守口径（按 28 步满步数折算）</div>
+              <div class="formula-eq">160 × 37 ＝ 5,920 张（单张 28 步）</div>
+              <div class="formula-desc">本站不拿低步数虚标张数，统一按<strong>单张 28 步满步数</strong>折算：以单人独享为例，开卡即送满槽 <strong>1,120 张</strong>（相当于 7 天恢复量 <code>160×7</code>）＋ 30 天每日恢复 <strong>160 张</strong>（<code>160×30 = 4,800</code>），月总计 <strong><code>160 × 37 = 5,920 张</code></strong>（4人合租同理为 <code>40 × 37 = 1,480 张</code>），折算回体力总量与官网完全一致！</div>
+            </div>
+          </div>
+          <p style="margin-top:8px;"><strong>🎯 本站规则优势：</strong>在本站生成符合小图尺寸的 V5 图片时，只要在 <strong>28 步及以下</strong>（无论设 23 步还是拉满 28 步），每成功出图 1 张均固定扣除 <strong>1 张 V5 体力</strong>。<strong>建议直接放心拉满 28 步获取最佳画质，无需为了省体力委屈降到 23 步！</strong></p>
         </div>
 
-        <h3 class="subsection-title">额度与恢复规则，再强调一次：</h3>
+        <h3 class="subsection-title">四条核心扣费与恢复规则</h3>
         <ul class="bullet-list">
-          <li><strong>普通点数档（100点 / 2k点）：</strong> 无无限小图与 V5 体力权益，生成任何图片均按点数扣除。</li>
-          <li><strong>月卡：V4.5无限小图（无V5体力）：</strong> 享 30 天 <strong>V4.5 标准小图无限免点数生成</strong>，不包含 V5 体力与额外点数。<strong>使用时请务必将模型选为 V4.5（如 <code>nai-diffusion-4-5-full</code>）</strong>；若选择 V5 模型或超规格生成（大图/超28步/单次多张），会因无 V5 体力与点数而被拒绝。</li>
-          <li><strong>1 天 Opus：</strong> 享 1 天 V4.5 标准小图无限生成 ＋ 兑换时一次性发放约 <strong>44 张 V5 体力</strong>（用完不自动恢复）；密钥有效期为 1 天。</li>
-          <li><strong>4人合租 Opus（25% 体力档）：</strong> 享 30 天 V4.5 标准小图无限生成 ＋ V5 体力上限 <strong>280 张</strong>（每 <strong>24 小时恢复 40 张</strong>）。</li>
-          <li><strong>单人独享 Opus（100% 体力档）：</strong> 享 30 天 V4.5 标准小图无限生成 ＋ V5 体力上限 <strong>1,120 张</strong>（每 <strong>24 小时恢复 160 张</strong>）。</li>
-          <li><strong>V5 体力恢复不超过上限。</strong> 含 V5 体力的会员生成符合要求的 V5 小图时，成功生成 1 张扣 1 张 V5 体力；若当日 V5 体力用尽且无点数，<strong>可随时将模型切换为 V4.5 继续免费无限生成小图</strong>，或等待 V5 体力恢复。</li>
-          <li><strong>超出尺寸（宽×高 &gt; 1,048,576）、超出步数（&gt; 28 步）、批量出图多出来的张数，或 V5 体力不足时继续跑 V5</strong>，均需消耗点数。如果点数和对应体力都不够，本次生成会被拒绝。到期后密钥停止使用，需使用新兑换码或联系客服续期。</li>
+          <li><strong>「月卡：V4.5无限小图（无V5体力）」用户：</strong> 享 30 天 V4.5 标准小图无限免点生成，不含 V5 体力与点数。<strong>生图时请务必将模型选为 V4.5（如 <code>nai-diffusion-4-5-full</code>）</strong>；若误选 V5 模型或超规格生图会被系统拒绝。</li>
+          <li><strong>含 V5 体力的 Opus 用户（1天 / 4人 / 单人独享）：</strong> 跑 V4.5 小图同样 <strong>0 点数 0 体力无限画</strong>；跑 V5 小图每张扣 1 张 V5 体力。V5 体力按 24 小时周期恢复（不超过存储上限）；<strong>若当天 V5 体力刷完，只需把模型切回 V4.5 就能继续免费无限出图！</strong></li>
+          <li><strong>纯点数档（100点 / 2k点）：</strong> 不含无限小图与 V5 体力，生成任何图片均按实际参数扣除点数。</li>
+          <li><strong>超规格扣点规则：</strong> 只要超出小图标准（<strong>宽×高 &gt; 1,048,576 像素</strong>、<strong>步数 &gt; 28 步</strong>、或<strong>单次批量出图多出的张数</strong>），以及 V5 体力用尽后继续强跑 V5，均需消耗账户内的点数（若无点数则会拒绝生成）。</li>
         </ul>
       </article>
 
@@ -1620,22 +1667,22 @@
       <article class="section-card tool-section" id="sec-2">
         <div class="section-header">
           <h2 class="section-title"><span class="section-num">2</span> 网页直接使用</h2>
-          <span class="badge badge-green">🌟 新手最推荐 · 电脑手机通用</span>
+          <span class="badge badge-green">🌟 新手最推荐 · 免安装 · 支持 Vibe</span>
         </div>
 
         <div class="web-guide-grid">
           <div>
             <ol class="steps-list" style="margin-top:0;">
               <li>
-                打开 <a href="https://nai.tenshimomone.com/" target="_blank" rel="noopener"><strong>星绘网页 (https://nai.tenshimomone.com/)</strong></a>，电脑和手机浏览器均可直接使用。
+                电脑或手机浏览器打开 <a href="https://nai.tenshimomone.com/" target="_blank" rel="noopener"><strong>星绘在线画图网页 (https://nai.tenshimomone.com/)</strong></a>。
                 <div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap;">
                   <a href="https://nai.tenshimomone.com/" target="_blank" rel="noopener" class="copy-btn">↗ 点击打开星绘网页</a>
                   <button type="button" class="copy-btn" data-copy="https://nai.tenshimomone.com/">📋 复制网址</button>
                 </div>
               </li>
-              <li>在弹出的「连接设置」窗口中，密钥类型选择 <strong>Sakura Key</strong>（如下图所示）。</li>
-              <li>在下方 <strong>Sakura Key</strong> 输入框粘贴兑换页上的 <code>skr_</code> 密钥，点击 <strong>连接</strong>（或 <strong>更新连接</strong>）。</li>
-              <li>连接成功后，选择模型（<strong>V4.5 月卡用户请选 V4.5 模型</strong>；含 V5 体力或点数用户可选 V5 / V4.5），填写提示词，点击 <strong>生成</strong>。</li>
+              <li>在弹出的「连接设置」窗口中，密钥类型选择 <strong>Sakura Key</strong>（如右图所示）。</li>
+              <li>在下方 <strong>Sakura Key</strong> 输入框粘贴兑换页获得的 <code>skr_</code> 密钥，点击 <strong>连接 / 更新连接</strong>。</li>
+              <li>连接成功后选择模型（<strong>V4.5 月卡用户请选 V4.5 模型</strong>；含 V5 体力或点数用户可选 V5 / V4.5），即可开始生图，支持 <strong>Vibe Transfer（画风参考）</strong>、图生图、局部重绘等完整功能。</li>
             </ol>
           </div>
 
@@ -1661,7 +1708,7 @@
           <a href="https://github.com/Aaalice233/Aaalice_NAI_Launcher/releases/latest" target="_blank" rel="noopener" class="btn">⬇️ 下载客户端</a>
         </div>
 
-        <p><a href="https://github.com/Aaalice233/Aaalice_NAI_Launcher/releases/latest" target="_blank" rel="noopener">下载客户端</a>，按你的设备系统选择安装包。</p>
+        <p>前往 <a href="https://github.com/Aaalice233/Aaalice_NAI_Launcher/releases/latest" target="_blank" rel="noopener">GitHub Releases 下载客户端</a>，按你的设备系统选择对应安装包。</p>
 
         <ol class="steps-list">
           <li>打开软件，在登录方式中选择 <strong>第三方站点</strong>。</li>
@@ -1694,7 +1741,7 @@
                   </tr>
                   <tr>
                     <td><strong>API Token</strong></td>
-                    <td>兑换页上的 <code>skr_</code> 密钥</td>
+                    <td>兑换页获得的 <code>skr_</code> 密钥</td>
                     <td><span class="badge badge-amber">粘贴 skr_ 密钥</span></td>
                   </tr>
                 </tbody>
@@ -1702,7 +1749,7 @@
             </div>
           </li>
           <li>点击 <strong>验证并登录</strong>。</li>
-          <li>进入绘图工作台，选择对应模型（V4.5 月卡用户请选 V4.5）、确认尺寸与步数（小图建议 ≤ 1024×1024、步数 ≤ 28）后填写提示词生成。</li>
+          <li>进入绘图工作台，选择对应模型（V4.5 月卡用户请选 V4.5），确认尺寸 ≤ 1024×1024、步数 ≤ 28 后即可生成。</li>
         </ol>
       </article>
 
@@ -1713,12 +1760,12 @@
           <a href="https://github.com/2786886095/novelai-image-desktop/releases/latest" target="_blank" rel="noopener" class="btn">⬇️ 下载客户端</a>
         </div>
 
-        <p><a href="https://github.com/2786886095/novelai-image-desktop/releases/latest" target="_blank" rel="noopener">下载客户端</a>，按你的设备系统选择安装包。</p>
+        <p>前往 <a href="https://github.com/2786886095/novelai-image-desktop/releases/latest" target="_blank" rel="noopener">GitHub Releases 下载客户端</a>，按你的设备系统选择对应安装包。</p>
 
         <ol class="steps-list">
           <li>打开软件，进入 <strong>设置 → API 配置</strong>。</li>
           <li>
-            先设置接口和开关，再填写 Token：
+            按下表设置接口、开关与 Token：
             <div class="table-wrap">
               <table class="table-config">
                 <thead>
@@ -1746,7 +1793,7 @@
                   </tr>
                   <tr>
                     <td><strong>API Token</strong></td>
-                    <td>兑换页上的 <code>skr_</code> 密钥</td>
+                    <td>兑换页获得的 <code>skr_</code> 密钥</td>
                     <td><span class="badge badge-amber">粘贴 skr_ 密钥</span></td>
                   </tr>
                 </tbody>
@@ -1767,16 +1814,16 @@
 
         <ol class="steps-list">
           <li>
-            在 SillyTavern 的 <strong>扩展 → 安装扩展</strong> 中粘贴仓库地址：
+            在 SillyTavern 的 <strong>扩展 → 安装扩展</strong> 中粘贴以下仓库地址安装：
             <div class="code-block">
               <span>https://github.com/baibai-git/ST-BaiBai-Image</span>
               <button type="button" class="copy-btn" data-copy="https://github.com/baibai-git/ST-BaiBai-Image">📋 复制仓库地址</button>
             </div>
           </li>
-          <li>安装后刷新页面，打开 <strong>柏宝绘 → 渠道 → NovelAI → 配置</strong>。</li>
-          <li>在 <strong>接入点</strong> 旁点击 <strong>＋</strong>，新建一条接入点，命名为“<strong>星绘补给站</strong>”（官方默认接入点的地址不能修改，<strong>必须新建</strong>）。</li>
+          <li>安装后刷新酒馆页面，打开 <strong>柏宝绘 → 渠道 → NovelAI → 配置</strong>。</li>
+          <li>在 <strong>接入点</strong> 旁点击 <strong>＋</strong>，新建一条接入点并命名为“<strong>星绘补给站</strong>”（官方默认接入点的地址无法修改，<strong>必须新建</strong>）。</li>
           <li>
-            填写以下内容：
+            填写以下配置：
             <div class="table-wrap">
               <table class="table-config">
                 <thead>
@@ -1794,20 +1841,20 @@
                   </tr>
                   <tr>
                     <td><strong>API Key</strong></td>
-                    <td>兑换页上的 <code>skr_</code> 密钥</td>
+                    <td>兑换页获得的 <code>skr_</code> 密钥</td>
                     <td><span class="badge badge-amber">粘贴 skr_ 密钥</span></td>
                   </tr>
                 </tbody>
               </table>
             </div>
           </li>
-          <li>点击 <strong>使用此渠道出图</strong>，确认当前选中“星绘补给站”接入点，并选择你要使用的模型（<strong>「V4.5无限小图」月卡用户请务必选择 V4.5 模型</strong>；含 V5 体力或点数用户可选 V5 或 V4.5）。</li>
-          <li>在插件 <strong>设置</strong> 中，将 <strong>生成 tag 使用</strong> 保持为 <strong>跟随主 API</strong>，继续使用你原来的聊天连接。</li>
+          <li>点击 <strong>使用此渠道出图</strong>，确认当前选中“星绘补给站”接入点，并选择模型（<strong>「V4.5无限小图」月卡用户请务必选择 V4.5 模型</strong>；含 V5 体力或点数用户可选 V5 或 V4.5）。</li>
+          <li>在插件 <strong>设置</strong> 中，将 <strong>生成 tag 使用</strong> 保持为 <strong>跟随主 API</strong>，沿用你原本的聊天模型连接。</li>
           <li><strong>自动配图：</strong> 开启 <strong>自动生成 tag</strong> 和 <strong>自动生成图片</strong>。<strong>手动配图：</strong> 关闭这两个开关，在 AI 回复的 <strong>⋯</strong> 菜单里点调色盘，生成提示词后点击卡片上的 <strong>生成图片</strong>。</li>
         </ol>
 
         <div class="callout">
-          <p><em>注：本站密钥只填在 NovelAI 的接入点中，酒馆聊天模型仍使用你原本的聊天 Key，互不冲突。</em></p>
+          <p><em>注：本站密钥只填在 NovelAI 绘图接入点中，酒馆聊天模型仍使用你原本的聊天 Key，互不冲突。</em></p>
         </div>
       </article>
 
@@ -1818,7 +1865,7 @@
           <span class="badge badge-sakura">SillyTavern 扩展</span>
         </div>
 
-        <p>已有小白X的用户可直接使用它的 NovelAI 模块（选择一种酒馆绘图插件使用即可，无需同时开多个）。</p>
+        <p>已安装小白X的用户可直接使用其内置的 NovelAI 画图模块（酒馆绘图插件选一种使用即可，无需同时开多个）。</p>
 
         <ol class="steps-list">
           <li>
@@ -1843,7 +1890,7 @@
                 <tbody>
                   <tr>
                     <td><strong>NovelAI API Key</strong></td>
-                    <td>兑换页上的 <code>skr_</code> 密钥</td>
+                    <td>兑换页获得的 <code>skr_</code> 密钥</td>
                     <td><span class="badge badge-amber">粘贴 skr_ 密钥</span></td>
                   </tr>
                   <tr>
@@ -1881,7 +1928,7 @@
               <button type="button" class="copy-btn" data-copy="https://github.com/damoshen123/st-chatu8">📋 复制仓库地址</button>
             </div>
           </li>
-          <li>安装后刷新页面，打开 <strong>智绘姬（st-chatu8）</strong> 的设置面板。在 <strong>主要设置</strong> 中开启 <strong>启用插件</strong>，将 <strong>模式</strong> 选为 <strong>NovelAI</strong>，将 <strong>客户端</strong> 选为 <strong>浏览器</strong>。</li>
+          <li>安装后刷新页面，打开 <strong>智绘姬（st-chatu8）</strong> 设置面板。在 <strong>主要设置</strong> 中开启 <strong>启用插件</strong>，将 <strong>模式</strong> 选为 <strong>NovelAI</strong>，将 <strong>客户端</strong> 选为 <strong>浏览器</strong>。</li>
           <li>
             切换到左侧 <strong>NovelAI</strong> 页面，按下表填写：
             <div class="table-wrap">
@@ -1896,7 +1943,7 @@
                 <tbody>
                   <tr>
                     <td><strong>NovelAI API</strong></td>
-                    <td>兑换页上的 <code>skr_</code> 密钥</td>
+                    <td>兑换页获得的 <code>skr_</code> 密钥</td>
                     <td><span class="badge badge-amber">粘贴 skr_ 密钥</span></td>
                   </tr>
                   <tr>
@@ -1936,7 +1983,7 @@
               </li>
             </ul>
           </li>
-          <li>已有智绘姬配图预设的用户，继续按原来的方式生图即可。本站密钥填在 <strong>NovelAI API</strong> 中，酒馆聊天或插件 LLM 仍使用你原来的聊天模型连接。</li>
+          <li>已有智绘姬配图预设的用户，继续按原来的方式生图即可。本站密钥只填在 <strong>NovelAI API</strong> 中，酒馆聊天或插件 LLM 仍使用你原本的聊天模型连接。</li>
         </ol>
       </article>
 
@@ -1969,98 +2016,109 @@
               </tr>
               <tr>
                 <td><strong>API Key / Token</strong></td>
-                <td>兑换页上的 <code>skr_</code> 密钥</td>
+                <td>兑换页获得的 <code>skr_</code> 密钥</td>
                 <td><span class="badge badge-amber">粘贴 skr_ 密钥</span></td>
               </tr>
             </tbody>
           </table>
         </div>
 
-        <p>支持 NovelAI 原生接口、并允许自定义接口地址（Base URL）的工具，都可以按这组信息接入。</p>
+        <p>凡是支持 NovelAI 原生接口、且允许自定义接口地址（Base URL）的工具或插件，均可按以上三项信息接入。</p>
       </article>
 
-      <!-- SECTION 9: 新手常见问题 -->
+      <!-- SECTION 9: 新手常见问题 FAQ -->
       <article class="section-card" id="sec-9">
         <div class="section-header">
-          <h2 class="section-title"><span class="section-num">9</span> 新手常见问题：小图、点数、V4.5 与 V5 体力到底是什么？</h2>
-          <span class="badge badge-amber">新手必读 · 避免扣错费</span>
-        </div>
-
-        <div class="callout">
-          <div class="callout-title">📌 先说明</div>
-          <p>星绘补给站是 <strong>NovelAI 兼容的第三方绘图接入服务</strong>。本站密钥<strong>不是 NovelAI 官网账号</strong>；概念和计价方式参考官网，但本站套餐的点数、V4.5 无限小图、V5 体力、恢复速度及有效期，均以本文和实际系统规则为准。</p>
+          <h2 class="section-title"><span class="section-num">9</span> 新手常见问题 FAQ（画质、Vibe、小图、体力与点数）</h2>
+          <span class="badge badge-amber">新手必读 · 一看就懂</span>
         </div>
 
         <div class="callout callout-success">
-          <div class="callout-title">💡 一句话理解</div>
-          <p><strong>小图是符合尺寸与步数标准的图片规格；Opus 会员跑 V4.5 小图完全免费不限量，跑 V5 小图则优先扣「V5 体力」；超规格大图或无会员时则扣「点数」。</strong></p>
+          <div class="callout-title">💡 一句话总览</div>
+          <p><strong>本站直连 NovelAI 官方生图模型（画质与官网 100% 一致，支持 Vibe 画风参考）；Opus 会员画 V4.5 小图完全免费不限量，画 V5 小图优先扣「V5 体力」，超规格大图或纯点数包则扣「点数」。</strong></p>
         </div>
 
+        <!-- 9.1 效果同官网吗？支持 Vibe 吗？ -->
+        <h3 class="subsection-title" id="sec-9-1">9.1 出图效果和 NovelAI 官网一样吗？支持 Vibe 模型（画风参考）吗？</h3>
+        <div class="qa-grid">
+          <div class="qa-card">
+            <div class="qa-q">🎨 Q1：出图效果和官网完全一样吗？</div>
+            <div class="qa-a">
+              <strong>完全一样（100% 官方原版模型）。</strong><br />
+              本站直连 NovelAI 官方后端，提供官方原版 <code>V5</code>、<code>V4.5 Full</code>、<code>V4.5 Curated</code> 等模型，绝非本地仿制或阉割模型。在相同的模型、提示词、参数和种子（Seed）下，生成效果、细节质量与官网完全一致。
+            </div>
+          </div>
+          <div class="qa-card">
+            <div class="qa-q">✨ Q2：支持 Vibe 模型（Vibe Transfer）等功能吗？</div>
+            <div class="qa-a">
+              <strong>完整支持！功能与官网一致。</strong><br />
+              无论是使用本站 <a href="#sec-2">在线画图网页</a> 还是支持相关特性的第三方客户端（如 Aaalice、Langbai 等），均完整支持 <strong>Vibe Transfer（Vibe 模型 / 多图画风与特征提取参考）</strong>、<strong>图生图（Img2Img）</strong>、<strong>局部重绘（Inpainting）</strong> 及 <strong>多角色分区控制</strong> 等官方功能。<br />
+              <span style="font-size:0.84rem;color:var(--text-muted);">（注：若部分高级操作触发官方额外点数消耗，系统会按官方计价规则从点数余额中扣除；免点范围内的操作则正常享受小图/体力权益。）</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 9.2 一张表搞懂四个核心词 -->
+        <h3 class="subsection-title" id="sec-9-2">9.2 一张表搞懂四个核心词：小图、V4.5 无限小图、V5 体力、点数</h3>
         <div class="table-wrap">
           <table class="table-data">
             <thead>
               <tr>
-                <th>你看到的词</th>
+                <th>核心概念</th>
                 <th>通俗解释</th>
-                <th>最容易搞混的地方</th>
+                <th>新手最容易搞混的地方</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td><strong>小图（标准图）</strong></td>
-                <td data-label="通俗解释"><span class="cell-val">指满足<strong>宽×高 ≤ 1,048,576 像素、步数 ≤ 28、单次生成 1 张</strong>的图片规格</span></td>
-                <td data-label="容易搞混"><span class="cell-val">不等于低画质，也不是只能画 512×512（常用的 <strong>832×1216、1024×1024 都算小图！</strong>）</span></td>
+                <td data-label="通俗解释"><span class="cell-val">同时满足 <strong>宽×高 ≤ 1,048,576 像素、步数 ≤ 28、单次生成 1 张</strong> 的图片规格</span></td>
+                <td data-label="容易搞混"><span class="cell-val">“小图”是官方标准免费尺寸的简称，不代表低画质！最常用的 <strong>832×1216、1024×1024 高清图都算小图！</strong></span></td>
               </tr>
               <tr>
                 <td><strong>V4.5 无限小图</strong></td>
-                <td data-label="通俗解释"><span class="cell-val">所有月卡及 1 天 Opus 均含此权益：用 <strong>V4.5 模型</strong>画符合条件的小图，<strong>不扣点数也不扣 V5 体力，30 天无限畅画</strong></span></td>
-                <td data-label="容易搞混"><span class="cell-val">若购买的是「V4.5无限小图（无V5体力）」月卡，<strong>只能免点画 V4.5 小图</strong>，不能画 V5 或超规格大图</span></td>
+                <td data-label="通俗解释"><span class="cell-val">所有月卡及 1 天 Opus 均含此权益：用 <strong>V4.5 模型</strong>画符合条件的小图，<strong>0 点数、0 体力消耗，无限畅画</strong></span></td>
+                <td data-label="容易搞混"><span class="cell-val">若购买的是「V4.5无限小图（无V5体力）」月卡，<strong>只能免点画 V4.5 小图</strong>，不能选 V5 模型或画超规格大图</span></td>
               </tr>
               <tr>
                 <td><strong>V5 体力</strong></td>
-                <td data-label="通俗解释"><span class="cell-val">专为 <strong>V5 模型</strong>设置的可用小图张数额度（1天/4人/单人 Opus 专属），用完后按 24 小时周期恢复</span></td>
-                <td data-label="容易搞混"><span class="cell-val">只有画 <strong>V5 小图</strong>才会扣 V5 体力；画 V4.5 小图不扣 V5 体力！当 V5 体力用完时，切回 V4.5 仍可继续无限画小图</span></td>
+                <td data-label="通俗解释"><span class="cell-val">专为最新 <strong>V5 模型</strong>设置的可用小图张数额度（1天/4人/单人 Opus 专属），每 24 小时自动恢复</span></td>
+                <td data-label="容易搞混"><span class="cell-val">只有画 <strong>V5 小图</strong>才会扣 V5 体力；画 V4.5 小图不扣 V5 体力！V5 体力用完时，切回 V4.5 仍可继续免费无限出图</span></td>
               </tr>
               <tr>
                 <td><strong>点数</strong></td>
-                <td data-label="通俗解释"><span class="cell-val">用来支付绘图消耗的钱包余额，类似官网的 <strong>ImageAnlas（生图点数）</strong></span></td>
-                <td data-label="容易搞混"><span class="cell-val"><strong>100 点数不等于 100 张图</strong>，每次消耗点数多少与模型、尺寸、步数有关</span></td>
+                <td data-label="通俗解释"><span class="cell-val">用来支付超规格大图或非会员生图的钱包余额，对应官网的 <strong>ImageAnlas（生图点数）</strong></span></td>
+                <td data-label="容易搞混"><span class="cell-val"><strong>100 点数不等于 100 张图！</strong> 每张图消耗多少点数取决于尺寸、步数和模型</span></td>
               </tr>
             </tbody>
           </table>
         </div>
 
-        <!-- 9.1 -->
-        <h3 class="subsection-title" id="sec-9-1">9.1 什么才算「小图」？V4.5 和 V5 小图有什么区别？</h3>
-        <p>在本站规则中，无论你使用 V4.5 还是 V5，享受「小图免点/扣体力权益」都需要<strong>同时满足以下 3 个规格条件</strong>：</p>
+        <!-- 9.3 什么算小图？V4.5 与 V5 扣费 -->
+        <h3 class="subsection-title" id="sec-9-3">9.3 什么才算「小图」？交互式扣费自测</h3>
+        <p>无论使用 V4.5 还是 V5，享受「免点 / 扣体力」小图权益必须<strong>同时满足以下 3 个条件</strong>：</p>
 
         <div class="cond-grid">
           <div class="cond-card">
             <div class="cond-num">条件 1 · 分辨率上限</div>
             <div class="cond-main">宽 × 高 ≤ 1,048,576 像素</div>
-            <div class="cond-sub">约 100 万像素（如 832×1216、1024×1024 均符合）</div>
+            <div class="cond-sub">约 100 万像素（832×1216、1024×1024 均符合）</div>
           </div>
           <div class="cond-card">
             <div class="cond-num">条件 2 · 步数上限</div>
             <div class="cond-main">Steps／步数 ≤ 28</div>
-            <div class="cond-sub">调到 29 步或更高即超出小图规则，改走点数计费</div>
+            <div class="cond-sub">设为 29 步或更高即超出小图标准，改走点数计费</div>
           </div>
           <div class="cond-card">
             <div class="cond-num">条件 3 · 单次张数</div>
             <div class="cond-main">单次生成 1 张</div>
-            <div class="cond-sub">批量出图（Batch &gt; 1）中多出来的图片会改扣点数</div>
+            <div class="cond-sub">单次批量出图（Batch &gt; 1）中多出的张数改扣点数</div>
           </div>
         </div>
 
-        <p><strong>在满足上述 3 个条件时，选不同模型的扣费区别：</strong></p>
-        <ul class="bullet-list">
-          <li><strong>选择 V4.5 模型（如 <code>nai-diffusion-4-5-full</code>）：</strong> 只要你持有有效期内的任意 Opus 套餐（含 <code>1天Opus</code>、<code>月卡：V4.5无限小图</code>、<code>4人Opus</code>、<code>单人独享Opus</code>），每张 <strong>0 点数、0 体力消耗，真正无限生成</strong>！</li>
-          <li><strong>选择 V5 模型（如 <code>nai-diffusion-5-full</code>）：</strong> 需要你的套餐包含 <strong>V5 体力</strong>（如 <code>1天Opus</code>、<code>4人Opus</code>、<code>单人独享Opus</code>），每成功生成 1 张扣 <strong>1 张 V5 体力</strong>（不扣点数）。若你买的是 <code>月卡：V4.5无限小图（无V5体力）</code>，因不含 V5 体力与点数，无法使用 V5 模型。</li>
-        </ul>
-
         <!-- Interactive Billing Checker -->
         <div class="checker-card">
-          <div class="checker-title">🧮 交互式扣费自测器：选一下你的套餐和参数，立即看怎么扣费</div>
+          <div class="checker-title">🧮 交互式扣费自测器：选择你的套餐与参数，立即看怎么扣费</div>
           <div class="checker-controls">
             <div class="control-group">
               <label for="chkTier">你的套餐档位</label>
@@ -2102,126 +2160,118 @@
           </div>
         </div>
 
-        <p><strong>常见尺寸举例（以本站的宽×高 ≤ 1,048,576 像素规则判断）：</strong></p>
+        <p><strong>常见分辨率对照表：</strong></p>
         <div class="table-wrap">
           <table class="table-data">
             <thead>
               <tr>
                 <th>图片尺寸</th>
-                <th class="num-col">像素数量</th>
-                <th>算本站的小图吗？</th>
+                <th class="num-col">总像素（宽×高）</th>
+                <th>是否属于本站小图？</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td>512 × 512</td>
-                <td class="num-col" data-label="像素数量"><span class="cell-val">262,144</span></td>
-                <td data-label="算小图吗？"><span class="cell-val"><span class="badge badge-green">✅ 算</span> 同时满足步数 ≤ 28、单次 1 张即可</span></td>
+                <td class="num-col" data-label="总像素"><span class="cell-val">262,144</span></td>
+                <td data-label="是否算小图"><span class="cell-val"><span class="badge badge-green">✅ 算小图</span>（配合步数 ≤ 28、单次 1 张）</span></td>
               </tr>
               <tr>
                 <td>768 × 1024</td>
-                <td class="num-col" data-label="像素数量"><span class="cell-val">786,432</span></td>
-                <td data-label="算小图吗？"><span class="cell-val"><span class="badge badge-green">✅ 算</span> 同时满足步数 ≤ 28、单次 1 张即可</span></td>
+                <td class="num-col" data-label="总像素"><span class="cell-val">786,432</span></td>
+                <td data-label="是否算小图"><span class="cell-val"><span class="badge badge-green">✅ 算小图</span>（配合步数 ≤ 28、单次 1 张）</span></td>
               </tr>
               <tr class="highlight-row">
                 <td><strong>832 × 1216</strong></td>
-                <td class="num-col" data-label="像素数量"><span class="cell-val"><strong>1,011,712</strong></span></td>
-                <td data-label="算小图吗？"><span class="cell-val"><span class="badge badge-green">✅ 算</span> <strong>（最常用人像/酒馆配图黄金尺寸）</strong></span></td>
+                <td class="num-col" data-label="总像素"><span class="cell-val"><strong>1,011,712</strong></span></td>
+                <td data-label="是否算小图"><span class="cell-val"><span class="badge badge-green">✅ 算小图</span> <strong>（最推荐！立绘/人像/酒馆配图黄金尺寸）</strong></span></td>
               </tr>
               <tr class="highlight-row">
                 <td><strong>1024 × 1024</strong></td>
-                <td class="num-col" data-label="像素数量"><span class="cell-val"><strong>1,048,576</strong></span></td>
-                <td data-label="算小图吗？"><span class="cell-val"><span class="badge badge-green">✅ 算</span> <strong>（刚好卡在上限内）</strong></span></td>
+                <td class="num-col" data-label="总像素"><span class="cell-val"><strong>1,048,576</strong></span></td>
+                <td data-label="是否算小图"><span class="cell-val"><span class="badge badge-green">✅ 算小图</span> <strong>（方图最高上限，刚好卡在免费线内）</strong></span></td>
               </tr>
               <tr>
                 <td>1024 × 1536</td>
-                <td class="num-col" data-label="像素数量"><span class="cell-val">1,572,864</span></td>
-                <td data-label="算小图吗？"><span class="cell-val"><span class="badge badge-red">❌ 不算</span> 超出像素上限，属于大图，必须扣点数</span></td>
+                <td class="num-col" data-label="总像素"><span class="cell-val">1,572,864</span></td>
+                <td data-label="是否算小图"><span class="cell-val"><span class="badge badge-red">❌ 超出上限</span> 属于超规格大图，必须消耗点数</span></td>
               </tr>
             </tbody>
           </table>
         </div>
 
-        <div class="callout callout-warn">
-          <p><strong>注意：</strong>「小图」只是对官网标准免费额度范围（Standard Size）的简称，1024×1024 和 832×1216 清晰度已经非常高！<strong>哪怕选了小图尺寸，一旦把步数调到 29 或更高，就会超出小图规则，改走点数计费。</strong></p>
-          <p><strong>28 步与官网 23 步的区别：</strong> 28 步是本站 V5 体力额度的<strong>保守折算基准</strong>，同时也是本站小图规则允许的步数上限；只要符合小图尺寸且单次 1 张，23 步、28 步或更低步数生成的 V5 小图，在本站均按 <strong>1 张 V5 体力</strong>扣除（生成 V4.5 小图则完全免费）。</p>
-        </div>
-
-        <!-- 9.2 -->
-        <h3 class="subsection-title" id="sec-9-2">9.2 什么是「点数」？什么时候会扣点？</h3>
-        <p>把点数理解成<strong>绘图钱包里的余额</strong>即可。以下情况会消耗点数：</p>
+        <!-- 9.4 为什么独享是 5920 张 V5 图？ -->
+        <h3 class="subsection-title" id="sec-9-4">9.4 为什么官网说 Opus 每月约 7,000 张 V5，而本站独享是 5,920 张？</h3>
+        <p>不少朋友看过官网 FAQ 提到“Opus 每月可画约 7,000 张 V5 小图”，疑惑为什么本站单人独享（100% 满体力档）算下来是 <strong>5,920 张</strong>。其实<strong>两者的总体力条完全一样，只是折算的单张步数基准不同</strong>：</p>
         <ul class="bullet-list">
-          <li><strong>纯点数套餐（100点 / 2k点）：</strong> 没有 Opus 权益，生成任何图片（无论 V4.5 还是 V5）均按点数计费。</li>
-          <li><strong>生成超规格图片（大图 / 高步数）：</strong> 宽×高超过 <code>1,048,576</code> 像素，或步数超过 <code>28 步</code>，不论什么套餐均需扣点数。</li>
-          <li><strong>一次生成多张（Batch &gt; 1）：</strong> 符合条件的第一张走小图权益，<strong>多出来的张数</strong>按点数扣除。</li>
-          <li><strong>V5 体力用尽后继续强跑 V5：</strong> 当日 V5 体力扣完后，若不切换回 V4.5 而继续使用 V5 生成，会自动改扣账户内的点数；<strong>若此时点数也为 0，请求会被拒绝</strong>（无点版用户此时只需把模型切成 V4.5，即可继续免费画小图！）。</li>
+          <li><strong>官网的 7,000 张是以「单张 23 步」计算的：</strong> 在官方机制中，23 步消耗的体力较低，28 步消耗的体力较高。但几乎所有玩家为了画面细节，日常都会把步数拉满到免费上限 <strong>28 步</strong>，按 28 步去画，官网账号一个月实际能出的张数同样在 5,900 张左右。</li>
+          <li>
+            <strong>本站统一按「单张 28 步满步数」实诚折算（不拿低步数虚标）：</strong><br />
+            以 <strong>单人独享 Opus（100% 体力档）</strong> 为例：
+            <ul class="bullet-list" style="margin:6px 0;">
+              <li>兑换开卡时，直接发放满槽初始上限 <strong>1,120 张</strong>（刚好等于 7 天的恢复量：<code>160 张/天 × 7 = 1,120 张</code>）；</li>
+              <li>随后 30 天有效期内，每 24 小时恢复 <strong>160 张</strong>（30 天共恢复：<code>160 张/天 × 30 = 4,800 张</code>）；</li>
+              <li>两者相加：<strong><code>160 × (7 + 30) = 160 × 37 = 5,920 张</code>（28 步满步数 V5 小图）</strong>！</li>
+            </ul>
+          </li>
+          <li><strong>4 人合租 Opus（25% 体力档）完全按 1/4 等比例折算：</strong> 初始上限 <strong>280 张</strong>（<code>40 × 7</code>）＋ 30 天恢复 <strong>1,200 张</strong>（<code>40 × 30</code>）＝ 月总计可用 <strong><code>40 × 37 = 1,480 张</code></strong> 28 步 V5 小图。</li>
+          <li><strong>直接拉满 28 步更省心：</strong> 在本站只要符合小图尺寸且步数 ≤ 28 步，生成 1 张固定扣 1 张 V5 体力。你不需要为了凑张数去降步数，<strong>每次直接设 28 步出最高画质即可</strong>。</li>
         </ul>
-        <p><strong>重点：点数不是「张数」。</strong> 「100 点数」表示有 100 点绘图余额，<strong>不等于能画 100 张图</strong>。每张图的扣点与模型、尺寸、步数、生成张数等设置有关。</p>
 
-        <!-- 9.3 -->
-        <h3 class="subsection-title" id="sec-9-3">9.3 常见问题：100 点数到底能生成多少张图？</h3>
-        <p><strong>100 点数包是 100 点绘图余额，不是 100 张次数卡。</strong> 本站的「体验：100 点数」有效期为 <strong>30 天</strong>，不附带无限小图或 V5 体力，生成时按点数消耗。</p>
-        <p>如果使用 <strong>普通文生图、一次只生成 1 张、不使用额外收费功能</strong>，下面是按照 NovelAI 官网计费方式所做的<strong>参考估算</strong>：</p>
+        <!-- 9.5 何时扣点数？100点能出几张？ -->
+        <h3 class="subsection-title" id="sec-9-5">9.5 什么时候会扣「点数」？100 点数大约能画几张图？</h3>
+        <p>点数就是账户里的<strong>生图钱包余额（类似官网 ImageAnlas）</strong>，仅在以下 4 种情况扣除：</p>
+        <ol class="steps-list">
+          <li><strong>使用纯点数套餐（100点 / 2k点）：</strong> 无 Opus 会员权益，生成任何图片均按参数扣点。</li>
+          <li><strong>生成超规格图片（大图 / 高步数）：</strong> 像素超过 <code>1,048,576</code>（如 1024×1536）或步数超过 <code>28 步</code>，不论什么套餐均扣点数。</li>
+          <li><strong>单次批量出图（Batch &gt; 1）：</strong> 第一张走小图权益，同批次多出来的张数按点数扣除。</li>
+          <li><strong>V5 体力耗尽后继续强跑 V5：</strong> 当日 V5 体力用完后若不切回 V4.5 而继续跑 V5，会自动改扣点数（无点数则拒绝；<strong>此时只要把模型切换为 V4.5，就能继续 0 点数无限免费画小图！</strong>）。</li>
+        </ol>
+
+        <p><strong>「体验：100 点数」能生成多少张图？（100 点是余额，不是 100 张次数卡）</strong></p>
+        <p>按普通文生图、单次 1 张、不叠加额外收费功能估算，参考消耗如下：</p>
 
         <div class="table-wrap">
           <table class="table-data">
             <thead>
               <tr>
-                <th>示例设置</th>
-                <th class="num-col">预计每张消耗</th>
-                <th class="num-col">100 点数大约能出</th>
+                <th>示例参数设置</th>
+                <th class="num-col">预计每张扣点</th>
+                <th class="num-col">100 点数大约可生成</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td>V5 / V4.5 · 512×512 · 23 步</td>
-                <td class="num-col" data-label="预计每张消耗"><span class="cell-val">约 <strong>8 点</strong></span></td>
-                <td class="num-col" data-label="100 点大约能出"><span class="cell-val"><strong>12 张</strong></span></td>
+                <td class="num-col" data-label="预计每张扣点"><span class="cell-val">约 <strong>8 点</strong></span></td>
+                <td class="num-col" data-label="100 点约可出"><span class="cell-val"><strong>约 12 张</strong></span></td>
               </tr>
               <tr>
                 <td>V5 / V4.5 · 832×1216 · 23 步</td>
-                <td class="num-col" data-label="预计每张消耗"><span class="cell-val">约 <strong>20～26 点</strong></span></td>
-                <td class="num-col" data-label="100 点大约能出"><span class="cell-val"><strong>3～5 张</strong></span></td>
+                <td class="num-col" data-label="预计每张扣点"><span class="cell-val">约 <strong>20～26 点</strong></span></td>
+                <td class="num-col" data-label="100 点约可出"><span class="cell-val"><strong>约 3～5 张</strong></span></td>
               </tr>
               <tr>
                 <td>V5 / V4.5 · 1024×1536 · 28 步</td>
-                <td class="num-col" data-label="预计每张消耗"><span class="cell-val">约 <strong>45 点</strong></span></td>
-                <td class="num-col" data-label="100 点大约能出"><span class="cell-val"><strong>2 张</strong></span></td>
+                <td class="num-col" data-label="预计每张扣点"><span class="cell-val">约 <strong>45 点</strong></span></td>
+                <td class="num-col" data-label="100 点约可出"><span class="cell-val"><strong>约 2 张</strong></span></td>
               </tr>
             </tbody>
           </table>
         </div>
-
-        <div class="callout">
-          <p><strong>以上只是参考，不承诺固定张数。</strong> 本站的实际扣点应以生成时的计费信息或余额变化为准；不同模型、分辨率、步数、附加功能或客户端实现，都可能改变消耗。</p>
-          <p><strong>特别区分：</strong> 本表是<strong>普通点数扣费</strong>的示例，23 步或 28 步会影响预估点数；前文所说的“本站按 28 步保守折算”，指的是 <strong>Opus V5 体力额度换算口径</strong>，不是说所有按点计费的图片都统一按 28 步扣点。</p>
-        </div>
-
-        <p><strong>最准确的测算方法：</strong> 先选好模型、图片尺寸、步数，查看网页或客户端生成按钮显示的预计扣点；如果插件不显示，可先出 <strong>1 张</strong>，对比前后余额差。使用酒馆自动配图时，每轮对话自动触发生成也会持续扣点。</p>
-        <p style="font-size:0.88rem;color:var(--text-muted);">
-          <em>参考：</em>
-          <a href="https://docs.novelai.net/en/image/stepsguidance/" target="_blank" rel="noopener">NovelAI 官方：步数与点数关系</a> ·
-          <a href="https://github.com/RhNu/novelai-bridge/blob/main/docs/anlas-pricing.md" target="_blank" rel="noopener">针对 NovelAI 计价规则的第三方估算说明（2026-08）</a>。
+        <p style="font-size:0.86rem;color:var(--text-muted);">
+          <em>注：按点计费时，实际消耗随分辨率、步数、附加功能（如多张 Vibe 参考等）浮动，请以生成按钮显示的预计扣点或实际余额变化为准。参考：<a href="https://docs.novelai.net/en/image/stepsguidance/" target="_blank" rel="noopener">NovelAI 官方步数与点数说明</a>。</em>
         </p>
 
-        <!-- 9.4 -->
-        <h3 class="subsection-title" id="sec-9-4">9.4 四种 Opus 档位（「V4.5月卡」「4人Opus」「单人独享」「1天Opus」）有什么区别？</h3>
-        <p>NovelAI 官网的 <strong>Opus</strong> 订阅在跑 V4.5 标准小图时不限量，而在跑最新 <strong>V5</strong> 模型时同样设有会随时间恢复的体力上限（并非 V5 也能无限制狂刷）。</p>
-        <p><strong>本站据此提供了清晰的四个阶梯档位，按需选择即可：</strong></p>
-        <ul class="bullet-list">
-          <li><strong>月卡：V4.5 无限小图（无 V5 体力）：</strong> 30 天内享 <strong>V4.5 标准小图无限免点生成</strong>，不含 V5 体力与额外点数。适合只用 V4.5 画图或酒馆日常长驻自动配图、追求极致性价比的玩家。</li>
-          <li><strong>月卡：4 人 Opus（25% V5 体力档）：</strong> 30 天内享 <strong>V4.5 无限小图</strong> ＋ <strong>V5 体力上限 280 张</strong>（每 24 小时恢复 <strong>40 张</strong>，上限不叠加）。有「无点版」和「含 2000 点数版」可选。</li>
-          <li><strong>月卡：单人独享 Opus（100% V5 体力档）：</strong> 30 天内享 <strong>V4.5 无限小图</strong> ＋ <strong>V5 体力上限 1,120 张</strong>（每 24 小时恢复 <strong>160 张</strong>）＋ <strong>10,000 点数</strong>。</li>
-          <li><strong>体验：1 天 Opus（4% V5 体力档）：</strong> 24 小时有效期内享 <strong>V4.5 无限小图</strong> ＋ 一次性发放<strong>约 44 张 V5 体力</strong>（用完不再恢复，不含额外点数）。</li>
-        </ul>
+        <!-- 9.6 四个例子一眼看懂扣费 & 选档对号入座 -->
+        <h3 class="subsection-title" id="sec-9-6">9.6 四个例子看懂扣费 &amp; 不知道买哪档对号入座</h3>
 
-        <!-- 9.5 -->
-        <h3 class="subsection-title" id="sec-9-5">9.5 四个例子，一眼看懂怎么扣费</h3>
+        <p><strong>四个典型生图场景扣费对比：</strong></p>
         <div class="table-wrap">
           <table class="table-data">
             <thead>
               <tr>
-                <th>你要生成的设置</th>
+                <th>你要生成的参数设置</th>
                 <th>月卡：V4.5无限小图(无V5)</th>
                 <th>4人 / 单人 / 1天 Opus（V5体力充足时）</th>
                 <th>纯点数包（100点 / 2k点）</th>
@@ -2229,27 +2279,27 @@
             </thead>
             <tbody>
               <tr>
-                <td><strong>V4.5</strong>，832×1216，28 步，1 张</td>
+                <td><strong>V4.5</strong> · 832×1216 · 28 步 · 1 张</td>
                 <td data-label="V4.5无限小图月卡"><span class="cell-val"><span class="badge badge-green">✅ 完全免费（0点0体力）</span></span></td>
                 <td data-label="4人/单人/1天 Opus"><span class="cell-val"><span class="badge badge-green">✅ 完全免费（0点0体力）</span></span></td>
                 <td data-label="纯点数包"><span class="cell-val">扣本次所需点数</span></td>
               </tr>
               <tr>
-                <td><strong>V5</strong>，1024×1024，28 步，1 张</td>
+                <td><strong>V5</strong> · 1024×1024 · 28 步 · 1 张</td>
                 <td data-label="V4.5无限小图月卡"><span class="cell-val"><span class="badge badge-red">❌ 不支持（无V5体力与点数）</span></span></td>
-                <td data-label="4人/单人/1天 Opus"><span class="cell-val"><span class="badge badge-green">✅ 扣 1 张 V5 体力</span>，不扣点数</span></td>
+                <td data-label="4人/单人/1天 Opus"><span class="cell-val"><span class="badge badge-green">✅ 扣 1 张 V5 体力</span>（0点数）</span></td>
                 <td data-label="纯点数包"><span class="cell-val">扣本次所需点数</span></td>
               </tr>
               <tr>
-                <td><strong>V5 / V4.5</strong>，1024×1536（大图），28 步</td>
+                <td><strong>V5 / V4.5</strong> · 1024×1536（超尺寸大图）· 28 步</td>
                 <td data-label="V4.5无限小图月卡"><span class="cell-val"><span class="badge badge-red">❌ 不支持（无额外点数）</span></span></td>
-                <td data-label="4人/单人/1天 Opus"><span class="cell-val">超出小图尺寸，<strong>扣点数</strong>（无点版会拒绝）</span></td>
+                <td data-label="4人/单人/1天 Opus"><span class="cell-val">超出小图像素，<strong>扣点数</strong>（无点版拒绝）</span></td>
                 <td data-label="纯点数包"><span class="cell-val">扣本次所需点数</span></td>
               </tr>
               <tr>
-                <td><strong>V5 / V4.5</strong>，1024×1024，30 步（超步数）</td>
+                <td><strong>V5 / V4.5</strong> · 1024×1024 · 30 步（超步数）</td>
                 <td data-label="V4.5无限小图月卡"><span class="cell-val"><span class="badge badge-red">❌ 不支持（无额外点数）</span></span></td>
-                <td data-label="4人/单人/1天 Opus"><span class="cell-val">超出 28 步上限，<strong>扣点数</strong>（无点版会拒绝）</span></td>
+                <td data-label="4人/单人/1天 Opus"><span class="cell-val">超出 28 步上限，<strong>扣点数</strong>（无点版拒绝）</span></td>
                 <td data-label="纯点数包"><span class="cell-val">扣本次所需点数</span></td>
               </tr>
             </tbody>
@@ -2257,56 +2307,55 @@
         </div>
 
         <div class="callout callout-success">
-          <div class="callout-title">🌟 新手省心建议</div>
-          <p>日常画图和酒馆自动配图，强烈建议固定使用 <strong>832×1216 或 1024×1024、28 步及以下、每次 1 张</strong>。买「V4.5无限小图月卡」的朋友固定选 V4.5 模型即可 30 天无限畅画；买「4人合租 Opus」的朋友平时可尽情跑 V5，万一当天 V5 体力刷完了，切回 V4.5 就能继续无缝免费出图！</p>
+          <div class="callout-title">🌟 新手省心黄金设置</div>
+          <p>日常画图与酒馆自动配图，强烈建议固定设置为 <strong><code>832×1216</code> 或 <code>1024×1024</code>、<code>28 步</code>、<code>单次 1 张</code></strong>。买「V4.5无限小图月卡」的朋友固定选 V4.5 模型即可 30 天无限畅画；买「4人合租 / 独享 Opus」的朋友平时尽情跑 V5，万一当天 V5 体力用完了，切回 V4.5 就能无缝继续免费出图！</p>
         </div>
 
-        <!-- 9.6 -->
-        <h3 class="subsection-title" id="sec-9-6">9.6 不知道买哪档？按需求对号入座</h3>
+        <p style="margin-top:18px;"><strong>不知道买哪档？按你的需求对号入座：</strong></p>
         <div class="table-wrap">
           <table class="table-data">
             <thead>
               <tr>
-                <th>你的实际需求</th>
-                <th>推荐对应档位</th>
-                <th>需要注意</th>
+                <th>你的实际使用需求</th>
+                <th>推荐对应套餐</th>
+                <th>核心亮点与注意事项</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>想花 1 块钱测试接口通不通、偶尔画几张</td>
-                <td data-label="推荐对应档位"><span class="cell-val"><strong>体验：100 点数</strong></span></td>
-                <td data-label="需要注意"><span class="cell-val">只有 100 点数（约出 3～12 张图），不带无限小图与体力</span></td>
+                <td>花小钱测试接口连不连得上、偶尔画几张</td>
+                <td data-label="推荐套餐"><span class="cell-val"><strong>体验：100 点数</strong></span></td>
+                <td data-label="亮点与注意"><span class="cell-val">含 100 点余额（约出 3～12 张图），30 天有效，不含无限小图</span></td>
               </tr>
               <tr>
-                <td>想低成本测试 V5 效果和 V4.5 无限小图</td>
-                <td data-label="推荐对应档位"><span class="cell-val"><strong>体验：1 天 Opus</strong></span></td>
-                <td data-label="需要注意"><span class="cell-val">含 1 天 V4.5 无限小图 + 约 44 张 V5 体力（一次性不恢复）</span></td>
+                <td>低成本体验 V5 最新效果 + V4.5 无限小图</td>
+                <td data-label="推荐套餐"><span class="cell-val"><strong>体验：1 天 Opus</strong></span></td>
+                <td data-label="亮点与注意"><span class="cell-val">24 小时内 V4.5 小图无限出 + 一次性发放约 44 张 V5 体力</span></td>
               </tr>
               <tr>
-                <td>画图频率很低，但每次都要画超大图/高步数</td>
-                <td data-label="推荐对应档位"><span class="cell-val"><strong>按量：2k 点数包</strong></span></td>
-                <td data-label="需要注意"><span class="cell-val">只有 2,000 点数，按实际参数扣点，30 天有效</span></td>
+                <td>生图频率很低，但每次都要画超大图/高步数</td>
+                <td data-label="推荐套餐"><span class="cell-val"><strong>按量：2k 点数包</strong></span></td>
+                <td data-label="亮点与注意"><span class="cell-val">含 2,000 点余额，按实际参数扣点，30 天有效</span></td>
               </tr>
               <tr class="highlight-row">
                 <td><strong>酒馆长驻自动配图、日常高频跑 V4.5 小图</strong></td>
-                <td data-label="推荐对应档位"><span class="cell-val"><strong>🔥 月卡：V4.5 无限小图（无V5体力）</strong></span></td>
-                <td data-label="需要注意"><span class="cell-val"><strong>性价比最高！30 天 V4.5 小图无限出，注意模型必须选 V4.5</strong></span></td>
+                <td data-label="推荐套餐"><span class="cell-val"><strong>🔥 月卡：V4.5 无限小图（无V5体力）</strong></span></td>
+                <td data-label="亮点与注意"><span class="cell-val"><strong>性价比之王！30 天 V4.5 小图无限免费画，注意模型必须选 V4.5</strong></span></td>
               </tr>
               <tr class="highlight-row">
-                <td><strong>主要想玩最新 V5 模型小图 + V4.5 无限小图</strong></td>
-                <td data-label="推荐对应档位"><span class="cell-val"><strong>🔥 月卡：4 人 Opus 无限小图（无点）</strong></span></td>
-                <td data-label="需要注意"><span class="cell-val">25% V5 体力（上限 280 张/日恢复 40 张）+ V4.5 无限小图</span></td>
+                <td><strong>主力玩最新 V5 模型小图 + V4.5 无限小图</strong></td>
+                <td data-label="推荐套餐"><span class="cell-val"><strong>🔥 月卡：4 人 Opus 无限小图（无点）</strong></span></td>
+                <td data-label="亮点与注意"><span class="cell-val">25% V5 体力（上限 280 张 / 日恢复 40 张，月总 1,480 张）+ V4.5 无限小图</span></td>
               </tr>
               <tr>
-                <td>既想用 V5 体力画小图，偶尔也要画大图/加精</td>
-                <td data-label="推荐对应档位"><span class="cell-val"><strong>月卡：4 人 Opus 无限小图+2k 点</strong></span></td>
-                <td data-label="需要注意"><span class="cell-val">25% V5 体力 + V4.5 无限小图 + 2,000 点数</span></td>
+                <td>既想用 V5 体力画小图，偶尔也要画超大图/加精</td>
+                <td data-label="推荐套餐"><span class="cell-val"><strong>月卡：4 人 Opus 无限小图+2k 点</strong></span></td>
+                <td data-label="亮点与注意"><span class="cell-val">25% V5 体力 + V4.5 无限小图 + 额外 2,000 点数可画大图</span></td>
               </tr>
               <tr>
                 <td>重度创作者，每天大量跑 V5 与高精大图</td>
-                <td data-label="推荐对应档位"><span class="cell-val"><strong>月卡：单人独享 Opus（含1w点）</strong></span></td>
-                <td data-label="需要注意"><span class="cell-val">100% 满额 V5 体力（上限 1,120 张）+ V4.5 无限小图 + 10,000 点数</span></td>
+                <td data-label="推荐套餐"><span class="cell-val"><strong>月卡：单人独享 Opus（含1w点）</strong></span></td>
+                <td data-label="亮点与注意"><span class="cell-val">100% 满额 V5 体力（上限 1,120 张 / 日恢复 160 张，月总 5,920 张）+ V4.5 无限 + 10,000 点数</span></td>
               </tr>
             </tbody>
           </table>
@@ -2314,10 +2363,10 @@
 
         <div class="callout">
           <p>
-            <strong>官网参考：</strong>
+            <strong>官方概念参考：</strong>
             <a href="https://docs.novelai.net/en/subscription/" target="_blank" rel="noopener">NovelAI 订阅与 ImageAnlas 说明</a> ·
             <a href="https://docs.novelai.net/en/faq/" target="_blank" rel="noopener">NovelAI Opus V5 使用额度 FAQ</a> ·
-            <a href="https://journal.novelai.net/opus-usage-limit-explained/" target="_blank" rel="noopener">官网关于 V5 体力机制的解释</a>。这些链接用于理解官方概念，<strong>本站实际可用额度、扣费与有效期以本站的套餐表为准</strong>。
+            <a href="https://journal.novelai.net/opus-usage-limit-explained/" target="_blank" rel="noopener">官网关于 V5 体力机制的解释</a>。以上链接供理解官方基础概念，<strong>本站套餐的实际可用额度、扣费与有效期均以本页说明为准</strong>。
           </p>
         </div>
       </article>
@@ -2498,7 +2547,7 @@
       }
     })();
 
-    // 5. Interactive Billing Checker (Section 9.1)
+    // 5. Interactive Billing Checker (Section 9.3)
     (function () {
       const tierEl = document.getElementById('chkTier');
       const modelEl = document.getElementById('chkModel');
@@ -2550,7 +2599,7 @@
       });
     })();
 
-    // 6. Scroll-Spy for Sidebar & Mobile Drawer TOC
+    // 6. Scroll-Spy for Sidebar TOC
     (function () {
       const links = Array.from(document.querySelectorAll('.toc-link'));
       const sectionIds = ['sec-1', 'sec-2', 'sec-3', 'sec-4', 'sec-5', 'sec-6', 'sec-7', 'sec-8', 'sec-9'];
