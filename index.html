@@ -1,19 +1,51 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-theme="dark">
+<html lang="zh-CN" data-theme="light">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
   <title>星绘补给站｜NovelAI 兑换与接入教程</title>
   <meta name="description" content="星绘补给站 NovelAI 密钥兑换、套餐权益说明、网页直连、Aaalice、Langbai、SillyTavern 酒馆插件（柏宝绘/小白X/智绘姬）接入教程及 V4.5 无限小图与 V5 体力常见问题解答。" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌸</text></svg>" />
   <style>
+    /* Default: Light Theme (清爽亮色) */
     :root,
+    [data-theme="light"] {
+      --bg-base: #faf5f7;
+      --bg-surface: #ffffff;
+      --bg-elevated: #fdf8fa;
+      --bg-card-hover: #f7ecf0;
+      --bg-glass: rgba(255, 255, 255, 0.92);
+      --border-subtle: rgba(216, 75, 114, 0.16);
+      --border-strong: rgba(216, 75, 114, 0.38);
+      --text-primary: #221728;
+      --text-secondary: #4a3c52;
+      --text-muted: #7b6b85;
+      --sakura-primary: #d6456b;
+      --sakura-strong: #b83256;
+      --sakura-bg: rgba(214, 69, 107, 0.08);
+      --sakura-bg-strong: rgba(214, 69, 107, 0.16);
+      --sakura-btn-text: #ffffff;
+      --green: #059669;
+      --green-bg: rgba(5, 150, 105, 0.11);
+      --amber: #d97706;
+      --amber-bg: rgba(217, 119, 6, 0.11);
+      --red: #e11d48;
+      --red-bg: rgba(225, 29, 72, 0.1);
+      --code-bg: #f5ebf0;
+      --table-head-bg: #f6edf1;
+      --shadow-card: 0 8px 24px -10px rgba(92, 42, 65, 0.12);
+      --radius-lg: 16px;
+      --radius-md: 12px;
+      --radius-sm: 8px;
+    }
+
+    /* Optional: Dark Theme (星绘暗色) */
     [data-theme="dark"] {
       --bg-base: #131017;
       --bg-surface: #1c1722;
       --bg-elevated: #251e2d;
       --bg-card-hover: #2d2437;
-      --bg-glass: rgba(28, 23, 34, 0.85);
+      --bg-glass: rgba(28, 23, 34, 0.88);
       --border-subtle: rgba(242, 168, 184, 0.16);
       --border-strong: rgba(242, 168, 184, 0.36);
       --text-primary: #f6f2f8;
@@ -30,52 +62,22 @@
       --amber-bg: rgba(251, 191, 36, 0.14);
       --red: #fb7185;
       --red-bg: rgba(251, 113, 133, 0.15);
-      --blue: #60a5fa;
-      --blue-bg: rgba(96, 165, 250, 0.14);
       --code-bg: #120e16;
+      --table-head-bg: #16121b;
       --shadow-card: 0 10px 30px -10px rgba(0, 0, 0, 0.55);
-      --radius-lg: 16px;
-      --radius-md: 12px;
-      --radius-sm: 8px;
-    }
-
-    [data-theme="light"] {
-      --bg-base: #fcf8f9;
-      --bg-surface: #ffffff;
-      --bg-elevated: #f8eff2;
-      --bg-card-hover: #f3e5ea;
-      --bg-glass: rgba(255, 255, 255, 0.9);
-      --border-subtle: rgba(214, 90, 122, 0.18);
-      --border-strong: rgba(214, 90, 122, 0.4);
-      --text-primary: #231929;
-      --text-secondary: #4e4057;
-      --text-muted: #7d6d87;
-      --sakura-primary: #d84b72;
-      --sakura-strong: #c0355c;
-      --sakura-bg: rgba(216, 75, 114, 0.09);
-      --sakura-bg-strong: rgba(216, 75, 114, 0.17);
-      --sakura-btn-text: #ffffff;
-      --green: #059669;
-      --green-bg: rgba(5, 150, 105, 0.12);
-      --amber: #d97706;
-      --amber-bg: rgba(217, 119, 6, 0.12);
-      --red: #e11d48;
-      --red-bg: rgba(225, 29, 72, 0.11);
-      --blue: #2563eb;
-      --blue-bg: rgba(37, 99, 235, 0.11);
-      --code-bg: #f3eaf0;
-      --shadow-card: 0 10px 26px -12px rgba(92, 42, 65, 0.14);
     }
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+      -webkit-tap-highlight-color: transparent;
     }
 
     html {
       scroll-behavior: smooth;
-      scroll-padding-top: 84px;
+      scroll-padding-top: 76px;
+      overflow-x: hidden;
     }
 
     body {
@@ -84,7 +86,8 @@
       color: var(--text-primary);
       line-height: 1.7;
       font-size: 15.5px;
-      transition: background-color 0.25s ease, color 0.25s ease;
+      overflow-x: hidden;
+      transition: background-color 0.22s ease, color 0.22s ease;
     }
 
     a {
@@ -104,7 +107,7 @@
       color: var(--sakura-primary);
       padding: 0.18em 0.45em;
       border-radius: 6px;
-      font-size: 0.9em;
+      font-size: 0.88em;
       border: 1px solid var(--border-subtle);
       word-break: break-all;
     }
@@ -123,44 +126,100 @@
     .topbar-inner {
       max-width: 1320px;
       margin: 0 auto;
-      padding: 12px 24px;
+      padding: 10px 24px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 16px;
-      flex-wrap: wrap;
+      gap: 12px;
     }
 
     .brand {
       display: flex;
       align-items: center;
-      gap: 10px;
-      font-weight: 700;
-      font-size: 1.15rem;
+      gap: 8px;
+      font-weight: 800;
+      font-size: 1.12rem;
       color: var(--text-primary);
       text-decoration: none !important;
+      min-width: 0;
     }
 
     .brand-icon {
-      font-size: 1.45rem;
+      font-size: 1.4rem;
       line-height: 1;
+      flex-shrink: 0;
+    }
+
+    .brand-text-full {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .brand-text-short {
+      display: none;
+      white-space: nowrap;
     }
 
     .brand-tag {
-      font-size: 0.75rem;
-      font-weight: 600;
+      font-size: 0.74rem;
+      font-weight: 700;
       padding: 2px 8px;
       border-radius: 999px;
       background: var(--sakura-bg-strong);
       color: var(--sakura-primary);
       border: 1px solid var(--border-subtle);
+      flex-shrink: 0;
     }
 
     .topbar-actions {
       display: flex;
       align-items: center;
-      gap: 10px;
-      flex-wrap: wrap;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .desktop-nav-links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Segmented Theme Switcher (亮色 / 暗色) */
+    .theme-switch {
+      display: inline-flex;
+      align-items: center;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-subtle);
+      border-radius: 999px;
+      padding: 3px;
+      gap: 2px;
+    }
+
+    .theme-option {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 5px 11px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      border: none;
+      background: transparent;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.16s ease;
+      white-space: nowrap;
+    }
+
+    .theme-option:hover {
+      color: var(--text-primary);
+    }
+
+    .theme-option.active {
+      background: var(--sakura-primary);
+      color: var(--sakura-btn-text);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
     }
 
     .btn {
@@ -170,7 +229,7 @@
       gap: 6px;
       padding: 7px 14px;
       border-radius: 999px;
-      font-size: 0.875rem;
+      font-size: 0.86rem;
       font-weight: 600;
       cursor: pointer;
       border: 1px solid var(--border-subtle);
@@ -178,6 +237,7 @@
       color: var(--text-primary);
       text-decoration: none !important;
       transition: all 0.18s ease;
+      white-space: nowrap;
     }
 
     .btn:hover {
@@ -197,10 +257,14 @@
       color: var(--sakura-btn-text);
     }
 
+    .mobile-toc-trigger {
+      display: none;
+    }
+
     /* Hero Banner */
     .hero {
       max-width: 1320px;
-      margin: 24px auto 0;
+      margin: 20px auto 0;
       padding: 0 24px;
     }
 
@@ -208,14 +272,14 @@
       background: linear-gradient(135deg, var(--bg-surface) 0%, var(--bg-elevated) 100%);
       border: 1px solid var(--border-strong);
       border-radius: var(--radius-lg);
-      padding: 28px 30px;
+      padding: 26px 28px;
       box-shadow: var(--shadow-card);
       position: relative;
       overflow: hidden;
     }
 
     .hero-title {
-      font-size: 1.85rem;
+      font-size: 1.8rem;
       font-weight: 800;
       letter-spacing: -0.01em;
       margin-bottom: 14px;
@@ -223,19 +287,27 @@
       align-items: center;
       gap: 10px;
       flex-wrap: wrap;
+      line-height: 1.35;
+    }
+
+    .mobile-quick-actions {
+      display: none;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-bottom: 14px;
     }
 
     .hero-leads {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 12px;
-      margin-bottom: 22px;
+      margin-bottom: 20px;
     }
 
     .lead-box {
       padding: 13px 16px;
       border-radius: var(--radius-md);
-      background: var(--bg-base);
+      background: var(--bg-surface);
       border: 1px solid var(--border-subtle);
       font-size: 0.93rem;
     }
@@ -247,8 +319,8 @@
     /* Core Quick-Copy Cards */
     .quick-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 14px;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 12px;
     }
 
     .quick-card {
@@ -270,17 +342,16 @@
     .quick-label {
       font-size: 0.8rem;
       font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
       color: var(--text-muted);
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 6px;
     }
 
     .quick-value {
       font-family: "JetBrains Mono", Consolas, monospace;
-      font-size: 0.92rem;
+      font-size: 0.9rem;
       font-weight: 600;
       color: var(--text-primary);
       word-break: break-all;
@@ -295,10 +366,11 @@
     .copy-btn {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 5px;
-      padding: 4px 10px;
-      border-radius: 6px;
-      font-size: 0.78rem;
+      padding: 6px 12px;
+      border-radius: 7px;
+      font-size: 0.8rem;
       font-weight: 600;
       background: var(--sakura-bg);
       color: var(--sakura-primary);
@@ -306,6 +378,7 @@
       cursor: pointer;
       transition: all 0.15s ease;
       white-space: nowrap;
+      text-decoration: none !important;
     }
 
     .copy-btn:hover {
@@ -316,24 +389,24 @@
     /* Main Layout with Sidebar */
     .layout {
       max-width: 1320px;
-      margin: 24px auto 64px;
+      margin: 22px auto 64px;
       padding: 0 24px;
       display: grid;
       grid-template-columns: 260px minmax(0, 1fr);
-      gap: 28px;
+      gap: 26px;
       align-items: start;
     }
 
     /* Sidebar TOC */
     .sidebar {
       position: sticky;
-      top: 78px;
+      top: 72px;
       background: var(--bg-surface);
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-lg);
       padding: 18px 14px;
       box-shadow: var(--shadow-card);
-      max-height: calc(100vh - 100px);
+      max-height: calc(100vh - 92px);
       overflow-y: auto;
     }
 
@@ -342,10 +415,13 @@
       font-weight: 700;
       color: var(--text-muted);
       text-transform: uppercase;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.05em;
       padding: 0 10px 10px;
       border-bottom: 1px solid var(--border-subtle);
       margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
 
     .toc-list {
@@ -386,22 +462,24 @@
     .content {
       display: flex;
       flex-direction: column;
-      gap: 28px;
+      gap: 24px;
+      min-width: 0;
     }
 
     .section-card {
       background: var(--bg-surface);
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-lg);
-      padding: 28px 30px;
+      padding: 26px 28px;
       box-shadow: var(--shadow-card);
+      min-width: 0;
     }
 
     .section-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
+      gap: 10px;
       flex-wrap: wrap;
       margin-bottom: 18px;
       padding-bottom: 14px;
@@ -409,35 +487,37 @@
     }
 
     .section-title {
-      font-size: 1.4rem;
+      font-size: 1.35rem;
       font-weight: 800;
       color: var(--text-primary);
       display: flex;
       align-items: center;
       gap: 10px;
+      line-height: 1.35;
     }
 
     .section-num {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 32px;
-      height: 32px;
-      border-radius: 9px;
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
       background: var(--sakura-bg-strong);
       color: var(--sakura-primary);
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       font-weight: 800;
       flex-shrink: 0;
     }
 
     .subsection-title {
-      font-size: 1.15rem;
+      font-size: 1.12rem;
       font-weight: 700;
       color: var(--text-primary);
-      margin: 26px 0 12px;
+      margin: 24px 0 12px;
       padding-left: 12px;
       border-left: 4px solid var(--sakura-primary);
+      line-height: 1.4;
     }
 
     p {
@@ -451,9 +531,9 @@
 
     /* Callouts & Alerts */
     .callout {
-      padding: 16px 20px;
+      padding: 15px 18px;
       border-radius: var(--radius-md);
-      margin: 16px 0;
+      margin: 15px 0;
       border-left: 4px solid var(--sakura-primary);
       background: var(--bg-elevated);
     }
@@ -505,31 +585,32 @@
       display: flex;
       flex-direction: column;
       gap: 12px;
-      margin: 16px 0;
+      margin: 14px 0;
     }
 
     .steps-list > li {
       counter-increment: step-counter;
       position: relative;
-      padding: 14px 16px 14px 50px;
+      padding: 14px 16px 14px 48px;
       background: var(--bg-elevated);
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-md);
       color: var(--text-secondary);
+      min-width: 0;
     }
 
     .steps-list > li::before {
       content: counter(step-counter);
       position: absolute;
-      left: 14px;
+      left: 13px;
       top: 14px;
-      width: 26px;
-      height: 26px;
+      width: 25px;
+      height: 25px;
       border-radius: 50%;
       background: var(--sakura-primary);
       color: var(--sakura-btn-text);
       font-weight: 800;
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -553,10 +634,20 @@
     }
 
     /* Tables */
+    .table-scroll-hint {
+      display: none;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin: 10px 0 4px;
+      align-items: center;
+      gap: 4px;
+    }
+
     .table-wrap {
       width: 100%;
       overflow-x: auto;
-      margin: 16px 0;
+      -webkit-overflow-scrolling: touch;
+      margin: 12px 0;
       border-radius: var(--radius-md);
       border: 1px solid var(--border-subtle);
       background: var(--bg-elevated);
@@ -566,20 +657,24 @@
       width: 100%;
       border-collapse: collapse;
       text-align: left;
-      font-size: 0.92rem;
+      font-size: 0.91rem;
+    }
+
+    .table-data {
+      min-width: 580px;
     }
 
     th {
-      background: var(--bg-base);
+      background: var(--table-head-bg);
       color: var(--text-primary);
       font-weight: 700;
-      padding: 12px 16px;
+      padding: 11px 15px;
       border-bottom: 1px solid var(--border-subtle);
       white-space: nowrap;
     }
 
     td {
-      padding: 12px 16px;
+      padding: 11px 15px;
       border-bottom: 1px solid var(--border-subtle);
       color: var(--text-secondary);
       vertical-align: middle;
@@ -601,6 +696,7 @@
     .num-col {
       text-align: right;
       font-variant-numeric: tabular-nums;
+      white-space: nowrap;
     }
 
     /* Badges */
@@ -608,7 +704,7 @@
       display: inline-flex;
       align-items: center;
       gap: 4px;
-      padding: 2px 9px;
+      padding: 3px 9px;
       border-radius: 999px;
       font-size: 0.78rem;
       font-weight: 700;
@@ -649,13 +745,13 @@
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
-      gap: 8px;
+      gap: 6px;
       margin-bottom: 12px;
     }
 
     .filter-title {
       font-weight: 700;
-      font-size: 1rem;
+      font-size: 0.98rem;
       color: var(--text-primary);
     }
 
@@ -666,15 +762,16 @@
     }
 
     .filter-tab {
-      padding: 8px 14px;
+      padding: 8px 13px;
       border-radius: var(--radius-sm);
-      font-size: 0.88rem;
+      font-size: 0.87rem;
       font-weight: 600;
       cursor: pointer;
       border: 1px solid var(--border-subtle);
       background: var(--bg-elevated);
       color: var(--text-secondary);
       transition: all 0.15s ease;
+      text-align: center;
     }
 
     .filter-tab:hover {
@@ -692,16 +789,16 @@
     .web-guide-grid {
       display: grid;
       grid-template-columns: 1fr 1.15fr;
-      gap: 22px;
+      gap: 20px;
       align-items: center;
-      margin-top: 14px;
+      margin-top: 12px;
     }
 
     .guide-figure {
-      background: var(--bg-base);
+      background: var(--bg-elevated);
       border: 1px solid var(--border-strong);
       border-radius: var(--radius-md);
-      padding: 12px;
+      padding: 10px;
       text-align: center;
       position: relative;
     }
@@ -720,8 +817,8 @@
     }
 
     .guide-caption {
-      margin-top: 10px;
-      font-size: 0.84rem;
+      margin-top: 8px;
+      font-size: 0.82rem;
       color: var(--text-muted);
       display: flex;
       align-items: center;
@@ -734,30 +831,31 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
+      flex-wrap: wrap;
+      gap: 10px;
       background: var(--code-bg);
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-sm);
       padding: 10px 14px;
       margin: 10px 0;
       font-family: "JetBrains Mono", Consolas, monospace;
-      font-size: 0.88rem;
+      font-size: 0.86rem;
       color: var(--sakura-primary);
-      overflow-x: auto;
+      word-break: break-all;
     }
 
     /* Interactive Billing Checker (Section 9.1) */
     .checker-card {
-      background: linear-gradient(135deg, var(--bg-elevated) 0%, var(--bg-base) 100%);
+      background: linear-gradient(135deg, var(--bg-elevated) 0%, var(--bg-surface) 100%);
       border: 1px solid var(--border-strong);
       border-radius: var(--radius-md);
-      padding: 20px 22px;
-      margin: 20px 0;
+      padding: 18px 20px;
+      margin: 18px 0;
     }
 
     .checker-title {
       font-weight: 800;
-      font-size: 1.05rem;
+      font-size: 1.02rem;
       color: var(--sakura-primary);
       margin-bottom: 14px;
       display: flex;
@@ -767,9 +865,9 @@
 
     .checker-controls {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
       gap: 12px;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
 
     .control-group {
@@ -785,14 +883,15 @@
     }
 
     .control-group select {
-      padding: 8px 10px;
+      padding: 9px 10px;
       border-radius: var(--radius-sm);
       background: var(--bg-surface);
       color: var(--text-primary);
       border: 1px solid var(--border-subtle);
-      font-size: 0.88rem;
+      font-size: 15px;
       font-family: inherit;
       outline: none;
+      width: 100%;
     }
 
     .control-group select:focus {
@@ -800,9 +899,9 @@
     }
 
     .checker-result {
-      padding: 14px 16px;
+      padding: 13px 15px;
       border-radius: var(--radius-sm);
-      font-size: 0.94rem;
+      font-size: 0.92rem;
       font-weight: 600;
       border: 1px solid var(--border-subtle);
       background: var(--bg-surface);
@@ -811,7 +910,7 @@
     /* 3 Conditions Grid */
     .cond-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
       gap: 12px;
       margin: 14px 0;
     }
@@ -824,7 +923,7 @@
     }
 
     .cond-num {
-      font-size: 0.78rem;
+      font-size: 0.76rem;
       font-weight: 800;
       color: var(--sakura-primary);
       text-transform: uppercase;
@@ -832,15 +931,85 @@
     }
 
     .cond-main {
-      font-size: 1rem;
+      font-size: 0.98rem;
       font-weight: 800;
       color: var(--text-primary);
       margin-bottom: 4px;
     }
 
     .cond-sub {
-      font-size: 0.84rem;
+      font-size: 0.83rem;
       color: var(--text-muted);
+    }
+
+    /* Mobile Floating TOC Button & Bottom Sheet Drawer */
+    .mobile-fab-toc {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      right: 16px;
+      z-index: 95;
+      background: var(--sakura-primary);
+      color: var(--sakura-btn-text);
+      border: none;
+      border-radius: 999px;
+      padding: 11px 16px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.28);
+      cursor: pointer;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .mobile-drawer-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      background: rgba(12, 9, 16, 0.65);
+      backdrop-filter: blur(4px);
+      display: none;
+      align-items: flex-end;
+      justify-content: center;
+    }
+
+    .mobile-drawer-backdrop.open {
+      display: flex;
+    }
+
+    .mobile-drawer {
+      width: 100%;
+      max-height: 80vh;
+      background: var(--bg-surface);
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+      border-top: 1px solid var(--border-strong);
+      padding: 18px 18px 28px;
+      overflow-y: auto;
+      box-shadow: 0 -10px 35px rgba(0, 0, 0, 0.35);
+    }
+
+    .mobile-drawer-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 12px;
+      margin-bottom: 12px;
+      border-bottom: 1px solid var(--border-subtle);
+      font-weight: 800;
+      font-size: 1rem;
+      color: var(--text-primary);
+    }
+
+    .mobile-drawer-close {
+      background: var(--bg-elevated);
+      color: var(--text-primary);
+      border: 1px solid var(--border-subtle);
+      border-radius: 999px;
+      padding: 5px 12px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
     }
 
     /* Lightbox Modal */
@@ -848,12 +1017,12 @@
       position: fixed;
       inset: 0;
       z-index: 999;
-      background: rgba(10, 8, 14, 0.88);
+      background: rgba(10, 8, 14, 0.9);
       backdrop-filter: blur(8px);
       display: none;
       align-items: center;
       justify-content: center;
-      padding: 24px;
+      padding: 16px;
       cursor: zoom-out;
     }
 
@@ -862,8 +1031,8 @@
     }
 
     .lightbox img {
-      max-width: 95vw;
-      max-height: 90vh;
+      max-width: 96vw;
+      max-height: 86vh;
       border-radius: var(--radius-md);
       border: 1px solid var(--border-strong);
       box-shadow: 0 25px 60px rgba(0, 0, 0, 0.75);
@@ -871,9 +1040,9 @@
 
     .lightbox-close {
       position: fixed;
-      top: 20px;
-      right: 26px;
-      background: var(--bg-elevated);
+      top: 16px;
+      right: 16px;
+      background: var(--bg-surface);
       color: var(--text-primary);
       border: 1px solid var(--border-strong);
       border-radius: 999px;
@@ -885,31 +1054,35 @@
     /* Toast Notification */
     .toast {
       position: fixed;
-      bottom: 26px;
-      right: 26px;
+      bottom: 24px;
+      left: 50%;
+      transform: translate(-50%, 80px);
       z-index: 1000;
       background: var(--sakura-primary);
       color: var(--sakura-btn-text);
-      padding: 10px 18px;
+      padding: 10px 20px;
       border-radius: 999px;
       font-weight: 700;
-      font-size: 0.9rem;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-      transform: translateY(80px);
+      font-size: 0.88rem;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
       opacity: 0;
       transition: all 0.22s ease;
       pointer-events: none;
+      max-width: 90vw;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .toast.show {
-      transform: translateY(0);
+      transform: translate(-50%, 0);
       opacity: 1;
     }
 
     /* Footer */
     .footer {
       max-width: 1320px;
-      margin: 0 auto 40px;
+      margin: 0 auto 48px;
       padding: 20px 24px;
       text-align: center;
       color: var(--text-muted);
@@ -921,37 +1094,173 @@
       display: none !important;
     }
 
+    /* Tablet & Mobile Responsive Breakpoints */
     @media (max-width: 980px) {
       .layout {
         grid-template-columns: 1fr;
+        gap: 18px;
       }
       .sidebar {
-        position: static;
-        max-height: none;
-      }
-      .toc-list {
-        flex-direction: row;
-        flex-wrap: wrap;
-        gap: 6px;
-      }
-      .toc-sub {
         display: none;
+      }
+      .mobile-toc-trigger {
+        display: inline-flex;
+      }
+      .mobile-fab-toc {
+        display: inline-flex;
       }
       .web-guide-grid {
         grid-template-columns: 1fr;
       }
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 768px) {
+      html {
+        scroll-padding-top: 64px;
+      }
+      body {
+        font-size: 15px;
+      }
+      .topbar-inner {
+        padding: 8px 14px;
+      }
+      .brand-text-full,
+      .brand-tag,
+      .desktop-nav-links {
+        display: none;
+      }
+      .brand-text-short {
+        display: inline;
+        font-size: 1rem;
+      }
+      .theme-option {
+        padding: 4px 9px;
+        font-size: 0.78rem;
+      }
+      .mobile-toc-trigger {
+        padding: 5px 11px;
+        font-size: 0.8rem;
+      }
+      .hero {
+        margin-top: 14px;
+        padding: 0 14px;
+      }
+      .layout {
+        margin-top: 16px;
+        padding: 0 14px;
+      }
       .hero-card,
       .section-card {
-        padding: 20px 18px;
+        padding: 18px 16px;
+        border-radius: 14px;
       }
       .hero-title {
-        font-size: 1.45rem;
+        font-size: 1.38rem;
+        margin-bottom: 12px;
+      }
+      .mobile-quick-actions {
+        display: grid;
+      }
+      .mobile-quick-actions .btn {
+        padding: 8px 6px;
+        font-size: 0.8rem;
+        border-radius: 10px;
+      }
+      .hero-leads {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        margin-bottom: 16px;
+      }
+      .quick-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
       }
       .section-title {
-        font-size: 1.2rem;
+        font-size: 1.18rem;
+      }
+      .subsection-title {
+        font-size: 1.04rem;
+      }
+      .table-scroll-hint {
+        display: flex;
+      }
+      .filter-bar {
+        padding: 15px 14px;
+      }
+      .filter-tabs {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+      }
+      .filter-tab[data-filter="all"] {
+        grid-column: 1 / -1;
+      }
+      .filter-tab {
+        padding: 9px 10px;
+        font-size: 0.83rem;
+      }
+      .steps-list > li {
+        padding: 12px 12px 12px 42px;
+      }
+      .steps-list > li::before {
+        left: 10px;
+        top: 13px;
+        width: 23px;
+        height: 23px;
+        font-size: 0.78rem;
+      }
+      .code-block {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+      }
+      .code-block .copy-btn {
+        width: 100%;
+        padding: 8px;
+      }
+      .checker-card {
+        padding: 15px 14px;
+      }
+      .checker-controls {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+    }
+
+    /* Stack 3-column Config Tables cleanly on phone screens so no horizontal scroll is needed */
+    @media (max-width: 600px) {
+      .table-config thead {
+        display: none;
+      }
+      .table-config,
+      .table-config tbody,
+      .table-config tr,
+      .table-config td {
+        display: block;
+        width: 100%;
+      }
+      .table-config tr {
+        padding: 10px 12px;
+        border-bottom: 1px solid var(--border-subtle);
+      }
+      .table-config tr:last-child {
+        border-bottom: none;
+      }
+      .table-config td {
+        padding: 3px 0;
+        border-bottom: none;
+      }
+      .table-config td:first-child {
+        font-size: 0.82rem;
+        color: var(--text-muted);
+      }
+      .table-config td:nth-child(2) {
+        font-size: 0.92rem;
+        color: var(--text-primary);
+        word-break: break-all;
+      }
+      .table-config td:nth-child(3) {
+        margin-top: 6px;
       }
     }
   </style>
@@ -963,14 +1272,26 @@
     <div class="topbar-inner">
       <a href="#" class="brand">
         <span class="brand-icon">🌸</span>
-        <span>星绘补给站｜NovelAI 兑换与接入教程</span>
+        <span class="brand-text-full">星绘补给站｜NovelAI 兑换与接入教程</span>
+        <span class="brand-text-short">星绘补给站教程</span>
         <span class="brand-tag">V4.5 &amp; V5 指南</span>
       </a>
+
       <div class="topbar-actions">
-        <a href="https://redeem.tenshimomone.com/" target="_blank" rel="noopener" class="btn btn-primary">🔑 打开密钥兑换页</a>
-        <a href="https://nai.tenshimomone.com/" target="_blank" rel="noopener" class="btn">🎨 网页在线画图</a>
-        <a href="#sec-9" class="btn">❓ 新手必看 FAQ</a>
-        <button type="button" class="btn" id="themeToggle" aria-label="切换明暗主题">🌓 切换亮/暗色</button>
+        <div class="desktop-nav-links">
+          <a href="https://redeem.tenshimomone.com/" target="_blank" rel="noopener" class="btn btn-primary">🔑 打开密钥兑换页</a>
+          <a href="https://nai.tenshimomone.com/" target="_blank" rel="noopener" class="btn">🎨 网页在线画图</a>
+          <a href="#sec-9" class="btn">❓ 新手必看 FAQ</a>
+        </div>
+
+        <!-- Explicit Light / Dark Theme Selector (Default: Light) -->
+        <div class="theme-switch" role="group" aria-label="选择亮色或暗色主题">
+          <button type="button" class="theme-option active" data-theme-set="light">☀️ 亮色</button>
+          <button type="button" class="theme-option" data-theme-set="dark">🌙 暗色</button>
+        </div>
+
+        <!-- Mobile TOC Button -->
+        <button type="button" class="btn mobile-toc-trigger" id="mobileTocBtn" aria-label="打开目录">📑 目录</button>
       </div>
     </div>
   </header>
@@ -979,6 +1300,13 @@
   <section class="hero">
     <div class="hero-card">
       <h1 class="hero-title">🌸 星绘补给站｜NovelAI 兑换与接入教程</h1>
+
+      <!-- Mobile Quick Action Row -->
+      <div class="mobile-quick-actions">
+        <a href="https://redeem.tenshimomone.com/" target="_blank" rel="noopener" class="btn btn-primary">🔑 密钥兑换页</a>
+        <a href="https://nai.tenshimomone.com/" target="_blank" rel="noopener" class="btn">🎨 在线画图</a>
+        <a href="#sec-9" class="btn">❓ 常见疑问</a>
+      </div>
 
       <div class="hero-leads">
         <div class="lead-box">
@@ -1044,9 +1372,9 @@
 
   <!-- Main Content Layout -->
   <div class="layout">
-    <!-- Sticky Sidebar TOC -->
+    <!-- Sticky Sidebar TOC (Desktop) -->
     <aside class="sidebar" aria-label="目录导航">
-      <div class="sidebar-title">📑 教程目录导航</div>
+      <div class="sidebar-title"><span>📑 教程目录导航</span></div>
       <ul class="toc-list">
         <li><a href="#sec-1" class="toc-link active" data-target="sec-1">1. 兑换密钥与查看套餐</a></li>
         <li><a href="#sec-2" class="toc-link" data-target="sec-2">2. 网页直接使用（附教程图）</a></li>
@@ -1079,7 +1407,7 @@
         <p>付款后先兑换密钥，再按你使用的网页、客户端或酒馆插件填写。</p>
 
         <div class="table-wrap">
-          <table>
+          <table class="table-config">
             <thead>
               <tr>
                 <th>项目</th>
@@ -1091,17 +1419,17 @@
               <tr>
                 <td><strong>兑换页</strong></td>
                 <td><a href="https://redeem.tenshimomone.com/" target="_blank" rel="noopener">https://redeem.tenshimomone.com/</a></td>
-                <td><button type="button" class="copy-btn" data-copy="https://redeem.tenshimomone.com/">复制</button></td>
+                <td><button type="button" class="copy-btn" data-copy="https://redeem.tenshimomone.com/">📋 复制</button></td>
               </tr>
               <tr>
                 <td><strong>网页在线画图地址</strong></td>
                 <td><a href="https://nai.tenshimomone.com/" target="_blank" rel="noopener">https://nai.tenshimomone.com/</a></td>
-                <td><button type="button" class="copy-btn" data-copy="https://nai.tenshimomone.com/">复制</button></td>
+                <td><button type="button" class="copy-btn" data-copy="https://nai.tenshimomone.com/">📋 复制</button></td>
               </tr>
               <tr>
                 <td><strong>第三方接口地址</strong></td>
                 <td><code>https://relay.tenshimomone.com/</code></td>
-                <td><button type="button" class="copy-btn" data-copy="https://relay.tenshimomone.com/">复制</button></td>
+                <td><button type="button" class="copy-btn" data-copy="https://relay.tenshimomone.com/">📋 复制</button></td>
               </tr>
               <tr>
                 <td><strong>API Key / Token</strong></td>
@@ -1125,9 +1453,9 @@
         </ol>
 
         <h3 class="subsection-title">各档套餐权益表（有效天数从兑换成功时开始计算）</h3>
-
+        <div class="table-scroll-hint">↔ 左右滑动可查看完整套餐表</div>
         <div class="table-wrap">
-          <table>
+          <table class="table-data">
             <thead>
               <tr>
                 <th>规格</th>
@@ -1214,8 +1542,8 @@
       <!-- TOOL FILTER BAR FOR SECTIONS 2 ~ 8 -->
       <div class="filter-bar" id="sec-connect">
         <div class="filter-header">
-          <span class="filter-title">🛠️ 选择你的接入方式（第 2～8 节）：可点击下方按钮筛选你正在使用的工具</span>
-          <span style="font-size:0.82rem;color:var(--text-muted);">点击目录或「显示全部」可恢复完整列表</span>
+          <span class="filter-title">🛠️ 选择你的接入方式（第 2～8 节）：点击按钮可只看你用的工具</span>
+          <span style="font-size:0.8rem;color:var(--text-muted);">点击「显示全部」可恢复完整列表</span>
         </div>
         <div class="filter-tabs" role="tablist">
           <button type="button" class="filter-tab active" data-filter="all">📖 显示全部 (2~8节)</button>
@@ -1241,12 +1569,12 @@
             <ol class="steps-list" style="margin-top:0;">
               <li>
                 打开 <a href="https://nai.tenshimomone.com/" target="_blank" rel="noopener"><strong>星绘网页 (https://nai.tenshimomone.com/)</strong></a>，电脑和手机浏览器均可直接使用。
-                <div style="margin-top:8px;">
+                <div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap;">
                   <a href="https://nai.tenshimomone.com/" target="_blank" rel="noopener" class="copy-btn">↗ 点击打开星绘网页</a>
                   <button type="button" class="copy-btn" data-copy="https://nai.tenshimomone.com/">📋 复制网址</button>
                 </div>
               </li>
-              <li>在弹出的「连接设置」窗口中，密钥类型选择 <strong>Sakura Key</strong>（如右图所示）。</li>
+              <li>在弹出的「连接设置」窗口中，密钥类型选择 <strong>Sakura Key</strong>（如下图所示）。</li>
               <li>在下方 <strong>Sakura Key</strong> 输入框粘贴兑换页上的 <code>skr_</code> 密钥，点击 <strong>连接</strong>（或 <strong>更新连接</strong>）。</li>
               <li>连接成功后，选择模型（<strong>V4.5 月卡用户请选 V4.5 模型</strong>；含 V5 体力或点数用户可选 V5 / V4.5），填写提示词，点击 <strong>生成</strong>。</li>
             </ol>
@@ -1271,7 +1599,7 @@
       <article class="section-card tool-section" id="sec-3">
         <div class="section-header">
           <h2 class="section-title"><span class="section-num">3</span> Aaalice NAI Launcher</h2>
-          <a href="https://github.com/Aaalice233/Aaalice_NAI_Launcher/releases/latest" target="_blank" rel="noopener" class="btn">⬇️ 下载客户端 (GitHub Releases)</a>
+          <a href="https://github.com/Aaalice233/Aaalice_NAI_Launcher/releases/latest" target="_blank" rel="noopener" class="btn">⬇️ 下载客户端</a>
         </div>
 
         <p><a href="https://github.com/Aaalice233/Aaalice_NAI_Launcher/releases/latest" target="_blank" rel="noopener">下载客户端</a>，按你的设备系统选择安装包。</p>
@@ -1281,7 +1609,7 @@
           <li>
             按下表填写配置信息：
             <div class="table-wrap">
-              <table>
+              <table class="table-config">
                 <thead>
                   <tr>
                     <th>字段</th>
@@ -1293,7 +1621,7 @@
                   <tr>
                     <td><strong>第三方 API 站点</strong></td>
                     <td><code>https://relay.tenshimomone.com/</code></td>
-                    <td><button type="button" class="copy-btn" data-copy="https://relay.tenshimomone.com/">复制地址</button></td>
+                    <td><button type="button" class="copy-btn" data-copy="https://relay.tenshimomone.com/">📋 复制地址</button></td>
                   </tr>
                   <tr>
                     <td><strong>图像 API 站点（可选）</strong></td>
@@ -1303,7 +1631,7 @@
                   <tr>
                     <td><strong>昵称</strong></td>
                     <td><code>星绘补给站</code></td>
-                    <td><button type="button" class="copy-btn" data-copy="星绘补给站">复制昵称</button></td>
+                    <td><button type="button" class="copy-btn" data-copy="星绘补给站">📋 复制昵称</button></td>
                   </tr>
                   <tr>
                     <td><strong>API Token</strong></td>
@@ -1323,7 +1651,7 @@
       <article class="section-card tool-section" id="sec-4">
         <div class="section-header">
           <h2 class="section-title"><span class="section-num">4</span> Langbai NovelAI Studio</h2>
-          <a href="https://github.com/2786886095/novelai-image-desktop/releases/latest" target="_blank" rel="noopener" class="btn">⬇️ 下载客户端 (GitHub Releases)</a>
+          <a href="https://github.com/2786886095/novelai-image-desktop/releases/latest" target="_blank" rel="noopener" class="btn">⬇️ 下载客户端</a>
         </div>
 
         <p><a href="https://github.com/2786886095/novelai-image-desktop/releases/latest" target="_blank" rel="noopener">下载客户端</a>，按你的设备系统选择安装包。</p>
@@ -1333,7 +1661,7 @@
           <li>
             先设置接口和开关，再填写 Token：
             <div class="table-wrap">
-              <table>
+              <table class="table-config">
                 <thead>
                   <tr>
                     <th>字段 / 开关</th>
@@ -1345,7 +1673,7 @@
                   <tr>
                     <td><strong>图片接口（NovelAI 官方 / 兼容中转）</strong></td>
                     <td><code>https://relay.tenshimomone.com/</code></td>
-                    <td><button type="button" class="copy-btn" data-copy="https://relay.tenshimomone.com/">复制地址</button></td>
+                    <td><button type="button" class="copy-btn" data-copy="https://relay.tenshimomone.com/">📋 复制地址</button></td>
                   </tr>
                   <tr>
                     <td><strong>允许使用非官方接口</strong></td>
@@ -1391,7 +1719,7 @@
           <li>
             填写以下内容：
             <div class="table-wrap">
-              <table>
+              <table class="table-config">
                 <thead>
                   <tr>
                     <th>字段</th>
@@ -1403,7 +1731,7 @@
                   <tr>
                     <td><strong>接口地址</strong></td>
                     <td><code>https://relay.tenshimomone.com/</code></td>
-                    <td><button type="button" class="copy-btn" data-copy="https://relay.tenshimomone.com/">复制地址</button></td>
+                    <td><button type="button" class="copy-btn" data-copy="https://relay.tenshimomone.com/">📋 复制地址</button></td>
                   </tr>
                   <tr>
                     <td><strong>API Key</strong></td>
@@ -1445,7 +1773,7 @@
           <li>
             打开 <strong>API 配置</strong>，按下表填写并点击 <strong>保存</strong>：
             <div class="table-wrap">
-              <table>
+              <table class="table-config">
                 <thead>
                   <tr>
                     <th>字段</th>
@@ -1462,7 +1790,7 @@
                   <tr>
                     <td><strong>第三方端点 URL（可选）</strong></td>
                     <td><code>https://relay.tenshimomone.com/</code></td>
-                    <td><button type="button" class="copy-btn" data-copy="https://relay.tenshimomone.com/">复制地址</button></td>
+                    <td><button type="button" class="copy-btn" data-copy="https://relay.tenshimomone.com/">📋 复制地址</button></td>
                   </tr>
                   <tr>
                     <td><strong>发送方式</strong></td>
@@ -1498,7 +1826,7 @@
           <li>
             切换到左侧 <strong>NovelAI</strong> 页面，按下表填写：
             <div class="table-wrap">
-              <table>
+              <table class="table-config">
                 <thead>
                   <tr>
                     <th>字段 / 开关</th>
@@ -1520,7 +1848,7 @@
                   <tr>
                     <td><strong>其他novelai站点</strong></td>
                     <td><code>https://relay.tenshimomone.com/</code></td>
-                    <td><button type="button" class="copy-btn" data-copy="https://relay.tenshimomone.com/">复制地址</button></td>
+                    <td><button type="button" class="copy-btn" data-copy="https://relay.tenshimomone.com/">📋 复制地址</button></td>
                   </tr>
                   <tr>
                     <td><strong>启用云端队列</strong></td>
@@ -1541,11 +1869,11 @@
             <ul class="bullet-list" style="margin-top:8px;">
               <li>
                 <strong>含 V5 体力或点数用户：</strong> 可选 <code>nai-diffusion-5-full</code>（V5）或 <code>nai-diffusion-4-5-full</code>（V4.5）。
-                <button type="button" class="copy-btn" data-copy="nai-diffusion-5-full">复制 V5 模型名</button>
+                <button type="button" class="copy-btn" data-copy="nai-diffusion-5-full">📋 复制 V5 模型名</button>
               </li>
               <li>
                 <strong>「月卡：V4.5无限小图（无V5体力）」用户：</strong> 请务必选择 <strong><code>nai-diffusion-4-5-full</code></strong>（或 V4.5 Curated），切勿选 V5。
-                <button type="button" class="copy-btn" data-copy="nai-diffusion-4-5-full">复制 V4.5 模型名</button>
+                <button type="button" class="copy-btn" data-copy="nai-diffusion-4-5-full">📋 复制 V4.5 模型名</button>
               </li>
             </ul>
           </li>
@@ -1561,7 +1889,7 @@
         </div>
 
         <div class="table-wrap">
-          <table>
+          <table class="table-config">
             <thead>
               <tr>
                 <th>字段</th>
@@ -1578,7 +1906,7 @@
               <tr>
                 <td><strong>第三方地址 / Base URL</strong></td>
                 <td><code>https://relay.tenshimomone.com/</code></td>
-                <td><button type="button" class="copy-btn" data-copy="https://relay.tenshimomone.com/">复制地址</button></td>
+                <td><button type="button" class="copy-btn" data-copy="https://relay.tenshimomone.com/">📋 复制地址</button></td>
               </tr>
               <tr>
                 <td><strong>API Key / Token</strong></td>
@@ -1609,8 +1937,9 @@
           <p><strong>小图是符合尺寸与步数标准的图片规格；Opus 会员跑 V4.5 小图完全免费不限量，跑 V5 小图则优先扣「V5 体力」；超规格大图或无会员时则扣「点数」。</strong></p>
         </div>
 
+        <div class="table-scroll-hint">↔ 左右滑动可查看完整表格</div>
         <div class="table-wrap">
-          <table>
+          <table class="table-data">
             <thead>
               <tr>
                 <th>你看到的词</th>
@@ -1830,8 +2159,9 @@
 
         <!-- 9.5 -->
         <h3 class="subsection-title" id="sec-9-5">9.5 四个例子，一眼看懂怎么扣费</h3>
+        <div class="table-scroll-hint">↔ 左右滑动可查看完整扣费对比表</div>
         <div class="table-wrap">
-          <table>
+          <table class="table-data">
             <thead>
               <tr>
                 <th>你要生成的设置</th>
@@ -1876,8 +2206,9 @@
 
         <!-- 9.6 -->
         <h3 class="subsection-title" id="sec-9-6">9.6 不知道买哪档？按需求对号入座</h3>
+        <div class="table-scroll-hint">↔ 左右滑动可查看完整推荐表</div>
         <div class="table-wrap">
-          <table>
+          <table class="table-data">
             <thead>
               <tr>
                 <th>你的实际需求</th>
@@ -1938,6 +2269,38 @@
     </main>
   </div>
 
+  <!-- Mobile Floating TOC Button -->
+  <button type="button" class="mobile-fab-toc" id="mobileFabToc" aria-label="打开目录导航">
+    <span>📑 目录导航</span>
+  </button>
+
+  <!-- Mobile Bottom Sheet TOC Drawer -->
+  <div class="mobile-drawer-backdrop" id="mobileDrawerBackdrop" role="dialog" aria-label="章节目录导航">
+    <div class="mobile-drawer" id="mobileDrawer">
+      <div class="mobile-drawer-header">
+        <span>📑 快速跳转章节</span>
+        <button type="button" class="mobile-drawer-close" id="mobileDrawerClose">✕ 关闭</button>
+      </div>
+      <ul class="toc-list">
+        <li><a href="#sec-1" class="toc-link" data-target="sec-1">1. 兑换密钥与查看套餐</a></li>
+        <li><a href="#sec-2" class="toc-link" data-target="sec-2">2. 网页直接使用（附教程图）</a></li>
+        <li><a href="#sec-3" class="toc-link" data-target="sec-3">3. Aaalice NAI Launcher</a></li>
+        <li><a href="#sec-4" class="toc-link" data-target="sec-4">4. Langbai NovelAI Studio</a></li>
+        <li><a href="#sec-5" class="toc-link" data-target="sec-5">5. 酒馆：柏宝绘</a></li>
+        <li><a href="#sec-6" class="toc-link" data-target="sec-6">6. 酒馆：小白X / LittleWhiteBox</a></li>
+        <li><a href="#sec-7" class="toc-link" data-target="sec-7">7. 酒馆：智绘姬 / st-chatu8</a></li>
+        <li><a href="#sec-8" class="toc-link" data-target="sec-8">8. 其他支持第三方 NAI 工具</a></li>
+        <li><a href="#sec-9" class="toc-link" data-target="sec-9">9. 新手常见问题（必看）</a></li>
+        <li><a href="#sec-9-1" class="toc-link toc-sub" data-target="sec-9">9.1 什么算小图？V4.5 与 V5 区别</a></li>
+        <li><a href="#sec-9-2" class="toc-link toc-sub" data-target="sec-9">9.2 什么是点数？何时扣点？</a></li>
+        <li><a href="#sec-9-3" class="toc-link toc-sub" data-target="sec-9">9.3 100 点数能生成多少张图？</a></li>
+        <li><a href="#sec-9-4" class="toc-link toc-sub" data-target="sec-9">9.4 四种 Opus 档位有什么区别？</a></li>
+        <li><a href="#sec-9-5" class="toc-link toc-sub" data-target="sec-9">9.5 四个例子一眼看懂怎么扣费</a></li>
+        <li><a href="#sec-9-6" class="toc-link toc-sub" data-target="sec-9">9.6 不知道买哪档？对号入座</a></li>
+      </ul>
+    </div>
+  </div>
+
   <!-- Lightbox Modal for Screenshot -->
   <div class="lightbox" id="lightbox" role="dialog" aria-label="图片放大预览">
     <button type="button" class="lightbox-close" id="lightboxClose">✕ 关闭预览</button>
@@ -1952,17 +2315,30 @@
   </footer>
 
   <script>
-    // 1. Theme Toggle
+    // 1. Explicit Light / Dark Theme Selector (Default: Light)
     (function () {
       const root = document.documentElement;
-      const saved = localStorage.getItem('sakura_theme');
-      if (saved === 'light' || saved === 'dark') {
-        root.setAttribute('data-theme', saved);
+      const themeBtns = document.querySelectorAll('[data-theme-set]');
+      const STORAGE_KEY = 'sakura_theme_mode';
+
+      function applyTheme(mode) {
+        const validMode = mode === 'dark' ? 'dark' : 'light';
+        root.setAttribute('data-theme', validMode);
+        themeBtns.forEach((btn) => {
+          btn.classList.toggle('active', btn.getAttribute('data-theme-set') === validMode);
+        });
       }
-      document.getElementById('themeToggle').addEventListener('click', function () {
-        const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-        root.setAttribute('data-theme', next);
-        localStorage.setItem('sakura_theme', next);
+
+      // Default to 'light' unless user explicitly saved 'dark'
+      const saved = localStorage.getItem(STORAGE_KEY);
+      applyTheme(saved === 'dark' ? 'dark' : 'light');
+
+      themeBtns.forEach((btn) => {
+        btn.addEventListener('click', function () {
+          const mode = this.getAttribute('data-theme-set');
+          applyTheme(mode);
+          localStorage.setItem(STORAGE_KEY, mode);
+        });
       });
     })();
 
@@ -1996,10 +2372,14 @@
       });
     })();
 
-    // 3. Tool Filter Tabs (Sections 2~8)
+    // 3. Tool Filter Tabs (Sections 2~8) & Mobile TOC Drawer
     (function () {
       const tabs = document.querySelectorAll('.filter-tab');
       const sections = document.querySelectorAll('.tool-section');
+      const drawerBackdrop = document.getElementById('mobileDrawerBackdrop');
+      const drawerClose = document.getElementById('mobileDrawerClose');
+      const mobileTocBtn = document.getElementById('mobileTocBtn');
+      const mobileFabToc = document.getElementById('mobileFabToc');
 
       function setFilter(filterId) {
         tabs.forEach((t) => {
@@ -2020,7 +2400,23 @@
         });
       });
 
-      // Ensure clicking a sidebar TOC link un-hides the target section if filtered
+      function openDrawer() {
+        drawerBackdrop.classList.add('open');
+      }
+      function closeDrawer() {
+        drawerBackdrop.classList.remove('open');
+      }
+
+      if (mobileTocBtn) mobileTocBtn.addEventListener('click', openDrawer);
+      if (mobileFabToc) mobileFabToc.addEventListener('click', openDrawer);
+      if (drawerClose) drawerClose.addEventListener('click', closeDrawer);
+      if (drawerBackdrop) {
+        drawerBackdrop.addEventListener('click', (e) => {
+          if (e.target === drawerBackdrop) closeDrawer();
+        });
+      }
+
+      // Clicking any TOC link (sidebar or mobile drawer) un-hides filtered section & closes drawer
       document.querySelectorAll('.toc-link').forEach((link) => {
         link.addEventListener('click', function () {
           const targetId = this.getAttribute('data-target');
@@ -2028,6 +2424,7 @@
           if (targetEl && targetEl.classList.contains('hidden-section')) {
             setFilter('all');
           }
+          closeDrawer();
         });
       });
     })();
@@ -2102,7 +2499,7 @@
       });
     })();
 
-    // 6. Scroll-Spy for Sidebar TOC
+    // 6. Scroll-Spy for Sidebar & Mobile Drawer TOC
     (function () {
       const links = Array.from(document.querySelectorAll('.toc-link'));
       const sectionIds = ['sec-1', 'sec-2', 'sec-3', 'sec-4', 'sec-5', 'sec-6', 'sec-7', 'sec-8', 'sec-9'];
