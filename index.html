@@ -1,0 +1,2128 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>星绘补给站｜NovelAI 兑换与接入教程</title>
+  <meta name="description" content="星绘补给站 NovelAI 密钥兑换、套餐权益说明、网页直连、Aaalice、Langbai、SillyTavern 酒馆插件（柏宝绘/小白X/智绘姬）接入教程及 V4.5 无限小图与 V5 体力常见问题解答。" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌸</text></svg>" />
+  <style>
+    :root,
+    [data-theme="dark"] {
+      --bg-base: #131017;
+      --bg-surface: #1c1722;
+      --bg-elevated: #251e2d;
+      --bg-card-hover: #2d2437;
+      --bg-glass: rgba(28, 23, 34, 0.85);
+      --border-subtle: rgba(242, 168, 184, 0.16);
+      --border-strong: rgba(242, 168, 184, 0.36);
+      --text-primary: #f6f2f8;
+      --text-secondary: #c5bccd;
+      --text-muted: #93879e;
+      --sakura-primary: #f2a8b8;
+      --sakura-strong: #ff8aa3;
+      --sakura-bg: rgba(242, 168, 184, 0.12);
+      --sakura-bg-strong: rgba(242, 168, 184, 0.22);
+      --sakura-btn-text: #1f141c;
+      --green: #34d399;
+      --green-bg: rgba(52, 211, 153, 0.14);
+      --amber: #fbbf24;
+      --amber-bg: rgba(251, 191, 36, 0.14);
+      --red: #fb7185;
+      --red-bg: rgba(251, 113, 133, 0.15);
+      --blue: #60a5fa;
+      --blue-bg: rgba(96, 165, 250, 0.14);
+      --code-bg: #120e16;
+      --shadow-card: 0 10px 30px -10px rgba(0, 0, 0, 0.55);
+      --radius-lg: 16px;
+      --radius-md: 12px;
+      --radius-sm: 8px;
+    }
+
+    [data-theme="light"] {
+      --bg-base: #fcf8f9;
+      --bg-surface: #ffffff;
+      --bg-elevated: #f8eff2;
+      --bg-card-hover: #f3e5ea;
+      --bg-glass: rgba(255, 255, 255, 0.9);
+      --border-subtle: rgba(214, 90, 122, 0.18);
+      --border-strong: rgba(214, 90, 122, 0.4);
+      --text-primary: #231929;
+      --text-secondary: #4e4057;
+      --text-muted: #7d6d87;
+      --sakura-primary: #d84b72;
+      --sakura-strong: #c0355c;
+      --sakura-bg: rgba(216, 75, 114, 0.09);
+      --sakura-bg-strong: rgba(216, 75, 114, 0.17);
+      --sakura-btn-text: #ffffff;
+      --green: #059669;
+      --green-bg: rgba(5, 150, 105, 0.12);
+      --amber: #d97706;
+      --amber-bg: rgba(217, 119, 6, 0.12);
+      --red: #e11d48;
+      --red-bg: rgba(225, 29, 72, 0.11);
+      --blue: #2563eb;
+      --blue-bg: rgba(37, 99, 235, 0.11);
+      --code-bg: #f3eaf0;
+      --shadow-card: 0 10px 26px -12px rgba(92, 42, 65, 0.14);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 84px;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+      background-color: var(--bg-base);
+      color: var(--text-primary);
+      line-height: 1.7;
+      font-size: 15.5px;
+      transition: background-color 0.25s ease, color 0.25s ease;
+    }
+
+    a {
+      color: var(--sakura-primary);
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+
+    a:hover {
+      color: var(--sakura-strong);
+      text-decoration: underline;
+    }
+
+    code {
+      font-family: "JetBrains Mono", "Cascadia Code", Consolas, Monaco, monospace;
+      background: var(--code-bg);
+      color: var(--sakura-primary);
+      padding: 0.18em 0.45em;
+      border-radius: 6px;
+      font-size: 0.9em;
+      border: 1px solid var(--border-subtle);
+      word-break: break-all;
+    }
+
+    /* Top Navbar */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg-glass);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .topbar-inner {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 1.15rem;
+      color: var(--text-primary);
+      text-decoration: none !important;
+    }
+
+    .brand-icon {
+      font-size: 1.45rem;
+      line-height: 1;
+    }
+
+    .brand-tag {
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: var(--sakura-bg-strong);
+      color: var(--sakura-primary);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .topbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 7px 14px;
+      border-radius: 999px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-elevated);
+      color: var(--text-primary);
+      text-decoration: none !important;
+      transition: all 0.18s ease;
+    }
+
+    .btn:hover {
+      border-color: var(--border-strong);
+      background: var(--bg-card-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-primary {
+      background: var(--sakura-primary);
+      color: var(--sakura-btn-text);
+      border-color: transparent;
+    }
+
+    .btn-primary:hover {
+      background: var(--sakura-strong);
+      color: var(--sakura-btn-text);
+    }
+
+    /* Hero Banner */
+    .hero {
+      max-width: 1320px;
+      margin: 24px auto 0;
+      padding: 0 24px;
+    }
+
+    .hero-card {
+      background: linear-gradient(135deg, var(--bg-surface) 0%, var(--bg-elevated) 100%);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-lg);
+      padding: 28px 30px;
+      box-shadow: var(--shadow-card);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-title {
+      font-size: 1.85rem;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .hero-leads {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 12px;
+      margin-bottom: 22px;
+    }
+
+    .lead-box {
+      padding: 13px 16px;
+      border-radius: var(--radius-md);
+      background: var(--bg-base);
+      border: 1px solid var(--border-subtle);
+      font-size: 0.93rem;
+    }
+
+    .lead-box strong {
+      color: var(--sakura-primary);
+    }
+
+    /* Core Quick-Copy Cards */
+    .quick-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 14px;
+    }
+
+    .quick-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 10px;
+      transition: border-color 0.2s ease;
+    }
+
+    .quick-card:hover {
+      border-color: var(--border-strong);
+    }
+
+    .quick-label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .quick-value {
+      font-family: "JetBrains Mono", Consolas, monospace;
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      word-break: break-all;
+    }
+
+    .quick-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .copy-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      background: var(--sakura-bg);
+      color: var(--sakura-primary);
+      border: 1px solid var(--border-subtle);
+      cursor: pointer;
+      transition: all 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .copy-btn:hover {
+      background: var(--sakura-bg-strong);
+      border-color: var(--border-strong);
+    }
+
+    /* Main Layout with Sidebar */
+    .layout {
+      max-width: 1320px;
+      margin: 24px auto 64px;
+      padding: 0 24px;
+      display: grid;
+      grid-template-columns: 260px minmax(0, 1fr);
+      gap: 28px;
+      align-items: start;
+    }
+
+    /* Sidebar TOC */
+    .sidebar {
+      position: sticky;
+      top: 78px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 18px 14px;
+      box-shadow: var(--shadow-card);
+      max-height: calc(100vh - 100px);
+      overflow-y: auto;
+    }
+
+    .sidebar-title {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 0 10px 10px;
+      border-bottom: 1px solid var(--border-subtle);
+      margin-bottom: 10px;
+    }
+
+    .toc-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .toc-link {
+      display: block;
+      padding: 7px 10px;
+      border-radius: var(--radius-sm);
+      color: var(--text-secondary);
+      font-size: 0.88rem;
+      font-weight: 500;
+      text-decoration: none !important;
+      transition: all 0.15s ease;
+    }
+
+    .toc-link:hover {
+      background: var(--bg-elevated);
+      color: var(--text-primary);
+    }
+
+    .toc-link.active {
+      background: var(--sakura-bg-strong);
+      color: var(--sakura-primary);
+      font-weight: 700;
+    }
+
+    .toc-sub {
+      padding-left: 20px;
+      font-size: 0.82rem;
+    }
+
+    /* Content Sections */
+    .content {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .section-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 28px 30px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .section-title {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 9px;
+      background: var(--sakura-bg-strong);
+      color: var(--sakura-primary);
+      font-size: 0.95rem;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    .subsection-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin: 26px 0 12px;
+      padding-left: 12px;
+      border-left: 4px solid var(--sakura-primary);
+    }
+
+    p {
+      margin-bottom: 12px;
+      color: var(--text-secondary);
+    }
+
+    p strong {
+      color: var(--text-primary);
+    }
+
+    /* Callouts & Alerts */
+    .callout {
+      padding: 16px 20px;
+      border-radius: var(--radius-md);
+      margin: 16px 0;
+      border-left: 4px solid var(--sakura-primary);
+      background: var(--bg-elevated);
+    }
+
+    .callout-title {
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .callout-warn {
+      border-left-color: var(--amber);
+      background: var(--amber-bg);
+    }
+
+    .callout-warn .callout-title {
+      color: var(--amber);
+    }
+
+    .callout-success {
+      border-left-color: var(--green);
+      background: var(--green-bg);
+    }
+
+    .callout-success .callout-title {
+      color: var(--green);
+    }
+
+    .callout-danger {
+      border-left-color: var(--red);
+      background: var(--red-bg);
+    }
+
+    .callout-danger .callout-title {
+      color: var(--red);
+    }
+
+    .callout p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Step Lists */
+    .steps-list {
+      list-style: none;
+      counter-reset: step-counter;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin: 16px 0;
+    }
+
+    .steps-list > li {
+      counter-increment: step-counter;
+      position: relative;
+      padding: 14px 16px 14px 50px;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      color: var(--text-secondary);
+    }
+
+    .steps-list > li::before {
+      content: counter(step-counter);
+      position: absolute;
+      left: 14px;
+      top: 14px;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--sakura-primary);
+      color: var(--sakura-btn-text);
+      font-weight: 800;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .steps-list > li strong {
+      color: var(--text-primary);
+    }
+
+    .bullet-list {
+      padding-left: 20px;
+      margin: 12px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      color: var(--text-secondary);
+    }
+
+    .bullet-list li strong {
+      color: var(--text-primary);
+    }
+
+    /* Tables */
+    .table-wrap {
+      width: 100%;
+      overflow-x: auto;
+      margin: 16px 0;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-elevated);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.92rem;
+    }
+
+    th {
+      background: var(--bg-base);
+      color: var(--text-primary);
+      font-weight: 700;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border-subtle);
+      white-space: nowrap;
+    }
+
+    td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border-subtle);
+      color: var(--text-secondary);
+      vertical-align: middle;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tr.highlight-row {
+      background: var(--sakura-bg);
+    }
+
+    tr.highlight-row td {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    .num-col {
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Badges */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 2px 9px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .badge-green {
+      background: var(--green-bg);
+      color: var(--green);
+    }
+
+    .badge-amber {
+      background: var(--amber-bg);
+      color: var(--amber);
+    }
+
+    .badge-red {
+      background: var(--red-bg);
+      color: var(--red);
+    }
+
+    .badge-sakura {
+      background: var(--sakura-bg-strong);
+      color: var(--sakura-primary);
+    }
+
+    /* Tool Filter Bar for Sections 2-8 */
+    .filter-bar {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-lg);
+      padding: 18px 22px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .filter-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .filter-title {
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--text-primary);
+    }
+
+    .filter-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .filter-tab {
+      padding: 8px 14px;
+      border-radius: var(--radius-sm);
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-elevated);
+      color: var(--text-secondary);
+      transition: all 0.15s ease;
+    }
+
+    .filter-tab:hover {
+      border-color: var(--border-strong);
+      color: var(--text-primary);
+    }
+
+    .filter-tab.active {
+      background: var(--sakura-primary);
+      color: var(--sakura-btn-text);
+      border-color: transparent;
+    }
+
+    /* Web Guide Image Showcase (Section 2) */
+    .web-guide-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      gap: 22px;
+      align-items: center;
+      margin-top: 14px;
+    }
+
+    .guide-figure {
+      background: var(--bg-base);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-md);
+      padding: 12px;
+      text-align: center;
+      position: relative;
+    }
+
+    .guide-img {
+      width: 100%;
+      height: auto;
+      border-radius: var(--radius-sm);
+      cursor: zoom-in;
+      display: block;
+      transition: transform 0.2s ease;
+    }
+
+    .guide-img:hover {
+      transform: scale(1.01);
+    }
+
+    .guide-caption {
+      margin-top: 10px;
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    /* Code Block with Copy */
+    .code-block {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      background: var(--code-bg);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 10px 14px;
+      margin: 10px 0;
+      font-family: "JetBrains Mono", Consolas, monospace;
+      font-size: 0.88rem;
+      color: var(--sakura-primary);
+      overflow-x: auto;
+    }
+
+    /* Interactive Billing Checker (Section 9.1) */
+    .checker-card {
+      background: linear-gradient(135deg, var(--bg-elevated) 0%, var(--bg-base) 100%);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-md);
+      padding: 20px 22px;
+      margin: 20px 0;
+    }
+
+    .checker-title {
+      font-weight: 800;
+      font-size: 1.05rem;
+      color: var(--sakura-primary);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .checker-controls {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .control-group {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .control-group label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+
+    .control-group select {
+      padding: 8px 10px;
+      border-radius: var(--radius-sm);
+      background: var(--bg-surface);
+      color: var(--text-primary);
+      border: 1px solid var(--border-subtle);
+      font-size: 0.88rem;
+      font-family: inherit;
+      outline: none;
+    }
+
+    .control-group select:focus {
+      border-color: var(--sakura-primary);
+    }
+
+    .checker-result {
+      padding: 14px 16px;
+      border-radius: var(--radius-sm);
+      font-size: 0.94rem;
+      font-weight: 600;
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-surface);
+    }
+
+    /* 3 Conditions Grid */
+    .cond-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+      margin: 14px 0;
+    }
+
+    .cond-card {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+    }
+
+    .cond-num {
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: var(--sakura-primary);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .cond-main {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+
+    .cond-sub {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+    }
+
+    /* Lightbox Modal */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      background: rgba(10, 8, 14, 0.88);
+      backdrop-filter: blur(8px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      cursor: zoom-out;
+    }
+
+    .lightbox.open {
+      display: flex;
+    }
+
+    .lightbox img {
+      max-width: 95vw;
+      max-height: 90vh;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-strong);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.75);
+    }
+
+    .lightbox-close {
+      position: fixed;
+      top: 20px;
+      right: 26px;
+      background: var(--bg-elevated);
+      color: var(--text-primary);
+      border: 1px solid var(--border-strong);
+      border-radius: 999px;
+      padding: 8px 16px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 26px;
+      right: 26px;
+      z-index: 1000;
+      background: var(--sakura-primary);
+      color: var(--sakura-btn-text);
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+      transform: translateY(80px);
+      opacity: 0;
+      transition: all 0.22s ease;
+      pointer-events: none;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* Footer */
+    .footer {
+      max-width: 1320px;
+      margin: 0 auto 40px;
+      padding: 20px 24px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.86rem;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .hidden-section {
+      display: none !important;
+    }
+
+    @media (max-width: 980px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+      .sidebar {
+        position: static;
+        max-height: none;
+      }
+      .toc-list {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+      .toc-sub {
+        display: none;
+      }
+      .web-guide-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero-card,
+      .section-card {
+        padding: 20px 18px;
+      }
+      .hero-title {
+        font-size: 1.45rem;
+      }
+      .section-title {
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a href="#" class="brand">
+        <span class="brand-icon">🌸</span>
+        <span>星绘补给站｜NovelAI 兑换与接入教程</span>
+        <span class="brand-tag">V4.5 &amp; V5 指南</span>
+      </a>
+      <div class="topbar-actions">
+        <a href="https://redeem.tenshimomone.com/" target="_blank" rel="noopener" class="btn btn-primary">🔑 打开密钥兑换页</a>
+        <a href="https://nai.tenshimomone.com/" target="_blank" rel="noopener" class="btn">🎨 网页在线画图</a>
+        <a href="#sec-9" class="btn">❓ 新手必看 FAQ</a>
+        <button type="button" class="btn" id="themeToggle" aria-label="切换明暗主题">🌓 切换亮/暗色</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero & Quick Copy Cards -->
+  <section class="hero">
+    <div class="hero-card">
+      <h1 class="hero-title">🌸 星绘补给站｜NovelAI 兑换与接入教程</h1>
+
+      <div class="hero-leads">
+        <div class="lead-box">
+          <strong>1️⃣ 付款后先兑换：</strong>
+          <a href="https://redeem.tenshimomone.com/" target="_blank" rel="noopener">点击打开密钥兑换页 ↗</a>，具体步骤见下方 <a href="#sec-1">第 1 节</a>。兑换成功后，根据你使用的网页、客户端或酒馆插件选择 <a href="#sec-connect">第 2～8 节</a> 接入。
+        </div>
+        <div class="lead-box">
+          <strong>2️⃣ 新手必看疑问：</strong>
+          关于 <strong>V4.5 无限小图与 V5 体力的区别</strong>、小图规格标准、点数计算，以及「100 点能出几张图」的解释，统一放在 <a href="#sec-9"><strong>文末第 9 节</strong></a>。
+        </div>
+      </div>
+
+      <!-- 4 Key Endpoints Quick Box -->
+      <div class="quick-grid">
+        <div class="quick-card">
+          <div class="quick-label">
+            <span>① 密钥兑换页</span>
+            <span class="badge badge-sakura">首步必去</span>
+          </div>
+          <div class="quick-value">https://redeem.tenshimomone.com/</div>
+          <div class="quick-actions">
+            <a href="https://redeem.tenshimomone.com/" target="_blank" rel="noopener" class="copy-btn">↗ 打开兑换页</a>
+            <button type="button" class="copy-btn" data-copy="https://redeem.tenshimomone.com/">📋 复制链接</button>
+          </div>
+        </div>
+
+        <div class="quick-card">
+          <div class="quick-label">
+            <span>② 网页在线画图地址</span>
+            <span class="badge badge-green">免安装直连</span>
+          </div>
+          <div class="quick-value">https://nai.tenshimomone.com/</div>
+          <div class="quick-actions">
+            <a href="https://nai.tenshimomone.com/" target="_blank" rel="noopener" class="copy-btn">↗ 打开画图网页</a>
+            <button type="button" class="copy-btn" data-copy="https://nai.tenshimomone.com/">📋 复制链接</button>
+          </div>
+        </div>
+
+        <div class="quick-card">
+          <div class="quick-label">
+            <span>③ 第三方接口地址 (Base URL)</span>
+            <span class="badge badge-amber">客户端/酒馆必填</span>
+          </div>
+          <div class="quick-value">https://relay.tenshimomone.com/</div>
+          <div class="quick-actions">
+            <button type="button" class="copy-btn" data-copy="https://relay.tenshimomone.com/">📋 一键复制接口地址</button>
+          </div>
+        </div>
+
+        <div class="quick-card">
+          <div class="quick-label">
+            <span>④ API Key / Token 格式</span>
+            <span class="badge badge-red">勿加 Bearer</span>
+          </div>
+          <div class="quick-value">以 <code>skr_</code> 开头的完整密钥</div>
+          <div class="quick-actions">
+            <span style="font-size:0.8rem;color:var(--text-muted);">只粘贴 <code>skr_...</code> 本身，不要加 <code>Bearer </code> 前缀</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content Layout -->
+  <div class="layout">
+    <!-- Sticky Sidebar TOC -->
+    <aside class="sidebar" aria-label="目录导航">
+      <div class="sidebar-title">📑 教程目录导航</div>
+      <ul class="toc-list">
+        <li><a href="#sec-1" class="toc-link active" data-target="sec-1">1. 兑换密钥与查看套餐</a></li>
+        <li><a href="#sec-2" class="toc-link" data-target="sec-2">2. 网页直接使用（附教程图）</a></li>
+        <li><a href="#sec-3" class="toc-link" data-target="sec-3">3. Aaalice NAI Launcher</a></li>
+        <li><a href="#sec-4" class="toc-link" data-target="sec-4">4. Langbai NovelAI Studio</a></li>
+        <li><a href="#sec-5" class="toc-link" data-target="sec-5">5. 酒馆：柏宝绘</a></li>
+        <li><a href="#sec-6" class="toc-link" data-target="sec-6">6. 酒馆：小白X / LittleWhiteBox</a></li>
+        <li><a href="#sec-7" class="toc-link" data-target="sec-7">7. 酒馆：智绘姬 / st-chatu8</a></li>
+        <li><a href="#sec-8" class="toc-link" data-target="sec-8">8. 其他支持第三方 NAI 工具</a></li>
+        <li><a href="#sec-9" class="toc-link" data-target="sec-9">9. 新手常见问题（必看）</a></li>
+        <li><a href="#sec-9-1" class="toc-link toc-sub" data-target="sec-9">9.1 什么算小图？V4.5 与 V5 区别</a></li>
+        <li><a href="#sec-9-2" class="toc-link toc-sub" data-target="sec-9">9.2 什么是点数？何时扣点？</a></li>
+        <li><a href="#sec-9-3" class="toc-link toc-sub" data-target="sec-9">9.3 100 点数能生成多少张图？</a></li>
+        <li><a href="#sec-9-4" class="toc-link toc-sub" data-target="sec-9">9.4 四种 Opus 档位有什么区别？</a></li>
+        <li><a href="#sec-9-5" class="toc-link toc-sub" data-target="sec-9">9.5 四个例子一眼看懂怎么扣费</a></li>
+        <li><a href="#sec-9-6" class="toc-link toc-sub" data-target="sec-9">9.6 不知道买哪档？对号入座</a></li>
+      </ul>
+    </aside>
+
+    <!-- Main Articles -->
+    <main class="content">
+
+      <!-- SECTION 1 -->
+      <article class="section-card" id="sec-1">
+        <div class="section-header">
+          <h2 class="section-title"><span class="section-num">1</span> 兑换密钥与查看套餐</h2>
+          <span class="badge badge-sakura">第一步：先兑换再接入</span>
+        </div>
+
+        <p>付款后先兑换密钥，再按你使用的网页、客户端或酒馆插件填写。</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>项目</th>
+                <th>内容</th>
+                <th>快捷操作</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>兑换页</strong></td>
+                <td><a href="https://redeem.tenshimomone.com/" target="_blank" rel="noopener">https://redeem.tenshimomone.com/</a></td>
+                <td><button type="button" class="copy-btn" data-copy="https://redeem.tenshimomone.com/">复制</button></td>
+              </tr>
+              <tr>
+                <td><strong>网页在线画图地址</strong></td>
+                <td><a href="https://nai.tenshimomone.com/" target="_blank" rel="noopener">https://nai.tenshimomone.com/</a></td>
+                <td><button type="button" class="copy-btn" data-copy="https://nai.tenshimomone.com/">复制</button></td>
+              </tr>
+              <tr>
+                <td><strong>第三方接口地址</strong></td>
+                <td><code>https://relay.tenshimomone.com/</code></td>
+                <td><button type="button" class="copy-btn" data-copy="https://relay.tenshimomone.com/">复制</button></td>
+              </tr>
+              <tr>
+                <td><strong>API Key / Token</strong></td>
+                <td>兑换页给出的完整密钥，以 <code>skr_</code> 开头</td>
+                <td><span class="badge badge-amber">兑换后获取</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="callout callout-warn">
+          <div class="callout-title">⚠️ 重要提示</div>
+          <p>Key 输入框只粘贴 <code>skr_</code> 开头的密钥本身，<strong>不要加 <code>Bearer </code> 前缀</strong>。兑换页上的中转地址和上表中的第三方接口地址是同一个。请妥善保管你的完整密钥，不要发到公开群聊或截图中。</p>
+        </div>
+
+        <ol class="steps-list">
+          <li>付款后，在聊天窗口复制以 <code>CDK-</code> 开头的兑换码。</li>
+          <li>打开 <a href="https://redeem.tenshimomone.com/" target="_blank" rel="noopener">兑换页 (https://redeem.tenshimomone.com/)</a>，粘贴兑换码，点击 <strong>兑换</strong>。</li>
+          <li>页面会给出中转地址和完整密钥（<code>skr_...</code>）。<strong>请当场复制保存！</strong> 每枚兑换码只能兑换一次，关闭页面后将无法再次查看密钥。</li>
+          <li>若没来得及复制保存，请把 <code>CDK-</code> 兑换码<strong>私发给客服</strong>，客服可在后台帮你查出对应密钥。</li>
+        </ol>
+
+        <h3 class="subsection-title">各档套餐权益表（有效天数从兑换成功时开始计算）</h3>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>规格</th>
+                <th class="num-col">有效天数</th>
+                <th class="num-col">点数</th>
+                <th>V4.5 标准小图权益</th>
+                <th>V5 体力上限（跑 V5 小图专用）</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>体验：100点数</td>
+                <td class="num-col">30</td>
+                <td class="num-col">100</td>
+                <td>无（按点数扣除）</td>
+                <td>无</td>
+              </tr>
+              <tr>
+                <td>体验：1天Opus</td>
+                <td class="num-col">1</td>
+                <td class="num-col">0</td>
+                <td><span class="badge badge-green">✅ 无限免点生成</span></td>
+                <td>4%（约 44 张，一次性发放不恢复）</td>
+              </tr>
+              <tr>
+                <td>按量：2k点数包</td>
+                <td class="num-col">30</td>
+                <td class="num-col">2,000</td>
+                <td>无（按点数扣除）</td>
+                <td>无</td>
+              </tr>
+              <tr class="highlight-row">
+                <td><strong>🔥 月卡：V4.5无限小图（无V5体力）</strong></td>
+                <td class="num-col"><strong>30</strong></td>
+                <td class="num-col"><strong>0</strong></td>
+                <td><span class="badge badge-green">✅ 无限免点生成</span></td>
+                <td><span class="badge badge-red">无（不支持 V5，请选 V4.5 模型）</span></td>
+              </tr>
+              <tr>
+                <td>月卡：4人Opus无限小图（无点）</td>
+                <td class="num-col">30</td>
+                <td class="num-col">0</td>
+                <td><span class="badge badge-green">✅ 无限免点生成</span></td>
+                <td>25%（上限 280 张，每 24h 恢复 40 张）</td>
+              </tr>
+              <tr>
+                <td>月卡：4人Opus无限小图+2k点</td>
+                <td class="num-col">30</td>
+                <td class="num-col">2,000</td>
+                <td><span class="badge badge-green">✅ 无限免点生成</span></td>
+                <td>25%（上限 280 张，每 24h 恢复 40 张）</td>
+              </tr>
+              <tr>
+                <td>月卡：单人独享Opus（含1w点）</td>
+                <td class="num-col">30</td>
+                <td class="num-col">10,000</td>
+                <td><span class="badge badge-green">✅ 无限免点生成</span></td>
+                <td>100%（上限 1,120 张，每 24h 恢复 160 张）</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="callout">
+          <div class="callout-title">💡 关于本站与 NovelAI 官网 V5 体力条计算方式的区别</div>
+          <p>本站的 V5 体力额度、体力上限及可生成张数，统一按 <strong>NovelAI V5 单张 28 步（Steps）</strong> 的消耗进行<strong>保守折算</strong>；NovelAI 官网公布的体力条参考数据则采用 <strong>23 步</strong>的计算口径。</p>
+          <p><strong>28 步与 23 步的单张体力消耗不同</strong>，因此即使体力条显示相同百分比，按两种口径换算出的可生成张数也不一定相同。本站采用 28 步作为折算基准，是为了避免按较低步数高估可生成张数。</p>
+          <p>本站的 <strong>4% / 25% / 100%</strong> 为本站套餐 V5 体力档位，<strong>不可直接套用官网 23 步口径换算张数</strong>。本站对应的 <strong>约 44 / 280 / 1,120 张</strong>及恢复数量，以本站套餐与实际系统规则为准。</p>
+          <p><strong>注意：28 步是本站计算 V5 体力额度时采用的保守基准，不代表每次生图必须设置成 28 步。</strong> 符合本站小图规则的 V5 图片，在 <strong>28 步及以下</strong>成功生成 1 张，均扣除 <strong>1 张本站 V5 体力</strong>。这与官网按生成参数浮动计算体力消耗的方式不同。</p>
+        </div>
+
+        <h3 class="subsection-title">额度与恢复规则，再强调一次：</h3>
+        <ul class="bullet-list">
+          <li><strong>普通点数档（100点 / 2k点）：</strong> 无无限小图与 V5 体力权益，生成任何图片均按点数扣除。</li>
+          <li><strong>月卡：V4.5无限小图（无V5体力）：</strong> 享 30 天 <strong>V4.5 标准小图无限免点数生成</strong>，不包含 V5 体力与额外点数。<strong>使用时请务必将模型选为 V4.5（如 <code>nai-diffusion-4-5-full</code>）</strong>；若选择 V5 模型或超规格生成（大图/超28步/单次多张），会因无 V5 体力与点数而被拒绝。</li>
+          <li><strong>1 天 Opus：</strong> 享 1 天 V4.5 标准小图无限生成 ＋ 兑换时一次性发放约 <strong>44 张 V5 体力</strong>（用完不自动恢复）；密钥有效期为 1 天。</li>
+          <li><strong>4人合租 Opus（25% 体力档）：</strong> 享 30 天 V4.5 标准小图无限生成 ＋ V5 体力上限 <strong>280 张</strong>（每 <strong>24 小时恢复 40 张</strong>）。</li>
+          <li><strong>单人独享 Opus（100% 体力档）：</strong> 享 30 天 V4.5 标准小图无限生成 ＋ V5 体力上限 <strong>1,120 张</strong>（每 <strong>24 小时恢复 160 张</strong>）。</li>
+          <li><strong>V5 体力恢复不超过上限。</strong> 含 V5 体力的会员生成符合要求的 V5 小图时，成功生成 1 张扣 1 张 V5 体力；若当日 V5 体力用尽且无点数，<strong>可随时将模型切换为 V4.5 继续免费无限生成小图</strong>，或等待 V5 体力恢复。</li>
+          <li><strong>超出尺寸（宽×高 &gt; 1,048,576）、超出步数（&gt; 28 步）、批量出图多出来的张数，或 V5 体力不足时继续跑 V5</strong>，均需消耗点数。如果点数和对应体力都不够，本次生成会被拒绝。到期后密钥停止使用，需使用新兑换码或联系客服续期。</li>
+        </ul>
+      </article>
+
+      <!-- TOOL FILTER BAR FOR SECTIONS 2 ~ 8 -->
+      <div class="filter-bar" id="sec-connect">
+        <div class="filter-header">
+          <span class="filter-title">🛠️ 选择你的接入方式（第 2～8 节）：可点击下方按钮筛选你正在使用的工具</span>
+          <span style="font-size:0.82rem;color:var(--text-muted);">点击目录或「显示全部」可恢复完整列表</span>
+        </div>
+        <div class="filter-tabs" role="tablist">
+          <button type="button" class="filter-tab active" data-filter="all">📖 显示全部 (2~8节)</button>
+          <button type="button" class="filter-tab" data-filter="sec-2">🌐 2. 网页直接使用</button>
+          <button type="button" class="filter-tab" data-filter="sec-3">💻 3. Aaalice 客户端</button>
+          <button type="button" class="filter-tab" data-filter="sec-4">🖥️ 4. Langbai 客户端</button>
+          <button type="button" class="filter-tab" data-filter="sec-5">🍺 5. 酒馆：柏宝绘</button>
+          <button type="button" class="filter-tab" data-filter="sec-6">📦 6. 酒馆：小白X</button>
+          <button type="button" class="filter-tab" data-filter="sec-7">🎨 7. 酒馆：智绘姬</button>
+          <button type="button" class="filter-tab" data-filter="sec-8">🔌 8. 其他第三方工具</button>
+        </div>
+      </div>
+
+      <!-- SECTION 2: 网页直接使用 (WITH SCREENSHOT) -->
+      <article class="section-card tool-section" id="sec-2">
+        <div class="section-header">
+          <h2 class="section-title"><span class="section-num">2</span> 网页直接使用</h2>
+          <span class="badge badge-green">🌟 新手最推荐 · 电脑手机通用</span>
+        </div>
+
+        <div class="web-guide-grid">
+          <div>
+            <ol class="steps-list" style="margin-top:0;">
+              <li>
+                打开 <a href="https://nai.tenshimomone.com/" target="_blank" rel="noopener"><strong>星绘网页 (https://nai.tenshimomone.com/)</strong></a>，电脑和手机浏览器均可直接使用。
+                <div style="margin-top:8px;">
+                  <a href="https://nai.tenshimomone.com/" target="_blank" rel="noopener" class="copy-btn">↗ 点击打开星绘网页</a>
+                  <button type="button" class="copy-btn" data-copy="https://nai.tenshimomone.com/">📋 复制网址</button>
+                </div>
+              </li>
+              <li>在弹出的「连接设置」窗口中，密钥类型选择 <strong>Sakura Key</strong>（如右图所示）。</li>
+              <li>在下方 <strong>Sakura Key</strong> 输入框粘贴兑换页上的 <code>skr_</code> 密钥，点击 <strong>连接</strong>（或 <strong>更新连接</strong>）。</li>
+              <li>连接成功后，选择模型（<strong>V4.5 月卡用户请选 V4.5 模型</strong>；含 V5 体力或点数用户可选 V5 / V4.5），填写提示词，点击 <strong>生成</strong>。</li>
+            </ol>
+          </div>
+
+          <figure class="guide-figure">
+            <img
+              src="./assets/web-connect-guide.png"
+              onerror="this.onerror=null;this.src='./绘画网站连接教程图.png';"
+              alt="星绘网页连接设置教程图：选择 Sakura Key 并粘贴 skr_ 密钥后点击更新连接"
+              class="guide-img"
+              id="webGuideImg"
+            />
+            <figcaption class="guide-caption">
+              <span>🔍 星绘网页「连接设置」示意图（点击图片可放大查看高清原图）</span>
+            </figcaption>
+          </figure>
+        </div>
+      </article>
+
+      <!-- SECTION 3: Aaalice NAI Launcher -->
+      <article class="section-card tool-section" id="sec-3">
+        <div class="section-header">
+          <h2 class="section-title"><span class="section-num">3</span> Aaalice NAI Launcher</h2>
+          <a href="https://github.com/Aaalice233/Aaalice_NAI_Launcher/releases/latest" target="_blank" rel="noopener" class="btn">⬇️ 下载客户端 (GitHub Releases)</a>
+        </div>
+
+        <p><a href="https://github.com/Aaalice233/Aaalice_NAI_Launcher/releases/latest" target="_blank" rel="noopener">下载客户端</a>，按你的设备系统选择安装包。</p>
+
+        <ol class="steps-list">
+          <li>打开软件，在登录方式中选择 <strong>第三方站点</strong>。</li>
+          <li>
+            按下表填写配置信息：
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>字段</th>
+                    <th>填写内容</th>
+                    <th>一键复制</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>第三方 API 站点</strong></td>
+                    <td><code>https://relay.tenshimomone.com/</code></td>
+                    <td><button type="button" class="copy-btn" data-copy="https://relay.tenshimomone.com/">复制地址</button></td>
+                  </tr>
+                  <tr>
+                    <td><strong>图像 API 站点（可选）</strong></td>
+                    <td>留空，或填写同一个接口地址</td>
+                    <td><span class="badge badge-sakura">可留空</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>昵称</strong></td>
+                    <td><code>星绘补给站</code></td>
+                    <td><button type="button" class="copy-btn" data-copy="星绘补给站">复制昵称</button></td>
+                  </tr>
+                  <tr>
+                    <td><strong>API Token</strong></td>
+                    <td>兑换页上的 <code>skr_</code> 密钥</td>
+                    <td><span class="badge badge-amber">粘贴你的 skr_ 密钥</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </li>
+          <li>点击 <strong>验证并登录</strong>。</li>
+          <li>进入绘图工作台，选择对应模型（V4.5 月卡用户请选 V4.5）、确认尺寸与步数（小图建议 ≤ 1024×1024、步数 ≤ 28）后填写提示词生成。</li>
+        </ol>
+      </article>
+
+      <!-- SECTION 4: Langbai NovelAI Studio -->
+      <article class="section-card tool-section" id="sec-4">
+        <div class="section-header">
+          <h2 class="section-title"><span class="section-num">4</span> Langbai NovelAI Studio</h2>
+          <a href="https://github.com/2786886095/novelai-image-desktop/releases/latest" target="_blank" rel="noopener" class="btn">⬇️ 下载客户端 (GitHub Releases)</a>
+        </div>
+
+        <p><a href="https://github.com/2786886095/novelai-image-desktop/releases/latest" target="_blank" rel="noopener">下载客户端</a>，按你的设备系统选择安装包。</p>
+
+        <ol class="steps-list">
+          <li>打开软件，进入 <strong>设置 → API 配置</strong>。</li>
+          <li>
+            先设置接口和开关，再填写 Token：
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>字段 / 开关</th>
+                    <th>设置内容</th>
+                    <th>操作 / 状态</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>图片接口（NovelAI 官方 / 兼容中转）</strong></td>
+                    <td><code>https://relay.tenshimomone.com/</code></td>
+                    <td><button type="button" class="copy-btn" data-copy="https://relay.tenshimomone.com/">复制地址</button></td>
+                  </tr>
+                  <tr>
+                    <td><strong>允许使用非官方接口</strong></td>
+                    <td><strong>开启</strong></td>
+                    <td><span class="badge badge-green">✅ 必须开启</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>中转鉴权失败后改用官方重试</strong></td>
+                    <td><strong>关闭</strong></td>
+                    <td><span class="badge badge-red">❌ 必须关闭</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>API Token</strong></td>
+                    <td>兑换页上的 <code>skr_</code> 密钥</td>
+                    <td><span class="badge badge-amber">粘贴你的 skr_ 密钥</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </li>
+          <li>点击 <strong>验证并保存 Token</strong>（部分版本显示“验证 Token”）。</li>
+          <li>打开 <strong>生成 → 文生图</strong>，选择对应模型（V4.5 月卡用户请选 V4.5），填写提示词后生成。</li>
+        </ol>
+      </article>
+
+      <!-- SECTION 5: 酒馆：柏宝绘 -->
+      <article class="section-card tool-section" id="sec-5">
+        <div class="section-header">
+          <h2 class="section-title"><span class="section-num">5</span> 酒馆：柏宝绘</h2>
+          <span class="badge badge-sakura">SillyTavern 扩展</span>
+        </div>
+
+        <ol class="steps-list">
+          <li>
+            在 SillyTavern 的 <strong>扩展 → 安装扩展</strong> 中粘贴仓库地址：
+            <div class="code-block">
+              <span>https://github.com/baibai-git/ST-BaiBai-Image</span>
+              <button type="button" class="copy-btn" data-copy="https://github.com/baibai-git/ST-BaiBai-Image">📋 复制仓库地址</button>
+            </div>
+          </li>
+          <li>安装后刷新页面，打开 <strong>柏宝绘 → 渠道 → NovelAI → 配置</strong>。</li>
+          <li>在 <strong>接入点</strong> 旁点击 <strong>＋</strong>，新建一条接入点，命名为“<strong>星绘补给站</strong>”（官方默认接入点的地址不能修改，<strong>必须新建</strong>）。</li>
+          <li>
+            填写以下内容：
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>字段</th>
+                    <th>填写内容</th>
+                    <th>一键复制</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>接口地址</strong></td>
+                    <td><code>https://relay.tenshimomone.com/</code></td>
+                    <td><button type="button" class="copy-btn" data-copy="https://relay.tenshimomone.com/">复制地址</button></td>
+                  </tr>
+                  <tr>
+                    <td><strong>API Key</strong></td>
+                    <td>兑换页上的 <code>skr_</code> 密钥</td>
+                    <td><span class="badge badge-amber">粘贴你的 skr_ 密钥</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </li>
+          <li>点击 <strong>使用此渠道出图</strong>，确认当前选中“星绘补给站”接入点，并选择你要使用的模型（<strong>「V4.5无限小图」月卡用户请务必选择 V4.5 模型</strong>；含 V5 体力或点数用户可选 V5 或 V4.5）。</li>
+          <li>在插件 <strong>设置</strong> 中，将 <strong>生成 tag 使用</strong> 保持为 <strong>跟随主 API</strong>，继续使用你原来的聊天连接。</li>
+          <li><strong>自动配图：</strong> 开启 <strong>自动生成 tag</strong> 和 <strong>自动生成图片</strong>。<strong>手动配图：</strong> 关闭这两个开关，在 AI 回复的 <strong>⋯</strong> 菜单里点调色盘，生成提示词后点击卡片上的 <strong>生成图片</strong>。</li>
+        </ol>
+
+        <div class="callout">
+          <p><em>注：本站密钥只填在 NovelAI 的接入点中，酒馆聊天模型仍使用你原本的聊天 Key，互不冲突。</em></p>
+        </div>
+      </article>
+
+      <!-- SECTION 6: 酒馆：小白X / LittleWhiteBox -->
+      <article class="section-card tool-section" id="sec-6">
+        <div class="section-header">
+          <h2 class="section-title"><span class="section-num">6</span> 酒馆：小白X / LittleWhiteBox</h2>
+          <span class="badge badge-sakura">SillyTavern 扩展</span>
+        </div>
+
+        <p>已有小白X的用户可直接使用它的 NovelAI 模块（选择一种酒馆绘图插件使用即可，无需同时开多个）。</p>
+
+        <ol class="steps-list">
+          <li>
+            在酒馆 <strong>扩展 → 安装扩展</strong> 中粘贴：
+            <div class="code-block">
+              <span>https://github.com/RT15548/LittleWhiteBox</span>
+              <button type="button" class="copy-btn" data-copy="https://github.com/RT15548/LittleWhiteBox">📋 复制仓库地址</button>
+            </div>
+          </li>
+          <li>安装后刷新，打开小白X设置，在 <strong>AI 画图 → 画图后端</strong> 中选择 <strong>NovelAI</strong>，点击 <strong>画图设置</strong>。</li>
+          <li>
+            打开 <strong>API 配置</strong>，按下表填写并点击 <strong>保存</strong>：
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>字段</th>
+                    <th>填写内容</th>
+                    <th>操作 / 状态</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>NovelAI API Key</strong></td>
+                    <td>兑换页上的 <code>skr_</code> 密钥</td>
+                    <td><span class="badge badge-amber">粘贴你的 skr_ 密钥</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>第三方端点 URL（可选）</strong></td>
+                    <td><code>https://relay.tenshimomone.com/</code></td>
+                    <td><button type="button" class="copy-btn" data-copy="https://relay.tenshimomone.com/">复制地址</button></td>
+                  </tr>
+                  <tr>
+                    <td><strong>发送方式</strong></td>
+                    <td><strong>前端直连</strong></td>
+                    <td><span class="badge badge-green">选择前端直连</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </li>
+          <li>在 <strong>绘图参数</strong> 中选择模型（<strong>V4.5 月卡用户请选 V4.5 模型</strong>；含 V5 体力或点数用户可选 V5 或 V4.5），并确认步数 ≤ 28、尺寸 ≤ 1024×1024。</li>
+          <li>在 <strong>场景 Agent</strong>（部分版本叫“LLM 配置”）中选用酒馆主 API，或填写你自己的聊天模型连接。</li>
+          <li>点击 AI 消息旁的 <strong>🎨</strong> 手动配图；需要自动配图时，切换为 <strong>自动模式</strong>。</li>
+        </ol>
+      </article>
+
+      <!-- SECTION 7: 酒馆：智绘姬 / st-chatu8 -->
+      <article class="section-card tool-section" id="sec-7">
+        <div class="section-header">
+          <h2 class="section-title"><span class="section-num">7</span> 酒馆：智绘姬 / st-chatu8</h2>
+          <span class="badge badge-sakura">SillyTavern 扩展</span>
+        </div>
+
+        <ol class="steps-list">
+          <li>
+            在酒馆 <strong>扩展 → 安装扩展</strong> 中粘贴仓库地址：
+            <div class="code-block">
+              <span>https://github.com/damoshen123/st-chatu8</span>
+              <button type="button" class="copy-btn" data-copy="https://github.com/damoshen123/st-chatu8">📋 复制仓库地址</button>
+            </div>
+          </li>
+          <li>安装后刷新页面，打开 <strong>智绘姬（st-chatu8）</strong> 的设置面板。在 <strong>主要设置</strong> 中开启 <strong>启用插件</strong>，将 <strong>模式</strong> 选为 <strong>NovelAI</strong>，将 <strong>客户端</strong> 选为 <strong>浏览器</strong>。</li>
+          <li>
+            切换到左侧 <strong>NovelAI</strong> 页面，按下表填写：
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>字段 / 开关</th>
+                    <th>设置内容</th>
+                    <th>操作 / 状态</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>NovelAI API</strong></td>
+                    <td>兑换页上的 <code>skr_</code> 密钥</td>
+                    <td><span class="badge badge-amber">粘贴你的 skr_ 密钥</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>站点</strong></td>
+                    <td><strong>其他站点</strong></td>
+                    <td><span class="badge badge-green">选择其他站点</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>其他novelai站点</strong></td>
+                    <td><code>https://relay.tenshimomone.com/</code></td>
+                    <td><button type="button" class="copy-btn" data-copy="https://relay.tenshimomone.com/">复制地址</button></td>
+                  </tr>
+                  <tr>
+                    <td><strong>启用云端队列</strong></td>
+                    <td><strong>关闭</strong></td>
+                    <td><span class="badge badge-red">❌ 关闭</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>队列服务地址</strong></td>
+                    <td>留空</td>
+                    <td><span class="badge badge-sakura">留空</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </li>
+          <li>
+            在下方 <strong>模型</strong> 中选择你要使用的模型：
+            <ul class="bullet-list" style="margin-top:8px;">
+              <li>
+                <strong>含 V5 体力或点数用户：</strong> 可选 <code>nai-diffusion-5-full</code>（V5）或 <code>nai-diffusion-4-5-full</code>（V4.5）。
+                <button type="button" class="copy-btn" data-copy="nai-diffusion-5-full">复制 V5 模型名</button>
+              </li>
+              <li>
+                <strong>「月卡：V4.5无限小图（无V5体力）」用户：</strong> 请务必选择 <strong><code>nai-diffusion-4-5-full</code></strong>（或 V4.5 Curated），切勿选 V5。
+                <button type="button" class="copy-btn" data-copy="nai-diffusion-4-5-full">复制 V4.5 模型名</button>
+              </li>
+            </ul>
+          </li>
+          <li>已有智绘姬配图预设的用户，继续按原来的方式生图即可。本站密钥填在 <strong>NovelAI API</strong> 中，酒馆聊天或插件 LLM 仍使用你原来的聊天模型连接。</li>
+        </ol>
+      </article>
+
+      <!-- SECTION 8: 其他支持第三方 NovelAI 的工具 -->
+      <article class="section-card tool-section" id="sec-8">
+        <div class="section-header">
+          <h2 class="section-title"><span class="section-num">8</span> 其他支持第三方 NovelAI 的工具</h2>
+          <span class="badge badge-sakura">通用配置</span>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>字段</th>
+                <th>填写内容</th>
+                <th>快捷操作</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>服务类型</strong></td>
+                <td>NovelAI</td>
+                <td><span class="badge badge-sakura">原生接口兼容</span></td>
+              </tr>
+              <tr>
+                <td><strong>第三方地址 / Base URL</strong></td>
+                <td><code>https://relay.tenshimomone.com/</code></td>
+                <td><button type="button" class="copy-btn" data-copy="https://relay.tenshimomone.com/">复制地址</button></td>
+              </tr>
+              <tr>
+                <td><strong>API Key / Token</strong></td>
+                <td>兑换页上的 <code>skr_</code> 密钥</td>
+                <td><span class="badge badge-amber">粘贴你的 skr_ 密钥</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>支持 NovelAI 原生接口、并允许自定义接口地址（Base URL）的工具，都可以按这组信息接入。</p>
+      </article>
+
+      <!-- SECTION 9: 新手常见问题 -->
+      <article class="section-card" id="sec-9">
+        <div class="section-header">
+          <h2 class="section-title"><span class="section-num">9</span> 新手常见问题：小图、点数、V4.5 与 V5 体力到底是什么？</h2>
+          <span class="badge badge-amber">新手必读 · 避免扣错费</span>
+        </div>
+
+        <div class="callout">
+          <div class="callout-title">📌 先说明</div>
+          <p>星绘补给站是 <strong>NovelAI 兼容的第三方绘图接入服务</strong>。本站密钥<strong>不是 NovelAI 官网账号</strong>；概念和计价方式参考官网，但本站套餐的点数、V4.5 无限小图、V5 体力、恢复速度及有效期，均以本文和实际系统规则为准。</p>
+        </div>
+
+        <div class="callout callout-success">
+          <div class="callout-title">💡 一句话理解</div>
+          <p><strong>小图是符合尺寸与步数标准的图片规格；Opus 会员跑 V4.5 小图完全免费不限量，跑 V5 小图则优先扣「V5 体力」；超规格大图或无会员时则扣「点数」。</strong></p>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>你看到的词</th>
+                <th>通俗解释</th>
+                <th>最容易搞混的地方</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>小图（标准图）</strong></td>
+                <td>指满足<strong>宽×高 ≤ 1,048,576 像素、步数 ≤ 28、单次生成 1 张</strong>的图片规格</td>
+                <td>不等于低画质，也不是只能画 512×512（常用的 <strong>832×1216、1024×1024 都算小图！</strong>）</td>
+              </tr>
+              <tr>
+                <td><strong>V4.5 无限小图</strong></td>
+                <td>所有月卡及 1 天 Opus 均含此权益：用 <strong>V4.5 模型</strong>画符合条件的小图，<strong>不扣点数也不扣 V5 体力，30 天无限畅画</strong></td>
+                <td>若购买的是「V4.5无限小图（无V5体力）」月卡，<strong>只能免点画 V4.5 小图</strong>，不能画 V5 或超规格大图</td>
+              </tr>
+              <tr>
+                <td><strong>V5 体力</strong></td>
+                <td>专为 <strong>V5 模型</strong>设置的可用小图张数额度（1天/4人/单人 Opus 专属），用完后按 24 小时周期恢复</td>
+                <td>只有画 <strong>V5 小图</strong>才会扣 V5 体力；画 V4.5 小图不扣 V5 体力！当 V5 体力用完时，切回 V4.5 仍可继续无限画小图</td>
+              </tr>
+              <tr>
+                <td><strong>点数</strong></td>
+                <td>用来支付绘图消耗的钱包余额，类似官网的 <strong>ImageAnlas（生图点数）</strong></td>
+                <td><strong>100 点数不等于 100 张图</strong>，每次消耗点数多少与模型、尺寸、步数有关</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- 9.1 -->
+        <h3 class="subsection-title" id="sec-9-1">9.1 什么才算「小图」？V4.5 和 V5 小图有什么区别？</h3>
+        <p>在本站规则中，无论你使用 V4.5 还是 V5，享受「小图免点/扣体力权益」都需要<strong>同时满足以下 3 个规格条件</strong>：</p>
+
+        <div class="cond-grid">
+          <div class="cond-card">
+            <div class="cond-num">条件 1 · 分辨率上限</div>
+            <div class="cond-main">宽 × 高 ≤ 1,048,576 像素</div>
+            <div class="cond-sub">约 100 万像素（如 832×1216、1024×1024 均符合）</div>
+          </div>
+          <div class="cond-card">
+            <div class="cond-num">条件 2 · 步数上限</div>
+            <div class="cond-main">Steps／步数 ≤ 28</div>
+            <div class="cond-sub">调到 29 步或更高即超出小图规则，改走点数计费</div>
+          </div>
+          <div class="cond-card">
+            <div class="cond-num">条件 3 · 单次张数</div>
+            <div class="cond-main">单次生成 1 张</div>
+            <div class="cond-sub">批量出图（Batch &gt; 1）中多出来的图片会改扣点数</div>
+          </div>
+        </div>
+
+        <p><strong>在满足上述 3 个条件时，选不同模型的扣费区别：</strong></p>
+        <ul class="bullet-list">
+          <li><strong>选择 V4.5 模型（如 <code>nai-diffusion-4-5-full</code>）：</strong> 只要你持有有效期内的任意 Opus 套餐（含 <code>1天Opus</code>、<code>月卡：V4.5无限小图</code>、<code>4人Opus</code>、<code>单人独享Opus</code>），每张 <strong>0 点数、0 体力消耗，真正无限生成</strong>！</li>
+          <li><strong>选择 V5 模型（如 <code>nai-diffusion-5-full</code>）：</strong> 需要你的套餐包含 <strong>V5 体力</strong>（如 <code>1天Opus</code>、<code>4人Opus</code>、<code>单人独享Opus</code>），每成功生成 1 张扣 <strong>1 张 V5 体力</strong>（不扣点数）。若你买的是 <code>月卡：V4.5无限小图（无V5体力）</code>，因不含 V5 体力与点数，无法使用 V5 模型。</li>
+        </ul>
+
+        <!-- Interactive Billing Checker -->
+        <div class="checker-card">
+          <div class="checker-title">🧮 交互式扣费自测器：选一下你的套餐和参数，立即看怎么扣费</div>
+          <div class="checker-controls">
+            <div class="control-group">
+              <label for="chkTier">你的套餐档位</label>
+              <select id="chkTier">
+                <option value="v45_only">月卡：V4.5无限小图 (无V5体力)</option>
+                <option value="opus_no_pts">4人 / 1天 Opus (无点版，V5体力充足)</option>
+                <option value="opus_with_pts">4人Opus+2k点 / 单人独享Opus (含点)</option>
+                <option value="pts_only">纯点数包 (100点 / 2k点)</option>
+              </select>
+            </div>
+            <div class="control-group">
+              <label for="chkModel">选择的模型</label>
+              <select id="chkModel">
+                <option value="v45">V4.5 (nai-diffusion-4-5-full)</option>
+                <option value="v5">V5 (nai-diffusion-5-full)</option>
+              </select>
+            </div>
+            <div class="control-group">
+              <label for="chkRes">图片尺寸 (宽 × 高)</label>
+              <select id="chkRes">
+                <option value="small_832">832 × 1216 (1,011,712 像素 · 黄金尺寸)</option>
+                <option value="small_1024">1024 × 1024 (1,048,576 像素 · 刚好上限)</option>
+                <option value="small_768">768 × 1024 (786,432 像素)</option>
+                <option value="small_512">512 × 512 (262,144 像素)</option>
+                <option value="large_1536">1024 × 1536 (1,572,864 像素 · 超上限大图)</option>
+              </select>
+            </div>
+            <div class="control-group">
+              <label for="chkSteps">步数与单次张数</label>
+              <select id="chkSteps">
+                <option value="ok">步数 ≤ 28 步，单次 1 张</option>
+                <option value="over_steps">步数 &gt; 28 步（如 30 步）</option>
+                <option value="over_batch">单次批量生成 &gt; 1 张</option>
+              </select>
+            </div>
+          </div>
+          <div class="checker-result" id="chkOutput">
+            ✅ <strong>完全免费（0 点数、0 体力消耗）</strong>：符合小图规格且使用 V4.5 模型，在有效期内可无限免点生成！
+          </div>
+        </div>
+
+        <p><strong>常见尺寸举例（以本站的宽×高 ≤ 1,048,576 像素规则判断）：</strong></p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>图片尺寸</th>
+                <th class="num-col">像素数量</th>
+                <th>算本站的小图吗？</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>512 × 512</td>
+                <td class="num-col">262,144</td>
+                <td><span class="badge badge-green">✅ 算</span> 同时满足步数 ≤ 28、单次 1 张即可</td>
+              </tr>
+              <tr>
+                <td>768 × 1024</td>
+                <td class="num-col">786,432</td>
+                <td><span class="badge badge-green">✅ 算</span> 同时满足步数 ≤ 28、单次 1 张即可</td>
+              </tr>
+              <tr class="highlight-row">
+                <td><strong>832 × 1216</strong></td>
+                <td class="num-col"><strong>1,011,712</strong></td>
+                <td><span class="badge badge-green">✅ 算</span> <strong>（最常用人像/酒馆配图黄金尺寸）</strong></td>
+              </tr>
+              <tr class="highlight-row">
+                <td><strong>1024 × 1024</strong></td>
+                <td class="num-col"><strong>1,048,576</strong></td>
+                <td><span class="badge badge-green">✅ 算</span> <strong>（刚好卡在上限内）</strong></td>
+              </tr>
+              <tr>
+                <td>1024 × 1536</td>
+                <td class="num-col">1,572,864</td>
+                <td><span class="badge badge-red">❌ 不算</span> 超出像素上限，属于大图，必须扣点数</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="callout callout-warn">
+          <p><strong>注意：</strong>「小图」只是对官网标准免费额度范围（Standard Size）的简称，1024×1024 和 832×1216 清晰度已经非常高！<strong>哪怕选了小图尺寸，一旦把步数调到 29 或更高，就会超出小图规则，改走点数计费。</strong></p>
+          <p><strong>28 步与官网 23 步的区别：</strong> 28 步是本站 V5 体力额度的<strong>保守折算基准</strong>，同时也是本站小图规则允许的步数上限；只要符合小图尺寸且单次 1 张，23 步、28 步或更低步数生成的 V5 小图，在本站均按 <strong>1 张 V5 体力</strong>扣除（生成 V4.5 小图则完全免费）。</p>
+        </div>
+
+        <!-- 9.2 -->
+        <h3 class="subsection-title" id="sec-9-2">9.2 什么是「点数」？什么时候会扣点？</h3>
+        <p>把点数理解成<strong>绘图钱包里的余额</strong>即可。以下情况会消耗点数：</p>
+        <ul class="bullet-list">
+          <li><strong>纯点数套餐（100点 / 2k点）：</strong> 没有 Opus 权益，生成任何图片（无论 V4.5 还是 V5）均按点数计费。</li>
+          <li><strong>生成超规格图片（大图 / 高步数）：</strong> 宽×高超过 <code>1,048,576</code> 像素，或步数超过 <code>28 步</code>，不论什么套餐均需扣点数。</li>
+          <li><strong>一次生成多张（Batch &gt; 1）：</strong> 符合条件的第一张走小图权益，<strong>多出来的张数</strong>按点数扣除。</li>
+          <li><strong>V5 体力用尽后继续强跑 V5：</strong> 当日 V5 体力扣完后，若不切换回 V4.5 而继续使用 V5 生成，会自动改扣账户内的点数；<strong>若此时点数也为 0，请求会被拒绝</strong>（无点版用户此时只需把模型切成 V4.5，即可继续免费画小图！）。</li>
+        </ul>
+        <p><strong>重点：点数不是「张数」。</strong> 「100 点数」表示有 100 点绘图余额，<strong>不等于能画 100 张图</strong>。每张图的扣点与模型、尺寸、步数、生成张数等设置有关。</p>
+
+        <!-- 9.3 -->
+        <h3 class="subsection-title" id="sec-9-3">9.3 常见问题：100 点数到底能生成多少张图？</h3>
+        <p><strong>100 点数包是 100 点绘图余额，不是 100 张次数卡。</strong> 本站的「体验：100 点数」有效期为 <strong>30 天</strong>，不附带无限小图或 V5 体力，生成时按点数消耗。</p>
+        <p>如果使用 <strong>普通文生图、一次只生成 1 张、不使用额外收费功能</strong>，下面是按照 NovelAI 官网计费方式所做的<strong>参考估算</strong>：</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>示例设置</th>
+                <th class="num-col">预计每张消耗</th>
+                <th class="num-col">100 点数大约能出</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>V5 / V4.5 · 512×512 · 23 步</td>
+                <td class="num-col">约 <strong>8 点</strong></td>
+                <td class="num-col"><strong>12 张</strong></td>
+              </tr>
+              <tr>
+                <td>V5 / V4.5 · 832×1216 · 23 步</td>
+                <td class="num-col">约 <strong>20～26 点</strong></td>
+                <td class="num-col"><strong>3～5 张</strong></td>
+              </tr>
+              <tr>
+                <td>V5 / V4.5 · 1024×1536 · 28 步</td>
+                <td class="num-col">约 <strong>45 点</strong></td>
+                <td class="num-col"><strong>2 张</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="callout">
+          <p><strong>以上只是参考，不承诺固定张数。</strong> 本站的实际扣点应以生成时的计费信息或余额变化为准；不同模型、分辨率、步数、附加功能或客户端实现，都可能改变消耗。</p>
+          <p><strong>特别区分：</strong> 本表是<strong>普通点数扣费</strong>的示例，23 步或 28 步会影响预估点数；前文所说的“本站按 28 步保守折算”，指的是 <strong>Opus V5 体力额度换算口径</strong>，不是说所有按点计费的图片都统一按 28 步扣点。</p>
+        </div>
+
+        <p><strong>最准确的测算方法：</strong> 先选好模型、图片尺寸、步数，查看网页或客户端生成按钮显示的预计扣点；如果插件不显示，可先出 <strong>1 张</strong>，对比前后余额差。使用酒馆自动配图时，每轮对话自动触发生成也会持续扣点。</p>
+        <p style="font-size:0.88rem;color:var(--text-muted);">
+          <em>参考：</em>
+          <a href="https://docs.novelai.net/en/image/stepsguidance/" target="_blank" rel="noopener">NovelAI 官方：步数与点数关系</a> ·
+          <a href="https://github.com/RhNu/novelai-bridge/blob/main/docs/anlas-pricing.md" target="_blank" rel="noopener">针对 NovelAI 计价规则的第三方估算说明（2026-08）</a>。
+        </p>
+
+        <!-- 9.4 -->
+        <h3 class="subsection-title" id="sec-9-4">9.4 四种 Opus 档位（「V4.5月卡」「4人Opus」「单人独享」「1天Opus」）有什么区别？</h3>
+        <p>NovelAI 官网的 <strong>Opus</strong> 订阅在跑 V4.5 标准小图时不限量，而在跑最新 <strong>V5</strong> 模型时同样设有会随时间恢复的体力上限（并非 V5 也能无限制狂刷）。</p>
+        <p><strong>本站据此提供了清晰的四个阶梯档位，按需选择即可：</strong></p>
+        <ul class="bullet-list">
+          <li><strong>月卡：V4.5 无限小图（无 V5 体力）：</strong> 30 天内享 <strong>V4.5 标准小图无限免点生成</strong>，不含 V5 体力与额外点数。适合只用 V4.5 画图或酒馆日常长驻自动配图、追求极致性价比的玩家。</li>
+          <li><strong>月卡：4 人 Opus（25% V5 体力档）：</strong> 30 天内享 <strong>V4.5 无限小图</strong> ＋ <strong>V5 体力上限 280 张</strong>（每 24 小时恢复 <strong>40 张</strong>，上限不叠加）。有「无点版」和「含 2000 点数版」可选。</li>
+          <li><strong>月卡：单人独享 Opus（100% V5 体力档）：</strong> 30 天内享 <strong>V4.5 无限小图</strong> ＋ <strong>V5 体力上限 1,120 张</strong>（每 24 小时恢复 <strong>160 张</strong>）＋ <strong>10,000 点数</strong>。</li>
+          <li><strong>体验：1 天 Opus（4% V5 体力档）：</strong> 24 小时有效期内享 <strong>V4.5 无限小图</strong> ＋ 一次性发放<strong>约 44 张 V5 体力</strong>（用完不再恢复，不含额外点数）。</li>
+        </ul>
+
+        <!-- 9.5 -->
+        <h3 class="subsection-title" id="sec-9-5">9.5 四个例子，一眼看懂怎么扣费</h3>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>你要生成的设置</th>
+                <th>月卡：V4.5无限小图(无V5)</th>
+                <th>4人 / 单人 / 1天 Opus（V5体力充足时）</th>
+                <th>纯点数包（100点 / 2k点）</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>V4.5</strong>，832×1216，28 步，1 张</td>
+                <td><span class="badge badge-green">✅ 完全免费（0点0体力）</span></td>
+                <td><span class="badge badge-green">✅ 完全免费（0点0体力）</span></td>
+                <td>扣本次所需点数</td>
+              </tr>
+              <tr>
+                <td><strong>V5</strong>，1024×1024，28 步，1 张</td>
+                <td><span class="badge badge-red">❌ 不支持（无V5体力与点数）</span></td>
+                <td><span class="badge badge-green">✅ 扣 1 张 V5 体力</span>，不扣点数</td>
+                <td>扣本次所需点数</td>
+              </tr>
+              <tr>
+                <td><strong>V5 / V4.5</strong>，1024×1536（大图），28 步</td>
+                <td><span class="badge badge-red">❌ 不支持（无额外点数）</span></td>
+                <td>超出小图尺寸，<strong>扣点数</strong>（无点版会拒绝）</td>
+                <td>扣本次所需点数</td>
+              </tr>
+              <tr>
+                <td><strong>V5 / V4.5</strong>，1024×1024，30 步（超步数）</td>
+                <td><span class="badge badge-red">❌ 不支持（无额外点数）</span></td>
+                <td>超出 28 步上限，<strong>扣点数</strong>（无点版会拒绝）</td>
+                <td>扣本次所需点数</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="callout callout-success">
+          <div class="callout-title">🌟 新手省心建议</div>
+          <p>日常画图和酒馆自动配图，强烈建议固定使用 <strong>832×1216 或 1024×1024、28 步及以下、每次 1 张</strong>。买「V4.5无限小图月卡」的朋友固定选 V4.5 模型即可 30 天无限畅画；买「4人合租 Opus」的朋友平时可尽情跑 V5，万一当天 V5 体力刷完了，切回 V4.5 就能继续无缝免费出图！</p>
+        </div>
+
+        <!-- 9.6 -->
+        <h3 class="subsection-title" id="sec-9-6">9.6 不知道买哪档？按需求对号入座</h3>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>你的实际需求</th>
+                <th>推荐对应档位</th>
+                <th>需要注意</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>想花 1 块钱测试接口通不通、偶尔画几张</td>
+                <td><strong>体验：100 点数</strong></td>
+                <td>只有 100 点数（约出 3～12 张图），不带无限小图与体力</td>
+              </tr>
+              <tr>
+                <td>想低成本测试 V5 效果和 V4.5 无限小图</td>
+                <td><strong>体验：1 天 Opus</strong></td>
+                <td>含 1 天 V4.5 无限小图 + 约 44 张 V5 体力（一次性不恢复）</td>
+              </tr>
+              <tr>
+                <td>画图频率很低，但每次都要画超大图/高步数</td>
+                <td><strong>按量：2k 点数包</strong></td>
+                <td>只有 2,000 点数，按实际参数扣点，30 天有效</td>
+              </tr>
+              <tr class="highlight-row">
+                <td><strong>酒馆长驻自动配图、日常高频跑 V4.5 小图</strong></td>
+                <td><strong>🔥 月卡：V4.5 无限小图（无V5体力）</strong></td>
+                <td><strong>性价比最高！30 天 V4.5 小图无限出，注意模型必须选 V4.5</strong></td>
+              </tr>
+              <tr class="highlight-row">
+                <td><strong>主要想玩最新 V5 模型小图 + V4.5 无限小图</strong></td>
+                <td><strong>🔥 月卡：4 人 Opus 无限小图（无点）</strong></td>
+                <td>25% V5 体力（上限 280 张/日恢复 40 张）+ V4.5 无限小图</td>
+              </tr>
+              <tr>
+                <td>既想用 V5 体力画小图，偶尔也要画大图/加精</td>
+                <td><strong>月卡：4 人 Opus 无限小图+2k 点</strong></td>
+                <td>25% V5 体力 + V4.5 无限小图 + 2,000 点数</td>
+              </tr>
+              <tr>
+                <td>重度创作者，每天大量跑 V5 与高精大图</td>
+                <td><strong>月卡：单人独享 Opus（含1w点）</strong></td>
+                <td>100% 满额 V5 体力（上限 1,120 张）+ V4.5 无限小图 + 10,000 点数</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="callout">
+          <p>
+            <strong>官网参考：</strong>
+            <a href="https://docs.novelai.net/en/subscription/" target="_blank" rel="noopener">NovelAI 订阅与 ImageAnlas 说明</a> ·
+            <a href="https://docs.novelai.net/en/faq/" target="_blank" rel="noopener">NovelAI Opus V5 使用额度 FAQ</a> ·
+            <a href="https://journal.novelai.net/opus-usage-limit-explained/" target="_blank" rel="noopener">官网关于 V5 体力机制的解释</a>。这些链接用于理解官方概念，<strong>本站实际可用额度、扣费与有效期以本站的套餐表为准</strong>。
+          </p>
+        </div>
+      </article>
+
+    </main>
+  </div>
+
+  <!-- Lightbox Modal for Screenshot -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-label="图片放大预览">
+    <button type="button" class="lightbox-close" id="lightboxClose">✕ 关闭预览</button>
+    <img src="./assets/web-connect-guide.png" onerror="this.onerror=null;this.src='./绘画网站连接教程图.png';" alt="星绘网页连接设置高清教程图" />
+  </div>
+
+  <!-- Copy Toast -->
+  <div class="toast" id="toast">✅ 已复制到剪贴板</div>
+
+  <footer class="footer">
+    <p>🌸 星绘补给站｜NovelAI 兑换与接入教程 · 请妥善保管你的 <code>skr_</code> 密钥</p>
+  </footer>
+
+  <script>
+    // 1. Theme Toggle
+    (function () {
+      const root = document.documentElement;
+      const saved = localStorage.getItem('sakura_theme');
+      if (saved === 'light' || saved === 'dark') {
+        root.setAttribute('data-theme', saved);
+      }
+      document.getElementById('themeToggle').addEventListener('click', function () {
+        const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('sakura_theme', next);
+      });
+    })();
+
+    // 2. One-Click Copy with Toast
+    (function () {
+      const toast = document.getElementById('toast');
+      let timer = null;
+      function showToast(msg) {
+        toast.textContent = msg;
+        toast.classList.add('show');
+        clearTimeout(timer);
+        timer = setTimeout(() => toast.classList.remove('show'), 2000);
+      }
+
+      document.querySelectorAll('[data-copy]').forEach((btn) => {
+        btn.addEventListener('click', async function () {
+          const text = this.getAttribute('data-copy');
+          try {
+            await navigator.clipboard.writeText(text);
+            showToast('✅ 已复制：' + text);
+          } catch (e) {
+            const ta = document.createElement('textarea');
+            ta.value = text;
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand('copy');
+            document.body.removeChild(ta);
+            showToast('✅ 已复制：' + text);
+          }
+        });
+      });
+    })();
+
+    // 3. Tool Filter Tabs (Sections 2~8)
+    (function () {
+      const tabs = document.querySelectorAll('.filter-tab');
+      const sections = document.querySelectorAll('.tool-section');
+
+      function setFilter(filterId) {
+        tabs.forEach((t) => {
+          t.classList.toggle('active', t.getAttribute('data-filter') === filterId);
+        });
+        sections.forEach((sec) => {
+          if (filterId === 'all' || sec.id === filterId) {
+            sec.classList.remove('hidden-section');
+          } else {
+            sec.classList.add('hidden-section');
+          }
+        });
+      }
+
+      tabs.forEach((tab) => {
+        tab.addEventListener('click', function () {
+          setFilter(this.getAttribute('data-filter'));
+        });
+      });
+
+      // Ensure clicking a sidebar TOC link un-hides the target section if filtered
+      document.querySelectorAll('.toc-link').forEach((link) => {
+        link.addEventListener('click', function () {
+          const targetId = this.getAttribute('data-target');
+          const targetEl = document.getElementById(targetId);
+          if (targetEl && targetEl.classList.contains('hidden-section')) {
+            setFilter('all');
+          }
+        });
+      });
+    })();
+
+    // 4. Image Lightbox
+    (function () {
+      const img = document.getElementById('webGuideImg');
+      const lightbox = document.getElementById('lightbox');
+      const closeBtn = document.getElementById('lightboxClose');
+      if (img && lightbox) {
+        img.addEventListener('click', () => lightbox.classList.add('open'));
+        lightbox.addEventListener('click', () => lightbox.classList.remove('open'));
+        closeBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          lightbox.classList.remove('open');
+        });
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') lightbox.classList.remove('open');
+        });
+      }
+    })();
+
+    // 5. Interactive Billing Checker (Section 9.1)
+    (function () {
+      const tierEl = document.getElementById('chkTier');
+      const modelEl = document.getElementById('chkModel');
+      const resEl = document.getElementById('chkRes');
+      const stepsEl = document.getElementById('chkSteps');
+      const outEl = document.getElementById('chkOutput');
+
+      function updateChecker() {
+        const tier = tierEl.value;
+        const model = modelEl.value;
+        const isSmallRes = resEl.value !== 'large_1536';
+        const stepsMode = stepsEl.value;
+        const isStandardSmall = isSmallRes && stepsMode === 'ok';
+
+        if (tier === 'pts_only') {
+          outEl.innerHTML = '💰 <strong>按点数扣除：</strong>纯点数包（100点 / 2k点）不含无限小图或 V5 体力权益，生成任何图片均按实际参数扣除点数。';
+          return;
+        }
+
+        if (tier === 'v45_only') {
+          if (model === 'v5') {
+            outEl.innerHTML = '❌ <strong>不支持（请求会被拒绝）：</strong>「月卡：V4.5无限小图（无V5体力）」不含 V5 体力与额外点数，无法使用 V5 模型。<strong>请将模型切换为 V4.5（如 <code>nai-diffusion-4-5-full</code>）！</strong>';
+          } else if (isStandardSmall) {
+            outEl.innerHTML = '✅ <strong>完全免费（0 点数、0 体力消耗）：</strong>符合小图规则（像素 ≤ 1,048,576、步数 ≤ 28、单次 1 张）且使用 V4.5 模型，30 天无限免点畅画！';
+          } else {
+            outEl.innerHTML = '❌ <strong>不支持（超规格被拒绝）：</strong>当前参数超出了小图标准（大图 / 步数 &gt; 28 / 单次多张），需要消耗额外点数；该月卡不含点数，请调回 ≤1024×1024、≤28 步、单次 1 张即可免费生成。';
+          }
+          return;
+        }
+
+        // opus_no_pts or opus_with_pts
+        if (isStandardSmall) {
+          if (model === 'v45') {
+            outEl.innerHTML = '✅ <strong>完全免费（0 点数、0 体力消耗）：</strong>Opus 套餐跑符合规则的 V4.5 小图，不扣点数也不扣 V5 体力，无限畅画！';
+          } else {
+            outEl.innerHTML = '⚡ <strong>扣除 1 张 V5 体力（0 点数消耗）：</strong>符合小图规则的 V5 生成，每成功出图 1 张扣 1 张 V5 体力。若当日 V5 体力用尽，可随时切回 V4.5 继续免费无限画小图！';
+          }
+        } else {
+          if (tier === 'opus_no_pts') {
+            outEl.innerHTML = '❌ <strong>无法生成（无点版无额外点数）：</strong>当前设置超出了小图规格（宽×高 &gt; 1,048,576 / 步数 &gt; 28 / 批量出图多出的张数），必须扣点数。请将尺寸调至 ≤1024×1024（或 832×1216）、步数 ≤28、单次 1 张！';
+          } else {
+            outEl.innerHTML = '💰 <strong>需要扣除点数：</strong>当前设置超出了小图规格（大图 / 步数 &gt; 28 / 批量出图多出的张数），将从套餐附带的点数余额中扣除。';
+          }
+        }
+      }
+
+      [tierEl, modelEl, resEl, stepsEl].forEach((el) => {
+        el.addEventListener('change', updateChecker);
+      });
+    })();
+
+    // 6. Scroll-Spy for Sidebar TOC
+    (function () {
+      const links = Array.from(document.querySelectorAll('.toc-link'));
+      const sectionIds = ['sec-1', 'sec-2', 'sec-3', 'sec-4', 'sec-5', 'sec-6', 'sec-7', 'sec-8', 'sec-9'];
+      window.addEventListener('scroll', () => {
+        let current = 'sec-1';
+        for (const id of sectionIds) {
+          const el = document.getElementById(id);
+          if (el && !el.classList.contains('hidden-section')) {
+            const rect = el.getBoundingClientRect();
+            if (rect.top <= 140) {
+              current = id;
+            }
+          }
+        }
+        links.forEach((link) => {
+          const href = link.getAttribute('href');
+          link.classList.toggle('active', href === '#' + current);
+        });
+      }, { passive: true });
+    })();
+  </script>
+</body>
+</html>
