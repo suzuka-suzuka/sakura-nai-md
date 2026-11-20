@@ -1444,6 +1444,7 @@
       <li><a href="#sec-9-4" class="toc-link toc-sub" data-target="sec-9">9.4 为什么独享是 5920 张 V5 图？</a></li>
       <li><a href="#sec-9-5" class="toc-link toc-sub" data-target="sec-9">9.5 何时扣点数？100点能出几张？</a></li>
       <li><a href="#sec-9-6" class="toc-link toc-sub" data-target="sec-9">9.6 扣费实例 &amp; 选档对号入座</a></li>
+      <li><a href="#sec-9-7" class="toc-link toc-sub" data-target="sec-9">9.7 常见报错 3 秒自查</a></li>
     </ul>
   </aside>
 
@@ -2042,29 +2043,35 @@
           <p><strong>本站直连 NovelAI 官方生图模型（画质与官网 100% 一致，支持 Vibe 画风参考）；Opus 会员画 V4.5 小图完全免费不限量，画 V5 小图优先扣「V5 体力」，超规格大图或纯点数包则扣「点数」。</strong></p>
         </div>
 
-        <!-- 9.1 效果同官网吗？支持 Vibe 吗？连不上怎么办？ -->
-        <h3 class="subsection-title" id="sec-9-1">9.1 出图效果和官网一样吗？支持 Vibe 模型吗？连不上怎么办？</h3>
+        <!-- 9.1 四大高频问答：画质/Vibe、4人Opus独立额度与隐私、查余额与续费、网络连接 -->
+        <h3 class="subsection-title" id="sec-9-1">9.1 四大高频疑问：原版画质与 Vibe、独立额度与隐私、查余额与网络连接</h3>
         <div class="qa-grid">
           <div class="qa-card">
-            <div class="qa-q">🎨 Q1：出图效果和官网完全一样吗？</div>
+            <div class="qa-q">🎨 Q1：出图效果和官网一样吗？支持 Vibe 模型吗？</div>
             <div class="qa-a">
-              <strong>完全一样（100% 官方原版模型）。</strong><br />
-              本站直连 NovelAI 官方后端，提供官方原版 <code>V5</code>、<code>V4.5 Full</code>、<code>V4.5 Curated</code> 等模型，绝非本地仿制或阉割模型。在相同的模型、提示词、参数和种子（Seed）下，生成效果、细节质量与官网完全一致。
+              <strong>100% 官方原版效果，完整支持 Vibe 模型。</strong><br />
+              本站直连 NovelAI 官方后端（原版 <code>V5</code>、<code>V4.5 Full / Curated</code>），同参数同 Seed 下画质细节与官网完全一致。使用 <a href="#sec-2">星绘网页</a> 或兼容客户端均可正常使用 <strong>Vibe Transfer（多图画风参考）</strong>、图生图、局部重绘与多角色分区控制。<span style="font-size:0.84rem;color:var(--text-muted);">（若部分高级操作触发官方额外计费则扣点数，免点范围内正常走小图/体力权益。）</span>
             </div>
           </div>
           <div class="qa-card">
-            <div class="qa-q">✨ Q2：支持 Vibe 模型（Vibe Transfer）等功能吗？</div>
+            <div class="qa-q">🔒 Q2：「4人Opus」会被别人抢体力或看到我的图吗？</div>
             <div class="qa-a">
-              <strong>完整支持！功能与官网一致。</strong><br />
-              无论是使用本站 <a href="#sec-2">在线画图网页</a> 还是支持相关特性的第三方客户端（如 Aaalice、Langbai 等），均完整支持 <strong>Vibe Transfer（Vibe 模型 / 多图画风与特征提取参考）</strong>、<strong>图生图（Img2Img）</strong>、<strong>局部重绘（Inpainting）</strong> 及 <strong>多角色分区控制</strong> 等官方功能。<br />
-              <span style="font-size:0.84rem;color:var(--text-muted);">（注：若部分高级操作触发官方额外点数消耗，系统会按官方计价规则从点数余额中扣除；免点范围内的操作则正常享受小图/体力权益。）</span>
+              <strong>完全不会！额度独立计算 ＋ 隐私 100% 隔离。</strong><br />
+              「4人Opus」仅代表价格与 V5 体力按独享的 1/4 拆分；每枚 <code>skr_</code> 密钥的 <strong>280 张上限与每日 40 张恢复均为独立计算</strong>，别人画图绝不会扣你的体力。服务端不留存任何提示词与图片，<strong>网页端画完满意的图请及时点击下载保存到本地</strong>。
             </div>
           </div>
           <div class="qa-card">
-            <div class="qa-q">🌐 Q3：国内能直连吗？网页打不开或连接失败怎么办？</div>
+            <div class="qa-q">📊 Q3：哪里看剩余点数与 V5 体力？到期怎么续费？</div>
+            <div class="qa-a">
+              <strong>网页直看剩余额度 ＋ 换新密钥即续费。</strong><br />
+              连接 <a href="https://nai.tenshimomone.com/" target="_blank" rel="noopener">星绘在线画图网页</a> 后，即可直接查看当前密钥的<strong>剩余点数与 V5 体力</strong>（网页暂不显示到期时间，有效期自你兑换成功起按套餐天数计算）。到期或额度用尽后，购买新兑换码在兑换页兑出新的 <code>skr_</code> 密钥替换填入即可。
+            </div>
+          </div>
+          <div class="qa-card">
+            <div class="qa-q">🌐 Q4：国内能直连吗？网页打不开或连接失败怎么办？</div>
             <div class="qa-a">
               <strong>支持国内直连，遇阻时开启「魔法 / 梯子」即可解决。</strong><br />
-              本站所有网页与中转接口均做过国内直连优化，平时无需额外工具即可直接访问。但由于不同地区运营商（如移动宽带、校园网等）偶尔存在局部网络波动或阻断，若遇到<strong>网页打不开、验证密钥超时、或客户端/酒馆报网络错误</strong>，只需开启<strong>「魔法 / 梯子（科学上网）」</strong>（或切换节点、开启全局模式）后再试，即可立即恢复顺畅连接。
+              本站所有网页与中转接口均支持国内直连。但受不同地区运营商（如移动宽带、校园网等）局部网络波动影响，若偶尔遇到<strong>网页打不开、验证超时或客户端/酒馆报网络错误</strong>，只需开启<strong>「魔法 / 梯子（科学上网）」</strong>或切换节点后再试，即可立即恢复连接。
             </div>
           </div>
         </div>
@@ -2367,6 +2374,37 @@
                 <td>重度创作者，每天大量跑 V5 与高精大图</td>
                 <td data-label="推荐套餐"><span class="cell-val"><strong>月卡：单人独享 Opus（含1w点）</strong></span></td>
                 <td data-label="亮点与注意"><span class="cell-val">100% 满额 V5 体力（上限 1,120 张 / 日恢复 160 张，月总 5,920 张）+ V4.5 无限 + 10,000 点数</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- 9.7 常见报错 3 秒自查 -->
+        <h3 class="subsection-title" id="sec-9-7">9.7 常见报错 3 秒自查表（遇到报错先对照这里）</h3>
+        <div class="table-wrap">
+          <table class="table-data">
+            <thead>
+              <tr>
+                <th>遇到的报错 / 现象</th>
+                <th>原因与 3 秒解决方法</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>报 <code>401 / Unauthorized / 鉴权失败</code></strong></td>
+                <td data-label="解决方法"><span class="cell-val">① 检查是否没去兑换页，误把 <code>CDK-</code> 兑换码直接填进去了（必须填兑换后的 <strong><code>skr_</code> 开头密钥</strong>）；② 检查是否多加了 <code>Bearer </code> 前缀或复制了多余空格。</span></td>
+              </tr>
+              <tr>
+                <td><strong>提示 <code>额度/点数/体力不足</code> 或被拒绝生成</strong></td>
+                <td data-label="解决方法"><span class="cell-val">① 购买「V4.5无限小图（无V5）」月卡却选了 V5 模型（请将模型切换为 <strong>V4.5</strong>）；② 无点版套餐不小心把尺寸调超了（<code>&gt;1024×1024</code>）、步数调高了（<code>&gt;28步</code>）或单次张数设了 <code>&gt;1</code>。</span></td>
+              </tr>
+              <tr>
+                <td><strong>酒馆不出图 / 聊天报模型错误</strong></td>
+                <td data-label="解决方法"><span class="cell-val">检查是否把 <code>skr_</code> 绘图密钥误填到了酒馆的「主聊天 LLM 接口」里。<code>skr_</code> 密钥仅填在<strong>绘图插件的 NovelAI 渠道</strong>中，酒馆聊天仍使用你原本的聊天模型连接。</span></td>
+              </tr>
+              <tr>
+                <td><strong>报 <code>Failed to fetch / Timeout / 网络错误</code></strong></td>
+                <td data-label="解决方法"><span class="cell-val">本地运营商网络波动或局部阻断，开启<strong>「魔法 / 梯子（科学上网）」</strong>或切换节点后重试即可恢复。</span></td>
               </tr>
             </tbody>
           </table>
