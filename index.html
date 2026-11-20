@@ -1814,8 +1814,13 @@
       <article class="section-card tool-section" id="sec-5">
         <div class="section-header">
           <h2 class="section-title"><span class="section-num">5</span> 酒馆：柏宝绘</h2>
-          <span class="badge badge-sakura">SillyTavern 扩展</span>
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+            <span class="badge badge-sakura">SillyTavern 扩展</span>
+            <a href="https://github.com/baibai-git/ST-BaiBai-Image/blob/main/README.md" target="_blank" rel="noopener" class="btn">📖 柏宝绘官方文档 ↗</a>
+          </div>
         </div>
+
+        <p>完整功能与角色外貌库用法可参考 <a href="https://github.com/baibai-git/ST-BaiBai-Image/blob/main/README.md" target="_blank" rel="noopener"><strong>柏宝绘官方文档 (README.md) ↗</strong></a>。</p>
 
         <ol class="steps-list">
           <li>
@@ -1826,7 +1831,7 @@
             </div>
           </li>
           <li>安装后刷新酒馆页面，打开 <strong>柏宝绘 → 渠道 → NovelAI → 配置</strong>。</li>
-          <li>在 <strong>接入点</strong> 旁点击 <strong>＋</strong>，新建一条接入点并命名为“<strong>星绘补给站</strong>”（官方默认接入点的地址无法修改，<strong>必须新建</strong>）。</li>
+          <li>在 <strong>接入点</strong> 旁点击 <strong>＋</strong>，新建一条接入点并命名为“<strong>星绘补给站</strong>”（官方默认接入点的地址是内置固定的，<strong>必须新建一条</strong>）。</li>
           <li>
             填写以下配置：
             <div class="table-wrap">
@@ -1853,9 +1858,9 @@
               </table>
             </div>
           </li>
-          <li>点击 <strong>使用此渠道出图</strong>，确认当前选中“星绘补给站”接入点，并选择模型（<strong>「V4.5无限小图」月卡用户请务必选择 V4.5 模型</strong>；含 V5 体力或点数用户可选 V5 或 V4.5）。</li>
-          <li>在插件 <strong>设置</strong> 中，将 <strong>生成 tag 使用</strong> 保持为 <strong>跟随主 API</strong>，沿用你原本的聊天模型连接。</li>
-          <li><strong>自动配图：</strong> 开启 <strong>自动生成 tag</strong> 和 <strong>自动生成图片</strong>。<strong>手动配图：</strong> 关闭这两个开关，在 AI 回复的 <strong>⋯</strong> 菜单里点调色盘，生成提示词后点击卡片上的 <strong>生成图片</strong>。</li>
+          <li>点击 <strong>使用此渠道出图</strong>，在 <strong>NAI 出图方案</strong> 中确认选中“星绘补给站”接入点，并选择模型（<strong>「V4.5无限小图」月卡用户请务必在方案中将模型切换为 V4.5</strong>；含 V5 体力或点数用户可选 V5 或 V4.5）。</li>
+          <li><strong>写 Tag 用的对话渠道：</strong> 在插件设置中保持默认（<strong>不配置副 API 即自动跟随酒馆主 API</strong>），沿用你原本的聊天模型连接即可。</li>
+          <li><strong>自动配图：</strong> 开启 <strong>自动生成 tag</strong> 和 <strong>自动生成图片</strong>。<strong>手动配图：</strong> 可点楼层上的 <strong>「生成 tag」</strong> 按钮，或在消息 <strong>⋯</strong> 菜单里点调色盘生成提示词后点击卡片上的 <strong>生成图片</strong>。</li>
         </ol>
 
         <div class="callout">
@@ -1867,10 +1872,13 @@
       <article class="section-card tool-section" id="sec-6">
         <div class="section-header">
           <h2 class="section-title"><span class="section-num">6</span> 酒馆：小白X / LittleWhiteBox</h2>
-          <span class="badge badge-sakura">SillyTavern 扩展</span>
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+            <span class="badge badge-sakura">SillyTavern 扩展</span>
+            <a href="https://github.com/RT15548/LittleWhiteBox/blob/main/docs/user/draw.md" target="_blank" rel="noopener" class="btn">📖 小白X画图官方文档 ↗</a>
+          </div>
         </div>
 
-        <p>已安装小白X的用户可直接使用其内置的 NovelAI 画图模块（酒馆绘图插件选一种使用即可，无需同时开多个）。</p>
+        <p>已安装小白X的用户可直接使用其内置的 AI 画图模块（酒馆绘图插件选一种使用即可，无需同时开多个）。详细进阶功能可参阅 <a href="https://github.com/RT15548/LittleWhiteBox/blob/main/docs/user/draw.md" target="_blank" rel="noopener"><strong>小白X AI 画图官方文档 (draw.md) ↗</strong></a>。</p>
 
         <ol class="steps-list">
           <li>
@@ -1880,9 +1888,9 @@
               <button type="button" class="copy-btn" data-copy="https://github.com/RT15548/LittleWhiteBox">📋 复制仓库地址</button>
             </div>
           </li>
-          <li>安装后刷新，打开小白X设置，在 <strong>AI 画图 → 画图后端</strong> 中选择 <strong>NovelAI</strong>，点击 <strong>画图设置</strong>。</li>
+          <li>安装后刷新，打开 <strong>扩展设置 → 小白X → 辅助工具 → AI 画图</strong>，在 <strong>画图后端</strong> 中选择 <strong>NovelAI</strong>，再点击旁边的 <strong>画图设置</strong>。</li>
           <li>
-            打开 <strong>API 配置</strong>，按下表填写并点击 <strong>保存</strong>：
+            切换到 <strong>API 配置</strong> 页面，按下表填写后点击 <strong>保存</strong>，再点 <strong>测试连接</strong>（也可到 <code>快速测试</code> 页点 <code>生成</code> 验证出图）：
             <div class="table-wrap">
               <table class="table-config">
                 <thead>
@@ -1912,9 +1920,16 @@
               </table>
             </div>
           </li>
-          <li>在 <strong>绘图参数</strong> 中选择模型（<strong>V4.5 月卡用户请选 V4.5 模型</strong>；含 V5 体力或点数用户可选 V5 或 V4.5），并确认步数 ≤ 28、尺寸 ≤ 1024×1024。</li>
-          <li>在 <strong>场景 Agent</strong>（部分版本叫“LLM 配置”）中选用酒馆主 API，或填写你自己的聊天模型连接。</li>
-          <li>点击 AI 消息旁的 <strong>🎨</strong> 手动配图；需要自动配图时，切换为 <strong>自动模式</strong>。</li>
+          <li>切换到 <strong>绘图参数</strong> 页面，选择模型（<strong>V4.5 月卡用户请选 V4.5 模型</strong>；含 V5 体力或点数用户可选 V5 或 V4.5），并确认步数 ≤ 28、尺寸 ≤ 1024×1024。</li>
+          <li>
+            <strong>配置「场景 Agent」（⚠️ 必配项！不配的话只有“快速测试”能出图，聊天里无法配图，会报错 <code>尚未选择模型</code>）：</strong><br />
+            切换到 <strong>场景 Agent</strong> 页面——这里设置的是负责“读剧情正文、规划画面、写生图 TAG”的<strong>聊天 AI 模型</strong>（与小白助手共用同一套配置，<strong>切勿把本站 <code>skr_</code> 绘画密钥填在这里</strong>）：
+            <ul class="bullet-list" style="margin-top:6px;">
+              <li>选择你聊天模型对应的 <strong>Provider（接口类型）</strong>，例如 <code>OpenAI 兼容</code>、<code>Anthropic</code>、<code>Google AI</code>（或经由酒馆后端转发的 <code>酒馆 OpenAI 兼容</code> / <code>酒馆 Claude</code> / <code>酒馆 Google AI</code>）。</li>
+              <li>填入你<strong>聊天模型</strong>的 <code>Base URL</code> 与 <code>API Key</code>，点击 <strong>拉取模型</strong> 选好模型（或手动填写 <code>Model</code> 名称），最后点击 <strong>保存</strong>（确保面板不再显示 <code>未选择模型</code>）。</li>
+            </ul>
+          </li>
+          <li><strong>开始配图：</strong> 在聊天楼层中点击 AI 回复上的<strong>画笔小胶囊按钮</strong>即可给该楼手动配图；需要每次回复后自动画图时，在画图设置面板顶部将模式切换为 <strong>自动</strong>（也可让聊天 AI 在正文直接输出 <code>[img:TAG]</code> 标记触发出图）。</li>
         </ol>
       </article>
 
@@ -1922,8 +1937,13 @@
       <article class="section-card tool-section" id="sec-7">
         <div class="section-header">
           <h2 class="section-title"><span class="section-num">7</span> 酒馆：智绘姬 / st-chatu8</h2>
-          <span class="badge badge-sakura">SillyTavern 扩展</span>
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+            <span class="badge badge-sakura">SillyTavern 扩展</span>
+            <a href="https://github.com/damoshen123/st-chatu8/blob/main/README.md" target="_blank" rel="noopener" class="btn">📖 智绘姬官方文档 ↗</a>
+          </div>
         </div>
+
+        <p>更多触发标记与提示词替换规则可参考 <a href="https://github.com/damoshen123/st-chatu8/blob/main/README.md" target="_blank" rel="noopener"><strong>智绘姬官方文档 (README.md) ↗</strong></a>。</p>
 
         <ol class="steps-list">
           <li>
