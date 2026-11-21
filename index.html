@@ -936,6 +936,17 @@
       transform: scale(1.01);
     }
 
+    #sec-tavern-native .guide-figure {
+      width: fit-content;
+      max-width: 100%;
+      margin-top: 8px;
+    }
+
+    #sec-tavern-native .guide-img {
+      width: auto;
+      max-width: 100%;
+    }
+
     .guide-caption {
       margin-top: 8px;
       font-size: 0.82rem;
@@ -1433,6 +1444,7 @@
       <li><a href="#sec-2" class="toc-link" data-target="sec-2">2. 网页直接使用（附教程图）</a></li>
       <li><a href="#sec-3" class="toc-link" data-target="sec-3">3. Aaalice NAI Launcher</a></li>
       <li><a href="#sec-4" class="toc-link" data-target="sec-4">4. Langbai NovelAI Studio</a></li>
+      <li><a href="#sec-tavern-native" class="toc-link" data-target="sec-tavern-native">酒馆原生出图（补丁）</a></li>
       <li><a href="#sec-5" class="toc-link" data-target="sec-5">5. 酒馆：柏宝绘</a></li>
       <li><a href="#sec-6" class="toc-link" data-target="sec-6">6. 酒馆：小白X / LittleWhiteBox</a></li>
       <li><a href="#sec-7" class="toc-link" data-target="sec-7">7. 酒馆：智绘姬 / st-chatu8</a></li>
@@ -1469,7 +1481,7 @@
       <div class="hero-leads">
         <div class="lead-box">
           <strong>1️⃣ 付款后先兑换：</strong>
-          打开 <a href="https://redeem.tenshimomone.com/" target="_blank" rel="noopener">密钥兑换页 ↗</a> 将 <code>CDK-</code> 兑换码换为 <code>skr_</code> 密钥（见 <a href="#sec-1">第 1 节</a>），随后按你用的网页、客户端或酒馆插件选择 <a href="#sec-connect">第 2～8 节</a> 接入。
+          打开 <a href="https://redeem.tenshimomone.com/" target="_blank" rel="noopener">密钥兑换页 ↗</a> 将 <code>CDK-</code> 兑换码换为 <code>skr_</code> 密钥（见 <a href="#sec-1">第 1 节</a>），随后按你用的网页、客户端或酒馆选择 <a href="#sec-connect">接入方式</a>。
         </div>
         <div class="lead-box">
           <strong>2️⃣ 官方原版效果 &amp; 支持 Vibe：</strong>
@@ -1646,17 +1658,18 @@
         </ul>
       </article>
 
-      <!-- TOOL FILTER BAR FOR SECTIONS 2 ~ 8 -->
+      <!-- Tool filter -->
       <div class="filter-bar" id="sec-connect">
         <div class="filter-header">
-          <span class="filter-title">🛠️ 选择你的接入方式（第 2～8 节）：点击按钮可只看你用的工具</span>
+          <span class="filter-title">🛠️ 选择你的接入方式</span>
           <span style="font-size:0.8rem;color:var(--text-muted);">点击「显示全部」可恢复完整列表</span>
         </div>
         <div class="filter-tabs" role="tablist">
-          <button type="button" class="filter-tab active" data-filter="all">📖 显示全部 (2~8节)</button>
+          <button type="button" class="filter-tab active" data-filter="all">📖 显示全部</button>
           <button type="button" class="filter-tab" data-filter="sec-2">🌐 2. 网页直接使用</button>
           <button type="button" class="filter-tab" data-filter="sec-3">💻 3. Aaalice 客户端</button>
           <button type="button" class="filter-tab" data-filter="sec-4">🖥️ 4. Langbai 客户端</button>
+          <button type="button" class="filter-tab" data-filter="sec-tavern-native">🍺 酒馆原生出图</button>
           <button type="button" class="filter-tab" data-filter="sec-5">🍺 5. 酒馆：柏宝绘</button>
           <button type="button" class="filter-tab" data-filter="sec-6">📦 6. 酒馆：小白X</button>
           <button type="button" class="filter-tab" data-filter="sec-7">🎨 7. 酒馆：智绘姬</button>
@@ -1807,6 +1820,65 @@
           </li>
           <li>点击 <strong>验证并保存 Token</strong>（部分版本显示“验证 Token”）。</li>
           <li>打开 <strong>生成 → 文生图</strong>，选择对应模型（V4.5 月卡用户请选 V4.5），填写提示词后生成。</li>
+        </ol>
+      </article>
+
+      <article class="section-card tool-section" id="sec-tavern-native">
+        <div class="section-header">
+          <h2 class="section-title">酒馆原生出图（补丁）</h2>
+          <a href="https://github.com/suzuka-suzuka/SillyTavern-NovelAI-Relay-Patch" target="_blank" rel="noopener" class="btn">补丁仓库与撤销说明 ↗</a>
+        </div>
+        <p>此补丁适用于 <strong>SillyTavern 1.19.1</strong>，在原生图像生成设置中增加第三方 API URL。配置后可继续用 <code>/imagine</code> 或原生魔杖出图。</p>
+        <ol class="steps-list">
+          <li>
+            <strong>应用补丁。</strong>在酒馆根目录（有 <code>server.js</code> 的文件夹）打开终端，逐行运行。第二行检查通过后再执行第三行，然后重启酒馆并刷新页面。
+            <div class="code-block">
+              <span>git clone https://github.com/suzuka-suzuka/SillyTavern-NovelAI-Relay-Patch.git .nai-relay-patch<br>
+              git apply --check .nai-relay-patch/sillytavern-1.19.1.patch<br>
+              git apply .nai-relay-patch/sillytavern-1.19.1.patch</span>
+            </div>
+            升级酒馆前，按补丁仓库的说明撤销旧补丁。
+          </li>
+          <li>
+            <strong>填写图片地址。</strong>点顶部的扩展图标，打开 <strong>图像生成</strong>。来源选择 <strong>NovelAI Diffusion</strong>，在 <strong>第三方 API URL</strong> 中填入 <code>https://relay.tenshimomone.com/</code>。
+            <figure class="guide-figure">
+              <a href="./assets/tavern-novelai-relay-url.png" target="_blank" rel="noopener">
+                <img src="./assets/tavern-novelai-relay-url.png" alt="图像生成设置中选择 NovelAI Diffusion，并在第三方 API URL 填入星绘接口地址" class="guide-img" loading="lazy" />
+              </a>
+            </figure>
+          </li>
+          <li>
+            <strong>保存密钥。</strong>点顶部的插头图标打开 <strong>API 连接</strong>，在下拉框选 <strong>NovelAI</strong>。点密钥框右侧的钥匙图标，再点 <strong>添加密钥</strong>，粘贴兑换得到的 <code>skr_</code> 密钥并确认。只用来生图时，下面的文本 API「无连接」可以忽略。
+            <div class="web-guide-grid">
+              <figure class="guide-figure">
+                <a href="./assets/tavern-novelai-key-entry.png" target="_blank" rel="noopener">
+                  <img src="./assets/tavern-novelai-key-entry.png" alt="NovelAI 密钥输入框右侧的钥匙图标" class="guide-img" loading="lazy" />
+                </a>
+              </figure>
+              <figure class="guide-figure">
+                <a href="./assets/tavern-novelai-add-key.png" target="_blank" rel="noopener">
+                  <img src="./assets/tavern-novelai-add-key.png" alt="NovelAI 密钥管理弹窗右上方的添加密钥按钮" class="guide-img" loading="lazy" />
+                </a>
+              </figure>
+            </div>
+          </li>
+          <li>
+            <strong>查余额并试画。</strong>回到图像生成设置，点 <strong>查看我的 Anlas</strong>。弹出余额即表示验证通过，<code>0</code> 也是有效余额。酒馆显示的 <code>Free image generation: No</code> 来自它对官方订阅标记的判断，实际扣费按本站套餐规则计算。
+            <div class="web-guide-grid">
+              <div>
+                <p>选 <strong>NAI Diffusion Anime V4.5 (Full)</strong>，在角色聊天框输入这条命令，回车后等待图片出现。</p>
+                <div class="code-block">
+                  <span>/imagine extend=false cherry blossoms, blue sky</span>
+                  <button type="button" class="copy-btn" data-copy="/imagine extend=false cherry blossoms, blue sky">📋 复制命令</button>
+                </div>
+              </div>
+              <figure class="guide-figure">
+                <a href="./assets/tavern-novelai-anlas.png" target="_blank" rel="noopener">
+                  <img src="./assets/tavern-novelai-anlas.png" alt="余额查询成功的弹窗，示例余额为 100 Anlas" class="guide-img" loading="lazy" />
+                </a>
+              </figure>
+            </div>
+          </li>
         </ol>
       </article>
 
@@ -2516,7 +2588,7 @@
       });
     })();
 
-    // 3. Tool Filter Tabs (Sections 2~8) & Fixed Collapsible Left Sidebar TOC
+    // 3. Tool filter and collapsible sidebar
     (function () {
       const tabs = document.querySelectorAll('.filter-tab');
       const sections = document.querySelectorAll('.tool-section');
@@ -2671,7 +2743,7 @@
     // 6. Scroll-Spy for Sidebar TOC
     (function () {
       const links = Array.from(document.querySelectorAll('.toc-link'));
-      const sectionIds = ['sec-1', 'sec-2', 'sec-3', 'sec-4', 'sec-5', 'sec-6', 'sec-7', 'sec-8', 'sec-9'];
+      const sectionIds = ['sec-1', 'sec-2', 'sec-3', 'sec-4', 'sec-tavern-native', 'sec-5', 'sec-6', 'sec-7', 'sec-8', 'sec-9'];
       window.addEventListener('scroll', () => {
         let current = 'sec-1';
         for (const id of sectionIds) {
