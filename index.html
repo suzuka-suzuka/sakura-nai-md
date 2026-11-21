@@ -936,15 +936,117 @@
       transform: scale(1.01);
     }
 
+    #sec-5 .guide-figure,
     #sec-tavern-native .guide-figure {
       width: fit-content;
       max-width: 100%;
       margin-top: 8px;
     }
 
+    #sec-5 .guide-img,
     #sec-tavern-native .guide-img {
       width: auto;
       max-width: 100%;
+    }
+
+    /* Multi-line Command Group with Individual & Batch Copy */
+    .cmd-group {
+      margin: 10px 0;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      background: var(--bg-surface);
+      overflow: hidden;
+    }
+
+    .cmd-group-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 8px 14px;
+      background: var(--table-head-bg);
+      border-bottom: 1px solid var(--border-subtle);
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--text-secondary);
+    }
+
+    .cmd-list {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cmd-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 14px;
+      background: var(--code-bg);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .cmd-row:last-child {
+      border-bottom: none;
+    }
+
+    .cmd-row-main {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      min-width: 0;
+      flex: 1;
+    }
+
+    .cmd-step-label {
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+
+    .cmd-code {
+      font-family: "JetBrains Mono", Consolas, monospace;
+      font-size: 0.85rem;
+      color: var(--sakura-primary);
+      word-break: break-all;
+      line-height: 1.5;
+    }
+
+    .cmd-details {
+      margin-top: 10px;
+      border: 1px dashed var(--border-strong);
+      border-radius: var(--radius-sm);
+      background: var(--bg-surface);
+      padding: 8px 12px;
+    }
+
+    .cmd-details summary {
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text-secondary);
+      user-select: none;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .cmd-details summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .cmd-details summary:hover {
+      color: var(--sakura-primary);
+    }
+
+    .cmd-details[open] summary {
+      margin-bottom: 8px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border-subtle);
+      color: var(--sakura-primary);
     }
 
     .guide-caption {
@@ -1268,12 +1370,15 @@
         height: 22px;
         font-size: 0.76rem;
       }
-      .code-block {
+      .code-block,
+      .cmd-row {
         flex-direction: column;
         align-items: stretch;
         gap: 8px;
       }
-      .code-block .copy-btn {
+      .code-block .copy-btn,
+      .cmd-row .copy-btn,
+      .cmd-group-header .copy-btn {
         width: 100%;
         padding: 8px;
       }
@@ -1424,7 +1529,7 @@
         <div class="desktop-nav-links">
           <a href="https://redeem.tenshimomone.com/" target="_blank" rel="noopener" class="btn btn-primary">🔑 打开密钥兑换页</a>
           <a href="https://nai.tenshimomone.com/" target="_blank" rel="noopener" class="btn">🎨 网页在线画图</a>
-          <a href="#sec-9" class="btn">❓ 新手必看 FAQ</a>
+          <a href="#sec-10" class="btn">❓ 新手必看 FAQ</a>
         </div>
 
         <!-- Single Compact Theme Toggle Button (Default: Light) -->
@@ -1444,19 +1549,19 @@
       <li><a href="#sec-2" class="toc-link" data-target="sec-2">2. 网页直接使用（附教程图）</a></li>
       <li><a href="#sec-3" class="toc-link" data-target="sec-3">3. Aaalice NAI Launcher</a></li>
       <li><a href="#sec-4" class="toc-link" data-target="sec-4">4. Langbai NovelAI Studio</a></li>
-      <li><a href="#sec-tavern-native" class="toc-link" data-target="sec-tavern-native">酒馆原生出图（补丁）</a></li>
-      <li><a href="#sec-5" class="toc-link" data-target="sec-5">5. 酒馆：柏宝绘</a></li>
-      <li><a href="#sec-6" class="toc-link" data-target="sec-6">6. 酒馆：小白X / LittleWhiteBox</a></li>
-      <li><a href="#sec-7" class="toc-link" data-target="sec-7">7. 酒馆：智绘姬 / st-chatu8</a></li>
-      <li><a href="#sec-8" class="toc-link" data-target="sec-8">8. 其他支持第三方 NAI 工具</a></li>
-      <li><a href="#sec-9" class="toc-link" data-target="sec-9">9. 新手常见问题 FAQ（必看）</a></li>
-      <li><a href="#sec-9-1" class="toc-link toc-sub" data-target="sec-9">9.1 效果、Vibe 与连接问题</a></li>
-      <li><a href="#sec-9-2" class="toc-link toc-sub" data-target="sec-9">9.2 一张表搞懂四个核心词</a></li>
-      <li><a href="#sec-9-3" class="toc-link toc-sub" data-target="sec-9">9.3 什么算小图？V4.5 与 V5 扣费</a></li>
-      <li><a href="#sec-9-4" class="toc-link toc-sub" data-target="sec-9">9.4 为什么独享是 5920 张 V5 图？</a></li>
-      <li><a href="#sec-9-5" class="toc-link toc-sub" data-target="sec-9">9.5 何时扣点数？100点能出几张？</a></li>
-      <li><a href="#sec-9-6" class="toc-link toc-sub" data-target="sec-9">9.6 扣费实例 &amp; 选档对号入座</a></li>
-      <li><a href="#sec-9-7" class="toc-link toc-sub" data-target="sec-9">9.7 常见报错 3 秒自查</a></li>
+      <li><a href="#sec-5" class="toc-link" data-target="sec-5">5. 酒馆：原生出图（补丁）</a></li>
+      <li><a href="#sec-6" class="toc-link" data-target="sec-6">6. 酒馆：柏宝绘</a></li>
+      <li><a href="#sec-7" class="toc-link" data-target="sec-7">7. 酒馆：小白X / LittleWhiteBox</a></li>
+      <li><a href="#sec-8" class="toc-link" data-target="sec-8">8. 酒馆：智绘姬 / st-chatu8</a></li>
+      <li><a href="#sec-9" class="toc-link" data-target="sec-9">9. 其他支持第三方 NAI 工具</a></li>
+      <li><a href="#sec-10" class="toc-link" data-target="sec-10">10. 新手常见问题 FAQ（必看）</a></li>
+      <li><a href="#sec-10-1" class="toc-link toc-sub" data-target="sec-10">10.1 效果、Vibe 与连接问题</a></li>
+      <li><a href="#sec-10-2" class="toc-link toc-sub" data-target="sec-10">10.2 一张表搞懂四个核心词</a></li>
+      <li><a href="#sec-10-3" class="toc-link toc-sub" data-target="sec-10">10.3 什么算小图？V4.5 与 V5 扣费</a></li>
+      <li><a href="#sec-10-4" class="toc-link toc-sub" data-target="sec-10">10.4 为什么独享是 5920 张 V5 图？</a></li>
+      <li><a href="#sec-10-5" class="toc-link toc-sub" data-target="sec-10">10.5 何时扣点数？100点能出几张？</a></li>
+      <li><a href="#sec-10-6" class="toc-link toc-sub" data-target="sec-10">10.6 扣费实例 &amp; 选档对号入座</a></li>
+      <li><a href="#sec-10-7" class="toc-link toc-sub" data-target="sec-10">10.7 常见报错 3 秒自查</a></li>
     </ul>
   </aside>
 
@@ -1475,17 +1580,17 @@
       <div class="mobile-quick-actions">
         <a href="https://redeem.tenshimomone.com/" target="_blank" rel="noopener" class="btn btn-primary">🔑 密钥兑换页</a>
         <a href="https://nai.tenshimomone.com/" target="_blank" rel="noopener" class="btn">🎨 在线画图</a>
-        <a href="#sec-9" class="btn">❓ 常见疑问</a>
+        <a href="#sec-10" class="btn">❓ 常见疑问</a>
       </div>
 
       <div class="hero-leads">
         <div class="lead-box">
           <strong>1️⃣ 付款后先兑换：</strong>
-          打开 <a href="https://redeem.tenshimomone.com/" target="_blank" rel="noopener">密钥兑换页 ↗</a> 将 <code>CDK-</code> 兑换码换为 <code>skr_</code> 密钥（见 <a href="#sec-1">第 1 节</a>），随后按你用的网页、客户端或酒馆选择 <a href="#sec-connect">接入方式</a>。
+          打开 <a href="https://redeem.tenshimomone.com/" target="_blank" rel="noopener">密钥兑换页 ↗</a> 将 <code>CDK-</code> 兑换码换为 <code>skr_</code> 密钥（见 <a href="#sec-1">第 1 节</a>），随后按你用的网页、客户端或酒馆选择 <a href="#sec-connect">第 2～9 节</a> 接入。
         </div>
         <div class="lead-box">
           <strong>2️⃣ 官方原版效果 &amp; 支持 Vibe：</strong>
-          直连 NovelAI 官方 V5 / V4.5 生图模型，<strong>出图质量与官网 100% 一致</strong>，完整支持 <strong>Vibe Transfer（画风参考）</strong> 等功能。更多体力与计费答疑见 <a href="#sec-9"><strong>文末第 9 节</strong></a>。
+          直连 NovelAI 官方 V5 / V4.5 生图模型，<strong>出图质量与官网 100% 一致</strong>，完整支持 <strong>Vibe Transfer（画风参考）</strong> 等功能。更多体力与计费答疑见 <a href="#sec-10"><strong>文末第 10 节</strong></a>。
         </div>
       </div>
 
@@ -1658,22 +1763,22 @@
         </ul>
       </article>
 
-      <!-- Tool filter -->
+      <!-- TOOL FILTER BAR FOR SECTIONS 2 ~ 9 -->
       <div class="filter-bar" id="sec-connect">
         <div class="filter-header">
-          <span class="filter-title">🛠️ 选择你的接入方式</span>
+          <span class="filter-title">🛠️ 选择你的接入方式（第 2～9 节）：点击按钮可只看你用的工具</span>
           <span style="font-size:0.8rem;color:var(--text-muted);">点击「显示全部」可恢复完整列表</span>
         </div>
         <div class="filter-tabs" role="tablist">
-          <button type="button" class="filter-tab active" data-filter="all">📖 显示全部</button>
+          <button type="button" class="filter-tab active" data-filter="all">📖 显示全部 (2~9节)</button>
           <button type="button" class="filter-tab" data-filter="sec-2">🌐 2. 网页直接使用</button>
           <button type="button" class="filter-tab" data-filter="sec-3">💻 3. Aaalice 客户端</button>
           <button type="button" class="filter-tab" data-filter="sec-4">🖥️ 4. Langbai 客户端</button>
-          <button type="button" class="filter-tab" data-filter="sec-tavern-native">🍺 酒馆原生出图</button>
-          <button type="button" class="filter-tab" data-filter="sec-5">🍺 5. 酒馆：柏宝绘</button>
-          <button type="button" class="filter-tab" data-filter="sec-6">📦 6. 酒馆：小白X</button>
-          <button type="button" class="filter-tab" data-filter="sec-7">🎨 7. 酒馆：智绘姬</button>
-          <button type="button" class="filter-tab" data-filter="sec-8">🔌 8. 其他第三方工具</button>
+          <button type="button" class="filter-tab" data-filter="sec-5">🍺 5. 酒馆：原生出图</button>
+          <button type="button" class="filter-tab" data-filter="sec-6">🍺 6. 酒馆：柏宝绘</button>
+          <button type="button" class="filter-tab" data-filter="sec-7">📦 7. 酒馆：小白X</button>
+          <button type="button" class="filter-tab" data-filter="sec-8">🎨 8. 酒馆：智绘姬</button>
+          <button type="button" class="filter-tab" data-filter="sec-9">🔌 9. 其他第三方工具</button>
         </div>
       </div>
 
@@ -1823,24 +1928,84 @@
         </ol>
       </article>
 
-      <article class="section-card tool-section" id="sec-tavern-native">
+      <!-- SECTION 5: 酒馆：原生出图（补丁） -->
+      <article class="section-card tool-section" id="sec-5">
         <div class="section-header">
-          <h2 class="section-title">酒馆原生出图（补丁）</h2>
-          <a href="https://github.com/suzuka-suzuka/SillyTavern-NovelAI-Relay-Patch" target="_blank" rel="noopener" class="btn">补丁仓库与撤销说明 ↗</a>
+          <h2 class="section-title"><span class="section-num">5</span> 酒馆：原生出图（补丁）</h2>
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+            <span class="badge badge-sakura">SillyTavern 1.19.1 补丁</span>
+            <a href="https://github.com/suzuka-suzuka/SillyTavern-NovelAI-Relay-Patch" target="_blank" rel="noopener" class="btn">📖 补丁仓库与撤销说明 ↗</a>
+          </div>
         </div>
-        <p>此补丁适用于 <strong>SillyTavern 1.19.1</strong>，在原生图像生成设置中增加第三方 API URL。配置后可继续用 <code>/imagine</code> 或原生魔杖出图。</p>
+        <p>此补丁适用于 <strong>SillyTavern 1.19.1</strong>，在原生图像生成设置中增加 <strong>第三方 API URL</strong>。配置后可继续使用酒馆原生的 <code>/imagine</code> 命令、自动配图或魔杖菜单出图。</p>
         <ol class="steps-list">
           <li>
-            <strong>应用补丁。</strong>在酒馆根目录（有 <code>server.js</code> 的文件夹）打开终端，逐行运行。第二行检查通过后再执行第三行，然后重启酒馆并刷新页面。
-            <div class="code-block">
-              <span>git clone https://github.com/suzuka-suzuka/SillyTavern-NovelAI-Relay-Patch.git .nai-relay-patch<br>
-              git apply --check .nai-relay-patch/sillytavern-1.19.1.patch<br>
-              git apply .nai-relay-patch/sillytavern-1.19.1.patch</span>
+            <strong>应用补丁。</strong>在酒馆根目录（有 <code>server.js</code> 的文件夹）打开终端，依次执行以下 3 行命令（可逐行点击复制，第 2 行检查无报错后再执行第 3 行；也可一键复制全部）。完成后<strong>重启酒馆并刷新浏览器页面</strong>。
+            <div class="cmd-group">
+              <div class="cmd-group-header">
+                <span>💻 应用补丁终端命令（在 SillyTavern 根目录执行）</span>
+                <button type="button" class="copy-btn" data-copy="git clone https://github.com/suzuka-suzuka/SillyTavern-NovelAI-Relay-Patch.git .nai-relay-patch&#10;git apply --check .nai-relay-patch/sillytavern-1.19.1.patch&#10;git apply .nai-relay-patch/sillytavern-1.19.1.patch">📋 一键复制全部 (3行)</button>
+              </div>
+              <div class="cmd-list">
+                <div class="cmd-row">
+                  <div class="cmd-row-main">
+                    <span class="cmd-step-label">① 第 1 行：拉取补丁仓库到本地 .nai-relay-patch 文件夹</span>
+                    <span class="cmd-code">git clone https://github.com/suzuka-suzuka/SillyTavern-NovelAI-Relay-Patch.git .nai-relay-patch</span>
+                  </div>
+                  <button type="button" class="copy-btn" data-copy="git clone https://github.com/suzuka-suzuka/SillyTavern-NovelAI-Relay-Patch.git .nai-relay-patch">📋 复制第 1 行</button>
+                </div>
+                <div class="cmd-row">
+                  <div class="cmd-row-main">
+                    <span class="cmd-step-label">② 第 2 行：检查补丁是否兼容当前酒馆版本（无报错输出即检查通过）</span>
+                    <span class="cmd-code">git apply --check .nai-relay-patch/sillytavern-1.19.1.patch</span>
+                  </div>
+                  <button type="button" class="copy-btn" data-copy="git apply --check .nai-relay-patch/sillytavern-1.19.1.patch">📋 复制第 2 行</button>
+                </div>
+                <div class="cmd-row">
+                  <div class="cmd-row-main">
+                    <span class="cmd-step-label">③ 第 3 行：正式应用补丁（执行后重启酒馆并刷新网页）</span>
+                    <span class="cmd-code">git apply .nai-relay-patch/sillytavern-1.19.1.patch</span>
+                  </div>
+                  <button type="button" class="copy-btn" data-copy="git apply .nai-relay-patch/sillytavern-1.19.1.patch">📋 复制第 3 行</button>
+                </div>
+              </div>
             </div>
-            升级酒馆前，按补丁仓库的说明撤销旧补丁。
+            <details class="cmd-details">
+              <summary>
+                <span>🔄 升级酒馆前如何撤销旧补丁？（点击展开撤销命令行与一键复制）</span>
+                <span class="badge badge-amber">升级前必看</span>
+              </summary>
+              <p style="font-size:0.86rem;margin-bottom:8px;">日后升级 SillyTavern 前，请先在酒馆根目录执行以下 2 行命令撤销旧补丁（同样先检查再撤销）：</p>
+              <div class="cmd-group" style="margin:0;">
+                <div class="cmd-group-header">
+                  <span>💻 撤销补丁终端命令（升级酒馆前执行）</span>
+                  <button type="button" class="copy-btn" data-copy="git apply --reverse --check .nai-relay-patch/sillytavern-1.19.1.patch&#10;git apply --reverse .nai-relay-patch/sillytavern-1.19.1.patch">📋 一键复制撤销命令 (2行)</button>
+                </div>
+                <div class="cmd-list">
+                  <div class="cmd-row">
+                    <div class="cmd-row-main">
+                      <span class="cmd-step-label">① 检查能否正常撤销（无报错即可继续）</span>
+                      <span class="cmd-code">git apply --reverse --check .nai-relay-patch/sillytavern-1.19.1.patch</span>
+                    </div>
+                    <button type="button" class="copy-btn" data-copy="git apply --reverse --check .nai-relay-patch/sillytavern-1.19.1.patch">📋 复制第 1 行</button>
+                  </div>
+                  <div class="cmd-row">
+                    <div class="cmd-row-main">
+                      <span class="cmd-step-label">② 正式撤销补丁</span>
+                      <span class="cmd-code">git apply --reverse .nai-relay-patch/sillytavern-1.19.1.patch</span>
+                    </div>
+                    <button type="button" class="copy-btn" data-copy="git apply --reverse .nai-relay-patch/sillytavern-1.19.1.patch">📋 复制第 2 行</button>
+                  </div>
+                </div>
+              </div>
+            </details>
           </li>
           <li>
-            <strong>填写图片地址。</strong>点顶部的扩展图标，打开 <strong>图像生成</strong>。来源选择 <strong>NovelAI Diffusion</strong>，在 <strong>第三方 API URL</strong> 中填入 <code>https://relay.tenshimomone.com/</code>。
+            <strong>填写图片地址。</strong>点顶部的扩展图标，打开 <strong>图像生成</strong>。来源选择 <strong>NovelAI Diffusion</strong>，在 <strong>第三方 API URL</strong> 中填入星绘接口地址：
+            <div class="code-block">
+              <span>https://relay.tenshimomone.com/</span>
+              <button type="button" class="copy-btn" data-copy="https://relay.tenshimomone.com/">📋 复制接口地址</button>
+            </div>
             <figure class="guide-figure">
               <a href="./assets/tavern-novelai-relay-url.png" target="_blank" rel="noopener">
                 <img src="./assets/tavern-novelai-relay-url.png" alt="图像生成设置中选择 NovelAI Diffusion，并在第三方 API URL 填入星绘接口地址" class="guide-img" loading="lazy" />
@@ -1866,10 +2031,10 @@
             <strong>查余额并试画。</strong>回到图像生成设置，点 <strong>查看我的 Anlas</strong>。弹出余额即表示验证通过，<code>0</code> 也是有效余额。酒馆显示的 <code>Free image generation: No</code> 来自它对官方订阅标记的判断，实际扣费按本站套餐规则计算。
             <div class="web-guide-grid">
               <div>
-                <p>选 <strong>NAI Diffusion Anime V4.5 (Full)</strong>，在角色聊天框输入这条命令，回车后等待图片出现。</p>
+                <p>选 <strong>NAI Diffusion Anime V4.5 (Full)</strong>，在角色聊天框输入这条命令，回车后等待图片出现：</p>
                 <div class="code-block">
                   <span>/imagine extend=false cherry blossoms, blue sky</span>
-                  <button type="button" class="copy-btn" data-copy="/imagine extend=false cherry blossoms, blue sky">📋 复制命令</button>
+                  <button type="button" class="copy-btn" data-copy="/imagine extend=false cherry blossoms, blue sky">📋 复制测试命令</button>
                 </div>
               </div>
               <figure class="guide-figure">
@@ -1882,10 +2047,10 @@
         </ol>
       </article>
 
-      <!-- SECTION 5: 酒馆：柏宝绘 -->
-      <article class="section-card tool-section" id="sec-5">
+      <!-- SECTION 6: 酒馆：柏宝绘 -->
+      <article class="section-card tool-section" id="sec-6">
         <div class="section-header">
-          <h2 class="section-title"><span class="section-num">5</span> 酒馆：柏宝绘</h2>
+          <h2 class="section-title"><span class="section-num">6</span> 酒馆：柏宝绘</h2>
           <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
             <span class="badge badge-sakura">SillyTavern 扩展</span>
             <a href="https://github.com/baibai-git/ST-BaiBai-Image/blob/main/README.md" target="_blank" rel="noopener" class="btn">📖 柏宝绘官方文档 ↗</a>
@@ -1940,10 +2105,10 @@
         </div>
       </article>
 
-      <!-- SECTION 6: 酒馆：小白X / LittleWhiteBox -->
-      <article class="section-card tool-section" id="sec-6">
+      <!-- SECTION 7: 酒馆：小白X / LittleWhiteBox -->
+      <article class="section-card tool-section" id="sec-7">
         <div class="section-header">
-          <h2 class="section-title"><span class="section-num">6</span> 酒馆：小白X / LittleWhiteBox</h2>
+          <h2 class="section-title"><span class="section-num">7</span> 酒馆：小白X / LittleWhiteBox</h2>
           <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
             <span class="badge badge-sakura">SillyTavern 扩展</span>
             <a href="https://github.com/RT15548/LittleWhiteBox/blob/main/docs/user/draw.md" target="_blank" rel="noopener" class="btn">📖 小白X画图官方文档 ↗</a>
@@ -2005,10 +2170,10 @@
         </ol>
       </article>
 
-      <!-- SECTION 7: 酒馆：智绘姬 / st-chatu8 -->
-      <article class="section-card tool-section" id="sec-7">
+      <!-- SECTION 8: 酒馆：智绘姬 / st-chatu8 -->
+      <article class="section-card tool-section" id="sec-8">
         <div class="section-header">
-          <h2 class="section-title"><span class="section-num">7</span> 酒馆：智绘姬 / st-chatu8</h2>
+          <h2 class="section-title"><span class="section-num">8</span> 酒馆：智绘姬 / st-chatu8</h2>
           <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
             <span class="badge badge-sakura">SillyTavern 扩展</span>
             <a href="https://github.com/damoshen123/st-chatu8/blob/main/README.md" target="_blank" rel="noopener" class="btn">📖 智绘姬官方文档 ↗</a>
@@ -2084,10 +2249,10 @@
         </ol>
       </article>
 
-      <!-- SECTION 8: 其他支持第三方 NovelAI 的工具 -->
-      <article class="section-card tool-section" id="sec-8">
+      <!-- SECTION 9: 其他支持第三方 NovelAI 的工具 -->
+      <article class="section-card tool-section" id="sec-9">
         <div class="section-header">
-          <h2 class="section-title"><span class="section-num">8</span> 其他支持第三方 NovelAI 的工具</h2>
+          <h2 class="section-title"><span class="section-num">9</span> 其他支持第三方 NovelAI 的工具</h2>
           <span class="badge badge-sakura">通用配置</span>
         </div>
 
@@ -2123,10 +2288,10 @@
         <p>凡是支持 NovelAI 原生接口、且允许自定义接口地址（Base URL）的工具或插件，均可按以上三项信息接入。</p>
       </article>
 
-      <!-- SECTION 9: 新手常见问题 FAQ -->
-      <article class="section-card" id="sec-9">
+      <!-- SECTION 10: 新手常见问题 FAQ -->
+      <article class="section-card" id="sec-10">
         <div class="section-header">
-          <h2 class="section-title"><span class="section-num">9</span> 新手常见问题 FAQ（画质、Vibe、小图、体力与点数）</h2>
+          <h2 class="section-title"><span class="section-num">10</span> 新手常见问题 FAQ（画质、Vibe、小图、体力与点数）</h2>
           <span class="badge badge-amber">新手必读 · 一看就懂</span>
         </div>
 
@@ -2135,8 +2300,8 @@
           <p><strong>本站直连 NovelAI 官方生图模型（画质与官网 100% 一致，支持 Vibe 画风参考）；Opus 会员画 V4.5 小图完全免费不限量，画 V5 小图优先扣「V5 体力」，超规格大图或纯点数包则扣「点数」。</strong></p>
         </div>
 
-        <!-- 9.1 四大高频问答：画质/Vibe、4人Opus独立额度与隐私、查余额与续费、网络连接 -->
-        <h3 class="subsection-title" id="sec-9-1">9.1 四大高频疑问：原版画质与 Vibe、独立额度与隐私、查余额与网络连接</h3>
+        <!-- 10.1 四大高频问答：画质/Vibe、4人Opus独立额度与隐私、查余额与续费、网络连接 -->
+        <h3 class="subsection-title" id="sec-10-1">10.1 四大高频疑问：原版画质与 Vibe、独立额度与隐私、查余额与网络连接</h3>
         <div class="qa-grid">
           <div class="qa-card">
             <div class="qa-q">🎨 Q1：出图效果和官网一样吗？支持 Vibe 模型吗？</div>
@@ -2168,8 +2333,8 @@
           </div>
         </div>
 
-        <!-- 9.2 一张表搞懂四个核心词 -->
-        <h3 class="subsection-title" id="sec-9-2">9.2 一张表搞懂四个核心词：小图、V4.5 无限小图、V5 体力、点数</h3>
+        <!-- 10.2 一张表搞懂四个核心词 -->
+        <h3 class="subsection-title" id="sec-10-2">10.2 一张表搞懂四个核心词：小图、V4.5 无限小图、V5 体力、点数</h3>
         <div class="table-wrap">
           <table class="table-data">
             <thead>
@@ -2204,8 +2369,8 @@
           </table>
         </div>
 
-        <!-- 9.3 什么算小图？V4.5 与 V5 扣费 -->
-        <h3 class="subsection-title" id="sec-9-3">9.3 什么才算「小图」？交互式扣费自测</h3>
+        <!-- 10.3 什么算小图？V4.5 与 V5 扣费 -->
+        <h3 class="subsection-title" id="sec-10-3">10.3 什么才算「小图」？交互式扣费自测</h3>
         <p>无论使用 V4.5 还是 V5，享受「免点 / 扣体力」小图权益必须<strong>同时满足以下 3 个条件</strong>：</p>
 
         <div class="cond-grid">
@@ -2310,8 +2475,8 @@
           </table>
         </div>
 
-        <!-- 9.4 为什么独享是 5920 张 V5 图？ -->
-        <h3 class="subsection-title" id="sec-9-4">9.4 为什么官网说 Opus 每月约 7,000 张 V5，而本站独享是 5,920 张？</h3>
+        <!-- 10.4 为什么独享是 5920 张 V5 图？ -->
+        <h3 class="subsection-title" id="sec-10-4">10.4 为什么官网说 Opus 每月约 7,000 张 V5，而本站独享是 5,920 张？</h3>
         <p>不少朋友看过官网 FAQ 提到“Opus 每月可画约 7,000 张 V5 小图”，疑惑为什么本站单人独享（100% 满体力档）算下来是 <strong>5,920 张</strong>。其实<strong>两者的总体力条完全一样，只是折算的单张步数基准不同</strong>：</p>
         <ul class="bullet-list">
           <li><strong>官网的 7,000 张是以「单张 23 步」计算的：</strong> 在官方机制中，23 步消耗的体力较低，28 步消耗的体力较高。但几乎所有玩家为了画面细节，日常都会把步数拉满到免费上限 <strong>28 步</strong>，按 28 步去画，官网账号一个月实际能出的张数同样在 5,900 张左右。</li>
@@ -2328,8 +2493,8 @@
           <li><strong>直接拉满 28 步更省心：</strong> 在本站只要符合小图尺寸且步数 ≤ 28 步，生成 1 张固定扣 1 张 V5 体力。你不需要为了凑张数去降步数，<strong>每次直接设 28 步出最高画质即可</strong>。</li>
         </ul>
 
-        <!-- 9.5 何时扣点数？100点能出几张？ -->
-        <h3 class="subsection-title" id="sec-9-5">9.5 什么时候会扣「点数」？100 点数大约能画几张图？</h3>
+        <!-- 10.5 何时扣点数？100点能出几张？ -->
+        <h3 class="subsection-title" id="sec-10-5">10.5 什么时候会扣「点数」？100 点数大约能画几张图？</h3>
         <p>点数就是账户里的<strong>生图钱包余额（类似官网 ImageAnlas）</strong>，仅在以下 4 种情况扣除：</p>
         <ol class="steps-list">
           <li><strong>使用纯点数套餐（100点 / 2k点）：</strong> 无 Opus 会员权益，生成任何图片均按参数扣点。</li>
@@ -2373,8 +2538,8 @@
           <em>注：按点计费时，实际消耗随分辨率、步数、附加功能（如多张 Vibe 参考等）浮动，请以生成按钮显示的预计扣点或实际余额变化为准。参考：<a href="https://docs.novelai.net/en/image/stepsguidance/" target="_blank" rel="noopener">NovelAI 官方步数与点数说明</a>。</em>
         </p>
 
-        <!-- 9.6 四个例子一眼看懂扣费 & 选档对号入座 -->
-        <h3 class="subsection-title" id="sec-9-6">9.6 四个例子看懂扣费 &amp; 不知道买哪档对号入座</h3>
+        <!-- 10.6 四个例子一眼看懂扣费 & 选档对号入座 -->
+        <h3 class="subsection-title" id="sec-10-6">10.6 四个例子看懂扣费 &amp; 不知道买哪档对号入座</h3>
 
         <p><strong>四个典型生图场景扣费对比：</strong></p>
         <div class="table-wrap">
@@ -2471,8 +2636,8 @@
           </table>
         </div>
 
-        <!-- 9.7 常见报错 3 秒自查 -->
-        <h3 class="subsection-title" id="sec-9-7">9.7 常见报错 3 秒自查表（遇到报错先对照这里）</h3>
+        <!-- 10.7 常见报错 3 秒自查 -->
+        <h3 class="subsection-title" id="sec-10-7">10.7 常见报错 3 秒自查表（遇到报错先对照这里）</h3>
         <div class="table-wrap">
           <table class="table-data">
             <thead>
@@ -2572,9 +2737,10 @@
       document.querySelectorAll('[data-copy]').forEach((btn) => {
         btn.addEventListener('click', async function () {
           const text = this.getAttribute('data-copy');
+          const preview = text.replace(/\s*\n\s*/g, ' ; ');
           try {
             await navigator.clipboard.writeText(text);
-            showToast('✅ 已复制：' + text);
+            showToast('✅ 已复制：' + preview);
           } catch (e) {
             const ta = document.createElement('textarea');
             ta.value = text;
@@ -2582,7 +2748,7 @@
             ta.select();
             document.execCommand('copy');
             document.body.removeChild(ta);
-            showToast('✅ 已复制：' + text);
+            showToast('✅ 已复制：' + preview);
           }
         });
       });
@@ -2670,13 +2836,24 @@
       });
     })();
 
-    // 4. Image Lightbox
+    // 4. Image Lightbox (supports all .guide-img tutorial screenshots)
     (function () {
-      const img = document.getElementById('webGuideImg');
+      const guideImgs = document.querySelectorAll('.guide-img');
       const lightbox = document.getElementById('lightbox');
+      const lightboxImg = lightbox ? lightbox.querySelector('img') : null;
       const closeBtn = document.getElementById('lightboxClose');
-      if (img && lightbox) {
-        img.addEventListener('click', () => lightbox.classList.add('open'));
+      if (guideImgs.length && lightbox && lightboxImg) {
+        guideImgs.forEach((img) => {
+          img.addEventListener('click', (e) => {
+            const parentLink = img.closest('a');
+            if (parentLink) {
+              e.preventDefault();
+            }
+            lightboxImg.src = img.currentSrc || img.src;
+            lightboxImg.alt = img.alt || '教程高清预览图';
+            lightbox.classList.add('open');
+          });
+        });
         lightbox.addEventListener('click', () => lightbox.classList.remove('open'));
         closeBtn.addEventListener('click', (e) => {
           e.stopPropagation();
@@ -2688,7 +2865,7 @@
       }
     })();
 
-    // 5. Interactive Billing Checker (Section 9.3)
+    // 5. Interactive Billing Checker (Section 10.3)
     (function () {
       const tierEl = document.getElementById('chkTier');
       const modelEl = document.getElementById('chkModel');
@@ -2743,7 +2920,7 @@
     // 6. Scroll-Spy for Sidebar TOC
     (function () {
       const links = Array.from(document.querySelectorAll('.toc-link'));
-      const sectionIds = ['sec-1', 'sec-2', 'sec-3', 'sec-4', 'sec-tavern-native', 'sec-5', 'sec-6', 'sec-7', 'sec-8', 'sec-9'];
+      const sectionIds = ['sec-1', 'sec-2', 'sec-3', 'sec-4', 'sec-5', 'sec-6', 'sec-7', 'sec-8', 'sec-9', 'sec-10'];
       window.addEventListener('scroll', () => {
         let current = 'sec-1';
         for (const id of sectionIds) {
