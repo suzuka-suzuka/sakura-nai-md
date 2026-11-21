@@ -905,6 +905,19 @@
       border-color: transparent;
     }
 
+    .tavern-guide-figure {
+      width: fit-content;
+      max-width: 100%;
+      margin-top: 12px;
+    }
+
+    .tavern-guide-figure .guide-img {
+      width: auto;
+      max-width: 100%;
+      max-height: 650px;
+      object-fit: contain;
+    }
+
     /* Web Guide Image Showcase (Section 2) */
     .web-guide-grid {
       display: grid;
@@ -1938,6 +1951,15 @@
           </div>
         </div>
         <p>此补丁适用于 <strong>SillyTavern 1.19.1</strong>，在原生图像生成设置中增加 <strong>第三方 API URL</strong>。配置后可继续使用酒馆原生的 <code>/imagine</code> 命令、自动配图或魔杖菜单出图。</p>
+        <h3 id="tavern-chat-model" class="subsection-title">先接通聊天模型</h3>
+        <p>聊天模型负责写回复、配文和绘图 Tag，NovelAI 负责出图。用 DeepSeek 时，点顶部的<strong>插头图标 → 聊天补全 → DeepSeek</strong>，点钥匙图标添加自己的 DeepSeek API Key，再点<strong>连接</strong>，模型选 <code>deepseek-flash</code>。添加绘图密钥后，回到<strong>聊天补全</strong>继续对话。</p>
+        <figure class="guide-figure tavern-guide-figure">
+          <a href="./assets/tavern-chat-deepseek.png" target="_blank" rel="noopener">
+            <img src="./assets/tavern-chat-deepseek.png" alt="API 连接面板依次选择聊天补全、DeepSeek、管理 API 密钥和 DeepSeek Flash 模型" class="guide-img" loading="lazy" />
+          </a>
+        </figure>
+        <p>先发一句「用一句中文描写撑伞走过樱花小巷的旅人」，确认酒馆能收到回复。想手动配图时，可请聊天模型另外给出一行逗号分隔的英文绘图 Tag。</p>
+
         <ol class="steps-list">
           <li>
             <strong>应用补丁。</strong>在酒馆根目录（有 <code>server.js</code> 的文件夹）打开终端，依次执行以下 3 行命令（可逐行点击复制，第 2 行检查无报错后再执行第 3 行；也可一键复制全部）。完成后<strong>重启酒馆并刷新浏览器页面</strong>。
@@ -2007,8 +2029,8 @@
               <button type="button" class="copy-btn" data-copy="https://relay.tenshimomone.com/">📋 复制接口地址</button>
             </div>
             <figure class="guide-figure">
-              <a href="./assets/tavern-novelai-relay-url.png" target="_blank" rel="noopener">
-                <img src="./assets/tavern-novelai-relay-url.png" alt="图像生成设置中选择 NovelAI Diffusion，并在第三方 API URL 填入星绘接口地址" class="guide-img" loading="lazy" />
+              <a href="./assets/tavern-native-settings.png" target="_blank" rel="noopener">
+                <img src="./assets/tavern-native-settings.png" alt="图像生成设置中选择 NovelAI Diffusion，并在第三方 API URL 填入星绘接口地址" class="guide-img" loading="lazy" />
               </a>
             </figure>
           </li>
@@ -2045,6 +2067,14 @@
             </div>
           </li>
         </ol>
+
+        <h3 class="subsection-title">给聊天正文配图</h3>
+        <p>已有一条角色回复时，可输入 <code>/imagine last message</code>，让酒馆先根据最近一条消息写提示词，再调用 NovelAI。想控制画面内容时，先让聊天模型写一行英文 Tag，再用 <code>/imagine extend=false</code> 加上这行 Tag。下图把 DeepSeek 从同一段剧情生成的中文配文和 NovelAI 插图放在一段聊天里。</p>
+        <figure class="guide-figure tavern-guide-figure">
+          <a href="./assets/tavern-chat-result.png" target="_blank" rel="noopener">
+            <img src="./assets/tavern-chat-result.png" alt="酒馆聊天实测结果，DeepSeek 生成中文配文，NovelAI 在同一段聊天里显示樱花小巷插图" class="guide-img" loading="lazy" />
+          </a>
+        </figure>
       </article>
 
       <!-- SECTION 6: 酒馆：柏宝绘 -->
@@ -2059,18 +2089,33 @@
 
         <p>完整功能与角色外貌库用法可参考 <a href="https://github.com/baibai-git/ST-BaiBai-Image/blob/main/README.md" target="_blank" rel="noopener"><strong>柏宝绘官方文档 (README.md) ↗</strong></a>。</p>
 
+        <h3 id="tavern-install-extension" class="subsection-title">安装酒馆扩展</h3>
+        <p>柏宝绘、小白X 和智绘姬共用此入口。点击顶部<strong>扩展程序</strong>图标，再点<strong>安装扩展程序</strong>。把所选扩展的仓库地址粘贴到弹窗的 URL 输入框，分支留空，点<strong>只给我安装</strong>。安装好后刷新酒馆。</p>
+        <figure class="guide-figure tavern-guide-figure">
+          <a href="./assets/tavern-extension-setup.png" target="_blank" rel="noopener">
+            <img src="./assets/tavern-extension-setup.png" alt="从顶部扩展程序打开安装扩展程序，在弹窗粘贴仓库地址并选择只给我安装" class="guide-img" loading="lazy" />
+          </a>
+        </figure>
+
         <ol class="steps-list">
           <li>
-            在 SillyTavern 的 <strong>扩展 → 安装扩展</strong> 中粘贴以下仓库地址安装：
+            柏宝绘的仓库地址如下。
             <div class="code-block">
               <span>https://github.com/baibai-git/ST-BaiBai-Image</span>
               <button type="button" class="copy-btn" data-copy="https://github.com/baibai-git/ST-BaiBai-Image">📋 复制仓库地址</button>
             </div>
           </li>
-          <li>安装后刷新酒馆页面，打开 <strong>柏宝绘 → 渠道 → NovelAI → 配置</strong>。</li>
-          <li>在 <strong>接入点</strong> 旁点击 <strong>＋</strong>，新建一条接入点并命名为“<strong>星绘补给站</strong>”（官方默认接入点的地址是内置固定的，<strong>必须新建一条</strong>）。</li>
           <li>
-            填写以下配置：
+            点击聊天框左侧的<strong>魔杖 → 柏宝绘</strong>，再打开 <strong>渠道 → NAI</strong>。
+            <figure class="guide-figure tavern-guide-figure">
+              <a href="./assets/tavern-baibai-entry.png" target="_blank" rel="noopener">
+                <img src="./assets/tavern-baibai-entry.png" alt="从聊天框左侧的魔杖菜单打开柏宝绘" class="guide-img" loading="lazy" />
+              </a>
+            </figure>
+          </li>
+          <li>展开 <strong>接入点</strong>，点 <strong>添加接入点</strong>，名称填 <strong>星绘补给站</strong>。</li>
+          <li>
+            按下表填写地址、密钥，再点 <strong>完成</strong>。
             <div class="table-wrap">
               <table class="table-config">
                 <thead>
@@ -2094,15 +2139,49 @@
                 </tbody>
               </table>
             </div>
+            <figure class="guide-figure tavern-guide-figure">
+              <a href="./assets/tavern-baibai-novelai.png" target="_blank" rel="noopener">
+                <img src="./assets/tavern-baibai-novelai.png" alt="柏宝绘的 NovelAI 渠道配置，新增星绘补给站接入点并设置接口地址和 API Key" class="guide-img" loading="lazy" />
+              </a>
+            </figure>
           </li>
-          <li>点击 <strong>使用此渠道出图</strong>，在 <strong>NAI 出图方案</strong> 中确认选中“星绘补给站”接入点，并选择模型（<strong>「V4.5无限小图」月卡用户请务必在方案中将模型切换为 V4.5</strong>；含 V5 体力或点数用户可选 V5 或 V4.5）。</li>
+          <li>在 <strong>出图方案</strong> 中点铅笔编辑当前方案，把接入点切到 <strong>星绘补给站</strong>，选择模型并保存，再点 <strong>用 NovelAI 出图</strong>（<strong>「V4.5无限小图」月卡用户请务必在方案中将模型切换为 V4.5</strong>；含 V5 体力或点数用户可选 V5 或 V4.5）。</li>
           <li><strong>写 Tag 用的对话渠道：</strong> 在插件设置中保持默认（<strong>不配置副 API 即自动跟随酒馆主 API</strong>），沿用你原本的聊天模型连接即可。</li>
-          <li><strong>自动配图：</strong> 开启 <strong>自动生成 tag</strong> 和 <strong>自动生成图片</strong>。<strong>手动配图：</strong> 可点楼层上的 <strong>「生成 tag」</strong> 按钮，或在消息 <strong>⋯</strong> 菜单里点调色盘生成提示词后点击卡片上的 <strong>生成图片</strong>。</li>
         </ol>
 
-        <div class="callout">
-          <p><em>注：本站密钥只填在 NovelAI 绘图接入点中，酒馆聊天模型仍使用你原本的聊天 Key，互不冲突。</em></p>
-        </div>
+        <h3 class="subsection-title" id="tavern-baibai-chat">在聊天中配图</h3>
+        <ol class="steps-list">
+          <li>
+            <strong>打开回复的配图入口。</strong>先用酒馆的聊天模型聊出一条角色回复，点这条 AI 回复右上角的 <strong>⋯</strong>，再点<strong>调色盘</strong>。鼠标悬停会显示「生成生图 tag」。
+            <figure class="guide-figure tavern-guide-figure">
+              <a href="./assets/tavern-baibai-message-menu.png" target="_blank" rel="noopener">
+                <img src="./assets/tavern-baibai-message-menu.png" alt="柏宝绘的聊天楼层入口，先点回复右上角的省略号，再点调色盘生成绘图 Tag" class="guide-img" loading="lazy" />
+              </a>
+            </figure>
+          </li>
+          <li>
+            <strong>生成图片。</strong>柏宝绘会读取本楼正文，在同一楼插入配图卡片。点卡片上的<strong>生成图片</strong>，等待 NovelAI 出图。想逐张确认时，先关闭「自动生成图片」。
+            <figure class="guide-figure tavern-guide-figure">
+              <a href="./assets/tavern-baibai-message-tags.png" target="_blank" rel="noopener">
+                <img src="./assets/tavern-baibai-message-tags.png" alt="柏宝绘读取回复后在同一楼层插入绘图卡片，框出生成图片按钮" class="guide-img" loading="lazy" />
+              </a>
+            </figure>
+          </li>
+          <li>
+            <strong>查看图片。</strong>生成后的插图会显示在刚才那条回复的卡片里。
+            <figure class="guide-figure tavern-guide-figure">
+              <a href="./assets/tavern-baibai-message-result.png" target="_blank" rel="noopener">
+                <img src="./assets/tavern-baibai-message-result.png" alt="柏宝绘用 NovelAI V4.5 生成的插图显示在原回复的绘图卡片内" class="guide-img" loading="lazy" />
+              </a>
+            </figure>
+          </li>
+        </ol>
+        <p><strong>自动配图。</strong>打开 <strong>设置 → 自动生成 tag</strong>，勾上<strong>自动生成 tag</strong>和<strong>自动生成图片</strong>。角色回复完成后，柏宝绘会判断该楼是否需要插图，再写 Tag 并出图。</p>
+        <figure class="guide-figure tavern-guide-figure">
+          <a href="./assets/tavern-baibai-chat.png" target="_blank" rel="noopener">
+            <img src="./assets/tavern-baibai-chat.png" alt="柏宝绘设置中的自动生成 tag 和自动生成图片开关" class="guide-img" loading="lazy" />
+          </a>
+        </figure>
       </article>
 
       <!-- SECTION 7: 酒馆：小白X / LittleWhiteBox -->
@@ -2119,13 +2198,19 @@
 
         <ol class="steps-list">
           <li>
-            在酒馆 <strong>扩展 → 安装扩展</strong> 中粘贴：
+            按<a href="#tavern-install-extension" data-tavern-install>安装扩展图示</a>打开安装窗口，粘贴小白X 的仓库地址。
             <div class="code-block">
               <span>https://github.com/RT15548/LittleWhiteBox</span>
               <button type="button" class="copy-btn" data-copy="https://github.com/RT15548/LittleWhiteBox">📋 复制仓库地址</button>
             </div>
           </li>
-          <li>安装后刷新，打开 <strong>扩展设置 → 小白X → 辅助工具 → AI 画图</strong>，在 <strong>画图后端</strong> 中选择 <strong>NovelAI</strong>，再点击旁边的 <strong>画图设置</strong>。</li>
+          <li>安装后刷新，打开 <strong>扩展设置 → 小白X → 辅助工具 → AI 画图</strong>，在 <strong>画图后端</strong> 中选择 <strong>NovelAI</strong>，再点击旁边的 <strong>画图设置</strong>。
+            <figure class="guide-figure tavern-guide-figure">
+              <a href="./assets/tavern-whitebox-entry.png" target="_blank" rel="noopener">
+                <img src="./assets/tavern-whitebox-entry.png" alt="小白X 的辅助工具中选择 NovelAI 画图后端并打开画图设置" class="guide-img" loading="lazy" />
+              </a>
+            </figure>
+          </li>
           <li>
             切换到 <strong>API 配置</strong> 页面，按下表填写后点击 <strong>保存</strong>，再点 <strong>测试连接</strong>（也可到 <code>快速测试</code> 页点 <code>生成</code> 验证出图）：
             <div class="table-wrap">
@@ -2156,17 +2241,45 @@
                 </tbody>
               </table>
             </div>
+            <figure class="guide-figure tavern-guide-figure">
+              <a href="./assets/tavern-whitebox-api.png" target="_blank" rel="noopener">
+                <img src="./assets/tavern-whitebox-api.png" alt="小白X 的 API 配置页，标出密钥、第三方端点、前端直连和保存" class="guide-img" loading="lazy" />
+              </a>
+            </figure>
           </li>
-          <li>切换到 <strong>绘图参数</strong> 页面，选择模型（<strong>V4.5 月卡用户请选 V4.5 模型</strong>；含 V5 体力或点数用户可选 V5 或 V4.5），并确认步数 ≤ 28、尺寸 ≤ 1024×1024。</li>
+          <li>在 <strong>绘图参数</strong> 中选 <strong>NAI V4.5 Full</strong>，示例使用 <code>832×1216</code>、<code>28 步</code>。当前星绘与小白X 的 V5 接入尚未兼容，请先使用 V4.5。
+            <figure class="guide-figure tavern-guide-figure">
+              <a href="./assets/tavern-whitebox-v45.png" target="_blank" rel="noopener">
+                <img src="./assets/tavern-whitebox-v45.png" alt="小白X 绘图参数示例，模型选 NAI V4.5 Full，尺寸 832×1216，步数 28" class="guide-img" loading="lazy" />
+              </a>
+            </figure>
+          </li>
           <li>
             <strong>配置「场景 Agent」（⚠️ 必配项！不配的话只有“快速测试”能出图，聊天里无法配图，会报错 <code>尚未选择模型</code>）：</strong><br />
             切换到 <strong>场景 Agent</strong> 页面——这里设置的是负责“读剧情正文、规划画面、写生图 TAG”的<strong>聊天 AI 模型</strong>（与小白助手共用同一套配置，<strong>切勿把本站 <code>skr_</code> 绘画密钥填在这里</strong>）：
             <ul class="bullet-list" style="margin-top:6px;">
               <li>选择你聊天模型对应的 <strong>Provider（接口类型）</strong>，例如 <code>OpenAI 兼容</code>、<code>Anthropic</code>、<code>Google AI</code>（或经由酒馆后端转发的 <code>酒馆 OpenAI 兼容</code> / <code>酒馆 Claude</code> / <code>酒馆 Google AI</code>）。</li>
               <li>填入你<strong>聊天模型</strong>的 <code>Base URL</code> 与 <code>API Key</code>，点击 <strong>拉取模型</strong> 选好模型（或手动填写 <code>Model</code> 名称），最后点击 <strong>保存</strong>（确保面板不再显示 <code>未选择模型</code>）。</li>
+              <li>用 DeepSeek 时可选 <strong>OpenAI 兼容</strong>，<code>Base URL</code> 填 <code>https://api.deepseek.com</code>，模型填 <code>deepseek-flash</code>，填写自己的 DeepSeek API Key，把<strong>思考模式</strong>设为<strong>关闭</strong>后保存。</li>
             </ul>
+            <figure class="guide-figure tavern-guide-figure">
+              <a href="./assets/tavern-whitebox-agent.png" target="_blank" rel="noopener">
+                <img src="./assets/tavern-whitebox-agent.png" alt="小白X 场景 Agent 中的 OpenAI 兼容服务、Base URL、模型和保存入口" class="guide-img" loading="lazy" />
+              </a>
+            </figure>
           </li>
-          <li><strong>开始配图：</strong> 在聊天楼层中点击 AI 回复上的<strong>画笔小胶囊按钮</strong>即可给该楼手动配图；需要每次回复后自动画图时，在画图设置面板顶部将模式切换为 <strong>自动</strong>（也可让聊天 AI 在正文直接输出 <code>[img:TAG]</code> 标记触发出图）。</li>
+          <li><strong>开始配图：</strong> 点击 AI 回复右上角小胶囊里的<strong>调色盘按钮</strong>，图片会插回这一楼；需要每次回复后自动画图时，在画图设置面板顶部将模式切换为 <strong>自动</strong>（也可让聊天 AI 在正文直接输出 <code>[img:TAG]</code> 标记触发出图）。
+            <figure class="guide-figure tavern-guide-figure">
+              <a href="./assets/tavern-whitebox-brush.png" target="_blank" rel="noopener">
+                <img src="./assets/tavern-whitebox-brush.png" alt="小白X 在角色回复右上角提供手动配图的调色盘按钮" class="guide-img" loading="lazy" />
+              </a>
+            </figure>
+            <figure class="guide-figure tavern-guide-figure">
+              <a href="./assets/tavern-whitebox-result.png" target="_blank" rel="noopener">
+                <img src="./assets/tavern-whitebox-result.png" alt="小白X 使用 NovelAI V4.5 Full 生成的图片出现在原聊天回复内" class="guide-img" loading="lazy" />
+              </a>
+            </figure>
+          </li>
         </ol>
       </article>
 
@@ -2184,13 +2297,19 @@
 
         <ol class="steps-list">
           <li>
-            在酒馆 <strong>扩展 → 安装扩展</strong> 中粘贴仓库地址：
+            按<a href="#tavern-install-extension" data-tavern-install>安装扩展图示</a>打开安装窗口，粘贴智绘姬的仓库地址。
             <div class="code-block">
               <span>https://github.com/damoshen123/st-chatu8</span>
               <button type="button" class="copy-btn" data-copy="https://github.com/damoshen123/st-chatu8">📋 复制仓库地址</button>
             </div>
           </li>
-          <li>安装后刷新页面，打开 <strong>智绘姬（st-chatu8）</strong> 设置面板。在 <strong>主要设置</strong> 中开启 <strong>启用插件</strong>，将 <strong>模式</strong> 选为 <strong>NovelAI</strong>，将 <strong>客户端</strong> 选为 <strong>浏览器</strong>。</li>
+          <li>安装后刷新页面，点击<strong>画笔悬浮球</strong>打开智绘姬设置。在 <strong>主要设置</strong> 中开启 <strong>启用插件</strong>，将 <strong>模式</strong> 选为 <strong>NovelAI</strong>，将 <strong>客户端</strong> 选为 <strong>浏览器</strong>。
+            <figure class="guide-figure tavern-guide-figure">
+              <a href="./assets/tavern-chatu8-main.png" target="_blank" rel="noopener">
+                <img src="./assets/tavern-chatu8-main.png" alt="智绘姬主要设置，启用插件、模式选择 NovelAI、客户端选择浏览器" class="guide-img" loading="lazy" />
+              </a>
+            </figure>
+          </li>
           <li>
             切换到左侧 <strong>NovelAI</strong> 页面，按下表填写：
             <div class="table-wrap">
@@ -2223,14 +2342,14 @@
                     <td><strong>关闭</strong></td>
                     <td><span class="badge badge-red">❌ 关闭</span></td>
                   </tr>
-                  <tr>
-                    <td><strong>队列服务地址</strong></td>
-                    <td>留空</td>
-                    <td><span class="badge badge-sakura">留空</span></td>
-                  </tr>
                 </tbody>
               </table>
             </div>
+            <figure class="guide-figure tavern-guide-figure">
+              <a href="./assets/tavern-chatu8-novelai.png" target="_blank" rel="noopener">
+                <img src="./assets/tavern-chatu8-novelai.png" alt="智绘姬 NovelAI 配置，站点选其他站点、填写接口地址、关闭云端队列并选择 V4.5" class="guide-img" loading="lazy" />
+              </a>
+            </figure>
           </li>
           <li>
             在下方 <strong>模型</strong> 中选择你要使用的模型：
@@ -2245,8 +2364,50 @@
               </li>
             </ul>
           </li>
-          <li>已有智绘姬配图预设的用户，继续按原来的方式生图即可。本站密钥只填在 <strong>NovelAI API</strong> 中，酒馆聊天或插件 LLM 仍使用你原本的聊天模型连接。</li>
         </ol>
+
+        <h3 class="subsection-title" id="tavern-chatu8-chat">在聊天中配图</h3>
+        <ol class="steps-list">
+          <li>
+            <strong>让角色回复带上绘图标记。</strong>先在<strong>主要设置 → 提示词标记与储存</strong>查看起止符号。智绘姬 3.2.1 默认用 <code>image###</code> 开头、<code>###</code> 结尾。可以在酒馆发送下面的测试消息，让聊天模型将标记附在正文末尾。
+            <div class="code-block">
+              <span>写两句中文，描写旅人撑伞走过雨后的樱花小巷。正文之后另起一行，原样输出这条绘图标记：image###traveling girl, transparent umbrella, cherry blossom alley, falling petals, stone pavement, paper lanterns, dusk###</span>
+              <button type="button" class="copy-btn" data-copy="写两句中文，描写旅人撑伞走过雨后的樱花小巷。正文之后另起一行，原样输出这条绘图标记：image###traveling girl, transparent umbrella, cherry blossom alley, falling petals, stone pavement, paper lanterns, dusk###">📋 复制聊天测试消息</button>
+            </div>
+            <p>已经有角色回复时，可点回复右上角的<strong>铅笔</strong>，在正文末尾另起一行贴上标记，再点<strong>绿色勾号</strong>保存。</p>
+            <div class="code-block">
+              <span>image###traveling girl, transparent umbrella, cherry blossom alley, falling petals, stone pavement, paper lanterns, dusk###</span>
+              <button type="button" class="copy-btn" data-copy="image###traveling girl, transparent umbrella, cherry blossom alley, falling petals, stone pavement, paper lanterns, dusk###">📋 复制绘图标记</button>
+            </div>
+            <figure class="guide-figure tavern-guide-figure">
+              <a href="./assets/tavern-chatu8-message-edit.png" target="_blank" rel="noopener">
+                <img src="./assets/tavern-chatu8-message-edit.png" alt="在酒馆的回复编辑框末尾添加智绘姬的绘图标记，再点击绿色勾号保存" class="guide-img" loading="lazy" />
+              </a>
+            </figure>
+          </li>
+          <li>
+            <strong>点击生成图片。</strong>识别成功后，绘图标记在正文中变成<strong>生成图片</strong>按钮。编辑后若还显示原始标记，可刷新酒馆并重新打开这段聊天。
+            <figure class="guide-figure tavern-guide-figure">
+              <a href="./assets/tavern-chatu8-message-generate.png" target="_blank" rel="noopener">
+                <img src="./assets/tavern-chatu8-message-generate.png" alt="智绘姬将绘图标记转为生成图片按钮，按钮显示在角色回复正文内" class="guide-img" loading="lazy" />
+              </a>
+            </figure>
+          </li>
+          <li>
+            <strong>查看同一楼的插图。</strong>NovelAI 出图后，图片会显示在这条角色回复里。
+            <figure class="guide-figure tavern-guide-figure">
+              <a href="./assets/tavern-chatu8-message-result.png" target="_blank" rel="noopener">
+                <img src="./assets/tavern-chatu8-message-result.png" alt="智绘姬用 NovelAI V4.5 生成的插图显示在原回复正文中" class="guide-img" loading="lazy" />
+              </a>
+            </figure>
+          </li>
+        </ol>
+        <p><strong>自动配图。</strong>让聊天模型或配图预设继续输出同样的标记，再到 <strong>主要设置 → 自动化与生成控制</strong> 开启<strong>自动点击生成</strong>。新回复出现绘图标记时，插件会自动点击对应的生成按钮。已有独立 LLM 配图预设时，<strong>LLM</strong> 页填写聊天模型的 API Key。</p>
+        <figure class="guide-figure tavern-guide-figure">
+          <a href="./assets/tavern-chatu8-message-auto.png" target="_blank" rel="noopener">
+            <img src="./assets/tavern-chatu8-message-auto.png" alt="智绘姬主要设置内的自动点击生成开关" class="guide-img" loading="lazy" />
+          </a>
+        </figure>
       </article>
 
       <!-- SECTION 9: 其他支持第三方 NovelAI 的工具 -->
@@ -2780,6 +2941,14 @@
       tabs.forEach((tab) => {
         tab.addEventListener('click', function () {
           setFilter(this.getAttribute('data-filter'));
+        });
+      });
+
+      document.querySelectorAll('[data-tavern-install]').forEach((link) => {
+        link.addEventListener('click', () => {
+          if (document.getElementById('sec-6').classList.contains('hidden-section')) {
+            setFilter('all');
+          }
         });
       });
 
