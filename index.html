@@ -1026,42 +1026,6 @@
       line-height: 1.5;
     }
 
-    .cmd-details {
-      margin-top: 10px;
-      border: 1px dashed var(--border-strong);
-      border-radius: var(--radius-sm);
-      background: var(--bg-surface);
-      padding: 8px 12px;
-    }
-
-    .cmd-details summary {
-      cursor: pointer;
-      font-size: 0.85rem;
-      font-weight: 700;
-      color: var(--text-secondary);
-      user-select: none;
-      list-style: none;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
-    }
-
-    .cmd-details summary::-webkit-details-marker {
-      display: none;
-    }
-
-    .cmd-details summary:hover {
-      color: var(--sakura-primary);
-    }
-
-    .cmd-details[open] summary {
-      margin-bottom: 8px;
-      padding-bottom: 8px;
-      border-bottom: 1px solid var(--border-subtle);
-      color: var(--sakura-primary);
-    }
-
     .guide-caption {
       margin-top: 8px;
       font-size: 0.82rem;
@@ -1950,7 +1914,7 @@
             <a href="https://github.com/suzuka-suzuka/SillyTavern-NovelAI-Relay-Patch" target="_blank" rel="noopener" class="btn">📖 补丁仓库与撤销说明 ↗</a>
           </div>
         </div>
-        <p>此补丁适用于 <strong>SillyTavern 1.19.1</strong>，在原生图像生成设置中增加 <strong>第三方 API URL</strong>。配置后可继续使用酒馆原生的 <code>/imagine</code> 命令、自动配图或魔杖菜单出图。</p>
+        <p>此补丁已在 <strong>SillyTavern 1.19.1</strong> 验证，为原生图像生成增加 <strong>第三方 API URL</strong> 和 <strong>V5 Full / V5 Curated</strong> 模型。配置后可继续使用酒馆原生的 <code>/imagine</code> 命令、自动配图或魔杖菜单出图。</p>
         <h3 id="tavern-chat-model" class="subsection-title">先接通聊天模型</h3>
         <p>聊天模型负责写回复、配文和绘图 Tag，NovelAI 负责出图。用 DeepSeek 时，点顶部的<strong>插头图标 → 聊天补全 → DeepSeek</strong>，点钥匙图标添加自己的 DeepSeek API Key，再点<strong>连接</strong>，模型选 <code>deepseek-flash</code>。添加绘图密钥后，回到<strong>聊天补全</strong>继续对话。</p>
         <figure class="guide-figure tavern-guide-figure">
@@ -1962,65 +1926,27 @@
 
         <ol class="steps-list">
           <li>
-            <strong>应用补丁。</strong>在酒馆根目录（有 <code>server.js</code> 的文件夹）打开终端，依次执行以下 3 行命令（可逐行点击复制，第 2 行检查无报错后再执行第 3 行；也可一键复制全部）。完成后<strong>重启酒馆并刷新浏览器页面</strong>。
+            <strong>安装或更新补丁。</strong>新旧用户用同一套命令。Windows 下，在酒馆根目录（有 <code>server.js</code> 的文件夹）打开终端并执行下面两行。脚本会自动安装或更新，完成后<strong>重启酒馆并刷新网页</strong>。
             <div class="cmd-group">
               <div class="cmd-group-header">
-                <span>💻 应用补丁终端命令（在 SillyTavern 根目录执行）</span>
-                <button type="button" class="copy-btn" data-copy="git clone https://github.com/suzuka-suzuka/SillyTavern-NovelAI-Relay-Patch.git .nai-relay-patch&#10;git apply --check .nai-relay-patch/sillytavern-1.19.1.patch&#10;git apply .nai-relay-patch/sillytavern-1.19.1.patch">📋 一键复制全部 (3行)</button>
+                <span>安装或更新命令</span>
+                <button type="button" class="copy-btn" data-copy="curl.exe -fL https://raw.githubusercontent.com/suzuka-suzuka/SillyTavern-NovelAI-Relay-Patch/main/install.mjs -o .nai-relay-install.mjs&#10;node .nai-relay-install.mjs">📋 复制两行命令</button>
               </div>
               <div class="cmd-list">
                 <div class="cmd-row">
                   <div class="cmd-row-main">
-                    <span class="cmd-step-label">① 第 1 行：拉取补丁仓库到本地 .nai-relay-patch 文件夹</span>
-                    <span class="cmd-code">git clone https://github.com/suzuka-suzuka/SillyTavern-NovelAI-Relay-Patch.git .nai-relay-patch</span>
+                    <span class="cmd-step-label">下载脚本</span>
+                    <span class="cmd-code">curl.exe -fL https://raw.githubusercontent.com/suzuka-suzuka/SillyTavern-NovelAI-Relay-Patch/main/install.mjs -o .nai-relay-install.mjs</span>
                   </div>
-                  <button type="button" class="copy-btn" data-copy="git clone https://github.com/suzuka-suzuka/SillyTavern-NovelAI-Relay-Patch.git .nai-relay-patch">📋 复制第 1 行</button>
                 </div>
                 <div class="cmd-row">
                   <div class="cmd-row-main">
-                    <span class="cmd-step-label">② 第 2 行：检查补丁是否兼容当前酒馆版本（无报错输出即检查通过）</span>
-                    <span class="cmd-code">git apply --check .nai-relay-patch/sillytavern-1.19.1.patch</span>
+                    <span class="cmd-step-label">运行脚本</span>
+                    <span class="cmd-code">node .nai-relay-install.mjs</span>
                   </div>
-                  <button type="button" class="copy-btn" data-copy="git apply --check .nai-relay-patch/sillytavern-1.19.1.patch">📋 复制第 2 行</button>
-                </div>
-                <div class="cmd-row">
-                  <div class="cmd-row-main">
-                    <span class="cmd-step-label">③ 第 3 行：正式应用补丁（执行后重启酒馆并刷新网页）</span>
-                    <span class="cmd-code">git apply .nai-relay-patch/sillytavern-1.19.1.patch</span>
-                  </div>
-                  <button type="button" class="copy-btn" data-copy="git apply .nai-relay-patch/sillytavern-1.19.1.patch">📋 复制第 3 行</button>
                 </div>
               </div>
             </div>
-            <details class="cmd-details">
-              <summary>
-                <span>🔄 升级酒馆前如何撤销旧补丁？（点击展开撤销命令行与一键复制）</span>
-                <span class="badge badge-amber">升级前必看</span>
-              </summary>
-              <p style="font-size:0.86rem;margin-bottom:8px;">日后升级 SillyTavern 前，请先在酒馆根目录执行以下 2 行命令撤销旧补丁（同样先检查再撤销）：</p>
-              <div class="cmd-group" style="margin:0;">
-                <div class="cmd-group-header">
-                  <span>💻 撤销补丁终端命令（升级酒馆前执行）</span>
-                  <button type="button" class="copy-btn" data-copy="git apply --reverse --check .nai-relay-patch/sillytavern-1.19.1.patch&#10;git apply --reverse .nai-relay-patch/sillytavern-1.19.1.patch">📋 一键复制撤销命令 (2行)</button>
-                </div>
-                <div class="cmd-list">
-                  <div class="cmd-row">
-                    <div class="cmd-row-main">
-                      <span class="cmd-step-label">① 检查能否正常撤销（无报错即可继续）</span>
-                      <span class="cmd-code">git apply --reverse --check .nai-relay-patch/sillytavern-1.19.1.patch</span>
-                    </div>
-                    <button type="button" class="copy-btn" data-copy="git apply --reverse --check .nai-relay-patch/sillytavern-1.19.1.patch">📋 复制第 1 行</button>
-                  </div>
-                  <div class="cmd-row">
-                    <div class="cmd-row-main">
-                      <span class="cmd-step-label">② 正式撤销补丁</span>
-                      <span class="cmd-code">git apply --reverse .nai-relay-patch/sillytavern-1.19.1.patch</span>
-                    </div>
-                    <button type="button" class="copy-btn" data-copy="git apply --reverse .nai-relay-patch/sillytavern-1.19.1.patch">📋 复制第 2 行</button>
-                  </div>
-                </div>
-              </div>
-            </details>
           </li>
           <li>
             <strong>填写图片地址。</strong>点顶部的扩展图标，打开 <strong>图像生成</strong>。来源选择 <strong>NovelAI Diffusion</strong>，在 <strong>第三方 API URL</strong> 中填入星绘接口地址：
@@ -2053,7 +1979,7 @@
             <strong>查余额并试画。</strong>回到图像生成设置，点 <strong>查看我的 Anlas</strong>。弹出余额即表示验证通过，<code>0</code> 也是有效余额。酒馆显示的 <code>Free image generation: No</code> 来自它对官方订阅标记的判断，实际扣费按本站套餐规则计算。
             <div class="web-guide-grid">
               <div>
-                <p>选 <strong>NAI Diffusion Anime V4.5 (Full)</strong>，在角色聊天框输入这条命令，回车后等待图片出现：</p>
+                <p>在 <strong>模型</strong> 下拉框选 <strong>NAI Diffusion V5 (Full)</strong> 或 <strong>NAI Diffusion V5 (Curated)</strong>。仅有 V4.5 小图权益的用户选 <strong>NAI Diffusion Anime V4.5 (Full)</strong>。在角色聊天框执行下方命令即可试画。</p>
                 <div class="code-block">
                   <span>/imagine extend=false cherry blossoms, blue sky</span>
                   <button type="button" class="copy-btn" data-copy="/imagine extend=false cherry blossoms, blue sky">📋 复制测试命令</button>
