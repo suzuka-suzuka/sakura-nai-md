@@ -283,11 +283,11 @@
       top: 58px;
       left: 0;
       bottom: 0;
-      width: 272px;
+      width: 284px;
       z-index: 120;
       background: var(--bg-surface);
       border-right: 1px solid var(--border-subtle);
-      padding: 16px 14px 28px;
+      padding: 14px 12px 28px;
       box-shadow: 4px 0 24px -10px rgba(0, 0, 0, 0.14);
       overflow-y: auto;
       transform: translateX(0);
@@ -299,31 +299,38 @@
     }
 
     .sidebar-title {
-      font-size: 0.84rem;
+      font-size: 0.83rem;
       font-weight: 800;
       color: var(--text-primary);
-      padding: 2px 6px 12px;
+      padding: 2px 4px 10px;
       border-bottom: 1px solid var(--border-subtle);
       margin-bottom: 10px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 8px;
+      gap: 6px;
+    }
+
+    .sidebar-title-actions {
+      display: flex;
+      align-items: center;
+      gap: 5px;
     }
 
     .sidebar-collapse-btn {
       display: inline-flex;
       align-items: center;
-      gap: 4px;
-      padding: 4px 10px;
+      gap: 3px;
+      padding: 4px 8px;
       border-radius: 6px;
-      font-size: 0.78rem;
+      font-size: 0.74rem;
       font-weight: 700;
       background: var(--bg-elevated);
       color: var(--text-secondary);
       border: 1px solid var(--border-subtle);
       cursor: pointer;
       transition: all 0.15s ease;
+      white-space: nowrap;
     }
 
     .sidebar-collapse-btn:hover {
@@ -341,9 +348,106 @@
       display: none;
     }
 
+    /* Collapsible TOC Tree in Sidebar (Default: Sub-headings Collapsed!) */
+    .toc-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .toc-group {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .toc-row {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .toc-link {
+      flex: 1;
+      min-width: 0;
+      display: block;
+      padding: 7px 10px;
+      border-radius: var(--radius-sm);
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none !important;
+      transition: all 0.15s ease;
+      line-height: 1.4;
+    }
+
+    .toc-link:hover {
+      background: var(--bg-elevated);
+      color: var(--text-primary);
+    }
+
+    .toc-link.active {
+      background: var(--sakura-bg-strong);
+      color: var(--sakura-primary);
+      font-weight: 800;
+    }
+
+    .toc-group-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-elevated);
+      color: var(--text-secondary);
+      font-size: 0.75rem;
+      font-weight: 800;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: all 0.15s ease;
+    }
+
+    .toc-group-toggle:hover {
+      background: var(--sakura-bg);
+      color: var(--sakura-primary);
+      border-color: var(--border-strong);
+    }
+
+    .toc-group-toggle .arrow-icon {
+      display: inline-block;
+      transition: transform 0.18s ease;
+    }
+
+    .toc-group.collapsed .toc-group-toggle .arrow-icon {
+      transform: rotate(-90deg);
+    }
+
+    .toc-sublist {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      margin-left: 12px;
+      padding-left: 8px;
+      border-left: 2px solid var(--border-subtle);
+    }
+
+    .toc-group.collapsed .toc-sublist {
+      display: none;
+    }
+
+    .toc-sub {
+      padding: 5px 8px;
+      font-size: 0.79rem;
+      font-weight: 500;
+    }
+
     /* Page Main Container (shifts right when sidebar is expanded on desktop) */
     .page-main {
-      margin-left: 272px;
+      margin-left: 284px;
       transition: margin-left 0.26s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
@@ -362,14 +466,14 @@
       background: linear-gradient(135deg, var(--bg-surface) 0%, var(--bg-elevated) 100%);
       border: 1px solid var(--border-strong);
       border-radius: var(--radius-lg);
-      padding: 26px 28px;
+      padding: 24px 26px;
       box-shadow: var(--shadow-card);
       position: relative;
       overflow: hidden;
     }
 
     .hero-title {
-      font-size: 1.75rem;
+      font-size: 1.65rem;
       font-weight: 800;
       letter-spacing: -0.01em;
       margin-bottom: 14px;
@@ -387,23 +491,65 @@
       margin-bottom: 14px;
     }
 
-    .hero-leads {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 12px;
-      margin-bottom: 18px;
+    /* Beginner 2-Step Ultra-Simple Onboarding Box */
+    .easy-start-banner {
+      background: var(--sakura-bg);
+      border: 1.5px solid var(--border-strong);
+      border-radius: var(--radius-md);
+      padding: 15px 18px;
+      margin-bottom: 16px;
     }
 
-    .lead-box {
-      padding: 13px 16px;
-      border-radius: var(--radius-md);
+    .easy-start-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .easy-start-title {
+      font-size: 1.02rem;
+      font-weight: 800;
+      color: var(--sakura-primary);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .easy-start-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 12px;
+    }
+
+    .easy-step-card {
       background: var(--bg-surface);
       border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+      font-size: 0.9rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .easy-step-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-weight: 800;
+      color: var(--sakura-primary);
       font-size: 0.92rem;
     }
 
-    .lead-box strong {
-      color: var(--sakura-primary);
+    .easy-step-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 2px;
     }
 
     /* Core Quick-Copy Cards */
@@ -417,11 +563,11 @@
       background: var(--bg-surface);
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-md);
-      padding: 14px 16px;
+      padding: 13px 15px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      gap: 10px;
+      gap: 9px;
       transition: border-color 0.2s ease;
     }
 
@@ -441,7 +587,7 @@
 
     .quick-value {
       font-family: "JetBrains Mono", Consolas, monospace;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       font-weight: 600;
       color: var(--text-primary);
       word-break: break-all;
@@ -479,49 +625,15 @@
     /* Main Content Container */
     .layout {
       max-width: 1080px;
-      margin: 22px auto 64px;
+      margin: 20px auto 64px;
       padding: 0 24px;
-    }
-
-    .toc-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 3px;
-    }
-
-    .toc-link {
-      display: block;
-      padding: 7px 10px;
-      border-radius: var(--radius-sm);
-      color: var(--text-secondary);
-      font-size: 0.87rem;
-      font-weight: 500;
-      text-decoration: none !important;
-      transition: all 0.15s ease;
-    }
-
-    .toc-link:hover {
-      background: var(--bg-elevated);
-      color: var(--text-primary);
-    }
-
-    .toc-link.active {
-      background: var(--sakura-bg-strong);
-      color: var(--sakura-primary);
-      font-weight: 700;
-    }
-
-    .toc-sub {
-      padding-left: 20px;
-      font-size: 0.81rem;
     }
 
     /* Content Sections */
     .content {
       display: flex;
       flex-direction: column;
-      gap: 24px;
+      gap: 22px;
       min-width: 0;
     }
 
@@ -529,7 +641,7 @@
       background: var(--bg-surface);
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-lg);
-      padding: 26px 28px;
+      padding: 24px 26px;
       box-shadow: var(--shadow-card);
       min-width: 0;
     }
@@ -540,13 +652,13 @@
       justify-content: space-between;
       gap: 10px;
       flex-wrap: wrap;
-      margin-bottom: 18px;
+      margin-bottom: 16px;
       padding-bottom: 14px;
       border-bottom: 1px solid var(--border-subtle);
     }
 
     .section-title {
-      font-size: 1.35rem;
+      font-size: 1.32rem;
       font-weight: 800;
       color: var(--text-primary);
       display: flex;
@@ -570,13 +682,143 @@
     }
 
     .subsection-title {
-      font-size: 1.12rem;
-      font-weight: 700;
+      font-size: 1.1rem;
+      font-weight: 800;
       color: var(--text-primary);
-      margin: 26px 0 12px;
+      margin: 22px 0 12px;
       padding-left: 12px;
       border-left: 4px solid var(--sakura-primary);
       line-height: 1.4;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    /* Tavern Scheme Sub-Block inside Section 5 */
+    .tavern-scheme-block {
+      margin-top: 22px;
+      padding-top: 20px;
+      border-top: 1px dashed var(--border-strong);
+    }
+
+    .tavern-scheme-block:first-of-type {
+      margin-top: 14px;
+      padding-top: 14px;
+    }
+
+    .tavern-filter-bar {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 12px 14px;
+      border-radius: var(--radius-md);
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-strong);
+      margin: 12px 0;
+    }
+
+    .tavern-filter-label {
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: var(--sakura-primary);
+      margin-right: 4px;
+    }
+
+    .tavern-sub-tab {
+      padding: 6px 12px;
+      border-radius: var(--radius-sm);
+      font-size: 0.83rem;
+      font-weight: 700;
+      cursor: pointer;
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-surface);
+      color: var(--text-secondary);
+      transition: all 0.15s ease;
+    }
+
+    .tavern-sub-tab:hover {
+      border-color: var(--border-strong);
+      color: var(--text-primary);
+    }
+
+    .tavern-sub-tab.active {
+      background: var(--sakura-primary);
+      color: var(--sakura-btn-text);
+      border-color: transparent;
+    }
+
+    /* Collapsible Non-Essential / Supplementary Blocks (Default: Collapsed!) */
+    details.extra-details {
+      margin: 12px 0;
+      border: 1px dashed var(--border-strong);
+      border-radius: var(--radius-md);
+      background: var(--bg-elevated);
+      overflow: hidden;
+      transition: border-color 0.18s ease;
+    }
+
+    details.extra-details[open] {
+      border-style: solid;
+      background: var(--bg-surface);
+    }
+
+    details.extra-details > summary {
+      list-style: none;
+      cursor: pointer;
+      user-select: none;
+      padding: 11px 15px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--sakura-primary);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      background: var(--bg-elevated);
+      transition: background-color 0.15s ease;
+    }
+
+    details.extra-details > summary::-webkit-details-marker {
+      display: none;
+    }
+
+    details.extra-details > summary:hover {
+      background: var(--bg-card-hover);
+      color: var(--sakura-strong);
+    }
+
+    details.extra-details[open] > summary {
+      border-bottom: 1px solid var(--border-subtle);
+      background: var(--sakura-bg);
+    }
+
+    .extra-toggle-hint {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 9px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      background: var(--bg-surface);
+      color: var(--sakura-primary);
+      border: 1px solid var(--border-subtle);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    details.extra-details[open] > summary .extra-toggle-hint::before {
+      content: "▾ 点击收起";
+    }
+
+    details.extra-details:not([open]) > summary .extra-toggle-hint::before {
+      content: "▸ 点击展开";
+    }
+
+    .extra-details-body {
+      padding: 14px 16px;
     }
 
     p {
@@ -590,9 +832,9 @@
 
     /* Callouts & Alerts */
     .callout {
-      padding: 15px 18px;
+      padding: 14px 16px;
       border-radius: var(--radius-md);
-      margin: 15px 0;
+      margin: 12px 0;
       border-left: 4px solid var(--sakura-primary);
       background: var(--bg-elevated);
     }
@@ -682,19 +924,19 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 14px;
-      margin: 14px 0;
+      margin: 12px 0;
     }
 
     .qa-card {
       background: var(--bg-elevated);
       border: 1px solid var(--border-strong);
       border-radius: var(--radius-md);
-      padding: 16px 18px;
+      padding: 15px 17px;
     }
 
     .qa-q {
       font-weight: 800;
-      font-size: 1rem;
+      font-size: 0.98rem;
       color: var(--sakura-primary);
       margin-bottom: 8px;
       display: flex;
@@ -703,7 +945,7 @@
     }
 
     .qa-a {
-      font-size: 0.92rem;
+      font-size: 0.91rem;
       color: var(--text-secondary);
       line-height: 1.65;
     }
@@ -718,14 +960,14 @@
       counter-reset: step-counter;
       display: flex;
       flex-direction: column;
-      gap: 12px;
-      margin: 14px 0;
+      gap: 11px;
+      margin: 12px 0;
     }
 
     .steps-list > li {
       counter-increment: step-counter;
       position: relative;
-      padding: 14px 16px 14px 48px;
+      padding: 13px 15px 13px 46px;
       background: var(--bg-elevated);
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-md);
@@ -738,13 +980,13 @@
       position: absolute;
       left: 13px;
       top: 14px;
-      width: 25px;
-      height: 25px;
+      width: 24px;
+      height: 24px;
       border-radius: 50%;
       background: var(--sakura-primary);
       color: var(--sakura-btn-text);
       font-weight: 800;
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -756,7 +998,7 @@
 
     .bullet-list {
       padding-left: 20px;
-      margin: 12px 0;
+      margin: 10px 0;
       display: flex;
       flex-direction: column;
       gap: 8px;
@@ -771,7 +1013,7 @@
     .table-wrap {
       width: 100%;
       overflow-x: auto;
-      margin: 12px 0;
+      margin: 10px 0;
       border-radius: var(--radius-md);
       border: 1px solid var(--border-subtle);
       background: var(--bg-elevated);
@@ -781,20 +1023,20 @@
       width: 100%;
       border-collapse: collapse;
       text-align: left;
-      font-size: 0.91rem;
+      font-size: 0.9rem;
     }
 
     th {
       background: var(--table-head-bg);
       color: var(--text-primary);
       font-weight: 700;
-      padding: 11px 15px;
+      padding: 10px 14px;
       border-bottom: 1px solid var(--border-subtle);
       white-space: nowrap;
     }
 
     td {
-      padding: 11px 15px;
+      padding: 10px 14px;
       border-bottom: 1px solid var(--border-subtle);
       color: var(--text-secondary);
       vertical-align: middle;
@@ -826,7 +1068,7 @@
       gap: 4px;
       padding: 3px 9px;
       border-radius: 999px;
-      font-size: 0.78rem;
+      font-size: 0.77rem;
       font-weight: 700;
       white-space: nowrap;
     }
@@ -851,12 +1093,12 @@
       color: var(--sakura-primary);
     }
 
-    /* Tool Filter Bar for Sections 2-9 */
+    /* Tool Filter Bar for Sections 2-6 */
     .filter-bar {
       background: var(--bg-surface);
       border: 1px solid var(--border-strong);
       border-radius: var(--radius-lg);
-      padding: 18px 22px;
+      padding: 16px 20px;
       box-shadow: var(--shadow-card);
     }
 
@@ -870,25 +1112,25 @@
     }
 
     .filter-title {
-      font-weight: 700;
-      font-size: 0.98rem;
+      font-weight: 800;
+      font-size: 0.96rem;
       color: var(--text-primary);
     }
 
     .filter-header-actions {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       flex-wrap: wrap;
     }
 
     .img-toggle-btn {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
       padding: 5px 12px;
       border-radius: 999px;
-      font-size: 0.8rem;
+      font-size: 0.79rem;
       font-weight: 700;
       cursor: pointer;
       border: 1px solid var(--border-strong);
@@ -917,8 +1159,8 @@
     .filter-tab {
       padding: 8px 13px;
       border-radius: var(--radius-sm);
-      font-size: 0.87rem;
-      font-weight: 600;
+      font-size: 0.86rem;
+      font-weight: 700;
       cursor: pointer;
       border: 1px solid var(--border-subtle);
       background: var(--bg-elevated);
@@ -940,8 +1182,7 @@
 
     /* Compact No-Image View Mode */
     body.compact-no-img .guide-figure,
-    body.compact-no-img .guide-img-grid,
-    body.compact-no-img .inline-guide-details {
+    body.compact-no-img .guide-img-grid {
       display: none !important;
     }
 
@@ -956,7 +1197,7 @@
       grid-template-columns: 1fr 1.15fr;
       gap: 20px;
       align-items: center;
-      margin-top: 12px;
+      margin-top: 8px;
     }
 
     .step-split-grid {
@@ -964,7 +1205,7 @@
       grid-template-columns: 1.08fr 0.92fr;
       gap: 16px;
       align-items: center;
-      margin: 12px 0;
+      margin: 10px 0;
     }
 
     .step-split-grid .guide-figure {
@@ -977,7 +1218,7 @@
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 12px;
-      margin-top: 12px;
+      margin-top: 10px;
       align-items: stretch;
     }
 
@@ -1002,7 +1243,7 @@
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 14px;
-      margin: 14px 0;
+      margin: 12px 0;
     }
 
     .visual-step-card {
@@ -1022,7 +1263,7 @@
       align-items: center;
       gap: 8px;
       font-weight: 800;
-      font-size: 0.96rem;
+      font-size: 0.95rem;
       color: var(--text-primary);
     }
 
@@ -1041,7 +1282,7 @@
     }
 
     .visual-step-desc {
-      font-size: 0.9rem;
+      font-size: 0.89rem;
       color: var(--text-secondary);
       line-height: 1.62;
     }
@@ -1102,56 +1343,18 @@
     }
 
     .tavern-guide-figure,
-    #sec-5 .guide-figure,
-    #sec-tavern-native .guide-figure {
+    #sec-5 .guide-figure {
       width: fit-content;
       max-width: 100%;
       margin-top: 10px;
     }
 
     .tavern-guide-figure .guide-img,
-    #sec-5 .guide-img,
-    #sec-tavern-native .guide-img {
+    #sec-5 .guide-img {
       width: auto;
       max-width: 100%;
-      max-height: 380px;
+      max-height: 360px;
       object-fit: contain;
-    }
-
-    /* Collapsible Inline Helper Details (e.g., Extension Install Guide inside Sec 7 & 8) */
-    .inline-guide-details {
-      margin-top: 10px;
-      border: 1px dashed var(--border-strong);
-      border-radius: var(--radius-sm);
-      background: var(--bg-surface);
-      padding: 8px 13px;
-    }
-
-    .inline-guide-details summary {
-      cursor: pointer;
-      font-size: 0.85rem;
-      font-weight: 700;
-      color: var(--sakura-primary);
-      user-select: none;
-      list-style: none;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
-    }
-
-    .inline-guide-details summary::-webkit-details-marker {
-      display: none;
-    }
-
-    .inline-guide-details summary:hover {
-      color: var(--sakura-strong);
-    }
-
-    .inline-guide-details[open] summary {
-      margin-bottom: 10px;
-      padding-bottom: 8px;
-      border-bottom: 1px solid var(--border-subtle);
     }
 
     /* Multi-line Command Group with Individual & Batch Copy */
@@ -1261,20 +1464,20 @@
       word-break: break-all;
     }
 
-    /* Interactive Billing Checker (Section 9.3) */
+    /* Interactive Billing Checker (Section 7.3) */
     .checker-card {
       background: linear-gradient(135deg, var(--bg-elevated) 0%, var(--bg-surface) 100%);
       border: 1px solid var(--border-strong);
       border-radius: var(--radius-md);
-      padding: 18px 20px;
-      margin: 18px 0;
+      padding: 16px 18px;
+      margin: 14px 0;
     }
 
     .checker-title {
       font-weight: 800;
-      font-size: 1.02rem;
+      font-size: 1rem;
       color: var(--sakura-primary);
-      margin-bottom: 14px;
+      margin-bottom: 12px;
       display: flex;
       align-items: center;
       gap: 8px;
@@ -1329,14 +1532,14 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
       gap: 12px;
-      margin: 14px 0;
+      margin: 12px 0;
     }
 
     .cond-card {
       background: var(--bg-elevated);
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-md);
-      padding: 14px 16px;
+      padding: 13px 15px;
     }
 
     .cond-num {
@@ -1348,14 +1551,14 @@
     }
 
     .cond-main {
-      font-size: 0.98rem;
+      font-size: 0.96rem;
       font-weight: 800;
       color: var(--text-primary);
       margin-bottom: 4px;
     }
 
     .cond-sub {
-      font-size: 0.83rem;
+      font-size: 0.82rem;
       color: var(--text-muted);
     }
 
@@ -1624,8 +1827,7 @@
         border-radius: 14px;
       }
       .hero-title {
-        font-size: 1.35rem;
-        margin-bottom: 12px;
+        font-size: 1.32rem;
       }
       .mobile-quick-actions {
         display: grid;
@@ -1635,20 +1837,16 @@
         font-size: 0.8rem;
         border-radius: 10px;
       }
-      .hero-leads {
-        grid-template-columns: 1fr;
-        gap: 10px;
-        margin-bottom: 16px;
-      }
+      .easy-start-steps,
       .quick-grid {
         grid-template-columns: 1fr;
         gap: 10px;
       }
       .section-title {
-        font-size: 1.16rem;
+        font-size: 1.14rem;
       }
       .subsection-title {
-        font-size: 1.04rem;
+        font-size: 1.02rem;
       }
       .filter-bar {
         padding: 15px 14px;
@@ -1832,9 +2030,9 @@
 
       <div class="topbar-actions">
         <div class="desktop-nav-links">
-          <a href="https://redeem.tenshimomone.com/" target="_blank" rel="noopener" class="btn btn-primary">🔑 打开密钥兑换页</a>
-          <a href="https://nai.tenshimomone.com/" target="_blank" rel="noopener" class="btn">🎨 网页在线画图</a>
-          <a href="#sec-10" class="btn">❓ 新手必看 FAQ</a>
+          <a href="https://redeem.tenshimomone.com/" target="_blank" rel="noopener" class="btn btn-primary">🔑 1. 打开密钥兑换页</a>
+          <a href="https://nai.tenshimomone.com/" target="_blank" rel="noopener" class="btn">🎨 2. 网页在线画图</a>
+          <a href="#sec-7" class="btn">❓ 常见问题 FAQ</a>
         </div>
 
         <!-- Single Compact Theme Toggle Button (Default: Light) -->
@@ -1843,30 +2041,71 @@
     </div>
   </header>
 
-  <!-- Fixed Collapsible Left Sidebar TOC -->
+  <!-- Fixed Collapsible Left Sidebar TOC (Big Chapters Expand/Collapse Sub-Headings, Default: Collapsed!) -->
   <aside class="sidebar" id="sidebar" aria-label="目录导航">
     <div class="sidebar-title">
-      <span>📑 教程目录导航</span>
-      <button type="button" class="sidebar-collapse-btn" id="sidebarCollapseBtn" aria-label="收起目录">◀ 收起</button>
+      <span>📑 教程目录</span>
+      <div class="sidebar-title-actions">
+        <button type="button" class="sidebar-collapse-btn" id="tocExpandAllBtn" title="展开或收起目录中的所有小标题">📂 展开小标题</button>
+        <button type="button" class="sidebar-collapse-btn" id="sidebarCollapseBtn" aria-label="收起目录">◀ 隐藏</button>
+      </div>
     </div>
+
     <ul class="toc-list">
-      <li><a href="#sec-1" class="toc-link active" data-target="sec-1">1. 兑换密钥与套餐权益</a></li>
-      <li><a href="#sec-2" class="toc-link" data-target="sec-2">2. 网页直接使用（附教程图）</a></li>
-      <li><a href="#sec-3" class="toc-link" data-target="sec-3">3. Aaalice NAI Launcher</a></li>
-      <li><a href="#sec-4" class="toc-link" data-target="sec-4">4. Langbai NovelAI Studio</a></li>
-      <li><a href="#sec-5" class="toc-link" data-target="sec-5">5. 酒馆：原生出图（补丁）</a></li>
-      <li><a href="#sec-6" class="toc-link" data-target="sec-6">6. 酒馆：柏宝绘</a></li>
-      <li><a href="#sec-7" class="toc-link" data-target="sec-7">7. 酒馆：小白X / LittleWhiteBox</a></li>
-      <li><a href="#sec-8" class="toc-link" data-target="sec-8">8. 酒馆：智绘姬 / st-chatu8</a></li>
-      <li><a href="#sec-9" class="toc-link" data-target="sec-9">9. 其他支持第三方 NAI 工具</a></li>
-      <li><a href="#sec-10" class="toc-link" data-target="sec-10">10. 新手常见问题 FAQ（必看）</a></li>
-      <li><a href="#sec-10-1" class="toc-link toc-sub" data-target="sec-10">10.1 效果、Vibe 与连接问题</a></li>
-      <li><a href="#sec-10-2" class="toc-link toc-sub" data-target="sec-10">10.2 一张表搞懂四个核心词</a></li>
-      <li><a href="#sec-10-3" class="toc-link toc-sub" data-target="sec-10">10.3 什么算小图？V4.5 与 V5 扣费</a></li>
-      <li><a href="#sec-10-4" class="toc-link toc-sub" data-target="sec-10">10.4 为什么独享是 5920 张 V5 图？</a></li>
-      <li><a href="#sec-10-5" class="toc-link toc-sub" data-target="sec-10">10.5 何时扣点数？100点能出几张？</a></li>
-      <li><a href="#sec-10-6" class="toc-link toc-sub" data-target="sec-10">10.6 扣费实例 &amp; 选档对号入座</a></li>
-      <li><a href="#sec-10-7" class="toc-link toc-sub" data-target="sec-10">10.7 常见报错 3 秒自查</a></li>
+      <!-- Chapter 1 with expandable sub-headings (Collapsed by default) -->
+      <li class="toc-group collapsed" data-group="sec-1">
+        <div class="toc-row">
+          <a href="#sec-1" class="toc-link active" data-target="sec-1">1. 兑换密钥与套餐权益</a>
+          <button type="button" class="toc-group-toggle" aria-label="展开或收起第1节小标题" title="展开/收起小标题"><span class="arrow-icon">▾</span></button>
+        </div>
+        <ul class="toc-sublist">
+          <li><a href="#sec-1-1" class="toc-link toc-sub" data-target="sec-1">1.1 各档套餐权益总览表</a></li>
+          <li><a href="#sec-1-2" class="toc-link toc-sub" data-target="sec-1">1.2 四条核心扣费与恢复规则</a></li>
+        </ul>
+      </li>
+
+      <!-- Chapter 2 -->
+      <li><a href="#sec-2" class="toc-link" data-target="sec-2">2. 网页直接使用（最推荐）</a></li>
+
+      <!-- Chapter 3 -->
+      <li><a href="#sec-3" class="toc-link" data-target="sec-3">3. Aaalice 客户端</a></li>
+
+      <!-- Chapter 4 -->
+      <li><a href="#sec-4" class="toc-link" data-target="sec-4">4. Langbai 客户端</a></li>
+
+      <!-- Chapter 5: Merged SillyTavern with expandable sub-headings (Collapsed by default) -->
+      <li class="toc-group collapsed" data-group="sec-5">
+        <div class="toc-row">
+          <a href="#sec-5" class="toc-link" data-target="sec-5">5. 酒馆 SillyTavern 配图接入</a>
+          <button type="button" class="toc-group-toggle" aria-label="展开或收起第5节酒馆小标题" title="展开/收起小标题"><span class="arrow-icon">▾</span></button>
+        </div>
+        <ul class="toc-sublist">
+          <li><a href="#sec-5-1" class="toc-link toc-sub" data-target="sec-5">5.1 方案一：原生出图（补丁）</a></li>
+          <li><a href="#sec-5-2" class="toc-link toc-sub" data-target="sec-5">5.2 方案二：柏宝绘</a></li>
+          <li><a href="#sec-5-3" class="toc-link toc-sub" data-target="sec-5">5.3 方案三：小白X</a></li>
+          <li><a href="#sec-5-4" class="toc-link toc-sub" data-target="sec-5">5.4 方案四：智绘姬</a></li>
+        </ul>
+      </li>
+
+      <!-- Chapter 6 -->
+      <li><a href="#sec-6" class="toc-link" data-target="sec-6">6. 其他支持第三方 NAI 工具</a></li>
+
+      <!-- Chapter 7: FAQ with expandable sub-headings (Collapsed by default) -->
+      <li class="toc-group collapsed" data-group="sec-7">
+        <div class="toc-row">
+          <a href="#sec-7" class="toc-link" data-target="sec-7">7. 新手常见问题 FAQ</a>
+          <button type="button" class="toc-group-toggle" aria-label="展开或收起第7节FAQ小标题" title="展开/收起小标题"><span class="arrow-icon">▾</span></button>
+        </div>
+        <ul class="toc-sublist">
+          <li><a href="#sec-7-1" class="toc-link toc-sub" data-target="sec-7">7.1 四大高频疑问（画质/Vibe）</a></li>
+          <li><a href="#sec-7-2" class="toc-link toc-sub" data-target="sec-7">7.2 一张表搞懂四个核心词</a></li>
+          <li><a href="#sec-7-3" class="toc-link toc-sub" data-target="sec-7">7.3 什么算小图？扣费自测器</a></li>
+          <li><a href="#sec-7-4" class="toc-link toc-sub" data-target="sec-7">7.4 为什么独享是 5920 张 V5？</a></li>
+          <li><a href="#sec-7-5" class="toc-link toc-sub" data-target="sec-7">7.5 何时扣点数？100点画几张？</a></li>
+          <li><a href="#sec-7-6" class="toc-link toc-sub" data-target="sec-7">7.6 扣费实例 &amp; 选档对号入座</a></li>
+          <li><a href="#sec-7-7" class="toc-link toc-sub" data-target="sec-7">7.7 常见报错 3 秒自查表</a></li>
+        </ul>
+      </li>
     </ul>
   </aside>
 
@@ -1876,26 +2115,48 @@
   <!-- Main Page Wrapper -->
   <div class="page-main">
 
-  <!-- Hero & Quick Copy Cards -->
+  <!-- Hero & 2-Step Easy Onboarding -->
   <section class="hero">
     <div class="hero-card">
       <h1 class="hero-title">🌸 星绘补给站｜NovelAI 兑换与接入教程</h1>
 
       <!-- Mobile Quick Action Row -->
       <div class="mobile-quick-actions">
-        <a href="https://redeem.tenshimomone.com/" target="_blank" rel="noopener" class="btn btn-primary">🔑 密钥兑换页</a>
-        <a href="https://nai.tenshimomone.com/" target="_blank" rel="noopener" class="btn">🎨 在线画图</a>
-        <a href="#sec-10" class="btn">❓ 常见疑问</a>
+        <a href="https://redeem.tenshimomone.com/" target="_blank" rel="noopener" class="btn btn-primary">🔑 1. 兑换密钥</a>
+        <a href="https://nai.tenshimomone.com/" target="_blank" rel="noopener" class="btn">🎨 2. 在线画图</a>
+        <a href="#sec-7-7" class="btn">🛠️ 报错自查</a>
       </div>
 
-      <div class="hero-leads">
-        <div class="lead-box">
-          <strong>1️⃣ 付款后先兑换：</strong>
-          打开 <a href="https://redeem.tenshimomone.com/" target="_blank" rel="noopener">密钥兑换页 ↗</a> 将 <code>CDK-</code> 兑换码换为 <code>skr_</code> 密钥（见 <a href="#sec-1">第 1 节</a>），随后按你用的网页、客户端或酒馆选择 <a href="#sec-connect">第 2～9 节</a> 接入。
+      <!-- Reassuring 2-Step Ultra-Simple Guide for Customers -->
+      <div class="easy-start-banner">
+        <div class="easy-start-head">
+          <span class="easy-start-title">⚡ 新手只需 2 步即可开画（不用看完全篇，只看你用的那 1 种工具）：</span>
+          <span class="badge badge-green">100% 官方原版 V5 / V4.5 · 支持 Vibe 画风参考</span>
         </div>
-        <div class="lead-box">
-          <strong>2️⃣ 官方原版效果 &amp; 支持 Vibe：</strong>
-          直连 NovelAI 官方 V5 / V4.5 生图模型，<strong>出图质量与官网 100% 一致</strong>，完整支持 <strong>Vibe Transfer（画风参考）</strong> 等功能。更多体力与计费答疑见 <a href="#sec-10"><strong>文末第 10 节</strong></a>。
+        <div class="easy-start-steps">
+          <div class="easy-step-card">
+            <div>
+              <div class="easy-step-badge">第一步（必做）：把兑换码换成密钥</div>
+              <p style="margin:4px 0 0;font-size:0.88rem;">打开 <a href="https://redeem.tenshimomone.com/" target="_blank" rel="noopener"><strong>密钥兑换页 ↗</strong></a>，粘贴买到的 <code>CDK-</code> 兑换码，点击兑换并保存好生成的 <strong><code>skr_</code> 开头密钥</strong>。</p>
+            </div>
+            <div class="easy-step-links">
+              <a href="https://redeem.tenshimomone.com/" target="_blank" rel="noopener" class="copy-btn">🔑 去兑换页换密钥 ↗</a>
+              <a href="#sec-1" class="copy-btn">📖 看第 1 节说明</a>
+            </div>
+          </div>
+
+          <div class="easy-step-card">
+            <div>
+              <div class="easy-step-badge">第二步（四选一）：只看你用的那 1 种工具！</div>
+              <p style="margin:4px 0 0;font-size:0.88rem;"><strong>最省心免安装：</strong>直接打开 <a href="https://nai.tenshimomone.com/" target="_blank" rel="noopener"><strong>星绘网页画图 ↗</strong></a> 填入 <code>skr_</code> 密钥就能画！如果用客户端或酒馆，<strong>直接点下方你用的那个工具</strong>查看即可。</p>
+            </div>
+            <div class="easy-step-links">
+              <a href="#sec-2" class="copy-btn">🌐 2. 网页直连 (最推荐)</a>
+              <a href="#sec-3" class="copy-btn">💻 3. Aaalice</a>
+              <a href="#sec-4" class="copy-btn">🖥️ 4. Langbai</a>
+              <a href="#sec-5" class="copy-btn">🍺 5. 酒馆配图</a>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -1904,7 +2165,7 @@
         <div class="quick-card">
           <div class="quick-label">
             <span>① 密钥兑换页</span>
-            <span class="badge badge-sakura">首步必去</span>
+            <span class="badge badge-sakura">第一步必去</span>
           </div>
           <div class="quick-value">https://redeem.tenshimomone.com/</div>
           <div class="quick-actions">
@@ -1941,9 +2202,9 @@
             <span>④ API Key / Token 填写要求</span>
             <span class="badge badge-red">勿加 Bearer</span>
           </div>
-          <div class="quick-value">以 <code>skr_</code> 开头的完整密钥</div>
+          <div class="quick-value">只填 <code>skr_</code> 开头完整密钥</div>
           <div class="quick-actions">
-            <span style="font-size:0.8rem;color:var(--text-muted);">只粘贴 <code>skr_...</code> 本身，不要加 <code>Bearer </code> 前缀</span>
+            <span style="font-size:0.79rem;color:var(--text-muted);">只粘贴 <code>skr_...</code> 本身，切勿加 <code>Bearer </code></span>
           </div>
         </div>
       </div>
@@ -1954,7 +2215,9 @@
   <div class="layout">
     <main class="content">
 
-      <!-- SECTION 1 -->
+      <!-- =========================================================
+           SECTION 1: 兑换密钥与套餐权益 (核心步骤直接展示，长篇折算说明默认折叠)
+           ========================================================= -->
       <article class="section-card" id="sec-1">
         <div class="section-header">
           <h2 class="section-title"><span class="section-num">1</span> 兑换密钥与套餐权益</h2>
@@ -1975,7 +2238,7 @@
           <p>在任何工具的 Key / Token 输入框中，<strong>只粘贴 <code>skr_</code> 开头的密钥本身，切勿手动添加 <code>Bearer </code> 前缀</strong>。请妥善保管密钥，不要发到公开群聊或截图中外泄。</p>
         </div>
 
-        <h3 class="subsection-title">各档套餐权益总览（有效天数从兑换成功时起算）</h3>
+        <h3 class="subsection-title" id="sec-1-1"><span>1.1 各档套餐权益总览（有效天数从兑换成功时起算）</span></h3>
         <div class="table-wrap">
           <table class="table-data">
             <thead>
@@ -2059,8 +2322,8 @@
           <p style="margin-top:8px;"><strong>🎯 本站规则优势：</strong>在本站生成符合小图尺寸的 V5 图片时，只要在 <strong>28 步及以下</strong>（无论设 23 步还是拉满 28 步），每成功出图 1 张均固定扣除 <strong>1 张 V5 体力</strong>。<strong>建议直接放心拉满 28 步获取最佳画质，无需为了省体力委屈降到 23 步！</strong></p>
         </div>
 
-        <h3 class="subsection-title">四条核心扣费与恢复规则</h3>
-        <ul class="bullet-list">
+        <h3 class="subsection-title" id="sec-1-2"><span>1.2 四条核心扣费与恢复规则</span></h3>
+        <ul class="bullet-list" style="margin-bottom:0;">
           <li><strong>「月卡：V4.5无限小图（无V5体力）」用户：</strong> 享 30 天 V4.5 标准小图无限免点生成，不含 V5 体力与点数。<strong>生图时请务必将模型选为 V4.5（如 <code>nai-diffusion-4-5-full</code>）</strong>；若误选 V5 模型或超规格生图会被系统拒绝。</li>
           <li><strong>含 V5 体力的 Opus 用户（1天 / 4人 / 单人独享）：</strong> 跑 V4.5 小图同样 <strong>0 点数 0 体力无限画</strong>；跑 V5 小图每张扣 1 张 V5 体力。V5 体力按 24 小时周期恢复（不超过存储上限）；<strong>若当天 V5 体力刷完，只需把模型切回 V4.5 就能继续免费无限出图！</strong></li>
           <li><strong>纯点数档（100点 / 2k点）：</strong> 不含无限小图与 V5 体力，生成任何图片均按实际参数扣除点数。</li>
@@ -2068,29 +2331,29 @@
         </ul>
       </article>
 
-      <!-- TOOL FILTER BAR FOR SECTIONS 2 ~ 9 -->
+      <!-- =========================================================
+           TOOL FILTER BAR FOR SECTIONS 2 ~ 6
+           ========================================================= -->
       <div class="filter-bar" id="sec-connect">
         <div class="filter-header">
-          <span class="filter-title">🛠️ 选择你的接入方式（第 2～9 节）：点击按钮可只看你用的工具</span>
+          <span class="filter-title">🛠️ 第二步：选择你的接入方式（第 2～6 节）：点击按钮可只看你用的工具</span>
           <div class="filter-header-actions">
             <button type="button" class="img-toggle-btn" id="imgToggleBtn" aria-label="切换显示或隐藏教程配图">🖼️ 隐藏教程配图（极简模式）</button>
           </div>
         </div>
         <div class="filter-tabs" role="tablist">
-          <button type="button" class="filter-tab active" data-filter="all">📖 显示全部 (2~9节)</button>
-          <button type="button" class="filter-tab" data-filter="sec-2">🌐 2. 网页直接使用</button>
+          <button type="button" class="filter-tab active" data-filter="all">📖 显示全部 (2~6节)</button>
+          <button type="button" class="filter-tab" data-filter="sec-2">🌐 2. 网页直接使用 (最推荐)</button>
           <button type="button" class="filter-tab" data-filter="sec-3">💻 3. Aaalice 客户端</button>
           <button type="button" class="filter-tab" data-filter="sec-4">🖥️ 4. Langbai 客户端</button>
-          <button type="button" class="filter-tab" data-filter="tavern-all">🍺 酒馆全部 (5~8节)</button>
-          <button type="button" class="filter-tab" data-filter="sec-5">🍺 5. 酒馆：原生出图</button>
-          <button type="button" class="filter-tab" data-filter="sec-6">🍺 6. 酒馆：柏宝绘</button>
-          <button type="button" class="filter-tab" data-filter="sec-7">📦 7. 酒馆：小白X</button>
-          <button type="button" class="filter-tab" data-filter="sec-8">🎨 8. 酒馆：智绘姬</button>
-          <button type="button" class="filter-tab" data-filter="sec-9">🔌 9. 其他第三方工具</button>
+          <button type="button" class="filter-tab" data-filter="sec-5">🍺 5. 酒馆 SillyTavern 配图</button>
+          <button type="button" class="filter-tab" data-filter="sec-6">🔌 6. 其他第三方工具</button>
         </div>
       </div>
 
-      <!-- SECTION 2: 网页直接使用 (WITH SCREENSHOT) -->
+      <!-- =========================================================
+           SECTION 2: 网页直接使用 (必要步骤直接展示)
+           ========================================================= -->
       <article class="section-card tool-section" id="sec-2">
         <div class="section-header">
           <h2 class="section-title"><span class="section-num">2</span> 网页直接使用</h2>
@@ -2136,7 +2399,9 @@
         </div>
       </article>
 
-      <!-- SECTION 3: Aaalice NAI Launcher -->
+      <!-- =========================================================
+           SECTION 3: Aaalice NAI Launcher (必要步骤直接展示)
+           ========================================================= -->
       <article class="section-card tool-section" id="sec-3">
         <div class="section-header">
           <h2 class="section-title"><span class="section-num">3</span> Aaalice NAI Launcher</h2>
@@ -2145,7 +2410,7 @@
 
         <p>前往 <a href="https://github.com/Aaalice233/Aaalice_NAI_Launcher/releases/latest" target="_blank" rel="noopener">GitHub Releases 下载客户端</a>，按你的设备系统选择对应安装包。</p>
 
-        <ol class="steps-list">
+        <ol class="steps-list" style="margin-bottom:0;">
           <li>打开软件，在登录方式中选择 <strong>第三方站点</strong>。</li>
           <li>
             按下表填写配置信息：
@@ -2188,7 +2453,9 @@
         </ol>
       </article>
 
-      <!-- SECTION 4: Langbai NovelAI Studio -->
+      <!-- =========================================================
+           SECTION 4: Langbai NovelAI Studio (必要步骤直接展示)
+           ========================================================= -->
       <article class="section-card tool-section" id="sec-4">
         <div class="section-header">
           <h2 class="section-title"><span class="section-num">4</span> Langbai NovelAI Studio</h2>
@@ -2197,7 +2464,7 @@
 
         <p>前往 <a href="https://github.com/2786886095/novelai-image-desktop/releases/latest" target="_blank" rel="noopener">GitHub Releases 下载客户端</a>，按你的设备系统选择对应安装包。</p>
 
-        <ol class="steps-list">
+        <ol class="steps-list" style="margin-bottom:0;">
           <li>打开软件，进入 <strong>设置 → API 配置</strong>。</li>
           <li>
             按下表设置接口、开关与 Token：
@@ -2240,24 +2507,22 @@
         </ol>
       </article>
 
-      <!-- SECTION 5: 酒馆：原生出图（补丁） -->
+      <!-- =========================================================
+           SECTION 5: 酒馆 SillyTavern 配图接入（合并为一节 · 核心配置直接展示，次要配图演示默认折叠）
+           ========================================================= -->
       <article class="section-card tool-section" id="sec-5">
         <div class="section-header">
-          <h2 class="section-title"><span class="section-num">5</span> 酒馆：原生出图（补丁）</h2>
-          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
-            <span class="badge badge-green">✅ 支持 V5 &amp; V4.5</span>
-            <span class="badge badge-sakura">SillyTavern 1.19.1 补丁</span>
-            <a href="https://github.com/suzuka-suzuka/SillyTavern-NovelAI-Relay-Patch" target="_blank" rel="noopener" class="btn">📖 补丁仓库与撤销说明 ↗</a>
-          </div>
+          <h2 class="section-title"><span class="section-num">5</span> 酒馆 SillyTavern 配图接入（四种方案任选其一）</h2>
+          <span class="badge badge-green">✅ 全部支持 V5 &amp; V4.5</span>
         </div>
-        <p>此补丁已在 <strong>SillyTavern 1.19.1</strong> 验证，为原生图像生成增加 <strong>第三方 API URL</strong> 和 <strong>V5 Full / V5 Curated</strong> 模型。配置后可继续使用酒馆原生的 <code>/imagine</code> 命令、自动配图或魔杖菜单出图。</p>
 
-        <h3 id="tavern-chat-model" class="subsection-title">前置准备：先接通酒馆聊天模型</h3>
+        <p style="margin-bottom:8px;">在酒馆中配图只需在下方 <strong>4 种方案（5.1～5.4）中任选 1 种</strong> 使用即可（无需同时开启多个画图插件）。所有方案均需确保你的酒馆已连好聊天模型（聊天模型负责写回复与生图 Tag，NovelAI 负责画图）。</p>
+
+        <h3 id="tavern-chat-model" class="subsection-title"><span>前置准备 ①：先接通酒馆聊天模型（聊天模型写词，NovelAI 负责画图）</span></h3>
         <div class="step-split-grid">
           <div>
-            <p>聊天模型负责写角色回复、配文和生图 Tag，NovelAI 负责出图（所有酒馆配图方式均需先连好聊天模型）。</p>
-            <p>以 DeepSeek 为例：点顶部的<strong>① 插头图标 → ② 聊天补全 → ③ DeepSeek</strong>，点 <strong>④ 钥匙图标</strong>添加你自己的 DeepSeek API Key，模型选 <strong>⑤ <code>deepseek-flash</code></strong> 后点<strong>连接</strong>。</p>
-            <p style="margin-bottom:0;">先发一句「用一句中文描写撑伞走过樱花小巷的旅人」，确认酒馆能正常收到回复。后续添加完 NovelAI 绘图密钥后，记得把此处 API 切回<strong>聊天补全</strong>继续对话。</p>
+            <p>以 DeepSeek 为例：点酒馆顶部的 <strong>① 插头图标 → ② 聊天补全 → ③ DeepSeek</strong>，点 <strong>④ 钥匙图标</strong> 添加你自己的 DeepSeek API Key，模型选 <strong>⑤ <code>deepseek-flash</code></strong> 后点<strong>连接</strong>（切勿把本站 <code>skr_</code> 绘图密钥填进主聊天接口）。</p>
+            <p style="margin-bottom:0;">可先发一句「用一句中文描写撑伞走过樱花小巷的旅人」确认能收到回复。添加完绘图密钥后记得切回<strong>聊天补全</strong>继续对话。</p>
           </div>
           <figure class="guide-figure">
             <a href="./assets/tavern-chat-deepseek.png" target="_blank" rel="noopener">
@@ -2270,129 +2535,9 @@
           </figure>
         </div>
 
-        <ol class="steps-list">
-          <li>
-            <strong>安装或更新补丁。</strong>新旧用户用同一套命令。Windows 下，在酒馆根目录（有 <code>server.js</code> 的文件夹）打开终端并执行下面两行。脚本会自动安装或更新，完成后<strong>重启酒馆并刷新网页</strong>。
-            <div class="cmd-group">
-              <div class="cmd-group-header">
-                <span>💻 安装或更新补丁命令（在 SillyTavern 根目录执行）</span>
-                <button type="button" class="copy-btn" data-copy="curl.exe -fL https://raw.githubusercontent.com/suzuka-suzuka/SillyTavern-NovelAI-Relay-Patch/main/install.mjs -o .nai-relay-install.mjs&#10;node .nai-relay-install.mjs">📋 一键复制两行命令</button>
-              </div>
-              <div class="cmd-list">
-                <div class="cmd-row">
-                  <div class="cmd-row-main">
-                    <span class="cmd-step-label">① 第 1 行：下载安装脚本</span>
-                    <span class="cmd-code">curl.exe -fL https://raw.githubusercontent.com/suzuka-suzuka/SillyTavern-NovelAI-Relay-Patch/main/install.mjs -o .nai-relay-install.mjs</span>
-                  </div>
-                  <button type="button" class="copy-btn" data-copy="curl.exe -fL https://raw.githubusercontent.com/suzuka-suzuka/SillyTavern-NovelAI-Relay-Patch/main/install.mjs -o .nai-relay-install.mjs">📋 复制第 1 行</button>
-                </div>
-                <div class="cmd-row">
-                  <div class="cmd-row-main">
-                    <span class="cmd-step-label">② 第 2 行：运行安装脚本</span>
-                    <span class="cmd-code">node .nai-relay-install.mjs</span>
-                  </div>
-                  <button type="button" class="copy-btn" data-copy="node .nai-relay-install.mjs">📋 复制第 2 行</button>
-                </div>
-              </div>
-            </div>
-          </li>
-          <li>
-            <strong>填写图片地址。</strong>点顶部的 <strong>① 扩展图标</strong>，展开 <strong>图像生成</strong>。将 <strong>② 来源</strong> 选择为 <strong>NovelAI Diffusion</strong>，在 <strong>③ 第三方 API URL</strong> 中填入星绘接口地址：
-            <div class="code-block">
-              <span>https://relay.tenshimomone.com/</span>
-              <button type="button" class="copy-btn" data-copy="https://relay.tenshimomone.com/">📋 复制接口地址</button>
-            </div>
-            <figure class="guide-figure tavern-guide-figure">
-              <a href="./assets/tavern-native-settings.png" target="_blank" rel="noopener">
-                <img src="./assets/tavern-native-settings.png" alt="图像生成设置中选择 NovelAI Diffusion，并在第三方 API URL 填入星绘接口地址" class="guide-img" width="652" height="530" loading="lazy" decoding="async" />
-              </a>
-              <figcaption class="guide-caption">
-                <span>① 打开扩展程序 → 展开图像生成 → ② 来源选 NovelAI Diffusion → ③ 填第三方 API URL</span>
-                <span class="zoom-hint">🔍 点击放大</span>
-              </figcaption>
-            </figure>
-          </li>
-          <li>
-            <strong>保存密钥。</strong>点顶部的插头图标打开 <strong>API 连接</strong>，在下拉框选 <strong>NovelAI</strong>。点密钥框右侧的<strong>钥匙图标</strong>，再点弹窗右上角的 <strong>添加密钥</strong>，粘贴兑换得到的 <code>skr_</code> 密钥并确认（只用来生图时，下方的文本 API「无连接」可直接忽略）。
-            <div class="guide-img-grid">
-              <figure class="guide-figure">
-                <a href="./assets/tavern-novelai-key-entry.png" target="_blank" rel="noopener">
-                  <img src="./assets/tavern-novelai-key-entry.png" alt="NovelAI 密钥输入框右侧的钥匙图标" class="guide-img" width="700" height="539" loading="lazy" decoding="async" />
-                </a>
-                <figcaption class="guide-caption">
-                  <span>步骤 A：在 API 连接中选 NovelAI，点击密钥框右侧钥匙图标</span>
-                  <span class="zoom-hint">🔍 点击放大</span>
-                </figcaption>
-              </figure>
-              <figure class="guide-figure">
-                <a href="./assets/tavern-novelai-add-key.png" target="_blank" rel="noopener">
-                  <img src="./assets/tavern-novelai-add-key.png" alt="NovelAI 密钥管理弹窗右上方的添加密钥按钮" class="guide-img" width="700" height="150" loading="lazy" decoding="async" />
-                </a>
-                <figcaption class="guide-caption">
-                  <span>步骤 B：点击弹窗右上角「添加密钥」，粘贴 <code>skr_</code> 密钥保存</span>
-                  <span class="zoom-hint">🔍 点击放大</span>
-                </figcaption>
-              </figure>
-            </div>
-          </li>
-          <li>
-            <strong>查余额并试画。</strong>回到图像生成设置，点 <strong>查看我的 Anlas</strong>。弹出余额即表示验证通过，<code>0</code> 也是有效余额（酒馆显示的 <code>Free image generation: No</code> 来自它对官方订阅标记的判断，实际扣费按本站套餐规则计算）。
-            <div class="step-split-grid">
-              <div>
-                <p>在 <strong>模型</strong> 下拉框选 <strong>NAI Diffusion V5 (Full)</strong> 或 <strong>NAI Diffusion V5 (Curated)</strong>；仅有 V4.5 小图权益的用户选 <strong>NAI Diffusion Anime V4.5 (Full)</strong>。在角色聊天框执行下方命令即可试画：</p>
-                <div class="code-block" style="margin-bottom:0;">
-                  <span>/imagine extend=false cherry blossoms, blue sky</span>
-                  <button type="button" class="copy-btn" data-copy="/imagine extend=false cherry blossoms, blue sky">📋 复制测试命令</button>
-                </div>
-              </div>
-              <figure class="guide-figure">
-                <a href="./assets/tavern-novelai-anlas.png" target="_blank" rel="noopener">
-                  <img src="./assets/tavern-novelai-anlas.png" alt="余额查询成功的弹窗，示例余额为 100 Anlas" class="guide-img" width="375" height="73" loading="lazy" decoding="async" />
-                </a>
-                <figcaption class="guide-caption">
-                  <span>弹出 Anlas 余额提示即代表接口与密钥验证通过</span>
-                  <span class="zoom-hint">🔍 点击放大</span>
-                </figcaption>
-              </figure>
-            </div>
-          </li>
-        </ol>
-
-        <h3 class="subsection-title" id="tavern-native-chat">给聊天正文配图</h3>
+        <h3 id="tavern-install-extension" class="subsection-title"><span>前置准备 ②：如何安装酒馆扩展程序（柏宝绘 / 小白X / 智绘姬共用入口）</span></h3>
         <div class="step-split-grid">
           <div>
-            <p>已有一条角色回复时，可在聊天框输入 <code>/imagine last message</code>，让酒馆先根据最近一条消息写提示词，再调用 NovelAI 生图。</p>
-            <p style="margin-bottom:0;">想精确控制画面内容时，可先让聊天模型写一行英文 Tag，再用 <code>/imagine extend=false</code> 加上这行 Tag。右图展示了 DeepSeek 根据剧情生成中文配文后，由 NovelAI 在同一段聊天中生成的樱花小巷插图。</p>
-          </div>
-          <figure class="guide-figure">
-            <a href="./assets/tavern-chat-result.png" target="_blank" rel="noopener">
-              <img src="./assets/tavern-chat-result.png" alt="酒馆聊天实测结果，DeepSeek 生成中文配文，NovelAI 在同一段聊天里显示樱花小巷插图" class="guide-img" width="630" height="560" loading="lazy" decoding="async" />
-            </a>
-            <figcaption class="guide-caption">
-              <span>酒馆原生出图实测效果：DeepSeek 中文剧情回复 ＋ NovelAI 樱花小巷插图</span>
-              <span class="zoom-hint">🔍 点击放大</span>
-            </figcaption>
-          </figure>
-        </div>
-      </article>
-
-      <!-- SECTION 6: 酒馆：柏宝绘 -->
-      <article class="section-card tool-section" id="sec-6">
-        <div class="section-header">
-          <h2 class="section-title"><span class="section-num">6</span> 酒馆：柏宝绘</h2>
-          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
-            <span class="badge badge-green">✅ 支持 V5 &amp; V4.5</span>
-            <span class="badge badge-sakura">SillyTavern 扩展</span>
-            <a href="https://github.com/baibai-git/ST-BaiBai-Image/blob/main/README.md" target="_blank" rel="noopener" class="btn">📖 柏宝绘官方文档 ↗</a>
-          </div>
-        </div>
-
-        <p>完整功能与角色外貌库用法可参考 <a href="https://github.com/baibai-git/ST-BaiBai-Image/blob/main/README.md" target="_blank" rel="noopener"><strong>柏宝绘官方文档 (README.md) ↗</strong></a>。</p>
-
-        <h3 id="tavern-install-extension" class="subsection-title">通用步骤：安装酒馆扩展（柏宝绘 / 小白X / 智绘姬共用）</h3>
-        <div class="step-split-grid">
-          <div>
-            <p>柏宝绘、小白X 和智绘姬均通过酒馆顶部扩展入口安装：</p>
             <ol class="bullet-list" style="margin-top:4px;">
               <li>点击酒馆顶部的 <strong>① 扩展程序</strong> 图标，再点右上角的 <strong>② 安装扩展程序</strong>。</li>
               <li>把所选扩展的 GitHub 仓库地址粘贴到弹窗的 URL 输入框，分支留空，点 <strong>只给我安装</strong>。</li>
@@ -2410,495 +2555,606 @@
           </figure>
         </div>
 
-        <ol class="steps-list">
-          <li>
-            复制下方柏宝绘的仓库地址并按上方步骤安装：
-            <div class="code-block">
-              <span>https://github.com/baibai-git/ST-BaiBai-Image</span>
-              <button type="button" class="copy-btn" data-copy="https://github.com/baibai-git/ST-BaiBai-Image">📋 复制仓库地址</button>
+        <!-- 酒馆方案快速筛选条 -->
+        <div class="tavern-filter-bar">
+          <span class="tavern-filter-label">🍺 快速只看某个方案：</span>
+          <button type="button" class="tavern-sub-tab active" data-tavern-tab="all">全部显示 (5.1~5.4)</button>
+          <button type="button" class="tavern-sub-tab" data-tavern-tab="sec-5-1">5.1 原生出图（补丁）</button>
+          <button type="button" class="tavern-sub-tab" data-tavern-tab="sec-5-2">5.2 柏宝绘</button>
+          <button type="button" class="tavern-sub-tab" data-tavern-tab="sec-5-3">5.3 小白X</button>
+          <button type="button" class="tavern-sub-tab" data-tavern-tab="sec-5-4">5.4 智绘姬</button>
+        </div>
+
+        <!-- =====================================================
+             5.1 方案一：酒馆原生出图（补丁）
+             ===================================================== -->
+        <div class="tavern-scheme-block" id="sec-5-1">
+          <h3 class="subsection-title" style="margin-top:0;">
+            <span>5.1 方案一：酒馆原生出图（补丁）</span>
+            <span style="display:inline-flex;align-items:center;gap:8px;flex-wrap:wrap;">
+              <span class="badge badge-green">✅ 支持 V5 &amp; V4.5 · SillyTavern 1.19.1</span>
+              <a href="https://github.com/suzuka-suzuka/SillyTavern-NovelAI-Relay-Patch" target="_blank" rel="noopener" class="btn" style="font-size:0.78rem;padding:4px 10px;">📖 补丁仓库与撤销说明 ↗</a>
+            </span>
+          </h3>
+          <p>此补丁已在 <strong>SillyTavern 1.19.1</strong> 验证，为原生图像生成增加 <strong>第三方 API URL</strong> 和 <strong>V5 Full / V5 Curated</strong> 模型。配置后可继续使用酒馆原生的 <code>/imagine</code> 命令、自动配图或魔杖菜单出图。</p>
+
+          <ol class="steps-list">
+            <li>
+              <strong>安装或更新补丁。</strong>新旧用户用同一套命令。Windows 下，在酒馆根目录（有 <code>server.js</code> 的文件夹）打开终端并执行下面两行。脚本会自动安装或更新，完成后<strong>重启酒馆并刷新网页</strong>。
+              <div class="cmd-group">
+                <div class="cmd-group-header">
+                  <span>💻 安装或更新补丁命令（在 SillyTavern 根目录执行）</span>
+                  <button type="button" class="copy-btn" data-copy="curl.exe -fL https://raw.githubusercontent.com/suzuka-suzuka/SillyTavern-NovelAI-Relay-Patch/main/install.mjs -o .nai-relay-install.mjs&#10;node .nai-relay-install.mjs">📋 一键复制两行命令</button>
+                </div>
+                <div class="cmd-list">
+                  <div class="cmd-row">
+                    <div class="cmd-row-main">
+                      <span class="cmd-step-label">① 第 1 行：下载安装脚本</span>
+                      <span class="cmd-code">curl.exe -fL https://raw.githubusercontent.com/suzuka-suzuka/SillyTavern-NovelAI-Relay-Patch/main/install.mjs -o .nai-relay-install.mjs</span>
+                    </div>
+                    <button type="button" class="copy-btn" data-copy="curl.exe -fL https://raw.githubusercontent.com/suzuka-suzuka/SillyTavern-NovelAI-Relay-Patch/main/install.mjs -o .nai-relay-install.mjs">📋 复制第 1 行</button>
+                  </div>
+                  <div class="cmd-row">
+                    <div class="cmd-row-main">
+                      <span class="cmd-step-label">② 第 2 行：运行安装脚本</span>
+                      <span class="cmd-code">node .nai-relay-install.mjs</span>
+                    </div>
+                    <button type="button" class="copy-btn" data-copy="node .nai-relay-install.mjs">📋 复制第 2 行</button>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li>
+              <strong>填写图片地址。</strong>点顶部的 <strong>① 扩展图标</strong>，展开 <strong>图像生成</strong>。将 <strong>② 来源</strong> 选择为 <strong>NovelAI Diffusion</strong>，在 <strong>③ 第三方 API URL</strong> 中填入星绘接口地址：
+              <div class="code-block">
+                <span>https://relay.tenshimomone.com/</span>
+                <button type="button" class="copy-btn" data-copy="https://relay.tenshimomone.com/">📋 复制接口地址</button>
+              </div>
+              <figure class="guide-figure tavern-guide-figure">
+                <a href="./assets/tavern-native-settings.png" target="_blank" rel="noopener">
+                  <img src="./assets/tavern-native-settings.png" alt="图像生成设置中选择 NovelAI Diffusion，并在第三方 API URL 填入星绘接口地址" class="guide-img" width="652" height="530" loading="lazy" decoding="async" />
+                </a>
+                <figcaption class="guide-caption">
+                  <span>① 打开扩展程序 → 展开图像生成 → ② 来源选 NovelAI Diffusion → ③ 填第三方 API URL</span>
+                  <span class="zoom-hint">🔍 点击放大</span>
+                </figcaption>
+              </figure>
+            </li>
+            <li>
+              <strong>保存密钥。</strong>点顶部的插头图标打开 <strong>API 连接</strong>，在下拉框选 <strong>NovelAI</strong>。点密钥框右侧的<strong>钥匙图标</strong>，再点弹窗右上角的 <strong>添加密钥</strong>，粘贴兑换得到的 <code>skr_</code> 密钥并确认（只用来生图时，下方的文本 API「无连接」可直接忽略）。
+              <div class="guide-img-grid">
+                <figure class="guide-figure">
+                  <a href="./assets/tavern-novelai-key-entry.png" target="_blank" rel="noopener">
+                    <img src="./assets/tavern-novelai-key-entry.png" alt="NovelAI 密钥输入框右侧的钥匙图标" class="guide-img" width="700" height="539" loading="lazy" decoding="async" />
+                  </a>
+                  <figcaption class="guide-caption">
+                    <span>步骤 A：在 API 连接中选 NovelAI，点击密钥框右侧钥匙图标</span>
+                    <span class="zoom-hint">🔍 点击放大</span>
+                  </figcaption>
+                </figure>
+                <figure class="guide-figure">
+                  <a href="./assets/tavern-novelai-add-key.png" target="_blank" rel="noopener">
+                    <img src="./assets/tavern-novelai-add-key.png" alt="NovelAI 密钥管理弹窗右上方的添加密钥按钮" class="guide-img" width="700" height="150" loading="lazy" decoding="async" />
+                  </a>
+                  <figcaption class="guide-caption">
+                    <span>步骤 B：点击弹窗右上角「添加密钥」，粘贴 <code>skr_</code> 密钥保存</span>
+                    <span class="zoom-hint">🔍 点击放大</span>
+                  </figcaption>
+                </figure>
+              </div>
+            </li>
+            <li>
+              <strong>查余额并试画。</strong>回到图像生成设置，点 <strong>查看我的 Anlas</strong>。弹出余额即表示验证通过，<code>0</code> 也是有效余额（酒馆显示的 <code>Free image generation: No</code> 来自它对官方订阅标记的判断，实际扣费按本站套餐规则计算）。
+              <div class="step-split-grid">
+                <div>
+                  <p>在 <strong>模型</strong> 下拉框选 <strong>NAI Diffusion V5 (Full)</strong> 或 <strong>NAI Diffusion V5 (Curated)</strong>；仅有 V4.5 小图权益的用户选 <strong>NAI Diffusion Anime V4.5 (Full)</strong>。在角色聊天框执行下方命令即可试画：</p>
+                  <div class="code-block" style="margin-bottom:0;">
+                    <span>/imagine extend=false cherry blossoms, blue sky</span>
+                    <button type="button" class="copy-btn" data-copy="/imagine extend=false cherry blossoms, blue sky">📋 复制测试命令</button>
+                  </div>
+                </div>
+                <figure class="guide-figure">
+                  <a href="./assets/tavern-novelai-anlas.png" target="_blank" rel="noopener">
+                    <img src="./assets/tavern-novelai-anlas.png" alt="余额查询成功的弹窗，示例余额为 100 Anlas" class="guide-img" width="375" height="73" loading="lazy" decoding="async" />
+                  </a>
+                  <figcaption class="guide-caption">
+                    <span>弹出 Anlas 余额提示即代表接口与密钥验证通过</span>
+                    <span class="zoom-hint">🔍 点击放大</span>
+                  </figcaption>
+                </figure>
+              </div>
+            </li>
+          </ol>
+
+          <h4 class="subsection-title" id="tavern-native-chat"><span>给聊天正文配图</span></h4>
+          <div class="step-split-grid" style="margin-bottom:0;">
+            <div>
+              <p>已有一条角色回复时，可在聊天框输入 <code>/imagine last message</code>，让酒馆先根据最近一条消息写提示词，再调用 NovelAI 生图。</p>
+              <p style="margin-bottom:0;">想精确控制画面内容时，可先让聊天模型写一行英文 Tag，再用 <code>/imagine extend=false</code> 加上这行 Tag。右图展示了 DeepSeek 根据剧情生成中文配文后，由 NovelAI 在同一段聊天中生成的樱花小巷插图。</p>
             </div>
-          </li>
-          <li>
-            <div class="step-split-grid" style="margin:0;">
+            <figure class="guide-figure">
+              <a href="./assets/tavern-chat-result.png" target="_blank" rel="noopener">
+                <img src="./assets/tavern-chat-result.png" alt="酒馆聊天实测结果，DeepSeek 生成中文配文，NovelAI 在同一段聊天里显示樱花小巷插图" class="guide-img" width="630" height="560" loading="lazy" decoding="async" />
+              </a>
+              <figcaption class="guide-caption">
+                <span>酒馆原生出图实测效果：DeepSeek 中文剧情回复 ＋ NovelAI 樱花小巷插图</span>
+                <span class="zoom-hint">🔍 点击放大</span>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <!-- =====================================================
+             5.2 方案二：柏宝绘
+             ===================================================== -->
+        <div class="tavern-scheme-block" id="sec-5-2">
+          <h3 class="subsection-title" style="margin-top:0;">
+            <span>5.2 方案二：柏宝绘（ST-BaiBai-Image 扩展）</span>
+            <span style="display:inline-flex;align-items:center;gap:8px;flex-wrap:wrap;">
+              <span class="badge badge-green">✅ 支持 V5 &amp; V4.5</span>
+              <a href="https://github.com/baibai-git/ST-BaiBai-Image/blob/main/README.md" target="_blank" rel="noopener" class="btn" style="font-size:0.78rem;padding:4px 10px;">📖 柏宝绘官方文档 ↗</a>
+            </span>
+          </h3>
+
+          <ol class="steps-list">
+            <li>
+              打开酒馆顶部 <strong>扩展程序 → 安装扩展程序</strong>，粘贴柏宝绘仓库地址并点击 <strong>只给我安装</strong>（安装后刷新酒馆）：
+              <div class="code-block" style="margin-bottom:0;">
+                <span>https://github.com/baibai-git/ST-BaiBai-Image</span>
+                <button type="button" class="copy-btn" data-copy="https://github.com/baibai-git/ST-BaiBai-Image">📋 复制仓库地址</button>
+              </div>
+            </li>
+            <li>
+              <div class="step-split-grid" style="margin:0;">
+                <div>
+                  <strong>打开柏宝绘设置面板：</strong><br />
+                  刷新酒馆后，点击聊天输入框左侧的 <strong>① 魔杖图标 → ② 柏宝绘</strong>，进入面板后切换到 <strong>渠道 → NAI</strong>。
+                </div>
+                <figure class="guide-figure">
+                  <a href="./assets/tavern-baibai-entry.png" target="_blank" rel="noopener">
+                    <img src="./assets/tavern-baibai-entry.png" alt="从聊天框左侧的魔杖菜单打开柏宝绘" class="guide-img" width="357" height="384" loading="lazy" decoding="async" />
+                  </a>
+                  <figcaption class="guide-caption">
+                    <span>① 聊天框左侧魔杖图标 → ② 点击「柏宝绘」</span>
+                    <span class="zoom-hint">🔍 点击放大</span>
+                  </figcaption>
+                </figure>
+              </div>
+            </li>
+            <li>展开 <strong>接入点</strong>，点 <strong>＋ 添加接入点</strong>，名称填写 <strong>星绘补给站</strong>。</li>
+            <li>
+              按下表填写接口地址与 API Key，再点 <strong>完成</strong>：
+              <div class="table-wrap">
+                <table class="table-config">
+                  <thead>
+                    <tr>
+                      <th>字段</th>
+                      <th>填写内容</th>
+                      <th>一键复制</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>接口地址</strong></td>
+                      <td><code>https://relay.tenshimomone.com/</code></td>
+                      <td><button type="button" class="copy-btn" data-copy="https://relay.tenshimomone.com/">📋 复制地址</button></td>
+                    </tr>
+                    <tr>
+                      <td><strong>API Key</strong></td>
+                      <td>兑换页获得的 <code>skr_</code> 密钥</td>
+                      <td><span class="badge badge-amber">粘贴 skr_ 密钥</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <figure class="guide-figure tavern-guide-figure">
+                <a href="./assets/tavern-baibai-novelai.png" target="_blank" rel="noopener">
+                  <img src="./assets/tavern-baibai-novelai.png" alt="柏宝绘的 NovelAI 渠道配置，新增星绘补给站接入点并设置接口地址和 API Key" class="guide-img" width="1362" height="507" loading="lazy" decoding="async" />
+                </a>
+                <figcaption class="guide-caption">
+                  <span>柏宝绘 NAI 渠道配置：添加「星绘补给站」接入点，填入接口地址与 <code>skr_</code> 密钥后保存</span>
+                  <span class="zoom-hint">🔍 点击放大</span>
+                </figcaption>
+              </figure>
+            </li>
+            <li>在 <strong>出图方案</strong> 中点铅笔编辑当前方案，把接入点切到 <strong>星绘补给站</strong>，选择模型并保存，再点 <strong>用 NovelAI 出图</strong>（<strong>「V4.5无限小图」月卡用户请务必在方案中将模型切换为 V4.5</strong>；含 V5 体力或点数用户可选 V5 或 V4.5）。</li>
+            <li><strong>写 Tag 用的对话渠道：</strong> 在插件设置中保持默认（<strong>不配置副 API 即自动跟随酒馆主 API</strong>），沿用你原本的聊天模型连接即可。</li>
+          </ol>
+
+          <h4 class="subsection-title" id="tavern-baibai-chat"><span>在聊天中配图（手动触发 &amp; 自动配图）</span></h4>
+          <div class="visual-step-grid" style="margin-bottom:0;">
+            <div class="visual-step-card">
               <div>
-                <strong>打开柏宝绘设置面板：</strong><br />
-                刷新酒馆后，点击聊天输入框左侧的 <strong>① 魔杖图标 → ② 柏宝绘</strong>，进入面板后切换到 <strong>渠道 → NAI</strong>。
+                <div class="visual-step-head">
+                  <span class="visual-step-num">1</span>
+                  <span>打开回复的配图入口</span>
+                </div>
+                <p class="visual-step-desc" style="margin:6px 0 0;">先用酒馆聊天模型聊出一条角色回复，点该条 AI 回复右上角的 <strong>① ⋯</strong>，再点 <strong>② 调色盘</strong>（悬停显示「生成生图 tag」）。</p>
               </div>
               <figure class="guide-figure">
-                <a href="./assets/tavern-baibai-entry.png" target="_blank" rel="noopener">
-                  <img src="./assets/tavern-baibai-entry.png" alt="从聊天框左侧的魔杖菜单打开柏宝绘" class="guide-img" width="357" height="384" loading="lazy" decoding="async" />
+                <a href="./assets/tavern-baibai-message-menu.png" target="_blank" rel="noopener">
+                  <img src="./assets/tavern-baibai-message-menu.png" alt="柏宝绘的聊天楼层入口，先点回复右上角的省略号，再点调色盘生成绘图 Tag" class="guide-img" width="640" height="212" loading="lazy" decoding="async" />
                 </a>
                 <figcaption class="guide-caption">
-                  <span>① 聊天框左侧魔杖图标 → ② 点击「柏宝绘」</span>
-                  <span class="zoom-hint">🔍 点击放大</span>
+                  <span>① 点回复右上角 ⋯ → ② 点调色盘生成 Tag</span>
+                  <span class="zoom-hint">🔍 放大</span>
                 </figcaption>
               </figure>
             </div>
-          </li>
-          <li>展开 <strong>接入点</strong>，点 <strong>＋ 添加接入点</strong>，名称填写 <strong>星绘补给站</strong>。</li>
-          <li>
-            按下表填写接口地址与 API Key，再点 <strong>完成</strong>：
-            <div class="table-wrap">
-              <table class="table-config">
-                <thead>
-                  <tr>
-                    <th>字段</th>
-                    <th>填写内容</th>
-                    <th>一键复制</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><strong>接口地址</strong></td>
-                    <td><code>https://relay.tenshimomone.com/</code></td>
-                    <td><button type="button" class="copy-btn" data-copy="https://relay.tenshimomone.com/">📋 复制地址</button></td>
-                  </tr>
-                  <tr>
-                    <td><strong>API Key</strong></td>
-                    <td>兑换页获得的 <code>skr_</code> 密钥</td>
-                    <td><span class="badge badge-amber">粘贴 skr_ 密钥</span></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <figure class="guide-figure tavern-guide-figure">
-              <a href="./assets/tavern-baibai-novelai.png" target="_blank" rel="noopener">
-                <img src="./assets/tavern-baibai-novelai.png" alt="柏宝绘的 NovelAI 渠道配置，新增星绘补给站接入点并设置接口地址和 API Key" class="guide-img" width="1362" height="507" loading="lazy" decoding="async" />
-              </a>
-              <figcaption class="guide-caption">
-                <span>柏宝绘 NAI 渠道配置：添加「星绘补给站」接入点，填入接口地址与 <code>skr_</code> 密钥后保存</span>
-                <span class="zoom-hint">🔍 点击放大</span>
-              </figcaption>
-            </figure>
-          </li>
-          <li>在 <strong>出图方案</strong> 中点铅笔编辑当前方案，把接入点切到 <strong>星绘补给站</strong>，选择模型并保存，再点 <strong>用 NovelAI 出图</strong>（<strong>「V4.5无限小图」月卡用户请务必在方案中将模型切换为 V4.5</strong>；含 V5 体力或点数用户可选 V5 或 V4.5）。</li>
-          <li><strong>写 Tag 用的对话渠道：</strong> 在插件设置中保持默认（<strong>不配置副 API 即自动跟随酒馆主 API</strong>），沿用你原本的聊天模型连接即可。</li>
-        </ol>
 
-        <h3 class="subsection-title" id="tavern-baibai-chat">在聊天中配图（手动触发 &amp; 自动配图）</h3>
-        <div class="visual-step-grid">
-          <div class="visual-step-card">
-            <div>
-              <div class="visual-step-head">
-                <span class="visual-step-num">1</span>
-                <span>打开回复的配图入口</span>
+            <div class="visual-step-card">
+              <div>
+                <div class="visual-step-head">
+                  <span class="visual-step-num">2</span>
+                  <span>点击卡片生成图片</span>
+                </div>
+                <p class="visual-step-desc" style="margin:6px 0 0;">柏宝绘会读取本楼正文并在同一楼插入配图卡片。点卡片上的 <strong>③ 生成图片</strong> 等待出图（想逐张确认可先关闭「自动生成图片」）。</p>
               </div>
-              <p class="visual-step-desc" style="margin:6px 0 0;">先用酒馆聊天模型聊出一条角色回复，点该条 AI 回复右上角的 <strong>① ⋯</strong>，再点 <strong>② 调色盘</strong>（悬停显示「生成生图 tag」）。</p>
-            </div>
-            <figure class="guide-figure">
-              <a href="./assets/tavern-baibai-message-menu.png" target="_blank" rel="noopener">
-                <img src="./assets/tavern-baibai-message-menu.png" alt="柏宝绘的聊天楼层入口，先点回复右上角的省略号，再点调色盘生成绘图 Tag" class="guide-img" width="640" height="212" loading="lazy" decoding="async" />
-              </a>
-              <figcaption class="guide-caption">
-                <span>① 点回复右上角 ⋯ → ② 点调色盘生成 Tag</span>
-                <span class="zoom-hint">🔍 放大</span>
-              </figcaption>
-            </figure>
-          </div>
-
-          <div class="visual-step-card">
-            <div>
-              <div class="visual-step-head">
-                <span class="visual-step-num">2</span>
-                <span>点击卡片生成图片</span>
-              </div>
-              <p class="visual-step-desc" style="margin:6px 0 0;">柏宝绘会读取本楼正文并在同一楼插入配图卡片。点卡片上的 <strong>③ 生成图片</strong> 等待出图（想逐张确认可先关闭「自动生成图片」）。</p>
-            </div>
-            <figure class="guide-figure">
-              <a href="./assets/tavern-baibai-message-tags.png" target="_blank" rel="noopener">
-                <img src="./assets/tavern-baibai-message-tags.png" alt="柏宝绘读取回复后在同一楼层插入绘图卡片，框出生成图片按钮" class="guide-img" width="640" height="440" loading="lazy" decoding="async" />
-              </a>
-              <figcaption class="guide-caption">
-                <span>③ 点击同楼层配图卡片上的「生成图片」</span>
-                <span class="zoom-hint">🔍 放大</span>
-              </figcaption>
-            </figure>
-          </div>
-
-          <div class="visual-step-card">
-            <div>
-              <div class="visual-step-head">
-                <span class="visual-step-num">3</span>
-                <span>查看楼层内插图</span>
-              </div>
-              <p class="visual-step-desc" style="margin:6px 0 0;">NovelAI 出图完成后，生成的插图会直接显示在刚才那条角色回复的绘图卡片里。</p>
-            </div>
-            <figure class="guide-figure">
-              <a href="./assets/tavern-baibai-message-result.png" target="_blank" rel="noopener">
-                <img src="./assets/tavern-baibai-message-result.png" alt="柏宝绘用 NovelAI 生成的插图显示在原回复的绘图卡片内" class="guide-img" width="640" height="780" loading="lazy" decoding="async" />
-              </a>
-              <figcaption class="guide-caption">
-                <span>生成的插图直接展示在当前回复楼层卡片中</span>
-                <span class="zoom-hint">🔍 放大</span>
-              </figcaption>
-            </figure>
-          </div>
-
-          <div class="visual-step-card">
-            <div>
-              <div class="visual-step-head">
-                <span class="visual-step-num">4</span>
-                <span>开启全自动配图（可选）</span>
-              </div>
-              <p class="visual-step-desc" style="margin:6px 0 0;">打开柏宝绘 <strong>设置 → 自动生成 tag</strong>，同时勾选 <strong>① 自动生成 tag</strong> 和 <strong>② 自动生成图片</strong>，角色每次回复后会自动判断并出图。</p>
-            </div>
-            <figure class="guide-figure">
-              <a href="./assets/tavern-baibai-chat.png" target="_blank" rel="noopener">
-                <img src="./assets/tavern-baibai-chat.png" alt="柏宝绘设置中的自动生成 tag 和自动生成图片开关" class="guide-img" width="883" height="473" loading="lazy" decoding="async" />
-              </a>
-              <figcaption class="guide-caption">
-                <span>勾选「自动生成 tag」与「自动生成图片」即可自动配图</span>
-                <span class="zoom-hint">🔍 放大</span>
-              </figcaption>
-            </figure>
-          </div>
-        </div>
-      </article>
-
-      <!-- SECTION 7: 酒馆：小白X / LittleWhiteBox -->
-      <article class="section-card tool-section" id="sec-7">
-        <div class="section-header">
-          <h2 class="section-title"><span class="section-num">7</span> 酒馆：小白X / LittleWhiteBox</h2>
-          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
-            <span class="badge badge-green">✅ 支持 V5 &amp; V4.5</span>
-            <span class="badge badge-sakura">SillyTavern 扩展</span>
-            <a href="https://github.com/RT15548/LittleWhiteBox/blob/main/docs/user/draw.md" target="_blank" rel="noopener" class="btn">📖 小白X画图官方文档 ↗</a>
-          </div>
-        </div>
-
-        <p>已安装小白X的用户可直接使用其内置的 AI 画图模块（酒馆绘图插件选一种使用即可，无需同时开多个）。详细进阶功能可参阅 <a href="https://github.com/RT15548/LittleWhiteBox/blob/main/docs/user/draw.md" target="_blank" rel="noopener"><strong>小白X AI 画图官方文档 (draw.md) ↗</strong></a>。</p>
-
-        <ol class="steps-list">
-          <li>
-            打开酒馆顶部 <strong>扩展程序 → 安装扩展程序</strong>，粘贴小白X 的仓库地址并点击 <strong>只给我安装</strong>：
-            <div class="code-block">
-              <span>https://github.com/RT15548/LittleWhiteBox</span>
-              <button type="button" class="copy-btn" data-copy="https://github.com/RT15548/LittleWhiteBox">📋 复制仓库地址</button>
-            </div>
-            <details class="inline-guide-details">
-              <summary>
-                <span>📸 第一次安装酒馆扩展？点击展开查看「安装扩展程序」位置图示</span>
-                <span class="badge badge-sakura">点击展开</span>
-              </summary>
-              <p style="font-size:0.86rem;margin-bottom:8px;">点击顶部 <strong>① 扩展程序</strong> 图标 → 点右上角 <strong>② 安装扩展程序</strong> → 粘贴上方仓库地址（分支留空）→ 点 <strong>只给我安装</strong> 并刷新酒馆：</p>
-              <figure class="guide-figure tavern-guide-figure" style="margin-top:0;">
-                <a href="./assets/tavern-extension-setup.png" target="_blank" rel="noopener">
-                  <img src="./assets/tavern-extension-setup.png" alt="从顶部扩展程序打开安装扩展程序，在弹窗粘贴仓库地址并选择只给我安装" class="guide-img" width="698" height="658" loading="lazy" decoding="async" />
-                </a>
-                <figcaption class="guide-caption">
-                  <span>顶部扩展程序 → 安装扩展程序 → 粘贴仓库 URL → 点「只给我安装」</span>
-                  <span class="zoom-hint">🔍 点击放大</span>
-                </figcaption>
-              </figure>
-            </details>
-          </li>
-          <li>安装后刷新，打开 <strong>扩展设置 → 小白X → 辅助工具 → AI 画图</strong>，在 <strong>① 画图后端</strong> 中选择 <strong>NovelAI</strong>，再点击旁边的 <strong>② 画图设置</strong>。
-            <figure class="guide-figure tavern-guide-figure">
-              <a href="./assets/tavern-whitebox-entry.png" target="_blank" rel="noopener">
-                <img src="./assets/tavern-whitebox-entry.png" alt="小白X 的辅助工具中选择 NovelAI 画图后端并打开画图设置" class="guide-img" width="701" height="715" loading="lazy" decoding="async" />
-              </a>
-              <figcaption class="guide-caption">
-                <span>小白X → 辅助工具 → AI 画图：① 画图后端选 NovelAI → ② 点击「画图设置」</span>
-                <span class="zoom-hint">🔍 点击放大</span>
-              </figcaption>
-            </figure>
-          </li>
-          <li>
-            切换到 <strong>① API 配置</strong> 页面，按下表填写后点击 <strong>⑤ 保存</strong>，再点 <strong>测试连接</strong>（也可到 <code>快速测试</code> 页点 <code>生成</code> 验证出图）：
-            <div class="table-wrap">
-              <table class="table-config">
-                <thead>
-                  <tr>
-                    <th>字段</th>
-                    <th>填写内容</th>
-                    <th>操作 / 状态</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><strong>② NovelAI API Key</strong></td>
-                    <td>兑换页获得的 <code>skr_</code> 密钥</td>
-                    <td><span class="badge badge-amber">粘贴 skr_ 密钥</span></td>
-                  </tr>
-                  <tr>
-                    <td><strong>③ 第三方端点 URL（可选）</strong></td>
-                    <td><code>https://relay.tenshimomone.com/</code></td>
-                    <td><button type="button" class="copy-btn" data-copy="https://relay.tenshimomone.com/">📋 复制地址</button></td>
-                  </tr>
-                  <tr>
-                    <td><strong>④ 发送方式</strong></td>
-                    <td><strong>前端直连</strong></td>
-                    <td><span class="badge badge-green">选择前端直连</span></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <figure class="guide-figure tavern-guide-figure">
-              <a href="./assets/tavern-whitebox-api.png" target="_blank" rel="noopener">
-                <img src="./assets/tavern-whitebox-api.png" alt="小白X 的 API 配置页，标出密钥、第三方端点、前端直连和保存" class="guide-img" width="1336" height="896" loading="lazy" decoding="async" />
-              </a>
-              <figcaption class="guide-caption">
-                <span>① API 配置 → ② 填 <code>skr_</code> 密钥 → ③ 填第三方端点 URL → ④ 选前端直连 → ⑤ 点保存</span>
-                <span class="zoom-hint">🔍 点击放大</span>
-              </figcaption>
-            </figure>
-          </li>
-          <li>切换到 <strong>绘图参数</strong> 页面选择你要使用的模型（<strong>含 V5 体力或点数用户可选 V5 或 V4.5 模型</strong>；<strong>「V4.5无限小图」月卡用户请选 <code>NAI V4.5 Full</code></strong>），推荐尺寸选 <code>832×1216 竖图</code>（或 <code>≤ 1024×1024</code>）、步数 <code>28</code>。
-            <figure class="guide-figure tavern-guide-figure">
-              <a href="./assets/tavern-whitebox-v45.png" target="_blank" rel="noopener">
-                <img src="./assets/tavern-whitebox-v45.png" alt="小白X 绘图参数示例，选择 V5 或 NAI V4.5 Full，尺寸 832×1216，步数 28" class="guide-img" width="894" height="537" loading="lazy" decoding="async" />
-              </a>
-              <figcaption class="guide-caption">
-                <span>绘图参数设置：① 选择 V5 或 V4.5 模型，下方尺寸建议选 <code>832×1216</code>、Steps 填 <code>28</code></span>
-                <span class="zoom-hint">🔍 点击放大</span>
-              </figcaption>
-            </figure>
-          </li>
-          <li>
-            <strong>配置「场景 Agent」（⚠️ 必配项！不配的话只有“快速测试”能出图，聊天里无法配图，会报错 <code>尚未选择模型</code>）：</strong><br />
-            切换到 <strong>① 场景 Agent</strong> 页面——这里设置的是负责“读剧情正文、规划画面、写生图 TAG”的<strong>聊天 AI 模型</strong>（与小白助手共用同一套配置，<strong>切勿把本站 <code>skr_</code> 绘画密钥填在这里</strong>）：
-            <ul class="bullet-list" style="margin-top:6px;">
-              <li>选择你聊天模型对应的 <strong>② Provider（接口类型）</strong>，例如 <code>OpenAI 兼容</code>、<code>Anthropic</code>、<code>Google AI</code>（或经由酒馆后端转发的 <code>酒馆 OpenAI 兼容</code> / <code>酒馆 Claude</code> / <code>酒馆 Google AI</code>）。</li>
-              <li>填入你<strong>聊天模型</strong>的 <strong>③ <code>Base URL</code></strong> 与 <strong>④ <code>API Key</code></strong>，点击 <strong>拉取模型</strong> 选好模型（或手动填写 <strong>⑤ <code>Model</code></strong> 名称），最后点击右上角 <strong>⑥ 保存图标</strong>（确保面板不再显示 <code>未选择模型</code>）。</li>
-              <li>用 DeepSeek 时可选 <strong>OpenAI 兼容</strong>，<code>Base URL</code> 填 <code>https://api.deepseek.com</code>，模型填 <code>deepseek-flash</code>，填写自己的 DeepSeek API Key，把<strong>思考模式</strong>设为<strong>关闭</strong>后保存。</li>
-            </ul>
-            <figure class="guide-figure tavern-guide-figure">
-              <a href="./assets/tavern-whitebox-agent.png" target="_blank" rel="noopener">
-                <img src="./assets/tavern-whitebox-agent.png" alt="小白X 场景 Agent 中的 OpenAI 兼容服务、Base URL、模型和保存入口" class="guide-img" width="1336" height="660" loading="lazy" decoding="async" />
-              </a>
-              <figcaption class="guide-caption">
-                <span>① 场景 Agent → ② 选聊天接口类型 → ③④⑤ 填聊天模型地址/Key/模型名 → ⑥ 点击保存</span>
-                <span class="zoom-hint">🔍 点击放大</span>
-              </figcaption>
-            </figure>
-          </li>
-          <li><strong>在聊天中开始配图：</strong> 点击 AI 回复右上角小胶囊里的 <strong>① 调色盘按钮</strong>，生成的图片会直接插回这一楼；需要每次回复后自动画图时，在画图设置面板右上角将模式从「手动」切换为 <strong>自动</strong>（也可让聊天 AI 在正文直接输出 <code>[img:TAG]</code> 标记触发出图）。
-            <div class="guide-img-grid">
               <figure class="guide-figure">
-                <a href="./assets/tavern-whitebox-brush.png" target="_blank" rel="noopener">
-                  <img src="./assets/tavern-whitebox-brush.png" alt="小白X 在角色回复右上角提供手动配图的调色盘按钮" class="guide-img" width="692" height="234" loading="lazy" decoding="async" />
+                <a href="./assets/tavern-baibai-message-tags.png" target="_blank" rel="noopener">
+                  <img src="./assets/tavern-baibai-message-tags.png" alt="柏宝绘读取回复后在同一楼层插入绘图卡片，框出生成图片按钮" class="guide-img" width="640" height="440" loading="lazy" decoding="async" />
                 </a>
                 <figcaption class="guide-caption">
-                  <span>步骤 A：点击角色回复右上角胶囊中的 ① 调色盘按钮触发配图</span>
-                  <span class="zoom-hint">🔍 点击放大</span>
+                  <span>③ 点击同楼层配图卡片上的「生成图片」</span>
+                  <span class="zoom-hint">🔍 放大</span>
                 </figcaption>
               </figure>
+            </div>
+
+            <div class="visual-step-card">
+              <div>
+                <div class="visual-step-head">
+                  <span class="visual-step-num">3</span>
+                  <span>查看楼层内插图</span>
+                </div>
+                <p class="visual-step-desc" style="margin:6px 0 0;">NovelAI 出图完成后，生成的插图会直接显示在刚才那条角色回复的绘图卡片里。</p>
+              </div>
               <figure class="guide-figure">
-                <a href="./assets/tavern-whitebox-result.png" target="_blank" rel="noopener">
-                  <img src="./assets/tavern-whitebox-result.png" alt="小白X 使用 NovelAI 生成的图片出现在原聊天回复内" class="guide-img" width="680" height="432" loading="lazy" decoding="async" />
+                <a href="./assets/tavern-baibai-message-result.png" target="_blank" rel="noopener">
+                  <img src="./assets/tavern-baibai-message-result.png" alt="柏宝绘用 NovelAI 生成的插图显示在原回复的绘图卡片内" class="guide-img" width="640" height="780" loading="lazy" decoding="async" />
                 </a>
                 <figcaption class="guide-caption">
-                  <span>步骤 B：NovelAI 出图完成后，插图直接嵌入该条聊天回复内</span>
-                  <span class="zoom-hint">🔍 点击放大</span>
+                  <span>生成的插图直接展示在当前回复楼层卡片中</span>
+                  <span class="zoom-hint">🔍 放大</span>
                 </figcaption>
               </figure>
             </div>
-          </li>
-        </ol>
-      </article>
 
-      <!-- SECTION 8: 酒馆：智绘姬 / st-chatu8 -->
-      <article class="section-card tool-section" id="sec-8">
-        <div class="section-header">
-          <h2 class="section-title"><span class="section-num">8</span> 酒馆：智绘姬 / st-chatu8</h2>
-          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
-            <span class="badge badge-green">✅ 支持 V5 &amp; V4.5</span>
-            <span class="badge badge-sakura">SillyTavern 扩展</span>
-            <a href="https://github.com/damoshen123/st-chatu8/blob/main/README.md" target="_blank" rel="noopener" class="btn">📖 智绘姬官方文档 ↗</a>
+            <div class="visual-step-card">
+              <div>
+                <div class="visual-step-head">
+                  <span class="visual-step-num">4</span>
+                  <span>开启全自动配图（可选）</span>
+                </div>
+                <p class="visual-step-desc" style="margin:6px 0 0;">打开柏宝绘 <strong>设置 → 自动生成 tag</strong>，同时勾选 <strong>① 自动生成 tag</strong> 和 <strong>② 自动生成图片</strong>，角色每次回复后会自动判断并出图。</p>
+              </div>
+              <figure class="guide-figure">
+                <a href="./assets/tavern-baibai-chat.png" target="_blank" rel="noopener">
+                  <img src="./assets/tavern-baibai-chat.png" alt="柏宝绘设置中的自动生成 tag 和自动生成图片开关" class="guide-img" width="883" height="473" loading="lazy" decoding="async" />
+                </a>
+                <figcaption class="guide-caption">
+                  <span>勾选「自动生成 tag」与「自动生成图片」即可自动配图</span>
+                  <span class="zoom-hint">🔍 放大</span>
+                </figcaption>
+              </figure>
+            </div>
           </div>
         </div>
 
-        <p>更多触发标记与提示词替换规则可参考 <a href="https://github.com/damoshen123/st-chatu8/blob/main/README.md" target="_blank" rel="noopener"><strong>智绘姬官方文档 (README.md) ↗</strong></a>。</p>
+        <!-- =====================================================
+             5.3 方案三：小白X / LittleWhiteBox
+             ===================================================== -->
+        <div class="tavern-scheme-block" id="sec-5-3">
+          <h3 class="subsection-title" style="margin-top:0;">
+            <span>5.3 方案三：小白X / LittleWhiteBox（内置 AI 画图模块）</span>
+            <span style="display:inline-flex;align-items:center;gap:8px;flex-wrap:wrap;">
+              <span class="badge badge-green">✅ 支持 V5 &amp; V4.5</span>
+              <a href="https://github.com/RT15548/LittleWhiteBox/blob/main/docs/user/draw.md" target="_blank" rel="noopener" class="btn" style="font-size:0.78rem;padding:4px 10px;">📖 小白X画图官方文档 ↗</a>
+            </span>
+          </h3>
 
-        <ol class="steps-list">
-          <li>
-            打开酒馆顶部 <strong>扩展程序 → 安装扩展程序</strong>，粘贴智绘姬的仓库地址并点击 <strong>只给我安装</strong>：
-            <div class="code-block">
-              <span>https://github.com/damoshen123/st-chatu8</span>
-              <button type="button" class="copy-btn" data-copy="https://github.com/damoshen123/st-chatu8">📋 复制仓库地址</button>
-            </div>
-            <details class="inline-guide-details">
-              <summary>
-                <span>📸 第一次安装酒馆扩展？点击展开查看「安装扩展程序」位置图示</span>
-                <span class="badge badge-sakura">点击展开</span>
-              </summary>
-              <p style="font-size:0.86rem;margin-bottom:8px;">点击顶部 <strong>① 扩展程序</strong> 图标 → 点右上角 <strong>② 安装扩展程序</strong> → 粘贴上方仓库地址（分支留空）→ 点 <strong>只给我安装</strong> 并刷新酒馆：</p>
-              <figure class="guide-figure tavern-guide-figure" style="margin-top:0;">
-                <a href="./assets/tavern-extension-setup.png" target="_blank" rel="noopener">
-                  <img src="./assets/tavern-extension-setup.png" alt="从顶部扩展程序打开安装扩展程序，在弹窗粘贴仓库地址并选择只给我安装" class="guide-img" width="698" height="658" loading="lazy" decoding="async" />
+          <ol class="steps-list">
+            <li>
+              打开酒馆顶部 <strong>扩展程序 → 安装扩展程序</strong>，粘贴小白X 的仓库地址并点击 <strong>只给我安装</strong>：
+              <div class="code-block" style="margin-bottom:0;">
+                <span>https://github.com/RT15548/LittleWhiteBox</span>
+                <button type="button" class="copy-btn" data-copy="https://github.com/RT15548/LittleWhiteBox">📋 复制仓库地址</button>
+              </div>
+            </li>
+            <li>安装后刷新，打开 <strong>扩展设置 → 小白X → 辅助工具 → AI 画图</strong>，在 <strong>① 画图后端</strong> 中选择 <strong>NovelAI</strong>，再点击旁边的 <strong>② 画图设置</strong>。
+              <figure class="guide-figure tavern-guide-figure">
+                <a href="./assets/tavern-whitebox-entry.png" target="_blank" rel="noopener">
+                  <img src="./assets/tavern-whitebox-entry.png" alt="小白X 的辅助工具中选择 NovelAI 画图后端并打开画图设置" class="guide-img" width="701" height="715" loading="lazy" decoding="async" />
                 </a>
                 <figcaption class="guide-caption">
-                  <span>顶部扩展程序 → 安装扩展程序 → 粘贴仓库 URL → 点「只给我安装」</span>
+                  <span>小白X → 辅助工具 → AI 画图：① 画图后端选 NovelAI → ② 点击「画图设置」</span>
                   <span class="zoom-hint">🔍 点击放大</span>
                 </figcaption>
               </figure>
-            </details>
-          </li>
-          <li>安装后刷新页面，点击页面上的<strong>画笔悬浮球</strong>打开智绘姬设置。在 <strong>主要设置</strong> 中开启 <strong>① 启用插件</strong>，将 <strong>② 模式</strong> 选为 <strong>NovelAI</strong>，将 <strong>③ 客户端</strong> 选为 <strong>浏览器</strong>。
-            <figure class="guide-figure tavern-guide-figure">
-              <a href="./assets/tavern-chatu8-main.png" target="_blank" rel="noopener">
-                <img src="./assets/tavern-chatu8-main.png" alt="智绘姬主要设置，启用插件、模式选择 NovelAI、客户端选择浏览器" class="guide-img" width="1200" height="505" loading="lazy" decoding="async" />
-              </a>
-              <figcaption class="guide-caption">
-                <span>智绘姬主要设置：① 开启启用插件 → ② 模式选 NovelAI → ③ 客户端选浏览器</span>
-                <span class="zoom-hint">🔍 点击放大</span>
-              </figcaption>
-            </figure>
-          </li>
-          <li>
-            切换到左侧 <strong>NovelAI</strong> 页面，按下表填写：
-            <div class="table-wrap">
-              <table class="table-config">
-                <thead>
-                  <tr>
-                    <th>字段 / 开关</th>
-                    <th>设置内容</th>
-                    <th>操作 / 状态</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><strong>① NovelAI API</strong></td>
-                    <td>兑换页获得的 <code>skr_</code> 密钥</td>
-                    <td><span class="badge badge-amber">粘贴 skr_ 密钥</span></td>
-                  </tr>
-                  <tr>
-                    <td><strong>② 站点</strong></td>
-                    <td><strong>其他站点</strong></td>
-                    <td><span class="badge badge-green">选择其他站点</span></td>
-                  </tr>
-                  <tr>
-                    <td><strong>③ 其他novelai站点</strong></td>
-                    <td><code>https://relay.tenshimomone.com/</code></td>
-                    <td><button type="button" class="copy-btn" data-copy="https://relay.tenshimomone.com/">📋 复制地址</button></td>
-                  </tr>
-                  <tr>
-                    <td><strong>④ 启用云端队列</strong></td>
-                    <td><strong>关闭</strong></td>
-                    <td><span class="badge badge-red">❌ 关闭</span></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <figure class="guide-figure tavern-guide-figure">
-              <a href="./assets/tavern-chatu8-novelai.png" target="_blank" rel="noopener">
-                <img src="./assets/tavern-chatu8-novelai.png" alt="智绘姬 NovelAI 配置，站点选其他站点、填写接口地址、关闭云端队列并选择模型" class="guide-img" width="1200" height="676" loading="lazy" decoding="async" />
-              </a>
-              <figcaption class="guide-caption">
-                <span>① 填 <code>skr_</code> 密钥 → ② 站点选其他站点 → ③ 填接口地址 → ④ 关闭云端队列 → ⑤ 选择模型</span>
-                <span class="zoom-hint">🔍 点击放大</span>
-              </figcaption>
-            </figure>
-          </li>
-          <li>
-            在下方 <strong>⑤ 模型</strong> 中选择你要使用的模型：
-            <ul class="bullet-list" style="margin-top:8px;">
-              <li>
-                <strong>含 V5 体力或点数用户：</strong> 可选 <code>nai-diffusion-5-full</code>（V5）或 <code>nai-diffusion-4-5-full</code>（V4.5）。
-                <button type="button" class="copy-btn" data-copy="nai-diffusion-5-full">📋 复制 V5 模型名</button>
-              </li>
-              <li>
-                <strong>「月卡：V4.5无限小图（无V5体力）」用户：</strong> 请务必选择 <strong><code>nai-diffusion-4-5-full</code></strong>（或 V4.5 Curated），切勿选 V5。
-                <button type="button" class="copy-btn" data-copy="nai-diffusion-4-5-full">📋 复制 V4.5 模型名</button>
-              </li>
-            </ul>
-          </li>
-        </ol>
-
-        <h3 class="subsection-title" id="tavern-chatu8-chat">在聊天中配图（标记触发 &amp; 自动生成）</h3>
-        <p>智绘姬 3.2.1 默认识别以 <code>image###</code> 开头、<code>###</code> 结尾的绘图标记（可在 <strong>主要设置 → 提示词标记与储存</strong> 查看）。你可以直接发送下方测试消息让聊天模型在回复末尾带上标记，或点已有回复右上角的<strong>铅笔</strong>手动贴入标记测试：</p>
-        <div class="code-block">
-          <span>写两句中文，描写旅人撑伞走过雨后的樱花小巷。正文之后另起一行，原样输出这条绘图标记：image###traveling girl, transparent umbrella, cherry blossom alley, falling petals, stone pavement, paper lanterns, dusk###</span>
-          <button type="button" class="copy-btn" data-copy="写两句中文，描写旅人撑伞走过雨后的樱花小巷。正文之后另起一行，原样输出这条绘图标记：image###traveling girl, transparent umbrella, cherry blossom alley, falling petals, stone pavement, paper lanterns, dusk###">📋 复制聊天测试消息</button>
+            </li>
+            <li>
+              切换到 <strong>① API 配置</strong> 页面，按下表填写后点击 <strong>⑤ 保存</strong>，再点 <strong>测试连接</strong>（也可到 <code>快速测试</code> 页点 <code>生成</code> 验证出图）：
+              <div class="table-wrap">
+                <table class="table-config">
+                  <thead>
+                    <tr>
+                      <th>字段</th>
+                      <th>填写内容</th>
+                      <th>操作 / 状态</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>② NovelAI API Key</strong></td>
+                      <td>兑换页获得的 <code>skr_</code> 密钥</td>
+                      <td><span class="badge badge-amber">粘贴 skr_ 密钥</span></td>
+                    </tr>
+                    <tr>
+                      <td><strong>③ 第三方端点 URL（可选）</strong></td>
+                      <td><code>https://relay.tenshimomone.com/</code></td>
+                      <td><button type="button" class="copy-btn" data-copy="https://relay.tenshimomone.com/">📋 复制地址</button></td>
+                    </tr>
+                    <tr>
+                      <td><strong>④ 发送方式</strong></td>
+                      <td><strong>前端直连</strong></td>
+                      <td><span class="badge badge-green">选择前端直连</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <figure class="guide-figure tavern-guide-figure">
+                <a href="./assets/tavern-whitebox-api.png" target="_blank" rel="noopener">
+                  <img src="./assets/tavern-whitebox-api.png" alt="小白X 的 API 配置页，标出密钥、第三方端点、前端直连和保存" class="guide-img" width="1336" height="896" loading="lazy" decoding="async" />
+                </a>
+                <figcaption class="guide-caption">
+                  <span>① API 配置 → ② 填 <code>skr_</code> 密钥 → ③ 填第三方端点 URL → ④ 选前端直连 → ⑤ 点保存</span>
+                  <span class="zoom-hint">🔍 点击放大</span>
+                </figcaption>
+              </figure>
+            </li>
+            <li>切换到 <strong>绘图参数</strong> 页面选择你要使用的模型（<strong>含 V5 体力或点数用户可选 V5 或 V4.5 模型</strong>；<strong>「V4.5无限小图」月卡用户请选 <code>NAI V4.5 Full</code></strong>），推荐尺寸选 <code>832×1216 竖图</code>（或 <code>≤ 1024×1024</code>）、步数 <code>28</code>。
+              <figure class="guide-figure tavern-guide-figure">
+                <a href="./assets/tavern-whitebox-v45.png" target="_blank" rel="noopener">
+                  <img src="./assets/tavern-whitebox-v45.png" alt="小白X 绘图参数示例，选择 V5 或 NAI V4.5 Full，尺寸 832×1216，步数 28" class="guide-img" width="894" height="537" loading="lazy" decoding="async" />
+                </a>
+                <figcaption class="guide-caption">
+                  <span>绘图参数设置：① 选择 V5 或 V4.5 模型，下方尺寸建议选 <code>832×1216</code>、Steps 填 <code>28</code></span>
+                  <span class="zoom-hint">🔍 点击放大</span>
+                </figcaption>
+              </figure>
+            </li>
+            <li>
+              <strong>配置「场景 Agent」（⚠️ 必配项！不配的话只有“快速测试”能出图，聊天里无法配图，会报错 <code>尚未选择模型</code>）：</strong><br />
+              切换到 <strong>① 场景 Agent</strong> 页面——这里设置的是负责“读剧情正文、规划画面、写生图 TAG”的<strong>聊天 AI 模型</strong>（与小白助手共用同一套配置，<strong>切勿把本站 <code>skr_</code> 绘画密钥填在这里</strong>）：
+              <ul class="bullet-list" style="margin-top:6px;">
+                <li>选择你聊天模型对应的 <strong>② Provider（接口类型）</strong>，例如 <code>OpenAI 兼容</code>、<code>Anthropic</code>、<code>Google AI</code>（或经由酒馆后端转发的 <code>酒馆 OpenAI 兼容</code> / <code>酒馆 Claude</code> / <code>酒馆 Google AI</code>）。</li>
+                <li>填入你<strong>聊天模型</strong>的 <strong>③ <code>Base URL</code></strong> 与 <strong>④ <code>API Key</code></strong>，点击 <strong>拉取模型</strong> 选好模型（或手动填写 <strong>⑤ <code>Model</code></strong> 名称），最后点击右上角 <strong>⑥ 保存图标</strong>（确保面板不再显示 <code>未选择模型</code>）。</li>
+                <li>用 DeepSeek 时可选 <strong>OpenAI 兼容</strong>，<code>Base URL</code> 填 <code>https://api.deepseek.com</code>，模型填 <code>deepseek-flash</code>，填写自己的 DeepSeek API Key，把<strong>思考模式</strong>设为<strong>关闭</strong>后保存。</li>
+              </ul>
+              <figure class="guide-figure tavern-guide-figure">
+                <a href="./assets/tavern-whitebox-agent.png" target="_blank" rel="noopener">
+                  <img src="./assets/tavern-whitebox-agent.png" alt="小白X 场景 Agent 中的 OpenAI 兼容服务、Base URL、模型和保存入口" class="guide-img" width="1336" height="660" loading="lazy" decoding="async" />
+                </a>
+                <figcaption class="guide-caption">
+                  <span>① 场景 Agent → ② 选聊天接口类型 → ③④⑤ 填聊天模型地址/Key/模型名 → ⑥ 点击保存</span>
+                  <span class="zoom-hint">🔍 点击放大</span>
+                </figcaption>
+              </figure>
+            </li>
+            <li><strong>在聊天中开始配图：</strong> 点击 AI 回复右上角小胶囊里的 <strong>① 调色盘按钮</strong>，生成的图片会直接插回这一楼；需要每次回复后自动画图时，在画图设置面板右上角将模式从「手动」切换为 <strong>自动</strong>（也可让聊天 AI 在正文直接输出 <code>[img:TAG]</code> 标记触发出图）。
+              <div class="guide-img-grid">
+                <figure class="guide-figure">
+                  <a href="./assets/tavern-whitebox-brush.png" target="_blank" rel="noopener">
+                    <img src="./assets/tavern-whitebox-brush.png" alt="小白X 在角色回复右上角提供手动配图的调色盘按钮" class="guide-img" width="692" height="234" loading="lazy" decoding="async" />
+                  </a>
+                  <figcaption class="guide-caption">
+                    <span>步骤 A：点击角色回复右上角胶囊中的 ① 调色盘按钮触发配图</span>
+                    <span class="zoom-hint">🔍 点击放大</span>
+                  </figcaption>
+                </figure>
+                <figure class="guide-figure">
+                  <a href="./assets/tavern-whitebox-result.png" target="_blank" rel="noopener">
+                    <img src="./assets/tavern-whitebox-result.png" alt="小白X 使用 NovelAI 生成的图片出现在原聊天回复内" class="guide-img" width="680" height="432" loading="lazy" decoding="async" />
+                  </a>
+                  <figcaption class="guide-caption">
+                    <span>步骤 B：NovelAI 出图完成后，插图直接嵌入该条聊天回复内</span>
+                    <span class="zoom-hint">🔍 点击放大</span>
+                  </figcaption>
+                </figure>
+              </div>
+            </li>
+          </ol>
         </div>
-        <div class="code-block">
-          <span>image###traveling girl, transparent umbrella, cherry blossom alley, falling petals, stone pavement, paper lanterns, dusk###</span>
-          <button type="button" class="copy-btn" data-copy="image###traveling girl, transparent umbrella, cherry blossom alley, falling petals, stone pavement, paper lanterns, dusk###">📋 仅复制绘图标记</button>
+
+        <!-- =====================================================
+             5.4 方案四：智绘姬 / st-chatu8
+             ===================================================== -->
+        <div class="tavern-scheme-block" id="sec-5-4">
+          <h3 class="subsection-title" style="margin-top:0;">
+            <span>5.4 方案四：智绘姬 / st-chatu8（悬浮球标记触发扩展）</span>
+            <span style="display:inline-flex;align-items:center;gap:8px;flex-wrap:wrap;">
+              <span class="badge badge-green">✅ 支持 V5 &amp; V4.5</span>
+              <a href="https://github.com/damoshen123/st-chatu8/blob/main/README.md" target="_blank" rel="noopener" class="btn" style="font-size:0.78rem;padding:4px 10px;">📖 智绘姬官方文档 ↗</a>
+            </span>
+          </h3>
+
+          <ol class="steps-list">
+            <li>
+              打开酒馆顶部 <strong>扩展程序 → 安装扩展程序</strong>，粘贴智绘姬的仓库地址并点击 <strong>只给我安装</strong>：
+              <div class="code-block" style="margin-bottom:0;">
+                <span>https://github.com/damoshen123/st-chatu8</span>
+                <button type="button" class="copy-btn" data-copy="https://github.com/damoshen123/st-chatu8">📋 复制仓库地址</button>
+              </div>
+            </li>
+            <li>安装后刷新页面，点击页面上的<strong>画笔悬浮球</strong>打开智绘姬设置。在 <strong>主要设置</strong> 中开启 <strong>① 启用插件</strong>，将 <strong>② 模式</strong> 选为 <strong>NovelAI</strong>，将 <strong>③ 客户端</strong> 选为 <strong>浏览器</strong>。
+              <figure class="guide-figure tavern-guide-figure">
+                <a href="./assets/tavern-chatu8-main.png" target="_blank" rel="noopener">
+                  <img src="./assets/tavern-chatu8-main.png" alt="智绘姬主要设置，启用插件、模式选择 NovelAI、客户端选择浏览器" class="guide-img" width="1200" height="505" loading="lazy" decoding="async" />
+                </a>
+                <figcaption class="guide-caption">
+                  <span>智绘姬主要设置：① 开启启用插件 → ② 模式选 NovelAI → ③ 客户端选浏览器</span>
+                  <span class="zoom-hint">🔍 点击放大</span>
+                </figcaption>
+              </figure>
+            </li>
+            <li>
+              切换到左侧 <strong>NovelAI</strong> 页面，按下表填写：
+              <div class="table-wrap">
+                <table class="table-config">
+                  <thead>
+                    <tr>
+                      <th>字段 / 开关</th>
+                      <th>设置内容</th>
+                      <th>操作 / 状态</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>① NovelAI API</strong></td>
+                      <td>兑换页获得的 <code>skr_</code> 密钥</td>
+                      <td><span class="badge badge-amber">粘贴 skr_ 密钥</span></td>
+                    </tr>
+                    <tr>
+                      <td><strong>② 站点</strong></td>
+                      <td><strong>其他站点</strong></td>
+                      <td><span class="badge badge-green">选择其他站点</span></td>
+                    </tr>
+                    <tr>
+                      <td><strong>③ 其他novelai站点</strong></td>
+                      <td><code>https://relay.tenshimomone.com/</code></td>
+                      <td><button type="button" class="copy-btn" data-copy="https://relay.tenshimomone.com/">📋 复制地址</button></td>
+                    </tr>
+                    <tr>
+                      <td><strong>④ 启用云端队列</strong></td>
+                      <td><strong>关闭</strong></td>
+                      <td><span class="badge badge-red">❌ 关闭</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <figure class="guide-figure tavern-guide-figure">
+                <a href="./assets/tavern-chatu8-novelai.png" target="_blank" rel="noopener">
+                  <img src="./assets/tavern-chatu8-novelai.png" alt="智绘姬 NovelAI 配置，站点选其他站点、填写接口地址、关闭云端队列并选择模型" class="guide-img" width="1200" height="676" loading="lazy" decoding="async" />
+                </a>
+                <figcaption class="guide-caption">
+                  <span>① 填 <code>skr_</code> 密钥 → ② 站点选其他站点 → ③ 填接口地址 → ④ 关闭云端队列 → ⑤ 选择模型</span>
+                  <span class="zoom-hint">🔍 点击放大</span>
+                </figcaption>
+              </figure>
+            </li>
+            <li>
+              在下方 <strong>⑤ 模型</strong> 中选择你要使用的模型：
+              <ul class="bullet-list" style="margin-top:8px;">
+                <li>
+                  <strong>含 V5 体力或点数用户：</strong> 可选 <code>nai-diffusion-5-full</code>（V5）或 <code>nai-diffusion-4-5-full</code>（V4.5）。
+                  <button type="button" class="copy-btn" data-copy="nai-diffusion-5-full">📋 复制 V5 模型名</button>
+                </li>
+                <li>
+                  <strong>「月卡：V4.5无限小图（无V5体力）」用户：</strong> 请务必选择 <strong><code>nai-diffusion-4-5-full</code></strong>（或 V4.5 Curated），切勿选 V5。
+                  <button type="button" class="copy-btn" data-copy="nai-diffusion-4-5-full">📋 复制 V4.5 模型名</button>
+                </li>
+              </ul>
+            </li>
+          </ol>
+
+          <h4 class="subsection-title" id="tavern-chatu8-chat"><span>在聊天中配图（标记触发 &amp; 自动生成）</span></h4>
+          <p>智绘姬 3.2.1 默认识别以 <code>image###</code> 开头、<code>###</code> 结尾的绘图标记（可在 <strong>主要设置 → 提示词标记与储存</strong> 查看）。你可以直接发送下方测试消息让聊天模型在回复末尾带上标记，或点已有回复右上角的<strong>铅笔</strong>手动贴入标记测试：</p>
+          <div class="code-block">
+            <span>写两句中文，描写旅人撑伞走过雨后的樱花小巷。正文之后另起一行，原样输出这条绘图标记：image###traveling girl, transparent umbrella, cherry blossom alley, falling petals, stone pavement, paper lanterns, dusk###</span>
+            <button type="button" class="copy-btn" data-copy="写两句中文，描写旅人撑伞走过雨后的樱花小巷。正文之后另起一行，原样输出这条绘图标记：image###traveling girl, transparent umbrella, cherry blossom alley, falling petals, stone pavement, paper lanterns, dusk###">📋 复制聊天测试消息</button>
+          </div>
+          <div class="code-block">
+            <span>image###traveling girl, transparent umbrella, cherry blossom alley, falling petals, stone pavement, paper lanterns, dusk###</span>
+            <button type="button" class="copy-btn" data-copy="image###traveling girl, transparent umbrella, cherry blossom alley, falling petals, stone pavement, paper lanterns, dusk###">📋 仅复制绘图标记</button>
+          </div>
+
+          <div class="visual-step-grid" style="margin-bottom:0;">
+            <div class="visual-step-card">
+              <div>
+                <div class="visual-step-head">
+                  <span class="visual-step-num">1</span>
+                  <span>让角色回复带上绘图标记</span>
+                </div>
+                <p class="visual-step-desc" style="margin:6px 0 0;">若测试已有回复，可点回复右上角的 <strong>① 铅笔图标</strong>，在正文末尾另起一行粘贴 <code>image###...###</code> 标记，再点 <strong>② 绿色勾号</strong> 保存。</p>
+              </div>
+              <figure class="guide-figure">
+                <a href="./assets/tavern-chatu8-message-edit.png" target="_blank" rel="noopener">
+                  <img src="./assets/tavern-chatu8-message-edit.png" alt="在酒馆的回复编辑框末尾添加智绘姬的绘图标记，再点击绿色勾号保存" class="guide-img" width="640" height="218" loading="lazy" decoding="async" />
+                </a>
+                <figcaption class="guide-caption">
+                  <span>① 点铅笔编辑回复 → 末尾贴入绘图标记 → ② 点绿勾保存</span>
+                  <span class="zoom-hint">🔍 放大</span>
+                </figcaption>
+              </figure>
+            </div>
+
+            <div class="visual-step-card">
+              <div>
+                <div class="visual-step-head">
+                  <span class="visual-step-num">2</span>
+                  <span>点击「生成图片」按钮</span>
+                </div>
+                <p class="visual-step-desc" style="margin:6px 0 0;">标记识别成功后，会在正文中自动变成 <strong>③ 生成图片</strong> 按钮（若手动编辑后仍显示原始文本，刷新网页重进该聊天即可）。</p>
+              </div>
+              <figure class="guide-figure">
+                <a href="./assets/tavern-chatu8-message-generate.png" target="_blank" rel="noopener">
+                  <img src="./assets/tavern-chatu8-message-generate.png" alt="智绘姬将绘图标记转为生成图片按钮，按钮显示在角色回复正文内" class="guide-img" width="640" height="148" loading="lazy" decoding="async" />
+                </a>
+                <figcaption class="guide-caption">
+                  <span>③ 绘图标记自动转化为「生成图片」按钮</span>
+                  <span class="zoom-hint">🔍 放大</span>
+                </figcaption>
+              </figure>
+            </div>
+
+            <div class="visual-step-card">
+              <div>
+                <div class="visual-step-head">
+                  <span class="visual-step-num">3</span>
+                  <span>查看同一楼的插图</span>
+                </div>
+                <p class="visual-step-desc" style="margin:6px 0 0;">NovelAI 出图完成后，生成的插图会直接内嵌显示在这条角色回复的正文下方。</p>
+              </div>
+              <figure class="guide-figure">
+                <a href="./assets/tavern-chatu8-message-result.png" target="_blank" rel="noopener">
+                  <img src="./assets/tavern-chatu8-message-result.png" alt="智绘姬用 NovelAI 生成的插图显示在原回复正文中" class="guide-img" width="640" height="608" loading="lazy" decoding="async" />
+                </a>
+                <figcaption class="guide-caption">
+                  <span>出图完成后插图直接展示在当前角色回复内</span>
+                  <span class="zoom-hint">🔍 放大</span>
+                </figcaption>
+              </figure>
+            </div>
+
+            <div class="visual-step-card">
+              <div>
+                <div class="visual-step-head">
+                  <span class="visual-step-num">4</span>
+                  <span>开启全自动配图（可选）</span>
+                </div>
+                <p class="visual-step-desc" style="margin:6px 0 0;">在 <strong>主要设置 → 自动化与生成控制</strong> 中开启 <strong>① 自动点击生成</strong>，新回复出现标记时会自动出图（若用独立 LLM 写词，在 LLM 页填聊天模型 Key）。</p>
+              </div>
+              <figure class="guide-figure">
+                <a href="./assets/tavern-chatu8-message-auto.png" target="_blank" rel="noopener">
+                  <img src="./assets/tavern-chatu8-message-auto.png" alt="智绘姬主要设置内的自动点击生成开关" class="guide-img" width="1152" height="376" loading="lazy" decoding="async" />
+                </a>
+                <figcaption class="guide-caption">
+                  <span>开启「自动点击生成」后出现标记即自动触发出图</span>
+                  <span class="zoom-hint">🔍 放大</span>
+                </figcaption>
+              </figure>
+            </div>
+          </div>
         </div>
 
-        <div class="visual-step-grid">
-          <div class="visual-step-card">
-            <div>
-              <div class="visual-step-head">
-                <span class="visual-step-num">1</span>
-                <span>让角色回复带上绘图标记</span>
-              </div>
-              <p class="visual-step-desc" style="margin:6px 0 0;">若测试已有回复，可点回复右上角的 <strong>① 铅笔图标</strong>，在正文末尾另起一行粘贴 <code>image###...###</code> 标记，再点 <strong>② 绿色勾号</strong> 保存。</p>
-            </div>
-            <figure class="guide-figure">
-              <a href="./assets/tavern-chatu8-message-edit.png" target="_blank" rel="noopener">
-                <img src="./assets/tavern-chatu8-message-edit.png" alt="在酒馆的回复编辑框末尾添加智绘姬的绘图标记，再点击绿色勾号保存" class="guide-img" width="640" height="218" loading="lazy" decoding="async" />
-              </a>
-              <figcaption class="guide-caption">
-                <span>① 点铅笔编辑回复 → 末尾贴入绘图标记 → ② 点绿勾保存</span>
-                <span class="zoom-hint">🔍 放大</span>
-              </figcaption>
-            </figure>
-          </div>
-
-          <div class="visual-step-card">
-            <div>
-              <div class="visual-step-head">
-                <span class="visual-step-num">2</span>
-                <span>点击「生成图片」按钮</span>
-              </div>
-              <p class="visual-step-desc" style="margin:6px 0 0;">标记识别成功后，会在正文中自动变成 <strong>③ 生成图片</strong> 按钮（若手动编辑后仍显示原始文本，刷新网页重进该聊天即可）。</p>
-            </div>
-            <figure class="guide-figure">
-              <a href="./assets/tavern-chatu8-message-generate.png" target="_blank" rel="noopener">
-                <img src="./assets/tavern-chatu8-message-generate.png" alt="智绘姬将绘图标记转为生成图片按钮，按钮显示在角色回复正文内" class="guide-img" width="640" height="148" loading="lazy" decoding="async" />
-              </a>
-              <figcaption class="guide-caption">
-                <span>③ 绘图标记自动转化为「生成图片」按钮</span>
-                <span class="zoom-hint">🔍 放大</span>
-              </figcaption>
-            </figure>
-          </div>
-
-          <div class="visual-step-card">
-            <div>
-              <div class="visual-step-head">
-                <span class="visual-step-num">3</span>
-                <span>查看同一楼的插图</span>
-              </div>
-              <p class="visual-step-desc" style="margin:6px 0 0;">NovelAI 出图完成后，生成的插图会直接内嵌显示在这条角色回复的正文下方。</p>
-            </div>
-            <figure class="guide-figure">
-              <a href="./assets/tavern-chatu8-message-result.png" target="_blank" rel="noopener">
-                <img src="./assets/tavern-chatu8-message-result.png" alt="智绘姬用 NovelAI 生成的插图显示在原回复正文中" class="guide-img" width="640" height="608" loading="lazy" decoding="async" />
-              </a>
-              <figcaption class="guide-caption">
-                <span>出图完成后插图直接展示在当前角色回复内</span>
-                <span class="zoom-hint">🔍 放大</span>
-              </figcaption>
-            </figure>
-          </div>
-
-          <div class="visual-step-card">
-            <div>
-              <div class="visual-step-head">
-                <span class="visual-step-num">4</span>
-                <span>开启全自动配图（可选）</span>
-              </div>
-              <p class="visual-step-desc" style="margin:6px 0 0;">在 <strong>主要设置 → 自动化与生成控制</strong> 中开启 <strong>① 自动点击生成</strong>，新回复出现标记时会自动出图（若用独立 LLM 写词，在 LLM 页填聊天模型 Key）。</p>
-            </div>
-            <figure class="guide-figure">
-              <a href="./assets/tavern-chatu8-message-auto.png" target="_blank" rel="noopener">
-                <img src="./assets/tavern-chatu8-message-auto.png" alt="智绘姬主要设置内的自动点击生成开关" class="guide-img" width="1152" height="376" loading="lazy" decoding="async" />
-              </a>
-              <figcaption class="guide-caption">
-                <span>开启「自动点击生成」后出现标记即自动触发出图</span>
-                <span class="zoom-hint">🔍 放大</span>
-              </figcaption>
-            </figure>
-          </div>
-        </div>
       </article>
 
-      <!-- SECTION 9: 其他支持第三方 NovelAI 的工具 -->
-      <article class="section-card tool-section" id="sec-9">
+      <!-- =========================================================
+           SECTION 6: 其他支持第三方 NovelAI 的工具 (必要步骤直接展示)
+           ========================================================= -->
+      <article class="section-card tool-section" id="sec-6">
         <div class="section-header">
-          <h2 class="section-title"><span class="section-num">9</span> 其他支持第三方 NovelAI 的工具</h2>
+          <h2 class="section-title"><span class="section-num">6</span> 其他支持第三方 NovelAI 的工具</h2>
           <span class="badge badge-sakura">通用配置</span>
         </div>
 
@@ -2931,23 +3187,25 @@
           </table>
         </div>
 
-        <p>凡是支持 NovelAI 原生接口、且允许自定义接口地址（Base URL）的工具或插件，均可按以上三项信息接入。</p>
+        <p style="margin-bottom:0;">凡是支持 NovelAI 原生接口、且允许自定义接口地址（Base URL）的工具或插件，均可按以上三项信息接入。</p>
       </article>
 
-      <!-- SECTION 10: 新手常见问题 FAQ -->
-      <article class="section-card" id="sec-10">
+      <!-- =========================================================
+           SECTION 7: 新手常见问题 FAQ (高频疑问与报错自查直接展示，长篇算式与多表对比默认折叠)
+           ========================================================= -->
+      <article class="section-card" id="sec-7">
         <div class="section-header">
-          <h2 class="section-title"><span class="section-num">10</span> 新手常见问题 FAQ（画质、Vibe、小图、体力与点数）</h2>
+          <h2 class="section-title"><span class="section-num">7</span> 新手常见问题 FAQ（画质、Vibe、小图、体力与报错）</h2>
           <span class="badge badge-amber">新手必读 · 一看就懂</span>
         </div>
 
-        <div class="callout callout-success">
+        <div class="callout callout-success" style="margin-top:0;">
           <div class="callout-title">💡 一句话总览</div>
           <p><strong>本站直连 NovelAI 官方生图模型（画质与官网 100% 一致，支持 Vibe 画风参考）；Opus 会员画 V4.5 小图完全免费不限量，画 V5 小图优先扣「V5 体力」，超规格大图或纯点数包则扣「点数」。</strong></p>
         </div>
 
-        <!-- 10.1 四大高频问答：画质/Vibe、4人Opus独立额度与隐私、查余额与续费、网络连接 -->
-        <h3 class="subsection-title" id="sec-10-1">10.1 四大高频疑问：原版画质与 Vibe、独立额度与隐私、查余额与网络连接</h3>
+        <!-- 7.1 四大高频问答 (直接展示) -->
+        <h3 class="subsection-title" id="sec-7-1"><span>7.1 四大高频疑问：原版画质与 Vibe、独立额度与隐私、查余额与网络连接</span></h3>
         <div class="qa-grid">
           <div class="qa-card">
             <div class="qa-q">🎨 Q1：出图效果和官网一样吗？支持 Vibe 模型吗？</div>
@@ -2979,8 +3237,8 @@
           </div>
         </div>
 
-        <!-- 10.2 一张表搞懂四个核心词 -->
-        <h3 class="subsection-title" id="sec-10-2">10.2 一张表搞懂四个核心词：小图、V4.5 无限小图、V5 体力、点数</h3>
+        <!-- 7.2 一张表搞懂四个核心词 (直接展示) -->
+        <h3 class="subsection-title" id="sec-7-2"><span>7.2 一张表搞懂四个核心词：小图、V4.5 无限小图、V5 体力、点数</span></h3>
         <div class="table-wrap">
           <table class="table-data">
             <thead>
@@ -3015,8 +3273,8 @@
           </table>
         </div>
 
-        <!-- 10.3 什么算小图？V4.5 与 V5 扣费 -->
-        <h3 class="subsection-title" id="sec-10-3">10.3 什么才算「小图」？交互式扣费自测</h3>
+        <!-- 7.3 什么算小图？交互式扣费自测 (直接展示核心 3 条件与自测器，尺寸对照表默认折叠) -->
+        <h3 class="subsection-title" id="sec-7-3"><span>7.3 什么才算「小图」？交互式扣费自测</span></h3>
         <p>无论使用 V4.5 还是 V5，享受「免点 / 扣体力」小图权益必须<strong>同时满足以下 3 个条件</strong>：</p>
 
         <div class="cond-grid">
@@ -3121,8 +3379,8 @@
           </table>
         </div>
 
-        <!-- 10.4 为什么独享是 5920 张 V5 图？ -->
-        <h3 class="subsection-title" id="sec-10-4">10.4 为什么官网说 Opus 每月约 7,000 张 V5，而本站独享是 5,920 张？</h3>
+        <!-- 7.4 为什么独享是 5920 张 V5 图？ -->
+        <h3 class="subsection-title" id="sec-7-4"><span>7.4 为什么官网说 Opus 每月约 7,000 张 V5，而本站独享是 5,920 张？</span></h3>
         <p>不少朋友看过官网 FAQ 提到“Opus 每月可画约 7,000 张 V5 小图”，疑惑为什么本站单人独享（100% 满体力档）算下来是 <strong>5,920 张</strong>。其实<strong>两者的总体力条完全一样，只是折算的单张步数基准不同</strong>：</p>
         <ul class="bullet-list">
           <li><strong>官网的 7,000 张是以「单张 23 步」计算的：</strong> 在官方机制中，23 步消耗的体力较低，28 步消耗的体力较高。但几乎所有玩家为了画面细节，日常都会把步数拉满到免费上限 <strong>28 步</strong>，按 28 步去画，官网账号一个月实际能出的张数同样在 5,900 张左右。</li>
@@ -3139,8 +3397,8 @@
           <li><strong>直接拉满 28 步更省心：</strong> 在本站只要符合小图尺寸且步数 ≤ 28 步，生成 1 张固定扣 1 张 V5 体力。你不需要为了凑张数去降步数，<strong>每次直接设 28 步出最高画质即可</strong>。</li>
         </ul>
 
-        <!-- 10.5 何时扣点数？100点能出几张？ -->
-        <h3 class="subsection-title" id="sec-10-5">10.5 什么时候会扣「点数」？100 点数大约能画几张图？</h3>
+        <!-- 7.5 何时扣点数？100点能出几张？ -->
+        <h3 class="subsection-title" id="sec-7-5"><span>7.5 什么时候会扣「点数」？100 点数大约能画几张图？</span></h3>
         <p>点数就是账户里的<strong>生图钱包余额（类似官网 ImageAnlas）</strong>，仅在以下 4 种情况扣除：</p>
         <ol class="steps-list">
           <li><strong>使用纯点数套餐（100点 / 2k点）：</strong> 无 Opus 会员权益，生成任何图片均按参数扣点。</li>
@@ -3150,8 +3408,6 @@
         </ol>
 
         <p><strong>「体验：100 点数」能生成多少张图？（100 点是余额，不是 100 张次数卡）</strong></p>
-        <p>按普通文生图、单次 1 张、不叠加额外收费功能估算，参考消耗如下：</p>
-
         <div class="table-wrap">
           <table class="table-data">
             <thead>
@@ -3184,9 +3440,8 @@
           <em>注：按点计费时，实际消耗随分辨率、步数、附加功能（如多张 Vibe 参考等）浮动，请以生成按钮显示的预计扣点或实际余额变化为准。参考：<a href="https://docs.novelai.net/en/image/stepsguidance/" target="_blank" rel="noopener">NovelAI 官方步数与点数说明</a>。</em>
         </p>
 
-        <!-- 10.6 四个例子一眼看懂扣费 & 选档对号入座 -->
-        <h3 class="subsection-title" id="sec-10-6">10.6 四个例子看懂扣费 &amp; 不知道买哪档对号入座</h3>
-
+        <!-- 7.6 四个例子看懂扣费 & 选档对号入座 -->
+        <h3 class="subsection-title" id="sec-7-6"><span>7.6 四个例子看懂扣费 &amp; 不知道买哪档对号入座</span></h3>
         <p><strong>四个典型生图场景扣费对比：</strong></p>
         <div class="table-wrap">
           <table class="table-data">
@@ -3227,12 +3482,7 @@
           </table>
         </div>
 
-        <div class="callout callout-success">
-          <div class="callout-title">🌟 新手省心黄金设置</div>
-          <p>日常画图与酒馆自动配图，强烈建议固定设置为 <strong><code>832×1216</code> 或 <code>1024×1024</code>、<code>28 步</code>、<code>单次 1 张</code></strong>。买「V4.5无限小图月卡」的朋友固定选 V4.5 模型即可 30 天无限畅画；买「4人合租 / 独享 Opus」的朋友平时尽情跑 V5，万一当天 V5 体力用完了，切回 V4.5 就能无缝继续免费出图！</p>
-        </div>
-
-        <p style="margin-top:18px;"><strong>不知道买哪档？按你的需求对号入座：</strong></p>
+        <p style="margin-top:14px;"><strong>不知道买哪档？按你的需求对号入座：</strong></p>
         <div class="table-wrap">
           <table class="table-data">
             <thead>
@@ -3282,8 +3532,13 @@
           </table>
         </div>
 
-        <!-- 10.7 常见报错 3 秒自查 -->
-        <h3 class="subsection-title" id="sec-10-7">10.7 常见报错 3 秒自查表（遇到报错先对照这里）</h3>
+        <div class="callout callout-success">
+          <div class="callout-title">🌟 新手省心黄金设置</div>
+          <p>日常画图与酒馆自动配图，强烈建议固定设置为 <strong><code>832×1216</code> 或 <code>1024×1024</code>、<code>28 步</code>、<code>单次 1 张</code></strong>。买「V4.5无限小图月卡」的朋友固定选 V4.5 模型即可 30 天无限畅画；买「4人合租 / 独享 Opus」的朋友平时尽情跑 V5，万一当天 V5 体力用完了，切回 V4.5 就能无缝继续免费出图！</p>
+        </div>
+
+        <!-- 7.7 常见报错 3 秒自查 (重要排障表直接展示) -->
+        <h3 class="subsection-title" id="sec-7-7"><span>7.7 常见报错 3 秒自查表（遇到报错先对照这里）</span></h3>
         <div class="table-wrap">
           <table class="table-data">
             <thead>
@@ -3313,7 +3568,7 @@
           </table>
         </div>
 
-        <div class="callout">
+        <div class="callout" style="margin-bottom:0;">
           <p>
             <strong>官方概念参考：</strong>
             <a href="https://docs.novelai.net/en/subscription/" target="_blank" rel="noopener">NovelAI 订阅与 ImageAnlas 说明</a> ·
@@ -3364,7 +3619,6 @@
         }
       }
 
-      // Default to 'light' unless user explicitly saved 'dark'
       const saved = localStorage.getItem(STORAGE_KEY);
       applyTheme(saved === 'dark' ? 'dark' : 'light');
 
@@ -3408,27 +3662,69 @@
       });
     })();
 
-    // 3. Tool filter, Image View Mode Toggle, and Collapsible Sidebar
+    // 3. Sidebar TOC Sub-Headings (Default: Collapsed), Tool Filter & Tavern Scheme Sub-Filter
     (function () {
       const tabs = document.querySelectorAll('.filter-tab');
-      const sections = document.querySelectorAll('.tool-section');
+      const toolSections = document.querySelectorAll('.tool-section');
+      const tavernTabs = document.querySelectorAll('.tavern-sub-tab');
+      const tavernBlocks = document.querySelectorAll('.tavern-scheme-block');
       const body = document.body;
       const topbarTocBtn = document.getElementById('topbarTocBtn');
       const topbarTocText = document.getElementById('topbarTocText');
       const sidebarCollapseBtn = document.getElementById('sidebarCollapseBtn');
       const sidebarBackdrop = document.getElementById('sidebarBackdrop');
       const imgToggleBtn = document.getElementById('imgToggleBtn');
-      const TAVERN_IDS = ['sec-5', 'sec-6', 'sec-7', 'sec-8'];
+      const tocExpandAllBtn = document.getElementById('tocExpandAllBtn');
+      const tocGroups = Array.from(document.querySelectorAll('.toc-group'));
 
+      function syncTocExpandAllBtn() {
+        if (!tocExpandAllBtn) return;
+        const anyExpanded = tocGroups.some((g) => !g.classList.contains('collapsed'));
+        tocExpandAllBtn.textContent = anyExpanded ? '📁 收起小标题' : '📂 展开小标题';
+      }
+
+      // Sidebar TOC group arrow toggle
+      document.querySelectorAll('.toc-group-toggle').forEach((btn) => {
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          const group = this.closest('.toc-group');
+          if (!group) return;
+          group.classList.toggle('collapsed');
+          syncTocExpandAllBtn();
+        });
+      });
+
+      // Clicking a major chapter in the TOC also toggles/expands its sub-headings in the TOC
+      document.querySelectorAll('.toc-row > .toc-link').forEach((mainLink) => {
+        mainLink.addEventListener('click', function () {
+          const group = this.closest('.toc-group');
+          if (group) {
+            group.classList.toggle('collapsed');
+            syncTocExpandAllBtn();
+          }
+        });
+      });
+
+      if (tocExpandAllBtn) {
+        tocExpandAllBtn.addEventListener('click', function () {
+          const anyExpanded = tocGroups.some((g) => !g.classList.contains('collapsed'));
+          tocGroups.forEach((g) => {
+            g.classList.toggle('collapsed', anyExpanded);
+          });
+          syncTocExpandAllBtn();
+        });
+      }
+
+      // Tool Filter for Sections 2~6
       function setFilter(filterId) {
         tabs.forEach((t) => {
           t.classList.toggle('active', t.getAttribute('data-filter') === filterId);
         });
-        sections.forEach((sec) => {
+        toolSections.forEach((sec) => {
           const matchAll = filterId === 'all';
-          const matchTavern = filterId === 'tavern-all' && TAVERN_IDS.includes(sec.id);
           const matchSingle = sec.id === filterId;
-          if (matchAll || matchTavern || matchSingle) {
+          if (matchAll || matchSingle) {
             sec.classList.remove('hidden-section');
           } else {
             sec.classList.add('hidden-section');
@@ -3442,6 +3738,26 @@
         });
       });
 
+      // Tavern sub-filter inside Section 5
+      function setTavernTab(schemeId) {
+        tavernTabs.forEach((t) => {
+          t.classList.toggle('active', t.getAttribute('data-tavern-tab') === schemeId);
+        });
+        tavernBlocks.forEach((b) => {
+          if (schemeId === 'all' || b.id === schemeId) {
+            b.classList.remove('hidden-section');
+          } else {
+            b.classList.add('hidden-section');
+          }
+        });
+      }
+
+      tavernTabs.forEach((t) => {
+        t.addEventListener('click', function () {
+          setTavernTab(this.getAttribute('data-tavern-tab'));
+        });
+      });
+
       if (imgToggleBtn) {
         imgToggleBtn.addEventListener('click', function () {
           const isCompact = body.classList.toggle('compact-no-img');
@@ -3452,14 +3768,68 @@
         });
       }
 
-      document.querySelectorAll('[data-tavern-install]').forEach((link) => {
-        link.addEventListener('click', () => {
-          if (document.getElementById('sec-6').classList.contains('hidden-section')) {
-            setFilter('all');
+      // Universal hash navigation helper (auto-unhides filtered sections & opens <details> if needed)
+      const LEGACY_HASH_MAP = {
+        'sec-6': 'sec-5-2',
+        'sec-7': 'sec-7',
+        'sec-8': 'sec-5-4',
+        'sec-9': 'sec-6',
+        'sec-10': 'sec-7',
+        'sec-10-1': 'sec-7-1',
+        'sec-10-2': 'sec-7-2',
+        'sec-10-3': 'sec-7-3',
+        'sec-10-4': 'sec-7-4',
+        'sec-10-5': 'sec-7-5',
+        'sec-10-6': 'sec-7-6',
+        'sec-10-7': 'sec-7-7'
+      };
+
+      function openAndScrollToTarget(rawId) {
+        if (!rawId) return;
+        const targetId = document.getElementById(rawId) ? rawId : (LEGACY_HASH_MAP[rawId] || rawId);
+        const targetEl = document.getElementById(targetId);
+        if (!targetEl) return;
+
+        const parentSec = targetEl.closest('article.section-card') || (targetEl.matches('article.section-card') ? targetEl : null);
+        if (parentSec && parentSec.classList.contains('hidden-section')) {
+          setFilter('all');
+        }
+
+        const parentScheme = targetEl.closest('.tavern-scheme-block') || (targetEl.matches('.tavern-scheme-block') ? targetEl : null);
+        if (parentScheme && parentScheme.classList.contains('hidden-section')) {
+          setTavernTab('all');
+        }
+
+        const parentDetails = targetEl.matches('details') ? targetEl : targetEl.closest('details');
+        if (parentDetails && !parentDetails.open) {
+          parentDetails.open = true;
+        }
+
+        setTimeout(() => {
+          targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 25);
+      }
+
+      document.querySelectorAll('a[href^="#sec-"]').forEach((anchor) => {
+        anchor.addEventListener('click', function (e) {
+          const href = this.getAttribute('href');
+          if (!href || href.length <= 1) return;
+          const id = href.slice(1);
+          e.preventDefault();
+          history.replaceState(null, '', '#' + id);
+          openAndScrollToTarget(id);
+          if (isMobileView()) {
+            collapseSidebar();
           }
         });
       });
 
+      if (window.location.hash && window.location.hash.length > 1) {
+        const initId = window.location.hash.slice(1);
+        setTimeout(() => openAndScrollToTarget(initId), 60);
+      }
+
+      // Sidebar Responsive Collapse / Expand
       function isMobileView() {
         return window.innerWidth <= 980;
       }
@@ -3497,20 +3867,7 @@
       if (sidebarBackdrop) sidebarBackdrop.addEventListener('click', collapseSidebar);
       window.addEventListener('resize', updateTocBtnLabel);
       updateTocBtnLabel();
-
-      // Clicking any TOC link un-hides filtered section & closes mobile sidebar
-      document.querySelectorAll('.toc-link').forEach((link) => {
-        link.addEventListener('click', function () {
-          const targetId = this.getAttribute('data-target');
-          const targetEl = document.getElementById(targetId);
-          if (targetEl && targetEl.classList.contains('hidden-section')) {
-            setFilter('all');
-          }
-          if (isMobileView()) {
-            collapseSidebar();
-          }
-        });
-      });
+      syncTocExpandAllBtn();
     })();
 
     // 4. Image Lightbox Gallery (Prev/Next, Counter, Caption & Keyboard Support)
@@ -3552,6 +3909,11 @@
       }
 
       function getSectionLabel(img) {
+        const schemeBlock = img.closest('.tavern-scheme-block');
+        if (schemeBlock) {
+          const subTitle = schemeBlock.querySelector('.subsection-title > span:first-child');
+          if (subTitle) return subTitle.textContent.trim();
+        }
         const sec = img.closest('article.section-card');
         if (sec) {
           const titleEl = sec.querySelector('.section-title');
@@ -3641,7 +4003,7 @@
       });
     })();
 
-    // 5. Interactive Billing Checker (Section 10.3)
+    // 5. Interactive Billing Checker (Section 7.3)
     (function () {
       const tierEl = document.getElementById('chkTier');
       const modelEl = document.getElementById('chkModel');
@@ -3689,28 +4051,49 @@
       }
 
       [tierEl, modelEl, resEl, stepsEl].forEach((el) => {
-        el.addEventListener('change', updateChecker);
+        if (el) el.addEventListener('change', updateChecker);
       });
     })();
 
     // 6. Scroll-Spy for Sidebar TOC
     (function () {
       const links = Array.from(document.querySelectorAll('.toc-link'));
-      const sectionIds = ['sec-1', 'sec-2', 'sec-3', 'sec-4', 'sec-5', 'sec-6', 'sec-7', 'sec-8', 'sec-9', 'sec-10'];
+      const sectionIds = ['sec-1', 'sec-2', 'sec-3', 'sec-4', 'sec-5', 'sec-6', 'sec-7'];
+      const subIds = [
+        'sec-1-1', 'sec-1-2',
+        'sec-5-1', 'sec-5-2', 'sec-5-3', 'sec-5-4',
+        'sec-7-1', 'sec-7-2', 'sec-7-3', 'sec-7-4', 'sec-7-5', 'sec-7-6', 'sec-7-7'
+      ];
+
       window.addEventListener('scroll', () => {
-        let current = 'sec-1';
+        let currentSec = 'sec-1';
         for (const id of sectionIds) {
           const el = document.getElementById(id);
           if (el && !el.classList.contains('hidden-section')) {
             const rect = el.getBoundingClientRect();
-            if (rect.top <= 140) {
-              current = id;
+            if (rect.top <= 150) {
+              currentSec = id;
             }
           }
         }
+
+        let currentSub = null;
+        for (const sid of subIds) {
+          if (!sid.startsWith(currentSec + '-')) continue;
+          const subEl = document.getElementById(sid);
+          if (subEl && !subEl.classList.contains('hidden-section')) {
+            const rect = subEl.getBoundingClientRect();
+            if (rect.top <= 180) {
+              currentSub = sid;
+            }
+          }
+        }
+
         links.forEach((link) => {
           const href = link.getAttribute('href');
-          link.classList.toggle('active', href === '#' + current);
+          const isMainMatch = href === '#' + currentSec;
+          const isSubMatch = currentSub && href === '#' + currentSub;
+          link.classList.toggle('active', Boolean(isMainMatch || isSubMatch));
         });
       }, { passive: true });
     })();
