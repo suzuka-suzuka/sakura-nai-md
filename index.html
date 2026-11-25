@@ -2042,6 +2042,7 @@
           <a href="https://redeem.tenshimomone.com/" target="_blank" rel="noopener" class="btn btn-primary">🔑 1. 打开密钥兑换页</a>
           <a href="https://nai.tenshimomone.com/" target="_blank" rel="noopener" class="btn">🎨 2. 网页在线画图</a>
           <a href="#sec-7" class="btn">❓ 常见问题 FAQ</a>
+          <a href="#sec-8" class="btn">💬 联系我们</a>
         </div>
 
         <!-- Single Compact Theme Toggle Button (Default: Light) -->
@@ -2115,6 +2116,9 @@
           <li><a href="#sec-7-7" class="toc-link toc-sub" data-target="sec-7">7.7 常见报错 3 秒自查表</a></li>
         </ul>
       </li>
+
+      <!-- Chapter 8 -->
+      <li><a href="#sec-8" class="toc-link" data-target="sec-8">8. 联系我们</a></li>
     </ul>
   </aside>
 
@@ -3607,11 +3611,57 @@
         </div>
       </article>
 
+      <!-- =========================================================
+           SECTION 8: 联系我们
+           ========================================================= -->
+      <article class="section-card" id="sec-8">
+        <div class="section-header">
+          <h2 class="section-title"><span class="section-num">8</span> 联系我们</h2>
+          <span class="badge badge-sakura">淘宝 &amp; 闲鱼官方同店</span>
+        </div>
+
+        <p>我们在 <strong>淘宝</strong> 和 <strong>闲鱼</strong> 均开设有官方店铺，统一店名为 <strong>「星绘补给站」</strong>。如需购买套餐、到期续费、找回密钥或咨询接入与使用问题，欢迎前往对应平台搜索联系：</p>
+
+        <div class="qa-grid">
+          <div class="qa-card" style="display:flex;flex-direction:column;justify-content:space-between;gap:12px;">
+            <div>
+              <div class="qa-q">🛍️ 淘宝店铺：星绘补给站</div>
+              <div class="qa-a">
+                打开<strong>手机淘宝</strong>或淘宝网页版，搜索店铺 <strong>「星绘补给站」</strong>，即可进店选购各档套餐或直接联系在线客服。
+              </div>
+            </div>
+            <div class="quick-actions">
+              <button type="button" class="copy-btn" data-copy="星绘补给站">📋 复制店名：星绘补给站</button>
+            </div>
+          </div>
+
+          <div class="qa-card" style="display:flex;flex-direction:column;justify-content:space-between;gap:12px;">
+            <div>
+              <div class="qa-q">🐟 闲鱼店铺：星绘补给站</div>
+              <div class="qa-a">
+                打开<strong>闲鱼 App</strong>，搜索用户 / 店铺 <strong>「星绘补给站」</strong>，同样提供全档位套餐选购与私信售后答疑支持。
+              </div>
+            </div>
+            <div class="quick-actions">
+              <button type="button" class="copy-btn" data-copy="星绘补给站">📋 复制店名：星绘补给站</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="callout" style="margin-bottom:0;">
+          <div class="callout-title">💬 售后与咨询小贴士</div>
+          <ul class="bullet-list" style="margin-bottom:0;">
+            <li><strong>购卡与到期续费：</strong> 密钥到期或额度用尽后，前往淘宝或闲鱼 <strong>「星绘补给站」</strong> 获取新的 <code>CDK-</code> 兑换码，在 <a href="https://redeem.tenshimomone.com/" target="_blank" rel="noopener">密钥兑换页</a> 兑出新的 <code>skr_</code> 密钥替换填入即可。</li>
+            <li><strong>密钥找回与问题排查：</strong> 若兑换后忘了保存 <code>skr_</code> 密钥，或遇到按第 7 节报错自查表仍无法解决的问题，请通过下单平台私信店铺客服，并附上您的 <strong><code>CDK-</code> 兑换码</strong> 或 <strong>报错截图</strong>，客服会为您快速跟进处理（切勿在公开评论区张贴兑换码或密钥）。</li>
+          </ul>
+        </div>
+      </article>
+
     </main>
   </div>
 
   <footer class="footer">
-    <p>🌸 星绘补给站｜NovelAI 兑换与接入教程 · 请妥善保管你的 <code>skr_</code> 密钥</p>
+    <p>🌸 星绘补给站｜NovelAI 兑换与接入教程 · 淘宝 / 闲鱼同名店铺：<strong>星绘补给站</strong> · 请妥善保管你的 <code>skr_</code> 密钥</p>
   </footer>
 
   </div><!-- /.page-main -->
@@ -3801,7 +3851,6 @@
       const LEGACY_HASH_MAP = {
         'sec-6': 'sec-5-2',
         'sec-7': 'sec-7',
-        'sec-8': 'sec-5-4',
         'sec-9': 'sec-6',
         'sec-10': 'sec-7',
         'sec-10-1': 'sec-7-1',
@@ -4096,7 +4145,7 @@
     // 6. Scroll-Spy for Sidebar TOC
     (function () {
       const links = Array.from(document.querySelectorAll('.toc-link'));
-      const sectionIds = ['sec-1', 'sec-2', 'sec-3', 'sec-4', 'sec-5', 'sec-6', 'sec-7'];
+      const sectionIds = ['sec-1', 'sec-2', 'sec-3', 'sec-4', 'sec-5', 'sec-6', 'sec-7', 'sec-8'];
       const subIds = [
         'sec-1-1', 'sec-1-2',
         'sec-5-1', 'sec-5-2', 'sec-5-3', 'sec-5-4',
@@ -4105,12 +4154,17 @@
 
       window.addEventListener('scroll', () => {
         let currentSec = 'sec-1';
-        for (const id of sectionIds) {
-          const el = document.getElementById(id);
-          if (el && !el.classList.contains('hidden-section')) {
-            const rect = el.getBoundingClientRect();
-            if (rect.top <= 150) {
-              currentSec = id;
+        const nearBottom = window.scrollY > 100 && (window.innerHeight + window.scrollY) >= (document.documentElement.scrollHeight - 40);
+        if (nearBottom) {
+          currentSec = 'sec-8';
+        } else {
+          for (const id of sectionIds) {
+            const el = document.getElementById(id);
+            if (el && !el.classList.contains('hidden-section')) {
+              const rect = el.getBoundingClientRect();
+              if (rect.top <= 150) {
+                currentSec = id;
+              }
             }
           }
         }
