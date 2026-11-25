@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
   <title>星绘补给站｜NovelAI 兑换与接入教程</title>
-  <meta name="description" content="星绘补给站 NovelAI 密钥兑换、套餐权益说明、28步体力折算说明、Vibe模型支持说明，以及网页直连、Aaalice、Langbai、SillyTavern酒馆插件接入教程。" />
+  <meta name="description" content="星绘补给站 NovelAI 密钥兑换、套餐权益说明、V5 Medium 节约模式半价体力与28步折算说明、Vibe模型支持说明，以及网页直连、Aaalice、Langbai、SillyTavern酒馆插件接入教程。" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌸</text></svg>" />
   <style>
     /* Default: Light Theme (清爽亮色) */
@@ -897,6 +897,15 @@
     .formula-box.primary {
       border-color: var(--border-strong);
       background: var(--sakura-bg);
+    }
+
+    .formula-box.eco {
+      border-color: var(--green);
+      background: var(--green-bg);
+    }
+
+    .formula-box.eco .formula-tag {
+      color: var(--green);
     }
 
     .formula-tag {
@@ -2100,7 +2109,7 @@
           <li><a href="#sec-7-1" class="toc-link toc-sub" data-target="sec-7">7.1 四大高频疑问（画质/Vibe）</a></li>
           <li><a href="#sec-7-2" class="toc-link toc-sub" data-target="sec-7">7.2 一张表搞懂四个核心词</a></li>
           <li><a href="#sec-7-3" class="toc-link toc-sub" data-target="sec-7">7.3 什么算小图？扣费自测器</a></li>
-          <li><a href="#sec-7-4" class="toc-link toc-sub" data-target="sec-7">7.4 为什么独享是 5920 张 V5？</a></li>
+          <li><a href="#sec-7-4" class="toc-link toc-sub" data-target="sec-7">7.4 独享 5920 张与节约模式半价</a></li>
           <li><a href="#sec-7-5" class="toc-link toc-sub" data-target="sec-7">7.5 何时扣点数？100点画几张？</a></li>
           <li><a href="#sec-7-6" class="toc-link toc-sub" data-target="sec-7">7.6 扣费实例 &amp; 选档对号入座</a></li>
           <li><a href="#sec-7-7" class="toc-link toc-sub" data-target="sec-7">7.7 常见报错 3 秒自查表</a></li>
@@ -2247,7 +2256,7 @@
                 <th class="num-col">有效天数</th>
                 <th class="num-col">附带点数</th>
                 <th>V4.5 标准小图权益</th>
-                <th>V5 体力额度（跑 V5 小图专用，28步满步数基准）</th>
+                <th>V5 体力额度（标准 V5 扣 1 张 · 节约模式仅扣 0.5 张）</th>
               </tr>
             </thead>
             <tbody>
@@ -2263,7 +2272,7 @@
                 <td class="num-col" data-label="有效天数"><span class="cell-val">1 天</span></td>
                 <td class="num-col" data-label="附带点数"><span class="cell-val">0</span></td>
                 <td data-label="V4.5 小图权益"><span class="cell-val"><span class="badge badge-green">✅ 无限免点生成</span></span></td>
-                <td data-label="V5 体力额度"><span class="cell-val">4% 档（一次性发放约 <strong>44 张</strong>，不恢复）</span></td>
+                <td data-label="V5 体力额度"><span class="cell-val">4% 档：一次性发放约 <strong>44 张</strong>，不恢复（V5 Medium 节约模式可画约 <strong>88 张</strong>）</span></td>
               </tr>
               <tr>
                 <td>按量：2k点数包</td>
@@ -2284,48 +2293,53 @@
                 <td class="num-col" data-label="有效天数"><span class="cell-val">30 天</span></td>
                 <td class="num-col" data-label="附带点数"><span class="cell-val">0</span></td>
                 <td data-label="V4.5 小图权益"><span class="cell-val"><span class="badge badge-green">✅ 无限免点生成</span></span></td>
-                <td data-label="V5 体力额度"><span class="cell-val">25% 档：初始上限 <strong>280 张</strong>，每 24h 恢复 <strong>40 张</strong>（30天总计可达 <strong>1,480 张</strong>）</span></td>
+                <td data-label="V5 体力额度"><span class="cell-val">25% 档：初始上限 <strong>280 张</strong>，每 24h 恢复 <strong>40 张</strong>（30天标准 V5 可达 <strong>1,480 张</strong> · 节约模式可达 <strong>2,960 张</strong>）</span></td>
               </tr>
               <tr>
                 <td>月卡：4人Opus无限小图+2k点</td>
                 <td class="num-col" data-label="有效天数"><span class="cell-val">30 天</span></td>
                 <td class="num-col" data-label="附带点数"><span class="cell-val">2,000</span></td>
                 <td data-label="V4.5 小图权益"><span class="cell-val"><span class="badge badge-green">✅ 无限免点生成</span></span></td>
-                <td data-label="V5 体力额度"><span class="cell-val">25% 档：初始上限 <strong>280 张</strong>，每 24h 恢复 <strong>40 张</strong>（30天总计可达 <strong>1,480 张</strong>）</span></td>
+                <td data-label="V5 体力额度"><span class="cell-val">25% 档：初始上限 <strong>280 张</strong>，每 24h 恢复 <strong>40 张</strong>（30天标准 V5 可达 <strong>1,480 张</strong> · 节约模式可达 <strong>2,960 张</strong>）</span></td>
               </tr>
               <tr>
                 <td>月卡：单人独享Opus（含1w点）</td>
                 <td class="num-col" data-label="有效天数"><span class="cell-val">30 天</span></td>
                 <td class="num-col" data-label="附带点数"><span class="cell-val">10,000</span></td>
                 <td data-label="V4.5 小图权益"><span class="cell-val"><span class="badge badge-green">✅ 无限免点生成</span></span></td>
-                <td data-label="V5 体力额度"><span class="cell-val">100% 档：初始上限 <strong>1,120 张</strong>，每 24h 恢复 <strong>160 张</strong>（30天总计可达 <strong>5,920 张</strong>）</span></td>
+                <td data-label="V5 体力额度"><span class="cell-val">100% 档：初始上限 <strong>1,120 张</strong>，每 24h 恢复 <strong>160 张</strong>（30天标准 V5 可达 <strong>5,920 张</strong> · 节约模式可达 <strong>11,840 张</strong>）</span></td>
               </tr>
             </tbody>
           </table>
         </div>
 
         <div class="callout">
-          <div class="callout-title">💡 为什么官网说每月约 7,000 张 V5，而本站独享是 5,920 张？（28 步基准 vs 官网 23 步基准）</div>
-          <p>两者<strong>总体力额度完全对等</strong>，区别仅在于<strong>单张折算步数不同</strong>：</p>
+          <div class="callout-title">💡 V5 体力怎么算？为什么标准独享是 5,920 张，而「节约模式」能画 11,840 张？</div>
+          <p>本站与官网 Opus <strong>总体力额度完全对等</strong>，且现已支持 <strong>V5 Medium（节约模式）半价体力</strong>：</p>
           <div class="formula-grid">
             <div class="formula-box">
               <div class="formula-tag">NovelAI 官网公布口径（按 23 步估算）</div>
               <div class="formula-eq">每月约 7,000 张（单张 23 步）</div>
-              <div class="formula-desc">官网 FAQ 中的“每月约 7,000 张”是以<strong>单张 23 步</strong>的低消耗口径估算的。但日常画图为了保证最佳画质，绝大多数人都会拉满到 28 步，实际能画的 28 步张数就会少于 7,000 张。</div>
+              <div class="formula-desc">官网 FAQ 中的“每月约 7,000 张”是以<strong>单张 23 步</strong>估算的。但跑标准 V5 时为了保证最佳细节，大多数人都会拉满到 28 步，实际能画的 28 步张数同样在 5,900 张左右。</div>
             </div>
             <div class="formula-box primary">
-              <div class="formula-tag">本站实测保守口径（按 28 步满步数折算）</div>
-              <div class="formula-eq">160 × 37 ＝ 5,920 张（单张 28 步）</div>
-              <div class="formula-desc">本站不拿低步数虚标张数，统一按<strong>单张 28 步满步数</strong>折算：以单人独享为例，开卡即送满槽 <strong>1,120 张</strong>（相当于 7 天恢复量 <code>160×7</code>）＋ 30 天每日恢复 <strong>160 张</strong>（<code>160×30 = 4,800</code>），月总计 <strong><code>160 × 37 = 5,920 张</code></strong>（4人合租同理为 <code>40 × 37 = 1,480 张</code>），折算回体力总量与官网完全一致！</div>
+              <div class="formula-tag">本站标准 V5 口径（28 步满步数 · 扣 1 张体力）</div>
+              <div class="formula-eq">160 × 37 ＝ 5,920 张（1 体力 / 张）</div>
+              <div class="formula-desc">按<strong>单张 28 步满步数</strong>实诚折算：独享开卡即送满槽 <strong>1,120 张</strong>（<code>160×7</code>）＋ 30 天每日恢复 <strong>160 张</strong>（<code>160×30 = 4,800</code>），月总计 <strong><code>5,920 张</code></strong>（4人合租为 <code>40 × 37 = 1,480 张</code>）。</div>
+            </div>
+            <div class="formula-box eco">
+              <div class="formula-tag">🌿 V5 Medium 节约模式（固定 14 步 · 仅扣 0.5 张体力）</div>
+              <div class="formula-eq">5,920 × 2 ＝ 11,840 张（张数翻倍！）</div>
+              <div class="formula-desc">选用官方蒸馏加速的 <strong>V5 Medium（节约模式）</strong> 生成标准小图，每张<strong>仅消耗 0.5 张 V5 体力</strong>（1 张体力画 2 张）！4 人合租月总可达 <strong>2,960 张</strong>，单人独享可达 <strong>11,840 张</strong>！</div>
             </div>
           </div>
-          <p style="margin-top:8px;"><strong>🎯 本站规则优势：</strong>在本站生成符合小图尺寸的 V5 图片时，只要在 <strong>28 步及以下</strong>（无论设 23 步还是拉满 28 步），每成功出图 1 张均固定扣除 <strong>1 张 V5 体力</strong>。<strong>建议直接放心拉满 28 步获取最佳画质，无需为了省体力委屈降到 23 步！</strong></p>
+          <p style="margin-top:8px;"><strong>🎯 两种 V5 模式怎么选：</strong>跑<strong>标准 V5</strong>（≤28 步）每张固定扣 <strong>1 张体力</strong>，建议<strong>直接拉满 28 步</strong>拿最高画质，无需降到 23 步；日常快速抽卡、试提示词或酒馆高频配图，强烈推荐切到 <strong>V5 Medium（节约模式）</strong>，每张只扣 <strong>0.5 张体力</strong>，出图更快且耐画度直接翻倍！</p>
         </div>
 
         <h3 class="subsection-title" id="sec-1-2"><span>1.2 四条核心扣费与恢复规则</span></h3>
         <ul class="bullet-list" style="margin-bottom:0;">
-          <li><strong>「月卡：V4.5无限小图（无V5体力）」用户：</strong> 享 30 天 V4.5 标准小图无限免点生成，不含 V5 体力与点数。<strong>生图时请务必将模型选为 V4.5（如 <code>nai-diffusion-4-5-full</code>）</strong>；若误选 V5 模型或超规格生图会被系统拒绝。</li>
-          <li><strong>含 V5 体力的 Opus 用户（1天 / 4人 / 单人独享）：</strong> 跑 V4.5 小图同样 <strong>0 点数 0 体力无限画</strong>；跑 V5 小图每张扣 1 张 V5 体力。V5 体力按 24 小时周期恢复（不超过存储上限）；<strong>若当天 V5 体力刷完，只需把模型切回 V4.5 就能继续免费无限出图！</strong></li>
+          <li><strong>「月卡：V4.5无限小图（无V5体力）」用户：</strong> 享 30 天 V4.5 标准小图无限免点生成，不含 V5 体力与点数。<strong>生图时请务必将模型选为 V4.5（如 <code>nai-diffusion-4-5-full</code>）</strong>；若误选 V5 / V5 Medium 模型或超规格生图会被系统拒绝。</li>
+          <li><strong>含 V5 体力的 Opus 用户（1天 / 4人 / 单人独享）：</strong> 跑 V4.5 小图同样 <strong>0 点数 0 体力无限画</strong>；跑<strong>标准 V5 小图</strong>每张扣 <strong>1 张 V5 体力</strong>，跑 <strong>V5 Medium（节约模式）小图</strong>每张仅扣 <strong>0.5 张 V5 体力</strong>。V5 体力按 24 小时周期恢复（不超过存储上限）；<strong>若当天 V5 体力刷完，只需把模型切回 V4.5 就能继续免费无限出图！</strong></li>
           <li><strong>纯点数档（100点 / 2k点）：</strong> 不含无限小图与 V5 体力，生成任何图片均按实际参数扣除点数。</li>
           <li><strong>超规格扣点规则：</strong> 只要超出小图标准（<strong>宽×高 &gt; 1,048,576 像素</strong>、<strong>步数 &gt; 28 步</strong>、或<strong>单次批量出图多出的张数</strong>），以及 V5 体力用尽后继续强跑 V5，均需消耗账户内的点数（若无点数则会拒绝生成）。</li>
         </ul>
@@ -2372,7 +2386,7 @@
               </li>
               <li>在弹出的「连接设置」窗口中，密钥类型选择 <strong>Sakura Key</strong>（如右图所示）。</li>
               <li>在下方 <strong>Sakura Key</strong> 输入框粘贴兑换页获得的 <code>skr_</code> 密钥，点击 <strong>连接 / 更新连接</strong>。</li>
-              <li>连接成功后选择模型（<strong>V4.5 月卡用户请选 V4.5 模型</strong>；含 V5 体力或点数用户可选 V5 / V4.5），即可开始生图，支持 <strong>Vibe Transfer（画风参考）</strong>、图生图、局部重绘等完整功能。</li>
+              <li>连接成功后选择模型（<strong>V4.5 月卡用户请选 V4.5 模型</strong>；含 V5 体力或点数用户可选 <strong>V5 标准模式</strong>、<strong>V5 Medium 节约模式（小图仅扣 0.5 张体力）</strong> 或 <strong>V4.5</strong>），即可开始生图，支持 <strong>Vibe Transfer（画风参考）</strong>、图生图、局部重绘等完整功能。</li>
             </ol>
             <div class="callout" style="margin-bottom:0;">
               <div class="callout-title">🌐 网络连接小贴士（连不上怎么办？）</div>
@@ -3201,7 +3215,7 @@
 
         <div class="callout callout-success" style="margin-top:0;">
           <div class="callout-title">💡 一句话总览</div>
-          <p><strong>本站直连 NovelAI 官方生图模型（画质与官网 100% 一致，支持 Vibe 画风参考）；Opus 会员画 V4.5 小图完全免费不限量，画 V5 小图优先扣「V5 体力」，超规格大图或纯点数包则扣「点数」。</strong></p>
+          <p><strong>本站直连 NovelAI 官方生图模型（画质与官网 100% 一致，支持 Vibe 画风参考）；Opus 会员画 V4.5 小图完全免费不限量，画 V5 小图优先扣「V5 体力」（标准 V5 扣 1 张，V5 Medium 节约模式仅扣 0.5 张），超规格大图或纯点数包则扣「点数」。</strong></p>
         </div>
 
         <!-- 7.1 四大高频问答 (直接展示) -->
@@ -3261,8 +3275,8 @@
               </tr>
               <tr>
                 <td><strong>V5 体力</strong></td>
-                <td data-label="通俗解释"><span class="cell-val">专为最新 <strong>V5 模型</strong>设置的可用小图张数额度（1天/4人/单人 Opus 专属），每 24 小时自动恢复</span></td>
-                <td data-label="容易搞混"><span class="cell-val">只有画 <strong>V5 小图</strong>才会扣 V5 体力；画 V4.5 小图不扣 V5 体力！V5 体力用完时，切回 V4.5 仍可继续免费无限出图</span></td>
+                <td data-label="通俗解释"><span class="cell-val">专为最新 <strong>V5 模型</strong>设置的可用小图额度（1天/4人/单人 Opus 专属），每 24 小时自动恢复；<strong>标准 V5 扣 1 张体力，V5 Medium（节约模式）仅扣 0.5 张体力</strong></span></td>
+                <td data-label="容易搞混"><span class="cell-val">只有画 <strong>V5 小图</strong>才会扣 V5 体力（开启节约模式可用张数直接翻倍）；画 V4.5 小图不扣 V5 体力！V5 体力用完时，切回 V4.5 仍可继续免费无限出图</span></td>
               </tr>
               <tr>
                 <td><strong>点数</strong></td>
@@ -3312,7 +3326,8 @@
               <label for="chkModel">选择的模型</label>
               <select id="chkModel">
                 <option value="v45">V4.5 (nai-diffusion-4-5-full)</option>
-                <option value="v5">V5 (nai-diffusion-5-full)</option>
+                <option value="v5_medium">V5 Medium 节约模式 (14步 · 0.5体力/张)</option>
+                <option value="v5">V5 标准模式 (nai-diffusion-5-full · 1体力/张)</option>
               </select>
             </div>
             <div class="control-group">
@@ -3379,22 +3394,30 @@
           </table>
         </div>
 
-        <!-- 7.4 为什么独享是 5920 张 V5 图？ -->
-        <h3 class="subsection-title" id="sec-7-4"><span>7.4 为什么官网说 Opus 每月约 7,000 张 V5，而本站独享是 5,920 张？</span></h3>
-        <p>不少朋友看过官网 FAQ 提到“Opus 每月可画约 7,000 张 V5 小图”，疑惑为什么本站单人独享（100% 满体力档）算下来是 <strong>5,920 张</strong>。其实<strong>两者的总体力条完全一样，只是折算的单张步数基准不同</strong>：</p>
+        <!-- 7.4 为什么独享是 5920 张 V5 图 & 节约模式半价说明 -->
+        <h3 class="subsection-title" id="sec-7-4"><span>7.4 为什么标准独享是 5,920 张 V5？「V5 Medium 节约模式」怎么做到张数翻倍？</span></h3>
+        <p>不少朋友看过官网 FAQ 提到“Opus 每月可画约 7,000 张 V5 小图”，疑惑为什么本站单人独享标准 V5 算下来是 <strong>5,920 张</strong>，以及<strong>节约模式</strong>怎么扣体力。其实<strong>本站与官网总体力条完全一样，且开启节约模式后每张仅扣 0.5 张体力</strong>：</p>
         <ul class="bullet-list">
-          <li><strong>官网的 7,000 张是以「单张 23 步」计算的：</strong> 在官方机制中，23 步消耗的体力较低，28 步消耗的体力较高。但几乎所有玩家为了画面细节，日常都会把步数拉满到免费上限 <strong>28 步</strong>，按 28 步去画，官网账号一个月实际能出的张数同样在 5,900 张左右。</li>
+          <li><strong>官网的 7,000 张是以「单张 23 步」计算的：</strong> 在官方机制中，23 步消耗的体力较低，28 步消耗的体力较高。但跑标准 V5 时为了画面细节，绝大多数玩家日常都会把步数拉满到免费上限 <strong>28 步</strong>，官网账号按 28 步一个月实际能出的张数同样在 5,900 张左右。</li>
           <li>
-            <strong>本站统一按「单张 28 步满步数」实诚折算（不拿低步数虚标）：</strong><br />
+            <strong>本站标准 V5 统一按「单张 28 步满步数」实诚折算（每张扣 1 张体力）：</strong><br />
             以 <strong>单人独享 Opus（100% 体力档）</strong> 为例：
             <ul class="bullet-list" style="margin:6px 0;">
               <li>兑换开卡时，直接发放满槽初始上限 <strong>1,120 张</strong>（刚好等于 7 天的恢复量：<code>160 张/天 × 7 = 1,120 张</code>）；</li>
               <li>随后 30 天有效期内，每 24 小时恢复 <strong>160 张</strong>（30 天共恢复：<code>160 张/天 × 30 = 4,800 张</code>）；</li>
-              <li>两者相加：<strong><code>160 × (7 + 30) = 160 × 37 = 5,920 张</code>（28 步满步数 V5 小图）</strong>！</li>
+              <li>两者相加：<strong><code>160 × (7 + 30) = 160 × 37 = 5,920 张</code>（28 步满步数标准 V5 小图）</strong>！4 人合租 Opus（25% 档）等比例为 <strong><code>40 × 37 = 1,480 张</code></strong>。跑标准 V5 小图时（≤28 步），每张固定扣 1 张体力，<strong>建议直接拉满 28 步出最高画质，无需委屈降到 23 步</strong>。</li>
             </ul>
           </li>
-          <li><strong>4 人合租 Opus（25% 体力档）完全按 1/4 等比例折算：</strong> 初始上限 <strong>280 张</strong>（<code>40 × 7</code>）＋ 30 天恢复 <strong>1,200 张</strong>（<code>40 × 30</code>）＝ 月总计可用 <strong><code>40 × 37 = 1,480 张</code></strong> 28 步 V5 小图。</li>
-          <li><strong>直接拉满 28 步更省心：</strong> 在本站只要符合小图尺寸且步数 ≤ 28 步，生成 1 张固定扣 1 张 V5 体力。你不需要为了凑张数去降步数，<strong>每次直接设 28 步出最高画质即可</strong>。</li>
+          <li>
+            <strong>🌿 V5 Medium（节约模式）每张仅消耗 0.5 张 V5 体力，可用张数直接翻倍：</strong><br />
+            <strong>V5 Medium（节约模式，<code>nai-diffusion-5-full-medium</code>）</strong> 是 NovelAI 官方推出的 14 步蒸馏加速模式。在本站生成符合小图尺寸（≤1,048,576 像素、单次 1 张）的 V5 Medium 图片，<strong>每张仅扣 0.5 张 V5 体力（1 张体力可画 2 张）</strong>：
+            <ul class="bullet-list" style="margin:6px 0;">
+              <li><strong>体验 1 天 Opus：</strong>约 44 张体力 → 全用节约模式可画约 <strong>88 张</strong>；</li>
+              <li><strong>4 人合租 Opus 月卡：</strong>每日恢复 40 张体力（可画 <strong>80 张</strong> 节约模式），30 天总计最高可达 <strong>2,960 张</strong>；</li>
+              <li><strong>单人独享 Opus 月卡：</strong>每日恢复 160 张体力（可画 <strong>320 张</strong> 节约模式），30 天总计最高可达 <strong>11,840 张</strong>！</li>
+              <li><em>使用小贴士：</em>V5 Medium 官方强制锁定为 <strong>14 步 + Euler Ancestral 采样器</strong>，且不支持单独的负面提示词框（若需排除特定元素，可在正面提示词中用负权重语法如 <code>-3::hat::</code>）。星绘网页端切换节约模式会自动适配参数；第三方客户端手动选用 <code>nai-diffusion-5-full-medium</code> 时请同步将步数设为 <code>14</code>、采样器选 <code>Euler Ancestral</code>。</li>
+            </ul>
+          </li>
         </ul>
 
         <!-- 7.5 何时扣点数？100点能出几张？ -->
@@ -3440,9 +3463,9 @@
           <em>注：按点计费时，实际消耗随分辨率、步数、附加功能（如多张 Vibe 参考等）浮动，请以生成按钮显示的预计扣点或实际余额变化为准。参考：<a href="https://docs.novelai.net/en/image/stepsguidance/" target="_blank" rel="noopener">NovelAI 官方步数与点数说明</a>。</em>
         </p>
 
-        <!-- 7.6 四个例子看懂扣费 & 选档对号入座 -->
-        <h3 class="subsection-title" id="sec-7-6"><span>7.6 四个例子看懂扣费 &amp; 不知道买哪档对号入座</span></h3>
-        <p><strong>四个典型生图场景扣费对比：</strong></p>
+        <!-- 7.6 五个例子看懂扣费 & 选档对号入座 -->
+        <h3 class="subsection-title" id="sec-7-6"><span>7.6 五个例子看懂扣费 &amp; 不知道买哪档对号入座</span></h3>
+        <p><strong>五个典型生图场景扣费对比：</strong></p>
         <div class="table-wrap">
           <table class="table-data">
             <thead>
@@ -3460,8 +3483,14 @@
                 <td data-label="4人/单人/1天 Opus"><span class="cell-val"><span class="badge badge-green">✅ 完全免费（0点0体力）</span></span></td>
                 <td data-label="纯点数包"><span class="cell-val">扣本次所需点数</span></td>
               </tr>
+              <tr class="highlight-row">
+                <td><strong>V5 Medium（节约模式）</strong> · 832×1216 · 14 步 · 1 张</td>
+                <td data-label="V4.5无限小图月卡"><span class="cell-val"><span class="badge badge-red">❌ 不支持（无V5体力与点数）</span></span></td>
+                <td data-label="4人/单人/1天 Opus"><span class="cell-val"><span class="badge badge-green">🌿 仅扣 0.5 张 V5 体力</span>（0点数 · 张数翻倍）</span></td>
+                <td data-label="纯点数包"><span class="cell-val">扣本次所需点数（比标准V5更省点）</span></td>
+              </tr>
               <tr>
-                <td><strong>V5</strong> · 1024×1024 · 28 步 · 1 张</td>
+                <td><strong>V5（标准模式）</strong> · 1024×1024 · 28 步 · 1 张</td>
                 <td data-label="V4.5无限小图月卡"><span class="cell-val"><span class="badge badge-red">❌ 不支持（无V5体力与点数）</span></span></td>
                 <td data-label="4人/单人/1天 Opus"><span class="cell-val"><span class="badge badge-green">✅ 扣 1 张 V5 体力</span>（0点数）</span></td>
                 <td data-label="纯点数包"><span class="cell-val">扣本次所需点数</span></td>
@@ -3501,7 +3530,7 @@
               <tr>
                 <td>低成本体验 V5 最新效果 + V4.5 无限小图</td>
                 <td data-label="推荐套餐"><span class="cell-val"><strong>体验：1 天 Opus</strong></span></td>
-                <td data-label="亮点与注意"><span class="cell-val">24 小时内 V4.5 小图无限出 + 一次性发放约 44 张 V5 体力</span></td>
+                <td data-label="亮点与注意"><span class="cell-val">24 小时内 V4.5 小图无限出 + 约 44 张 V5 体力（节约模式可画约 88 张）</span></td>
               </tr>
               <tr>
                 <td>生图频率很低，但每次都要画超大图/高步数</td>
@@ -3516,17 +3545,17 @@
               <tr class="highlight-row">
                 <td><strong>主力玩最新 V5 模型小图 + V4.5 无限小图</strong></td>
                 <td data-label="推荐套餐"><span class="cell-val"><strong>🔥 月卡：4 人 Opus 无限小图（无点）</strong></span></td>
-                <td data-label="亮点与注意"><span class="cell-val">25% V5 体力（上限 280 张 / 日恢复 40 张，月总 1,480 张）+ V4.5 无限小图</span></td>
+                <td data-label="亮点与注意"><span class="cell-val">25% V5 体力（月总 1,480 张标准 V5 · 节约模式可达 2,960 张）+ V4.5 无限小图</span></td>
               </tr>
               <tr>
                 <td>既想用 V5 体力画小图，偶尔也要画超大图/加精</td>
                 <td data-label="推荐套餐"><span class="cell-val"><strong>月卡：4 人 Opus 无限小图+2k 点</strong></span></td>
-                <td data-label="亮点与注意"><span class="cell-val">25% V5 体力 + V4.5 无限小图 + 额外 2,000 点数可画大图</span></td>
+                <td data-label="亮点与注意"><span class="cell-val">25% V5 体力（节约模式仅 0.5 体力/张）+ V4.5 无限小图 + 额外 2,000 点数可画大图</span></td>
               </tr>
               <tr>
                 <td>重度创作者，每天大量跑 V5 与高精大图</td>
                 <td data-label="推荐套餐"><span class="cell-val"><strong>月卡：单人独享 Opus（含1w点）</strong></span></td>
-                <td data-label="亮点与注意"><span class="cell-val">100% 满额 V5 体力（上限 1,120 张 / 日恢复 160 张，月总 5,920 张）+ V4.5 无限 + 10,000 点数</span></td>
+                <td data-label="亮点与注意"><span class="cell-val">100% 满额 V5 体力（月总 5,920 张标准 V5 · 节约模式可达 11,840 张）+ V4.5 无限 + 10,000 点数</span></td>
               </tr>
             </tbody>
           </table>
@@ -3534,7 +3563,7 @@
 
         <div class="callout callout-success">
           <div class="callout-title">🌟 新手省心黄金设置</div>
-          <p>日常画图与酒馆自动配图，强烈建议固定设置为 <strong><code>832×1216</code> 或 <code>1024×1024</code>、<code>28 步</code>、<code>单次 1 张</code></strong>。买「V4.5无限小图月卡」的朋友固定选 V4.5 模型即可 30 天无限畅画；买「4人合租 / 独享 Opus」的朋友平时尽情跑 V5，万一当天 V5 体力用完了，切回 V4.5 就能无缝继续免费出图！</p>
+          <p>日常画图与酒馆自动配图，强烈建议尺寸固定设为 <strong><code>832×1216</code> 或 <code>1024×1024</code>、<code>单次 1 张</code></strong>。买「V4.5无限小图月卡」的朋友固定选 V4.5（28 步）即可 30 天无限畅画；买「4人合租 / 独享 Opus」的朋友：<strong>高频抽卡或酒馆配图选 V5 Medium 节约模式（14 步，仅扣 0.5 张体力，张数翻倍），精修出图选标准 V5（28 步，扣 1 张体力）</strong>；万一当天 V5 体力用完了，切回 V4.5 就能无缝继续免费出图！</p>
         </div>
 
         <!-- 7.7 常见报错 3 秒自查 (重要排障表直接展示) -->
@@ -4019,13 +4048,15 @@
         const isStandardSmall = isSmallRes && stepsMode === 'ok';
 
         if (tier === 'pts_only') {
-          outEl.innerHTML = '💰 <strong>按点数扣除：</strong>纯点数包（100点 / 2k点）不含无限小图或 V5 体力权益，生成任何图片均按实际参数扣除点数。';
+          outEl.innerHTML = model === 'v5_medium'
+            ? '💰 <strong>按点数扣除（更省点数）：</strong>纯点数包（100点 / 2k点）不含无限小图或 V5 体力权益，按实际参数扣除点数；使用 V5 Medium（节约模式，固定 14 步）单张消耗点数比标准 V5 更少。'
+            : '💰 <strong>按点数扣除：</strong>纯点数包（100点 / 2k点）不含无限小图或 V5 体力权益，生成任何图片均按实际参数扣除点数。';
           return;
         }
 
         if (tier === 'v45_only') {
-          if (model === 'v5') {
-            outEl.innerHTML = '❌ <strong>不支持（请求会被拒绝）：</strong>「月卡：V4.5无限小图（无V5体力）」不含 V5 体力与额外点数，无法使用 V5 模型。<strong>请将模型切换为 V4.5（如 <code>nai-diffusion-4-5-full</code>）！</strong>';
+          if (model === 'v5' || model === 'v5_medium') {
+            outEl.innerHTML = '❌ <strong>不支持（请求会被拒绝）：</strong>「月卡：V4.5无限小图（无V5体力）」不含 V5 体力与额外点数，无法使用 V5 标准或 V5 Medium 节约模式。<strong>请将模型切换为 V4.5（如 <code>nai-diffusion-4-5-full</code>）！</strong>';
           } else if (isStandardSmall) {
             outEl.innerHTML = '✅ <strong>完全免费（0 点数、0 体力消耗）：</strong>符合小图规则（像素 ≤ 1,048,576、步数 ≤ 28、单次 1 张）且使用 V4.5 模型，30 天无限免点畅画！';
           } else {
@@ -4035,11 +4066,18 @@
         }
 
         // opus_no_pts or opus_with_pts
+        if (model === 'v5_medium' && isSmallRes && stepsMode === 'over_steps') {
+          outEl.innerHTML = 'ℹ️ <strong>V5 Medium（节约模式）固定锁定 14 步：</strong>节约模式不支持自定义高步数（自动按 14 步生成）；在当前小图尺寸且单次 1 张下，每成功出图 1 张<strong>仅扣 0.5 张 V5 体力（0 点数消耗）</strong>！';
+          return;
+        }
+
         if (isStandardSmall) {
           if (model === 'v45') {
             outEl.innerHTML = '✅ <strong>完全免费（0 点数、0 体力消耗）：</strong>Opus 套餐跑符合规则的 V4.5 小图，不扣点数也不扣 V5 体力，无限畅画！';
+          } else if (model === 'v5_medium') {
+            outEl.innerHTML = '🌿 <strong>仅扣除 0.5 张 V5 体力（0 点数消耗 · 张数翻倍！）：</strong>符合小图规则的 V5 Medium（节约模式，固定 14 步），每成功出图 1 张仅扣 <strong>0.5 张 V5 体力</strong>（1 张体力可画 2 张）！若当日体力用尽，可随时切回 V4.5 继续免费无限画小图。';
           } else {
-            outEl.innerHTML = '⚡ <strong>扣除 1 张 V5 体力（0 点数消耗）：</strong>符合小图规则的 V5 生成，每成功出图 1 张扣 1 张 V5 体力。若当日 V5 体力用尽，可随时切回 V4.5 继续免费无限画小图！';
+            outEl.innerHTML = '⚡ <strong>扣除 1 张 V5 体力（0 点数消耗）：</strong>符合小图规则的标准 V5 生成（建议拉满 28 步），每成功出图 1 张扣 <strong>1 张 V5 体力</strong>。想让体力翻倍可切 V5 Medium（节约模式，仅扣 0.5 张）；体力用尽可切回 V4.5 继续免费无限画小图！';
           }
         } else {
           if (tier === 'opus_no_pts') {
